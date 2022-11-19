@@ -4,12 +4,16 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,15 +37,53 @@ class MainActivity : ComponentActivity() {
 }
 
 private fun generateRestaurants(): List<Restaurant> = listOf(
-    Restaurant("Tower12"),
-    Restaurant("Sharkeez"),
-    Restaurant("American Junkie"),
-    Restaurant("Henneseys")
+    Restaurant("Tower12", "Best karaoke in town!", R.drawable.tower12),
+    Restaurant("Sharkeez", "Best margaritas in town!", R.drawable.sharkeez),
+    Restaurant("American Junkie", "Best taco tuesday in town!", R.drawable.junkie),
+    Restaurant("Henneseys", "Best bloody mary in town!", R.drawable.hennesseys)
 )
 
 @Composable
-fun RestaurantRow(restaurant: Restaurant, modifier: Modifier = Modifier) {
-    Text(text = restaurant.name, modifier = modifier.padding(top = 8.dp, bottom = 8.dp))
+fun RestaurantCard(
+    name: String,
+    description: String,
+    image: Int
+) {
+    Card(
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        shape = MaterialTheme.shapes.medium,
+        elevation = 5.dp,
+        backgroundColor = MaterialTheme.colors.surface
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = image),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(130.dp)
+                    .padding(8.dp),
+                contentScale = ContentScale.Fit,
+            )
+            Column(
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Text(
+                    text = name,
+                    style = MaterialTheme.typography.h4,
+                    color = MaterialTheme.colors.onSurface
+                )
+                Text(
+                    text = description,
+                    style = MaterialTheme.typography.body2
+                )
+            }
+        }
+    }
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -61,12 +103,22 @@ fun RestaurantList(restaurants: List<Restaurant>) {
             contentPadding = PaddingValues(16.dp)
         ) {
             item {
-                Text(text = "Restaurant List", style = MaterialTheme.typography.h4)
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(vertical = 25.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Restaurant List",
+                        style = MaterialTheme.typography.h3
+                    )
+                }
             }
-
             items(restaurants) { restaurant ->
-                RestaurantRow(restaurant)
-                Divider()
+                RestaurantCard(restaurant.name, restaurant.description, restaurant.image)
             }
         }
     }
@@ -74,14 +126,18 @@ fun RestaurantList(restaurants: List<Restaurant>) {
 }
 
 data class Restaurant(
-    val name: String
+    val name: String,
+    val description: String,
+    val image: Int
 )
 
 @Preview(showBackground = true)
 @Composable
 fun RestaurantRowPreview() {
-    RestaurantRow(
-        Restaurant(name = "Sharkeez")
+    RestaurantCard(
+        name = "Sharkeez",
+        description = "Best margaritas in town!",
+        image = R.drawable.sharkeez
     )
 }
 
