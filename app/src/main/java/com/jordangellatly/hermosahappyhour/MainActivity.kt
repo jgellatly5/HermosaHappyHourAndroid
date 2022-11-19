@@ -8,7 +8,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -93,6 +99,9 @@ fun RestaurantList(restaurants: List<Restaurant>) {
                 backgroundColor = MaterialTheme.colors.primary,
                 title = { Text(stringResource(id = R.string.app_name)) }
             )
+        },
+        bottomBar = {
+            BottomBar()
         }
     ) { contentPadding ->
         LazyColumn(
@@ -122,7 +131,60 @@ fun RestaurantList(restaurants: List<Restaurant>) {
             }
         }
     }
+}
 
+@Composable
+fun BottomBar() {
+    val selectedIndex = remember { mutableStateOf(0) }
+    BottomNavigation(
+        elevation = 10.dp
+    ) {
+        BottomNavigationItem(
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Home,
+                    contentDescription = ""
+                )
+            },
+            label = {
+                Text(text = "Home")
+            },
+            selected = (selectedIndex.value == 0),
+            onClick = {
+                selectedIndex.value = 0
+            }
+        )
+        BottomNavigationItem(
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = ""
+                )
+            },
+            label = {
+                Text(text = "Search")
+            },
+            selected = (selectedIndex.value == 1),
+            onClick = {
+                selectedIndex.value = 1
+            }
+        )
+        BottomNavigationItem(
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Favorite,
+                    contentDescription = ""
+                )
+            },
+            label = {
+                Text(text = "Favorite")
+            },
+            selected = (selectedIndex.value == 2),
+            onClick = {
+                selectedIndex.value = 2
+            }
+        )
+    }
 }
 
 data class Restaurant(
