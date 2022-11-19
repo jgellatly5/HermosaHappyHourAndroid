@@ -1,6 +1,5 @@
 package com.jordangellatly.hermosahappyhour
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -86,7 +85,6 @@ fun RestaurantCard(
     }
 }
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun RestaurantList(restaurants: List<Restaurant>) {
     Scaffold(
@@ -96,9 +94,11 @@ fun RestaurantList(restaurants: List<Restaurant>) {
                 title = { Text(stringResource(id = R.string.app_name)) }
             )
         }
-    ) {
+    ) { contentPadding ->
         LazyColumn(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(contentPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(16.dp)
         ) {
