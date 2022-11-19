@@ -22,6 +22,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,11 +39,39 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    RestaurantList(restaurants = generateRestaurants())
+                    val navController = rememberNavController()
+                    MyAppNavHost(navController = navController)
                 }
             }
         }
     }
+}
+
+@Composable
+fun MyAppNavHost(
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
+) {
+    NavHost(
+        modifier = modifier,
+        navController = navController,
+        startDestination = "home"
+    ) {
+        composable(route = "home") {
+            HomeScreen(
+                navController = navController,
+                restaurants = generateRestaurants()
+            )
+        }
+        composable(route = "detail") {
+            DetailScreen()
+        }
+    }
+}
+
+@Composable
+fun DetailScreen() {
+    Text(text = "Hello")
 }
 
 private fun generateRestaurants(): List<Restaurant> = listOf(
@@ -48,11 +81,13 @@ private fun generateRestaurants(): List<Restaurant> = listOf(
     Restaurant("Henneseys", "Best bloody mary in town!", R.drawable.hennesseys)
 )
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun RestaurantCard(
     name: String,
     description: String,
-    image: Int
+    image: Int,
+    onClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -61,7 +96,8 @@ fun RestaurantCard(
             .wrapContentHeight(),
         shape = MaterialTheme.shapes.medium,
         elevation = 5.dp,
-        backgroundColor = MaterialTheme.colors.surface
+        backgroundColor = MaterialTheme.colors.surface,
+        onClick = onClick
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -92,7 +128,7 @@ fun RestaurantCard(
 }
 
 @Composable
-fun RestaurantList(restaurants: List<Restaurant>) {
+fun HomeScreen(navController: NavController, restaurants: List<Restaurant>) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -127,7 +163,14 @@ fun RestaurantList(restaurants: List<Restaurant>) {
                 }
             }
             items(restaurants) { restaurant ->
-                RestaurantCard(restaurant.name, restaurant.description, restaurant.image)
+                RestaurantCard(
+                    restaurant.name,
+                    restaurant.description,
+                    restaurant.image,
+                    onClick = {
+                        navController.navigate("detail")
+                    }
+                )
             }
         }
     }
@@ -199,7 +242,8 @@ fun RestaurantRowPreview() {
     RestaurantCard(
         name = "Sharkeez",
         description = "Best margaritas in town!",
-        image = R.drawable.sharkeez
+        image = R.drawable.sharkeez,
+        onClick = {}
     )
 }
 
@@ -207,7 +251,8 @@ fun RestaurantRowPreview() {
 @Composable
 fun DefaultPreview() {
     HermosaHappyHourTheme {
-        RestaurantList(
+        HomeScreen(
+            navController = rememberNavController(),
             restaurants = generateRestaurants()
         )
     }
