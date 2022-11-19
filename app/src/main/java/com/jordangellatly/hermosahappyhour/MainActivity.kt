@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
@@ -64,14 +65,44 @@ fun MyAppNavHost(
             )
         }
         composable(route = "detail") {
-            DetailScreen()
+            DetailScreen(
+                navController = navController
+            )
         }
     }
 }
 
 @Composable
-fun DetailScreen() {
-    Text(text = "Hello")
+fun DetailScreen(
+    navController: NavController
+) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(text = "Detail View") },
+                navigationIcon = if (navController.previousBackStackEntry != null) {
+                    {
+                        IconButton(onClick = { navController.navigateUp() }) {
+                            Icon(
+                                imageVector = Icons.Filled.ArrowBack,
+                                contentDescription = "Back"
+                            )
+                        }
+                    }
+                } else {
+                    null
+                }
+            )
+        }
+    ) { contentPadding ->
+        Text(text = "Hello", modifier = Modifier.padding(contentPadding))
+    }
+}
+
+@Preview
+@Composable
+fun DetailScreenPreview() {
+    DetailScreen(navController = rememberNavController())
 }
 
 private fun generateRestaurants(): List<Restaurant> = listOf(
@@ -128,7 +159,10 @@ fun RestaurantCard(
 }
 
 @Composable
-fun HomeScreen(navController: NavController, restaurants: List<Restaurant>) {
+fun HomeScreen(
+    navController: NavController,
+    restaurants: List<Restaurant>
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -238,7 +272,7 @@ data class Restaurant(
 
 @Preview(showBackground = true)
 @Composable
-fun RestaurantRowPreview() {
+fun RestaurantCardPreview() {
     RestaurantCard(
         name = "Sharkeez",
         description = "Best margaritas in town!",
@@ -249,7 +283,7 @@ fun RestaurantRowPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun HomeScreenPreview() {
     HermosaHappyHourTheme {
         HomeScreen(
             navController = rememberNavController(),
