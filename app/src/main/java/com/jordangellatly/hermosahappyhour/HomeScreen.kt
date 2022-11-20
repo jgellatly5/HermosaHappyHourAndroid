@@ -13,15 +13,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun HomeScreen(
-    navController: NavController,
-    restaurants: List<Restaurant>
+    navController: NavController
 ) {
+    val restaurantViewModel: RestaurantViewModel = viewModel()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -55,7 +56,7 @@ fun HomeScreen(
                     )
                 }
             }
-            items(restaurants) { restaurant ->
+            items(restaurantViewModel.restaurants) { restaurant ->
                 RestaurantCard(
                     restaurant.name,
                     restaurant.description,
@@ -74,8 +75,7 @@ fun HomeScreen(
 fun HomeScreenPreview() {
     HermosaHappyHourTheme {
         HomeScreen(
-            navController = rememberNavController(),
-            restaurants = generateRestaurants()
+            navController = rememberNavController()
         )
     }
 }
