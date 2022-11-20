@@ -1,7 +1,12 @@
 package com.jordangellatly.hermosahappyhour
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -9,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -80,7 +86,9 @@ fun DetailScreen(
                 position = CameraPosition.fromLatLngZoom(latlng, 10f)
             }
             GoogleMap(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
                 cameraPositionState = cameraPositionState
             ) {
                 Marker(
@@ -88,6 +96,7 @@ fun DetailScreen(
                     title = name
                 )
             }
+            Hours(restaurant = restaurant)
         }
     }
 }
@@ -98,5 +107,65 @@ fun DetailScreenPreview() {
     DetailScreen(
         navController = rememberNavController(),
         name = "Baja Sharkeez"
+    )
+}
+
+@Composable
+fun Hours(restaurant: Restaurant?) {
+    LazyColumn(
+        modifier = Modifier.padding(8.dp)
+    ) {
+        items(DayOfWeek.values()) { dayOfWeek ->
+            Text(
+                text = dayOfWeek.toString(),
+                textDecoration = TextDecoration.Underline,
+                style = MaterialTheme.typography.h5,
+            )
+            val businessHours = restaurant?.businessHours?.get(dayOfWeek)
+            val happyHour = restaurant?.happyHour?.get(dayOfWeek)
+            Text(
+                text = "Business Hours: $businessHours",
+                style = MaterialTheme.typography.h6,
+            )
+            Text(
+                text = "Happy Hour: $happyHour",
+                style = MaterialTheme.typography.h6,
+            )
+            Divider()
+        }
+    }
+}
+
+@Preview
+@Composable
+fun HoursPreview() {
+    Hours(
+        restaurant = Restaurant(
+            "Baja Sharkeez",
+            "Lively bar & restaurant with simple Mexican fare plus lots of margaritas & a popular happy hour.",
+            R.drawable.sharkeez,
+            Location(
+                latitude = 33.861988,
+                longitude = -118.40071
+            ),
+            mapOf(
+                Pair(DayOfWeek.SUNDAY, "9AM - 2AM"),
+                Pair(DayOfWeek.MONDAY, "11AM - 2AM"),
+                Pair(DayOfWeek.TUESDAY, "11AM - 2AM"),
+                Pair(DayOfWeek.WEDNESDAY, "11AM - 2AM"),
+                Pair(DayOfWeek.THURSDAY, "11AM - 2AM"),
+                Pair(DayOfWeek.FRIDAY, "11AM - 2AM"),
+                Pair(DayOfWeek.SATURDAY, "11AM - 2AM")
+            ),
+            mapOf(
+                Pair(DayOfWeek.SUNDAY, "N/A"),
+                Pair(DayOfWeek.MONDAY, "3PM - 7PM"),
+                Pair(DayOfWeek.TUESDAY, "3PM - 7PM"),
+                Pair(DayOfWeek.WEDNESDAY, "3PM - 7PM"),
+                Pair(DayOfWeek.THURSDAY, "3PM - 7PM"),
+                Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
+                Pair(DayOfWeek.SATURDAY, "N/A")
+            )
+        )
     )
 }
