@@ -56,7 +56,7 @@ fun HomeScreen(
                     )
                 }
             }
-            items(restaurantViewModel.restaurants) { restaurant ->
+            items(restaurantViewModel.sampleRestaurantData) { restaurant ->
                 RestaurantCard(
                     restaurant.name,
                     restaurant.description,

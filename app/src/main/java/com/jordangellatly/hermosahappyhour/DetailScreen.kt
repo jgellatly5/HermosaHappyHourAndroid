@@ -6,11 +6,9 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -46,12 +44,11 @@ fun DetailScreen(
         }
     ) { contentPadding ->
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(contentPadding)
         ) {
             Image(
                 painter = painterResource(
-                    id = restaurantViewModel.restaurants.find { it.name == name }?.image
+                    id = restaurantViewModel.sampleRestaurantData.find { it.name == name }?.image
                         ?: R.drawable.tower12
                 ),
                 contentDescription = null,
@@ -59,7 +56,6 @@ fun DetailScreen(
                 contentScale = ContentScale.Crop,
             )
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.padding(8.dp)
             ) {
                 Text(
@@ -68,7 +64,7 @@ fun DetailScreen(
                     color = MaterialTheme.colors.onSurface
                 )
                 Text(
-                    text = restaurantViewModel.restaurants.find { it.name == name }?.description
+                    text = restaurantViewModel.sampleRestaurantData.find { it.name == name }?.description
                         ?: "",
                     style = MaterialTheme.typography.body2
                 )
