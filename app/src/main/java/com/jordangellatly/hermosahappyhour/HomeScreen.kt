@@ -61,7 +61,7 @@ fun HomeScreen(
                     restaurant.description,
                     restaurant.image,
                     onClick = {
-                        navController.navigate("detail")
+                        navController.navigate("detail/${restaurant.name}")
                     }
                 )
             }

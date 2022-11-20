@@ -16,9 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 class MainActivity : ComponentActivity() {
@@ -55,9 +57,17 @@ fun MyAppNavHost(
                 restaurants = generateRestaurants()
             )
         }
-        composable(route = "detail") {
+        composable(
+            route = "detail/{name}",
+            arguments = listOf(
+                navArgument("name") {
+                    type = NavType.StringType
+                }
+            )
+        ) {
             DetailScreen(
-                navController = navController
+                navController = navController,
+                name = navController.currentBackStackEntry?.arguments?.getString("name") ?: ""
             )
         }
     }
