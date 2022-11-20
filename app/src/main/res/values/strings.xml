@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">HermosaHappyHour</string>
     <string name="tower12">Tower12</string>
-    <string name="sharkeez">Sharkeez</string>
-    <string name="junkie">American Junkie</string>
+    <string name="baja_sharkeez">Baja Sharkeez</string>
+    <string name="american_junkie">American Junkie</string>
     <string name="hennesseys">Hennesseys</string>
     <string name="tower12_description">New American classics &amp; fancy snacks in a beachy, relaxed bar with romantic patio seating.</string>
     <string name="sharkeez_description">Lively bar &amp; restaurant with simple Mexican fare plus lots of margaritas &amp; a popular happy hour.</string>
