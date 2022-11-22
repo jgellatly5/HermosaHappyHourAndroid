@@ -1,10 +1,7 @@
 package com.jordangellatly.hermosahappyhour
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
@@ -12,6 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextDecoration
@@ -35,23 +33,6 @@ fun DetailScreen(
     val restaurantViewModel: RestaurantViewModel = viewModel()
     val restaurant = restaurantViewModel.sampleRestaurantData.find { it.name == name }
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Detail View") },
-                navigationIcon = if (navController.previousBackStackEntry != null) {
-                    {
-                        IconButton(onClick = { navController.navigateUp() }) {
-                            Icon(
-                                imageVector = Icons.Filled.ArrowBack,
-                                contentDescription = "Back"
-                            )
-                        }
-                    }
-                } else {
-                    null
-                }
-            )
-        },
         bottomBar = {
             BottomNavigationBar(navController = navController)
         }
@@ -61,14 +42,34 @@ fun DetailScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(contentPadding)
         ) {
-            Image(
-                painter = painterResource(
-                    id = restaurant?.image ?: R.drawable.tower12
-                ),
-                contentDescription = null,
-                modifier = Modifier.fillMaxWidth(),
-                contentScale = ContentScale.Crop,
-            )
+            Box {
+                Image(
+                    painter = painterResource(
+                        id = restaurant?.image ?: R.drawable.tower12
+                    ),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxWidth(),
+                    contentScale = ContentScale.Crop,
+                )
+                TopAppBar(
+                    elevation = 0.dp,
+                    title = { Text(text = "") },
+                    backgroundColor = Color.Transparent,
+                    navigationIcon = if (navController.previousBackStackEntry != null) {
+                        {
+                            IconButton(onClick = { navController.navigateUp() }) {
+                                Icon(
+                                    imageVector = Icons.Filled.ArrowBack,
+                                    contentDescription = "Back",
+                                    tint = Color.White
+                                )
+                            }
+                        }
+                    } else {
+                        null
+                    }
+                )
+            }
             Column(
                 modifier = Modifier.padding(8.dp)
             ) {
