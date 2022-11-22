@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -57,7 +57,9 @@ fun DetailScreen(
         }
     ) { contentPadding ->
         Column(
-            modifier = Modifier.padding(contentPadding)
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(contentPadding)
         ) {
             Image(
                 painter = painterResource(
@@ -112,10 +114,10 @@ fun DetailScreenPreview() {
 
 @Composable
 fun Hours(restaurant: Restaurant?) {
-    LazyColumn(
+    Column(
         modifier = Modifier.padding(8.dp)
     ) {
-        items(DayOfWeek.values()) { dayOfWeek ->
+        DayOfWeek.values().forEach { dayOfWeek ->
             Text(
                 text = dayOfWeek.toString(),
                 textDecoration = TextDecoration.Underline,
@@ -136,7 +138,7 @@ fun Hours(restaurant: Restaurant?) {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun HoursPreview() {
     Hours(
