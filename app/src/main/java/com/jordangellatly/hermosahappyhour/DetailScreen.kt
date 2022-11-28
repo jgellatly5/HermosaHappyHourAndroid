@@ -121,7 +121,7 @@ fun AddressPhoneNumber(restaurant: Restaurant?) {
 fun DetailScreenPreview() {
     DetailScreen(
         navController = rememberNavController(),
-        name = "Baja Sharkeez"
+        name = "Tower12"
     )
 }
 
@@ -163,12 +163,12 @@ fun Hours(restaurant: Restaurant?) {
 fun HoursPreview() {
     Hours(
         restaurant = Restaurant(
-            name = "Baja Sharkeez",
-            description = "Lively bar & restaurant with simple Mexican fare plus lots of margaritas & a popular happy hour.",
-            image = R.drawable.sharkeez,
+            name = "Tower12",
+            description = "New American classics & fancy snacks in a beachy, relaxed bar with romantic patio seating.",
+            image = R.drawable.tower12,
             location = Location(
-                latitude = 33.861988,
-                longitude = -118.40071
+                latitude = 33.86222,
+                longitude = -118.40085
             ),
             businessHours = mapOf(
                 Pair(DayOfWeek.SUNDAY, "9AM - 2AM"),
@@ -190,19 +190,37 @@ fun HoursPreview() {
             ),
             happyHourInfo = mapOf(
                 Pair(DayOfWeek.SUNDAY, ""),
-                Pair(DayOfWeek.MONDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.TUESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.THURSDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.FRIDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
+                Pair(
+                    DayOfWeek.MONDAY,
+                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+                ),
+                Pair(
+                    DayOfWeek.TUESDAY,
+                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+                ),
+                Pair(
+                    DayOfWeek.WEDNESDAY,
+                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+                ),
+                Pair(
+                    DayOfWeek.WEDNESDAY,
+                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+                ),
+                Pair(
+                    DayOfWeek.THURSDAY,
+                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+                ),
+                Pair(
+                    DayOfWeek.FRIDAY,
+                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+                ),
                 Pair(DayOfWeek.SATURDAY, "")
             ),
             address = Address(
-                line1 = "52 Pier Ave",
+                line1 = "53 Pier Ave",
                 line2 = "Hermosa Beach, CA 90254"
             ),
-            phoneNumber = "(310) 318-0004"
+            phoneNumber = "(310) 379-6400"
         )
     )
 }
