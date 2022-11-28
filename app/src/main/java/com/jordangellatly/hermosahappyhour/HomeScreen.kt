@@ -10,25 +10,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun HomeScreen(
-    navController: NavController,
-    restaurants: List<Restaurant>
+    navController: NavController
 ) {
+    val restaurantViewModel: RestaurantViewModel = viewModel()
     Scaffold(
-        topBar = {
-            TopAppBar(
-                backgroundColor = MaterialTheme.colors.primary,
-                title = { Text(stringResource(id = R.string.app_name)) }
-            )
-        },
         bottomBar = {
             BottomNavigationBar(navController = navController)
         }
@@ -55,13 +49,13 @@ fun HomeScreen(
                     )
                 }
             }
-            items(restaurants) { restaurant ->
+            items(restaurantViewModel.sampleRestaurantData) { restaurant ->
                 RestaurantCard(
                     restaurant.name,
                     restaurant.description,
                     restaurant.image,
                     onClick = {
-                        navController.navigate("detail")
+                        navController.navigate("detail/${restaurant.name}")
                     }
                 )
             }
@@ -74,8 +68,7 @@ fun HomeScreen(
 fun HomeScreenPreview() {
     HermosaHappyHourTheme {
         HomeScreen(
-            navController = rememberNavController(),
-            restaurants = generateRestaurants()
+            navController = rememberNavController()
         )
     }
 }
