@@ -86,7 +86,7 @@ fun DetailScreen(
             val location = restaurant?.location ?: Location(0.0, 0.0)
             val latlng = LatLng(location.latitude, location.longitude)
             val cameraPositionState = rememberCameraPositionState {
-                position = CameraPosition.fromLatLngZoom(latlng, 10f)
+                position = CameraPosition.fromLatLngZoom(latlng, 16f)
             }
             GoogleMap(
                 modifier = Modifier
@@ -99,8 +99,20 @@ fun DetailScreen(
                     title = name
                 )
             }
+            AddressPhoneNumber(restaurant = restaurant)
             Hours(restaurant = restaurant)
         }
+    }
+}
+
+@Composable
+fun AddressPhoneNumber(restaurant: Restaurant?) {
+    Column(
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Text(text = restaurant?.address?.line1 ?: "")
+        Text(text = restaurant?.address?.line2 ?: "")
+        Text(text = restaurant?.phoneNumber ?: "")
     }
 }
 
@@ -144,14 +156,14 @@ fun Hours(restaurant: Restaurant?) {
 fun HoursPreview() {
     Hours(
         restaurant = Restaurant(
-            "Baja Sharkeez",
-            "Lively bar & restaurant with simple Mexican fare plus lots of margaritas & a popular happy hour.",
-            R.drawable.sharkeez,
-            Location(
+            name = "Baja Sharkeez",
+            description = "Lively bar & restaurant with simple Mexican fare plus lots of margaritas & a popular happy hour.",
+            image = R.drawable.sharkeez,
+            location = Location(
                 latitude = 33.861988,
                 longitude = -118.40071
             ),
-            mapOf(
+            businessHours = mapOf(
                 Pair(DayOfWeek.SUNDAY, "9AM - 2AM"),
                 Pair(DayOfWeek.MONDAY, "11AM - 2AM"),
                 Pair(DayOfWeek.TUESDAY, "11AM - 2AM"),
@@ -160,7 +172,7 @@ fun HoursPreview() {
                 Pair(DayOfWeek.FRIDAY, "11AM - 2AM"),
                 Pair(DayOfWeek.SATURDAY, "11AM - 2AM")
             ),
-            mapOf(
+            happyHour = mapOf(
                 Pair(DayOfWeek.SUNDAY, "N/A"),
                 Pair(DayOfWeek.MONDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.TUESDAY, "3PM - 7PM"),
@@ -168,7 +180,12 @@ fun HoursPreview() {
                 Pair(DayOfWeek.THURSDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.SATURDAY, "N/A")
-            )
+            ),
+            address = Address(
+                line1 = "52 Pier Ave",
+                line2 = "Hermosa Beach, CA 90254"
+            ),
+            phoneNumber = "(310) 318-0004"
         )
     )
 }
