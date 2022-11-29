@@ -1,6 +1,7 @@
 package com.jordangellatly.hermosahappyhour
 
 import androidx.lifecycle.ViewModel
+import java.net.URI
 
 class RestaurantViewModel : ViewModel() {
 
@@ -22,7 +23,7 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "11AM - 2AM"),
                 Pair(DayOfWeek.SATURDAY, "11AM - 2AM")
             ),
-            happyHour = mapOf(
+            happyHours = mapOf(
                 Pair(DayOfWeek.SUNDAY, "N/A"),
                 Pair(DayOfWeek.MONDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.TUESDAY, "3PM - 7PM"),
@@ -31,15 +32,23 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.SATURDAY, "N/A")
             ),
-            happyHourInfo = mapOf(
+            happyHourInfo = Pair(
+                "M-F 3PM - 7PM",
+                "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+            ),
+            dailyEvents = mapOf(
                 Pair(DayOfWeek.SUNDAY, ""),
-                Pair(DayOfWeek.MONDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.TUESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.THURSDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.FRIDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
+                Pair(DayOfWeek.MONDAY, ""),
+                Pair(DayOfWeek.TUESDAY, ""),
+                Pair(DayOfWeek.WEDNESDAY, ""),
+                Pair(DayOfWeek.THURSDAY, "Thursday Night Karaoke"),
+                Pair(DayOfWeek.FRIDAY, ""),
                 Pair(DayOfWeek.SATURDAY, "")
+            ),
+            specialEvent = Event(
+                title = "England vs Wales",
+                description = "England and Wales playing in world cup",
+                image = URI("https://google.com")
             ),
             address = Address(
                 line1 = "53 Pier Ave",
@@ -64,7 +73,7 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "11AM - 2AM"),
                 Pair(DayOfWeek.SATURDAY, "11AM - 2AM")
             ),
-            happyHour = mapOf(
+            happyHours = mapOf(
                 Pair(DayOfWeek.SUNDAY, "N/A"),
                 Pair(DayOfWeek.MONDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.TUESDAY, "3PM - 7PM"),
@@ -73,15 +82,23 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.SATURDAY, "N/A")
             ),
-            happyHourInfo = mapOf(
+            happyHourInfo = Pair(
+                "M-F 3PM - 7PM",
+                "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+            ),
+            dailyEvents = mapOf(
                 Pair(DayOfWeek.SUNDAY, ""),
-                Pair(DayOfWeek.MONDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.TUESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.THURSDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.FRIDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
+                Pair(DayOfWeek.MONDAY, ""),
+                Pair(DayOfWeek.TUESDAY, ""),
+                Pair(DayOfWeek.WEDNESDAY, ""),
+                Pair(DayOfWeek.THURSDAY, ""),
+                Pair(DayOfWeek.FRIDAY, ""),
                 Pair(DayOfWeek.SATURDAY, "")
+            ),
+            specialEvent = Event(
+                title = "Thursday Night Karaoke",
+                description = "Be brave and sing your lungs out for everyone in the back bar.",
+                image = URI("https://google.com")
             ),
             address = Address(
                 line1 = "52 Pier Ave",
@@ -106,7 +123,7 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "11AM - 2AM"),
                 Pair(DayOfWeek.SATURDAY, "11AM - 2AM")
             ),
-            happyHour = mapOf(
+            happyHours = mapOf(
                 Pair(DayOfWeek.SUNDAY, "N/A"),
                 Pair(DayOfWeek.MONDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.TUESDAY, "3PM - 7PM"),
@@ -115,15 +132,23 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.SATURDAY, "N/A")
             ),
-            happyHourInfo = mapOf(
+            happyHourInfo = Pair(
+                "M-F 3PM - 7PM",
+                "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+            ),
+            dailyEvents = mapOf(
                 Pair(DayOfWeek.SUNDAY, ""),
-                Pair(DayOfWeek.MONDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.TUESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.THURSDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.FRIDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
+                Pair(DayOfWeek.MONDAY, ""),
+                Pair(DayOfWeek.TUESDAY, ""),
+                Pair(DayOfWeek.WEDNESDAY, ""),
+                Pair(DayOfWeek.THURSDAY, ""),
+                Pair(DayOfWeek.FRIDAY, ""),
                 Pair(DayOfWeek.SATURDAY, "")
+            ),
+            specialEvent = Event(
+                title = "Thursday Night Karaoke",
+                description = "Be brave and sing your lungs out for everyone in the back bar.",
+                image = URI("https://google.com")
             ),
             address = Address(
                 line1 = "68 Pier Ave",
@@ -148,7 +173,7 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "11AM - 2AM"),
                 Pair(DayOfWeek.SATURDAY, "11AM - 2AM")
             ),
-            happyHour = mapOf(
+            happyHours = mapOf(
                 Pair(DayOfWeek.SUNDAY, "N/A"),
                 Pair(DayOfWeek.MONDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.TUESDAY, "3PM - 7PM"),
@@ -157,15 +182,23 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.SATURDAY, "N/A")
             ),
-            happyHourInfo = mapOf(
+            happyHourInfo = Pair(
+                "M-F 3PM - 7PM",
+                "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+            ),
+            dailyEvents = mapOf(
                 Pair(DayOfWeek.SUNDAY, ""),
-                Pair(DayOfWeek.MONDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.TUESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.THURSDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.FRIDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
+                Pair(DayOfWeek.MONDAY, ""),
+                Pair(DayOfWeek.TUESDAY, ""),
+                Pair(DayOfWeek.WEDNESDAY, ""),
+                Pair(DayOfWeek.THURSDAY, ""),
+                Pair(DayOfWeek.FRIDAY, ""),
                 Pair(DayOfWeek.SATURDAY, "")
+            ),
+            specialEvent = Event(
+                title = "Thursday Night Karaoke",
+                description = "Be brave and sing your lungs out for everyone in the back bar.",
+                image = URI("https://google.com")
             ),
             address = Address(
                 line1 = "8 Pier Ave",
@@ -182,8 +215,10 @@ data class Restaurant(
     val image: Int,
     val location: Location,
     val businessHours: Map<DayOfWeek, String>,
-    val happyHour: Map<DayOfWeek, String>,
-    val happyHourInfo: Map<DayOfWeek, String>,
+    val happyHours: Map<DayOfWeek, String>,
+    val happyHourInfo: Pair<String, String>,
+    val dailyEvents: Map<DayOfWeek, String>,
+    val specialEvent: Event,
     val address: Address,
     val phoneNumber: String
 )
@@ -196,6 +231,12 @@ data class Location(
 data class Address(
     val line1: String,
     val line2: String
+)
+
+data class Event(
+    val title: String,
+    val description: String,
+    val image: URI
 )
 
 enum class DayOfWeek {

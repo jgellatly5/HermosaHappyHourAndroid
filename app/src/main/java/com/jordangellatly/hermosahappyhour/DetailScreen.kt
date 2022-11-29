@@ -24,6 +24,7 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
+import java.net.URI
 
 @Composable
 fun DetailScreen(
@@ -42,34 +43,10 @@ fun DetailScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(contentPadding)
         ) {
-            Box {
-                Image(
-                    painter = painterResource(
-                        id = restaurant?.image ?: R.drawable.tower12
-                    ),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxWidth(),
-                    contentScale = ContentScale.Crop,
-                )
-                TopAppBar(
-                    elevation = 0.dp,
-                    title = { Text(text = "") },
-                    backgroundColor = Color.Transparent,
-                    navigationIcon = if (navController.previousBackStackEntry != null) {
-                        {
-                            IconButton(onClick = { navController.navigateUp() }) {
-                                Icon(
-                                    imageVector = Icons.Filled.ArrowBack,
-                                    contentDescription = "Back",
-                                    tint = Color.White
-                                )
-                            }
-                        }
-                    } else {
-                        null
-                    }
-                )
-            }
+            Header(
+                navController = navController,
+                restaurant = restaurant
+            )
             Column(
                 modifier = Modifier.padding(8.dp)
             ) {
@@ -78,41 +55,129 @@ fun DetailScreen(
                     style = MaterialTheme.typography.h4,
                     color = MaterialTheme.colors.onSurface
                 )
-                Text(
-                    text = restaurant?.description ?: "",
-                    style = MaterialTheme.typography.body2
-                )
             }
-            val location = restaurant?.location ?: Location(0.0, 0.0)
-            val latlng = LatLng(location.latitude, location.longitude)
-            val cameraPositionState = rememberCameraPositionState {
-                position = CameraPosition.fromLatLngZoom(latlng, 16f)
-            }
-            GoogleMap(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp),
-                cameraPositionState = cameraPositionState
-            ) {
-                Marker(
-                    state = MarkerState(position = latlng),
-                    title = name
-                )
-            }
-            AddressPhoneNumber(restaurant = restaurant)
-            Hours(restaurant = restaurant)
+            Specials(restaurant = restaurant)
+            GeneralInfo(restaurant = restaurant)
         }
     }
 }
 
 @Composable
-fun AddressPhoneNumber(restaurant: Restaurant?) {
+fun Header(
+    navController: NavController,
+    restaurant: Restaurant?
+) {
+    Box {
+        Image(
+            painter = painterResource(
+                id = restaurant?.image ?: R.drawable.tower12
+            ),
+            contentDescription = null,
+            modifier = Modifier.fillMaxWidth(),
+            contentScale = ContentScale.Crop,
+        )
+        TopAppBar(
+            elevation = 0.dp,
+            title = { Text(text = "") },
+            backgroundColor = Color.Transparent,
+            navigationIcon = if (navController.previousBackStackEntry != null) {
+                {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Back",
+                            tint = Color.White
+                        )
+                    }
+                }
+            } else {
+                null
+            }
+        )
+    }
+}
+
+@Composable
+fun Specials(restaurant: Restaurant?) {
     Column(
         modifier = Modifier.padding(8.dp)
     ) {
+        Text(
+            text = "Happy Hour",
+            style = MaterialTheme.typography.h4
+        )
+        Text(
+            text = "Next Happy Hour:",
+            textDecoration = TextDecoration.Underline,
+            style = MaterialTheme.typography.h5
+        )
+        Text(text = "5:22")
+        val happyHourInfo = restaurant?.dailyEvents?.get(DayOfWeek.THURSDAY).toString()
+        Text(
+            text = "Today's Special",
+            textDecoration = TextDecoration.Underline,
+            style = MaterialTheme.typography.h5
+        )
+        Text(text = happyHourInfo)
+        Text(
+            text = "Today's Event",
+            textDecoration = TextDecoration.Underline,
+            style = MaterialTheme.typography.h5
+        )
+        Text(text = "England vs Wales")
+    }
+}
+
+@Composable
+fun GeneralInfo(restaurant: Restaurant?) {
+    Column(
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Text(
+            text = "Info",
+            style = MaterialTheme.typography.h4
+        )
+        Text(
+            text = "Hours",
+            textDecoration = TextDecoration.Underline,
+            style = MaterialTheme.typography.h5
+        )
+        Text(text = "Open until 2am")
+        Text(
+            text = "Website",
+            textDecoration = TextDecoration.Underline,
+            style = MaterialTheme.typography.h5
+        )
+        Text(text = "https://tower12hb.com")
+        Text(
+            text = "Call",
+            textDecoration = TextDecoration.Underline,
+            style = MaterialTheme.typography.h5
+        )
+        Text(text = restaurant?.phoneNumber ?: "")
+        Text(
+            text = "Get Directions",
+            textDecoration = TextDecoration.Underline,
+            style = MaterialTheme.typography.h5
+        )
         Text(text = restaurant?.address?.line1 ?: "")
         Text(text = restaurant?.address?.line2 ?: "")
-        Text(text = restaurant?.phoneNumber ?: "")
+        val location = restaurant?.location ?: Location(0.0, 0.0)
+        val latlng = LatLng(location.latitude, location.longitude)
+        val cameraPositionState = rememberCameraPositionState {
+            position = CameraPosition.fromLatLngZoom(latlng, 16f)
+        }
+        GoogleMap(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp),
+            cameraPositionState = cameraPositionState
+        ) {
+            Marker(
+                state = MarkerState(position = latlng),
+                title = restaurant?.name
+            )
+        }
     }
 }
 
@@ -137,14 +202,14 @@ fun Hours(restaurant: Restaurant?) {
                 style = MaterialTheme.typography.h5,
             )
             val businessHours = restaurant?.businessHours?.get(dayOfWeek)
-            val happyHour = restaurant?.happyHour?.get(dayOfWeek)
-            val happyHourInfo = restaurant?.happyHourInfo?.get(dayOfWeek).toString()
+            val happyHours = restaurant?.happyHours?.get(dayOfWeek)
+            val happyHourInfo = restaurant?.dailyEvents?.get(dayOfWeek).toString()
             Text(
                 text = "Business Hours: $businessHours",
                 style = MaterialTheme.typography.h6,
             )
             Text(
-                text = "Happy Hour: $happyHour",
+                text = "Happy Hour: $happyHours",
                 style = MaterialTheme.typography.h6,
             )
             if (happyHourInfo.isNotEmpty()) {
@@ -179,7 +244,7 @@ fun HoursPreview() {
                 Pair(DayOfWeek.FRIDAY, "11AM - 2AM"),
                 Pair(DayOfWeek.SATURDAY, "11AM - 2AM")
             ),
-            happyHour = mapOf(
+            happyHours = mapOf(
                 Pair(DayOfWeek.SUNDAY, "N/A"),
                 Pair(DayOfWeek.MONDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.TUESDAY, "3PM - 7PM"),
@@ -188,33 +253,23 @@ fun HoursPreview() {
                 Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.SATURDAY, "N/A")
             ),
-            happyHourInfo = mapOf(
+            happyHourInfo = Pair(
+                "M-F 3PM - 7PM",
+                "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+            ),
+            dailyEvents = mapOf(
                 Pair(DayOfWeek.SUNDAY, ""),
-                Pair(
-                    DayOfWeek.MONDAY,
-                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
-                ),
-                Pair(
-                    DayOfWeek.TUESDAY,
-                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
-                ),
-                Pair(
-                    DayOfWeek.WEDNESDAY,
-                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
-                ),
-                Pair(
-                    DayOfWeek.WEDNESDAY,
-                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
-                ),
-                Pair(
-                    DayOfWeek.THURSDAY,
-                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
-                ),
-                Pair(
-                    DayOfWeek.FRIDAY,
-                    "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
-                ),
+                Pair(DayOfWeek.MONDAY, ""),
+                Pair(DayOfWeek.TUESDAY, ""),
+                Pair(DayOfWeek.WEDNESDAY, ""),
+                Pair(DayOfWeek.THURSDAY, "Thursday Night Karaoke"),
+                Pair(DayOfWeek.FRIDAY, ""),
                 Pair(DayOfWeek.SATURDAY, "")
+            ),
+            specialEvent = Event(
+                title = "England vs Wales",
+                description = "England and Wales playing in world cup",
+                image = URI("https://google.com")
             ),
             address = Address(
                 line1 = "53 Pier Ave",
