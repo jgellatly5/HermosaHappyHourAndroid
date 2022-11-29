@@ -32,9 +32,14 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.SATURDAY, "N/A")
             ),
-            happyHourInfo = Pair(
-                "M-F 3PM - 7PM",
-                "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+            happyHourInfo = HappyHourInfo(
+                hours = "M-F 3PM - 7PM",
+                specials = listOf(
+                    "Half off shots, bottled & can beers",
+                    "Wines $5.50 - $7.50 ask server for selections",
+                    "Add $1 to any cocktail to make it 22oz double shot",
+                    "Add $1 to any draft beer to make it 32oz double size"
+                )
             ),
             dailyEvents = mapOf(
                 Pair(DayOfWeek.SUNDAY, ""),
@@ -82,9 +87,14 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.SATURDAY, "N/A")
             ),
-            happyHourInfo = Pair(
-                "M-F 3PM - 7PM",
-                "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+            happyHourInfo = HappyHourInfo(
+                hours = "M-F 3PM - 7PM",
+                specials = listOf(
+                    "Half off shots, bottled & can beers",
+                    "Wines $5.50 - $7.50 ask server for selections",
+                    "Add $1 to any cocktail to make it 22oz double shot",
+                    "Add $1 to any draft beer to make it 32oz double size"
+                )
             ),
             dailyEvents = mapOf(
                 Pair(DayOfWeek.SUNDAY, ""),
@@ -132,9 +142,14 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.SATURDAY, "N/A")
             ),
-            happyHourInfo = Pair(
-                "M-F 3PM - 7PM",
-                "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+            happyHourInfo = HappyHourInfo(
+                hours = "M-F 3PM - 7PM",
+                specials = listOf(
+                    "Half off shots, bottled & can beers",
+                    "Wines $5.50 - $7.50 ask server for selections",
+                    "Add $1 to any cocktail to make it 22oz double shot",
+                    "Add $1 to any draft beer to make it 32oz double size"
+                )
             ),
             dailyEvents = mapOf(
                 Pair(DayOfWeek.SUNDAY, ""),
@@ -182,9 +197,14 @@ class RestaurantViewModel : ViewModel() {
                 Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.SATURDAY, "N/A")
             ),
-            happyHourInfo = Pair(
-                "M-F 3PM - 7PM",
-                "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+            happyHourInfo = HappyHourInfo(
+                hours = "M-F 3PM - 7PM",
+                specials = listOf(
+                    "Half off shots, bottled & can beers",
+                    "Wines $5.50 - $7.50 ask server for selections",
+                    "Add $1 to any cocktail to make it 22oz double shot",
+                    "Add $1 to any draft beer to make it 32oz double size"
+                )
             ),
             dailyEvents = mapOf(
                 Pair(DayOfWeek.SUNDAY, ""),
@@ -216,11 +236,16 @@ data class Restaurant(
     val location: Location,
     val businessHours: Map<DayOfWeek, String>,
     val happyHours: Map<DayOfWeek, String>,
-    val happyHourInfo: Pair<String, String>,
+    val happyHourInfo: HappyHourInfo,
     val dailyEvents: Map<DayOfWeek, String>,
     val specialEvent: Event,
     val address: Address,
     val phoneNumber: String
+)
+
+data class HappyHourInfo(
+    val hours: String,
+    val specials: List<String>
 )
 
 data class Location(

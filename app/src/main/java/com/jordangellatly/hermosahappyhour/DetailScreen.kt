@@ -110,13 +110,18 @@ fun Specials(restaurant: Restaurant?) {
             Text(text = "Starts at 3PM")
             Text(text = "5:22:00 (Countdown timer)")
         }
-        val drinkSpecial = restaurant?.happyHourInfo?.second.toString()
+        val drinkSpecials = restaurant?.happyHourInfo?.specials
         Text(
-            text = "Today's Special",
+            text = "Today's Special(s)",
             textDecoration = TextDecoration.Underline,
             style = MaterialTheme.typography.h5
         )
-        Text(text = drinkSpecial)
+        Column {
+            drinkSpecials?.forEach { special ->
+                Text(text = special)
+            }
+        }
+
         val specialEvent = restaurant?.dailyEvents?.get(DayOfWeek.THURSDAY).toString()
         Text(
             text = "Today's Event",
@@ -252,9 +257,14 @@ fun HoursPreview() {
                 Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
                 Pair(DayOfWeek.SATURDAY, "N/A")
             ),
-            happyHourInfo = Pair(
-                "M-F 3PM - 7PM",
-                "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"
+            happyHourInfo = HappyHourInfo(
+                hours = "M-F 3PM - 7PM",
+                specials = listOf(
+                    "Half off shots, bottled & can beers",
+                    "Wines $5.50 - $7.50 ask server for selections",
+                    "Add $1 to any cocktail to make it 22oz double shot",
+                    "Add $1 to any draft beer to make it 32oz double size"
+                )
             ),
             dailyEvents = mapOf(
                 Pair(DayOfWeek.SUNDAY, ""),

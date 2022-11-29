@@ -10,12 +10,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Composable
 fun HomeScreen(
@@ -39,29 +42,36 @@ fun HomeScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
-                        .padding(vertical = 25.dp),
+                        .padding(vertical = 8.dp),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
+                    val date = getCurrentDateTime()
+                    val dateInString = date.toString("EEEE, MMM d, yyyy")
                     Text(
-                        text = "Restaurant List",
-                        style = MaterialTheme.typography.h3
+                        text = dateInString,
+                        style = MaterialTheme.typography.h5
                     )
                 }
             }
             items(restaurantViewModel.sampleRestaurantData) { restaurant ->
                 RestaurantCard(
-                    restaurant.name,
-                    restaurant.description,
-                    restaurant.image,
-                    onClick = {
-                        navController.navigate("detail/${restaurant.name}")
-                    }
-                )
+                    name = restaurant.name,
+                    image = restaurant.image
+                ) {
+                    navController.navigate("detail/${restaurant.name}")
+                }
             }
         }
     }
 }
+
+fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+    val formatter = SimpleDateFormat(format, locale)
+    return formatter.format(this)
+}
+
+fun getCurrentDateTime(): Date = Calendar.getInstance().time
 
 @Preview(showBackground = true)
 @Composable
@@ -77,7 +87,6 @@ fun HomeScreenPreview() {
 @Composable
 fun RestaurantCard(
     name: String,
-    description: String,
     image: Int,
     onClick: () -> Unit
 ) {
@@ -92,14 +101,15 @@ fun RestaurantCard(
         onClick = onClick
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
         ) {
             Image(
                 painter = painterResource(id = image),
                 contentDescription = null,
                 modifier = Modifier
                     .size(130.dp)
-                    .padding(8.dp),
+                    .padding(16.dp),
                 contentScale = ContentScale.Fit,
             )
             Column(
@@ -107,11 +117,25 @@ fun RestaurantCard(
             ) {
                 Text(
                     text = name,
-                    style = MaterialTheme.typography.h4,
+                    style = MaterialTheme.typography.h5,
                     color = MaterialTheme.colors.onSurface
                 )
                 Text(
-                    text = description,
+                    text = "Next Happy Hour:",
+                    textDecoration = TextDecoration.Underline,
+                    style = MaterialTheme.typography.h6
+                )
+                Text(
+                    text = "Starts at 3PM",
+                    style = MaterialTheme.typography.body2
+                )
+                Text(
+                    text = "Featured Deal:",
+                    textDecoration = TextDecoration.Underline,
+                    style = MaterialTheme.typography.h6
+                )
+                Text(
+                    text = "Half off shots, bottled & can beers",
                     style = MaterialTheme.typography.body2
                 )
             }
@@ -124,8 +148,6 @@ fun RestaurantCard(
 fun RestaurantCardPreview() {
     RestaurantCard(
         name = "Sharkeez",
-        description = "Best margaritas in town!",
-        image = R.drawable.sharkeez,
-        onClick = {}
-    )
+        image = R.drawable.sharkeez
+    ) {}
 }
