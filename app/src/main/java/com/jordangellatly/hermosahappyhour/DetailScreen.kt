@@ -47,15 +47,6 @@ fun DetailScreen(
                 navController = navController,
                 restaurant = restaurant
             )
-            Column(
-                modifier = Modifier.padding(8.dp)
-            ) {
-                Text(
-                    text = name,
-                    style = MaterialTheme.typography.h4,
-                    color = MaterialTheme.colors.onSurface
-                )
-            }
             Specials(restaurant = restaurant)
             GeneralInfo(restaurant = restaurant)
         }
@@ -103,28 +94,36 @@ fun Specials(restaurant: Restaurant?) {
         modifier = Modifier.padding(8.dp)
     ) {
         Text(
-            text = "Happy Hour",
-            style = MaterialTheme.typography.h4
+            text = restaurant?.name.toString(),
+            style = MaterialTheme.typography.h4,
+            color = MaterialTheme.colors.onSurface
         )
         Text(
             text = "Next Happy Hour:",
             textDecoration = TextDecoration.Underline,
             style = MaterialTheme.typography.h5
         )
-        Text(text = "5:22")
-        val happyHourInfo = restaurant?.dailyEvents?.get(DayOfWeek.THURSDAY).toString()
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "Starts at 3PM")
+            Text(text = "5:22:00 (Countdown timer)")
+        }
+        val drinkSpecial = restaurant?.happyHourInfo?.second.toString()
         Text(
             text = "Today's Special",
             textDecoration = TextDecoration.Underline,
             style = MaterialTheme.typography.h5
         )
-        Text(text = happyHourInfo)
+        Text(text = drinkSpecial)
+        val specialEvent = restaurant?.dailyEvents?.get(DayOfWeek.THURSDAY).toString()
         Text(
             text = "Today's Event",
             textDecoration = TextDecoration.Underline,
             style = MaterialTheme.typography.h5
         )
-        Text(text = "England vs Wales")
+        Text(text = specialEvent)
     }
 }
 
