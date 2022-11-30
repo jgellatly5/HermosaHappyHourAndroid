@@ -49,6 +49,7 @@ fun BottomNavigationBar(navController: NavController) {
             selected = (selectedIndex.value == 1),
             onClick = {
                 selectedIndex.value = 1
+                navController.navigate("search")
             }
         )
         BottomNavigationItem(

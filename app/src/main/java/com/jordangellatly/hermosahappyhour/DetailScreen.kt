@@ -32,7 +32,7 @@ fun DetailScreen(
     name: String
 ) {
     val restaurantViewModel: RestaurantViewModel = viewModel()
-    val restaurant = restaurantViewModel.sampleRestaurantData.find { it.name == name }
+    val restaurant = restaurantViewModel.sampleSearchRestaurantData.find { it.name == name }
     Scaffold(
         bottomBar = {
             BottomNavigationBar(navController = navController)

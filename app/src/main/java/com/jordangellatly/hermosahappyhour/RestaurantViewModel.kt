@@ -5,7 +5,7 @@ import java.net.URI
 
 class RestaurantViewModel : ViewModel() {
 
-    val sampleRestaurantData = listOf(
+    val sampleSearchRestaurantData = listOf(
         Restaurant(
             name = "Tower12",
             description = "New American classics & fancy snacks in a beachy, relaxed bar with romantic patio seating.",
@@ -226,6 +226,10 @@ class RestaurantViewModel : ViewModel() {
             ),
             phoneNumber = "(310) 372-5759"
         )
+    )
+
+    val sampleHomeRestaurantData = listOf(
+        sampleSearchRestaurantData[0]
     )
 }
 

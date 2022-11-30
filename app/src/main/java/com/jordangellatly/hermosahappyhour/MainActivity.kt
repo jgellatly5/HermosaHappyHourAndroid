@@ -49,6 +49,11 @@ fun MyAppNavHost(
                 navController = navController
             )
         }
+        composable(route = "search") {
+            SearchScreen(
+                navController = navController
+            )
+        }
         composable(
             route = "detail/{name}",
             arguments = listOf(
@@ -59,7 +64,7 @@ fun MyAppNavHost(
         ) {
             DetailScreen(
                 navController = navController,
-                name = navController.currentBackStackEntry?.arguments?.getString("name") ?: ""
+                name = navController.currentBackStackEntry?.arguments?.getString("name").toString()
             )
         }
     }
