@@ -24,60 +24,57 @@ fun RestaurantCard(
     image: Int,
     onClick: () -> Unit
 ) {
-    HermosaHappyHourTheme {
-        Card(
-            modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            shape = MaterialTheme.shapes.medium,
-            elevation = 5.dp,
-            backgroundColor = MaterialTheme.colors.surface,
-            onClick = onClick
+    Card(
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        shape = MaterialTheme.shapes.medium,
+        elevation = 5.dp,
+        backgroundColor = HermosaHappyHourTheme.colors.uiBackground,
+        onClick = onClick,
+        contentColor = HermosaHappyHourTheme.colors.textPrimary
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
+            Image(
+                painter = painterResource(id = image),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(130.dp)
+                    .padding(16.dp),
+                contentScale = ContentScale.Fit,
+            )
+            Column(
+                modifier = Modifier.padding(8.dp)
             ) {
-                Image(
-                    painter = painterResource(id = image),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(130.dp)
-                        .padding(16.dp),
-                    contentScale = ContentScale.Fit,
+                Text(
+                    text = name,
+                    style = MaterialTheme.typography.h5
                 )
-                Column(
-                    modifier = Modifier.padding(8.dp)
-                ) {
-                    Text(
-                        text = name,
-                        style = MaterialTheme.typography.h5,
-                        color = MaterialTheme.colors.onSurface
-                    )
-                    Text(
-                        text = "Next Happy Hour:",
-                        textDecoration = TextDecoration.Underline,
-                        style = MaterialTheme.typography.h6
-                    )
-                    Text(
-                        text = "Starts at 3PM",
-                        style = MaterialTheme.typography.body2
-                    )
-                    Text(
-                        text = "Featured Deal:",
-                        textDecoration = TextDecoration.Underline,
-                        style = MaterialTheme.typography.h6
-                    )
-                    Text(
-                        text = "Half off shots, bottled & can beers",
-                        style = MaterialTheme.typography.body2
-                    )
-                }
+                Text(
+                    text = "Next Happy Hour:",
+                    textDecoration = TextDecoration.Underline,
+                    style = MaterialTheme.typography.h6
+                )
+                Text(
+                    text = "Starts at 3PM",
+                    style = MaterialTheme.typography.body2
+                )
+                Text(
+                    text = "Featured Deal:",
+                    textDecoration = TextDecoration.Underline,
+                    style = MaterialTheme.typography.h6
+                )
+                Text(
+                    text = "Half off shots, bottled & can beers",
+                    style = MaterialTheme.typography.body2
+                )
             }
         }
     }
-
 }
 
 @Preview(showBackground = true)
