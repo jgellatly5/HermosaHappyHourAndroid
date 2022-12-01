@@ -1,10 +1,11 @@
 package com.jordangellatly.hermosahappyhour
 
 import androidx.lifecycle.ViewModel
+import java.net.URI
 
 class RestaurantViewModel : ViewModel() {
 
-    val sampleRestaurantData = listOf(
+    val sampleSearchRestaurantData = listOf(
         Restaurant(
             name = "Tower12",
             description = "New American classics & fancy snacks in a beachy, relaxed bar with romantic patio seating.",
@@ -13,39 +14,217 @@ class RestaurantViewModel : ViewModel() {
                 latitude = 33.86222,
                 longitude = -118.40085
             ),
-            businessHours = mapOf(
-                Pair(DayOfWeek.SUNDAY, "9AM - 2AM"),
-                Pair(DayOfWeek.MONDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.TUESDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.WEDNESDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.THURSDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.FRIDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.SATURDAY, "11AM - 2AM")
-            ),
-            happyHour = mapOf(
-                Pair(DayOfWeek.SUNDAY, "N/A"),
-                Pair(DayOfWeek.MONDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.TUESDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.WEDNESDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.THURSDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.SATURDAY, "N/A")
-            ),
-            happyHourInfo = mapOf(
-                Pair(DayOfWeek.SUNDAY, ""),
-                Pair(DayOfWeek.MONDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.TUESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.THURSDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.FRIDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.SATURDAY, "")
+            hoursAndSpecials = listOf(
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.SUNDAY,
+                    businessHours = "9AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Saturday & Sunday Football",
+                            hours = "9AM - 2AM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Bloody Mary's Well",
+                                    price = "$7"
+                                ),
+                                Deal(
+                                    description = "Bloody Mary's Titos",
+                                    price = "$9"
+                                ),
+                                Deal(
+                                    description = "22 oz double shot Skyy or Epsolon cocktails",
+                                    price = "$16 (add Red Bull for $3.50)"
+                                ),
+                                Deal(
+                                    description = "22 oz Mavericks Mimosas schooners",
+                                    price = "$10"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.MONDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.TUESDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.WEDNESDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.THURSDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.FRIDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.SATURDAY,
+                    businessHours = "9AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Saturday & Sunday Football",
+                            hours = "9AM - 2AM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Bloody Mary's Well",
+                                    price = "$7"
+                                ),
+                                Deal(
+                                    description = "Bloody Mary's Titos",
+                                    price = "$9"
+                                ),
+                                Deal(
+                                    description = "22 oz double shot Skyy or Epsolon cocktails",
+                                    price = "$16 (add Red Bull for $3.50)"
+                                ),
+                                Deal(
+                                    description = "22 oz Mavericks Mimosas schooners",
+                                    price = "$10"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+                        )
+                    )
+                )
             ),
             address = Address(
                 line1 = "53 Pier Ave",
                 line2 = "Hermosa Beach, CA 90254"
             ),
-            phoneNumber = "(310) 379-6400"
+            phoneNumber = "(310) 379-6400",
+            website = "https://tower12hb.com"
         ),
         Restaurant(
             name = "Baja Sharkeez",
@@ -55,39 +234,217 @@ class RestaurantViewModel : ViewModel() {
                 latitude = 33.861988,
                 longitude = -118.40071
             ),
-            businessHours = mapOf(
-                Pair(DayOfWeek.SUNDAY, "9AM - 2AM"),
-                Pair(DayOfWeek.MONDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.TUESDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.WEDNESDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.THURSDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.FRIDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.SATURDAY, "11AM - 2AM")
-            ),
-            happyHour = mapOf(
-                Pair(DayOfWeek.SUNDAY, "N/A"),
-                Pair(DayOfWeek.MONDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.TUESDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.WEDNESDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.THURSDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.SATURDAY, "N/A")
-            ),
-            happyHourInfo = mapOf(
-                Pair(DayOfWeek.SUNDAY, ""),
-                Pair(DayOfWeek.MONDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.TUESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.THURSDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.FRIDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.SATURDAY, "")
+            hoursAndSpecials = listOf(
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.SUNDAY,
+                    businessHours = "9AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Saturday & Sunday Football",
+                            hours = "9AM - 2AM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Bloody Mary's Well",
+                                    price = "$7"
+                                ),
+                                Deal(
+                                    description = "Bloody Mary's Titos",
+                                    price = "$9"
+                                ),
+                                Deal(
+                                    description = "22 oz double shot Skyy or Epsolon cocktails",
+                                    price = "$16 (add Red Bull for $3.50)"
+                                ),
+                                Deal(
+                                    description = "22 oz Mavericks Mimosas schooners",
+                                    price = "$10"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.MONDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.TUESDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.WEDNESDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.THURSDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.FRIDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.SATURDAY,
+                    businessHours = "9AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Saturday & Sunday Football",
+                            hours = "9AM - 2AM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Bloody Mary's Well",
+                                    price = "$7"
+                                ),
+                                Deal(
+                                    description = "Bloody Mary's Titos",
+                                    price = "$9"
+                                ),
+                                Deal(
+                                    description = "22 oz double shot Skyy or Epsolon cocktails",
+                                    price = "$16 (add Red Bull for $3.50)"
+                                ),
+                                Deal(
+                                    description = "22 oz Mavericks Mimosas schooners",
+                                    price = "$10"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+                        )
+                    )
+                )
             ),
             address = Address(
                 line1 = "52 Pier Ave",
                 line2 = "Hermosa Beach, CA 90254"
             ),
-            phoneNumber = "(310) 318-0004"
+            phoneNumber = "(310) 318-0004",
+            website = "https://sharkeez.net/"
         ),
         Restaurant(
             name = "American Junkie",
@@ -97,39 +454,217 @@ class RestaurantViewModel : ViewModel() {
                 latitude = 33.862,
                 longitude = -118.40047
             ),
-            businessHours = mapOf(
-                Pair(DayOfWeek.SUNDAY, "9AM - 2AM"),
-                Pair(DayOfWeek.MONDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.TUESDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.WEDNESDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.THURSDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.FRIDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.SATURDAY, "11AM - 2AM")
-            ),
-            happyHour = mapOf(
-                Pair(DayOfWeek.SUNDAY, "N/A"),
-                Pair(DayOfWeek.MONDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.TUESDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.WEDNESDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.THURSDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.SATURDAY, "N/A")
-            ),
-            happyHourInfo = mapOf(
-                Pair(DayOfWeek.SUNDAY, ""),
-                Pair(DayOfWeek.MONDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.TUESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.THURSDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.FRIDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.SATURDAY, "")
+            hoursAndSpecials = listOf(
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.SUNDAY,
+                    businessHours = "9AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Saturday & Sunday Football",
+                            hours = "9AM - 2AM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Bloody Mary's Well",
+                                    price = "$7"
+                                ),
+                                Deal(
+                                    description = "Bloody Mary's Titos",
+                                    price = "$9"
+                                ),
+                                Deal(
+                                    description = "22 oz double shot Skyy or Epsolon cocktails",
+                                    price = "$16 (add Red Bull for $3.50)"
+                                ),
+                                Deal(
+                                    description = "22 oz Mavericks Mimosas schooners",
+                                    price = "$10"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.MONDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.TUESDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.WEDNESDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.THURSDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.FRIDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.SATURDAY,
+                    businessHours = "9AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Saturday & Sunday Football",
+                            hours = "9AM - 2AM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Bloody Mary's Well",
+                                    price = "$7"
+                                ),
+                                Deal(
+                                    description = "Bloody Mary's Titos",
+                                    price = "$9"
+                                ),
+                                Deal(
+                                    description = "22 oz double shot Skyy or Epsolon cocktails",
+                                    price = "$16 (add Red Bull for $3.50)"
+                                ),
+                                Deal(
+                                    description = "22 oz Mavericks Mimosas schooners",
+                                    price = "$10"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+                        )
+                    )
+                )
             ),
             address = Address(
                 line1 = "68 Pier Ave",
                 line2 = "Hermosa Beach, CA 90254"
             ),
-            phoneNumber = "(310) 376-4412"
+            phoneNumber = "(310) 376-4412",
+            website = "https://www.americanjunkiehb.com/"
         ),
         Restaurant(
             name = "Henneseys",
@@ -139,40 +674,222 @@ class RestaurantViewModel : ViewModel() {
                 latitude = 33.86182,
                 longitude = -118.40152
             ),
-            businessHours = mapOf(
-                Pair(DayOfWeek.SUNDAY, "9AM - 2AM"),
-                Pair(DayOfWeek.MONDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.TUESDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.WEDNESDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.THURSDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.FRIDAY, "11AM - 2AM"),
-                Pair(DayOfWeek.SATURDAY, "11AM - 2AM")
-            ),
-            happyHour = mapOf(
-                Pair(DayOfWeek.SUNDAY, "N/A"),
-                Pair(DayOfWeek.MONDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.TUESDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.WEDNESDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.THURSDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.FRIDAY, "3PM - 7PM"),
-                Pair(DayOfWeek.SATURDAY, "N/A")
-            ),
-            happyHourInfo = mapOf(
-                Pair(DayOfWeek.SUNDAY, ""),
-                Pair(DayOfWeek.MONDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.TUESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.WEDNESDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.THURSDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.FRIDAY, "Half off shots, bottled & can beers / Wines \$5.50 - \$7.50 ask server for selections / Add \$1 to any cocktail to make it 22oz double shot / Add \$1 to any draft beer to make it 32oz double size"),
-                Pair(DayOfWeek.SATURDAY, "")
+            hoursAndSpecials = listOf(
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.SUNDAY,
+                    businessHours = "9AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Saturday & Sunday Football",
+                            hours = "9AM - 2AM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Bloody Mary's Well",
+                                    price = "$7"
+                                ),
+                                Deal(
+                                    description = "Bloody Mary's Titos",
+                                    price = "$9"
+                                ),
+                                Deal(
+                                    description = "22 oz double shot Skyy or Epsolon cocktails",
+                                    price = "$16 (add Red Bull for $3.50)"
+                                ),
+                                Deal(
+                                    description = "22 oz Mavericks Mimosas schooners",
+                                    price = "$10"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.MONDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.TUESDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.WEDNESDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.THURSDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.FRIDAY,
+                    businessHours = "11AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Weekday Happy Hour",
+                            hours = "3PM - 7PM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Half off shots, bottled & can beers",
+                                    price = "50% off"
+                                ),
+                                Deal(
+                                    description = "Wines ask server for selections",
+                                    price = "$5.50 - 7.50"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any cocktail to make it 22oz double shot",
+                                    price = "Add 1$"
+                                ),
+                                Deal(
+                                    description = "Add $1 to any draft beer to make it 32oz double size",
+                                    price = "Add 1$"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+                        )
+                    )
+                ),
+                HoursAndSpecials(
+                    dayOfWeek = DayOfWeek.SATURDAY,
+                    businessHours = "9AM - 2AM",
+                    specialEvents = listOf(
+                        Event(
+                            title = "Saturday & Sunday Football",
+                            hours = "9AM - 2AM",
+                            specials = listOf(
+                                Deal(
+                                    description = "Bloody Mary's Well",
+                                    price = "$7"
+                                ),
+                                Deal(
+                                    description = "Bloody Mary's Titos",
+                                    price = "$9"
+                                ),
+                                Deal(
+                                    description = "22 oz double shot Skyy or Epsolon cocktails",
+                                    price = "$16 (add Red Bull for $3.50)"
+                                ),
+                                Deal(
+                                    description = "22 oz Mavericks Mimosas schooners",
+                                    price = "$10"
+                                )
+                            ),
+                            image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+                        )
+                    )
+                )
             ),
             address = Address(
                 line1 = "8 Pier Ave",
                 line2 = "Hermosa Beach, CA 90254"
             ),
-            phoneNumber = "(310) 372-5759"
+            phoneNumber = "(310) 372-5759",
+            website = "https://www.hennesseystavern.com/locations-hermosa-beach"
         )
+    )
+
+    val sampleHomeRestaurantData = listOf(
+        sampleSearchRestaurantData[0]
     )
 }
 
@@ -181,11 +898,21 @@ data class Restaurant(
     val description: String,
     val image: Int,
     val location: Location,
-    val businessHours: Map<DayOfWeek, String>,
-    val happyHour: Map<DayOfWeek, String>,
-    val happyHourInfo: Map<DayOfWeek, String>,
+    val hoursAndSpecials: List<HoursAndSpecials>,
     val address: Address,
-    val phoneNumber: String
+    val phoneNumber: String,
+    val website: String
+)
+
+data class HoursAndSpecials(
+    val dayOfWeek: DayOfWeek,
+    val businessHours: String,
+    val specialEvents: List<Event>
+)
+
+data class Deal(
+    val description: String,
+    val price: String
 )
 
 data class Location(
@@ -196,6 +923,13 @@ data class Location(
 data class Address(
     val line1: String,
     val line2: String
+)
+
+data class Event(
+    val title: String,
+    val hours: String,
+    val specials: List<Deal>,
+    val image: URI
 )
 
 enum class DayOfWeek {
