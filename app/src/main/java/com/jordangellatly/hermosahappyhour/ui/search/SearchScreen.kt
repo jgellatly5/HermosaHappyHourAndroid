@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.jordangellatly.hermosahappyhour.BottomNavigationBar
+import com.jordangellatly.hermosahappyhour.ui.components.BottomNavigationBar
 import com.jordangellatly.hermosahappyhour.Restaurant
 import com.jordangellatly.hermosahappyhour.RestaurantViewModel
 import com.jordangellatly.hermosahappyhour.ui.home.RestaurantCard
