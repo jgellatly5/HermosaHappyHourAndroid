@@ -24,6 +24,8 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
+import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
+import com.jordangellatly.hermosahappyhour.ui.home.toString
 import java.net.URI
 
 @Composable
@@ -140,7 +142,11 @@ fun Specials(restaurant: Restaurant?) {
                 }
             }
         }
-        val specialEvent = happyHourInfo?.title.toString()
+        val specialEvent =  if (happyHourInfo?.title.toString() == "Weekday Happy Hour") {
+            "N/A"
+        } else {
+            happyHourInfo?.title.toString()
+        }
         Text(
             text = "Today's Event",
             textDecoration = TextDecoration.Underline,

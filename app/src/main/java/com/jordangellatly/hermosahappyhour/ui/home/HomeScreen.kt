@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour
+package com.jordangellatly.hermosahappyhour.ui.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,6 +14,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.jordangellatly.hermosahappyhour.BottomNavigationBar
+import com.jordangellatly.hermosahappyhour.RestaurantViewModel
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,21 +28,21 @@ fun HomeScreen(
     Scaffold(
         bottomBar = {
             BottomNavigationBar(navController = navController)
-        }
+        },
+        backgroundColor = HermosaHappyHourTheme.colors.uiBackground
     ) { contentPadding ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(contentPadding),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(16.dp)
         ) {
             item {
                 Row(
                     modifier = Modifier
+                        .padding(top = 40.dp)
                         .fillMaxWidth()
-                        .wrapContentHeight()
-                        .padding(vertical = 8.dp),
+                        .wrapContentHeight(),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -48,7 +50,8 @@ fun HomeScreen(
                     val dateInString = date.toString("EEEE, MMM d, yyyy")
                     Text(
                         text = dateInString,
-                        style = MaterialTheme.typography.h5
+                        style = MaterialTheme.typography.h5,
+                        color = HermosaHappyHourTheme.colors.textPrimary
                     )
                 }
             }

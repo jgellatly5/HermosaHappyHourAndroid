@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour
+package com.jordangellatly.hermosahappyhour.ui.search
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,6 +22,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.jordangellatly.hermosahappyhour.BottomNavigationBar
+import com.jordangellatly.hermosahappyhour.Restaurant
+import com.jordangellatly.hermosahappyhour.RestaurantViewModel
+import com.jordangellatly.hermosahappyhour.ui.home.RestaurantCard
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.util.*
 
