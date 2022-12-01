@@ -36,16 +36,20 @@ fun SearchScreen(
     Scaffold(
         bottomBar = {
             BottomNavigationBar(navController = navController)
-        }
+        },
+        backgroundColor = HermosaHappyHourTheme.colors.uiBackground
     ) { contentPadding ->
         Column(
             modifier = Modifier
+                .padding(top = 40.dp)
                 .fillMaxWidth()
                 .padding(contentPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             val textState = remember { mutableStateOf(TextFieldValue("")) }
-            SearchBar(state = textState)
+            SearchBar(
+                state = textState
+            )
             RestaurantList(
                 navController = navController,
                 state = textState
@@ -103,7 +107,7 @@ fun SearchBar(
             .wrapContentHeight()
             .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         TextField(
             value = state.value,
@@ -111,7 +115,7 @@ fun SearchBar(
                 state.value = value
             },
             modifier = Modifier.fillMaxWidth(),
-            textStyle = TextStyle(color = Color.White, fontSize = 18.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 18.sp),
             leadingIcon = {
                 Icon(
                     Icons.Default.Search,
@@ -141,11 +145,11 @@ fun SearchBar(
             singleLine = true,
             shape = RectangleShape,
             colors = TextFieldDefaults.textFieldColors(
-                textColor = Color.White,
-                cursorColor = Color.White,
-                leadingIconColor = Color.White,
-                trailingIconColor = Color.White,
-                backgroundColor = MaterialTheme.colors.primary,
+                textColor = Color.Black,
+                cursorColor = Color.Black,
+                leadingIconColor = Color.Black,
+                trailingIconColor = Color.Black,
+                backgroundColor = HermosaHappyHourTheme.colors.uiBackground,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent

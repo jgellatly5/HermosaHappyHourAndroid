@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.jordangellatly.hermosahappyhour.ui.detail.DetailScreen
 import com.jordangellatly.hermosahappyhour.ui.home.HomeScreen
 import com.jordangellatly.hermosahappyhour.ui.search.SearchScreen
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
