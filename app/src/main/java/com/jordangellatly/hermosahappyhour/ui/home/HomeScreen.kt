@@ -3,6 +3,7 @@ package com.jordangellatly.hermosahappyhour.ui.home
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -51,9 +52,62 @@ fun HomeScreen(
                     Text(
                         text = dateInString,
                         style = MaterialTheme.typography.h5,
-                        color = HermosaHappyHourTheme.colors.textPrimary
+                        color = HermosaHappyHourTheme.colors.textSecondary
                     )
                 }
+                Divider(color = HermosaHappyHourTheme.colors.textSecondary)
+            }
+            item {
+                Text(
+                    text = "Featured Deals",
+                    style = MaterialTheme.typography.h6,
+                    color = HermosaHappyHourTheme.colors.textSecondary
+                )
+            }
+            items(restaurantViewModel.sampleHomeRestaurantData) { restaurant ->
+                RestaurantCard(
+                    name = restaurant.name,
+                    image = restaurant.image
+                ) {
+                    navController.navigate("detail/${restaurant.name}")
+                }
+            }
+            item {
+                Text(
+                    text = "Featured Events",
+                    style = MaterialTheme.typography.h6,
+                    color = HermosaHappyHourTheme.colors.textSecondary
+                )
+            }
+            items(restaurantViewModel.sampleHomeRestaurantData) { restaurant ->
+                RestaurantCard(
+                    name = restaurant.name,
+                    image = restaurant.image
+                ) {
+                    navController.navigate("detail/${restaurant.name}")
+                }
+            }
+            item {
+                Text(
+                    text = "Popular Restaurants",
+                    style = MaterialTheme.typography.h6,
+                    color = HermosaHappyHourTheme.colors.textSecondary
+                )
+            }
+            items(restaurantViewModel.sampleHomeRestaurantData) { restaurant ->
+                RestaurantCard(
+                    name = restaurant.name,
+                    image = restaurant.image
+                ) {
+                    navController.navigate("detail/${restaurant.name}")
+                }
+            }
+            item {
+                Text(
+                    text = "Newly Added",
+                    style = MaterialTheme.typography.h6,
+                    color = HermosaHappyHourTheme.colors.textSecondary
+                )
             }
             items(restaurantViewModel.sampleHomeRestaurantData) { restaurant ->
                 RestaurantCard(
