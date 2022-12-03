@@ -1,14 +1,17 @@
-package com.jordangellatly.hermosahappyhour
+package com.jordangellatly.hermosahappyhour.model
 
 import androidx.lifecycle.ViewModel
+import com.jordangellatly.hermosahappyhour.R
 import java.net.URI
 
 class RestaurantViewModel : ViewModel() {
 
     val sampleSearchRestaurantData = listOf(
         Restaurant(
+            id = 1,
             name = "Tower12",
             description = "New American classics & fancy snacks in a beachy, relaxed bar with romantic patio seating.",
+            companyLogoUrl = "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/292336365_435159251951538_4078078271979326231_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=C_tAC12x4o0AX9uN-Yg&_nc_ht=scontent-lax3-2.xx&oh=00_AfAAxhYzzBx-bK8gDhRHmOeMrzUxDDsDMZeCaTyFHRr3Ug&oe=638F052F",
             image = R.drawable.tower12,
             location = Location(
                 latitude = 33.86222,
@@ -227,8 +230,10 @@ class RestaurantViewModel : ViewModel() {
             website = "https://tower12hb.com"
         ),
         Restaurant(
+            id = 2,
             name = "Baja Sharkeez",
             description = "Lively bar & restaurant with simple Mexican fare plus lots of margaritas & a popular happy hour.",
+            companyLogoUrl = "https://sharkeez.net/wp-content/uploads/2020/11/sharkeez-light.png",
             image = R.drawable.sharkeez,
             location = Location(
                 latitude = 33.861988,
@@ -447,8 +452,10 @@ class RestaurantViewModel : ViewModel() {
             website = "https://sharkeez.net/"
         ),
         Restaurant(
+            id = 3,
             name = "American Junkie",
             description = "Lively gastropub with American chow, craft brews & California wines plus multiple TVs for sports.",
+            companyLogoUrl = "https://images.squarespace-cdn.com/content/v1/5a340b32f09ca4f1abede53f/1513369024515-81MNDBH8WH7EFSWJ6BKE/AJ+Gargoyle+White+Logo.png?format=1500w",
             image = R.drawable.junkie,
             location = Location(
                 latitude = 33.862,
@@ -667,8 +674,10 @@ class RestaurantViewModel : ViewModel() {
             website = "https://www.americanjunkiehb.com/"
         ),
         Restaurant(
+            id = 4,
             name = "Henneseys",
             description = "Irish-style pub chain serving breakfast, bar bites, burgers & more in a casual, traditional space.",
+            companyLogoUrl = "https://images.squarespace-cdn.com/content/v1/5c5db1e83560c36d822b0633/1554189473268-4OGP4B9IXAUV2K2EBKU6/hennesseys_tavern_logo.png?format=1500w",
             image = R.drawable.hennesseys,
             location = Location(
                 latitude = 33.86182,
@@ -894,8 +903,10 @@ class RestaurantViewModel : ViewModel() {
 }
 
 data class Restaurant(
+    val id: Long,
     val name: String,
     val description: String,
+    val companyLogoUrl: String,
     val image: Int,
     val location: Location,
     val hoursAndSpecials: List<HoursAndSpecials>,

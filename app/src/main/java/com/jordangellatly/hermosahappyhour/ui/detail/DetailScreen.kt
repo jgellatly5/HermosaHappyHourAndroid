@@ -24,8 +24,8 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
-import com.jordangellatly.hermosahappyhour.*
 import com.jordangellatly.hermosahappyhour.R
+import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.components.BottomNavigationBar
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
@@ -102,7 +102,8 @@ fun Specials(restaurant: Restaurant?) {
     ) {
         val date = getCurrentDateTime()
         val dateInString = date.toString("EEEE").uppercase()
-        val dailyInfo = restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == dateInString }
+        val dailyInfo =
+            restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == dateInString }
         val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Weekday Happy Hour" }
         val happyHours = happyHourInfo?.hours
         val specials = happyHourInfo?.specials
@@ -122,7 +123,10 @@ fun Specials(restaurant: Restaurant?) {
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = happyHours.toString(), color = HermosaHappyHourTheme.colors.textSecondary)
-            Text(text = "5:22:00 (Countdown timer)", color = HermosaHappyHourTheme.colors.textSecondary)
+            Text(
+                text = "5:22:00 (Countdown timer)",
+                color = HermosaHappyHourTheme.colors.textSecondary
+            )
         }
 
         Text(
@@ -149,7 +153,7 @@ fun Specials(restaurant: Restaurant?) {
                 }
             }
         }
-        val specialEvent =  if (happyHourInfo?.title.toString() == "Weekday Happy Hour") {
+        val specialEvent = if (happyHourInfo?.title.toString() == "Weekday Happy Hour") {
             "N/A"
         } else {
             happyHourInfo?.title.toString()
@@ -176,7 +180,8 @@ fun GeneralInfo(restaurant: Restaurant?) {
     ) {
         val date = getCurrentDateTime()
         val dateInString = date.toString("EEEE").uppercase()
-        val dailyInfo = restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == dateInString }
+        val dailyInfo =
+            restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == dateInString }
         Text(
             text = "Info",
             style = MaterialTheme.typography.h4
@@ -274,8 +279,10 @@ fun HoursPreview() {
     HermosaHappyHourTheme {
         Hours(
             restaurant = Restaurant(
+                id = 1,
                 name = "Tower12",
                 description = "New American classics & fancy snacks in a beachy, relaxed bar with romantic patio seating.",
+                companyLogoUrl = "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/292336365_435159251951538_4078078271979326231_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=C_tAC12x4o0AX9uN-Yg&_nc_ht=scontent-lax3-2.xx&oh=00_AfAAxhYzzBx-bK8gDhRHmOeMrzUxDDsDMZeCaTyFHRr3Ug&oe=638F052F",
                 image = R.drawable.tower12,
                 location = Location(
                     latitude = 33.86222,
