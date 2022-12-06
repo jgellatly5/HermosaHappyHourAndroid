@@ -89,10 +89,27 @@ fun RestaurantCollection(
             }
         }
         if (highlight && restaurantCollection.type == CollectionType.Highlight) {
-            HighlightedRestaurants(index, restaurantCollection.snacks, onRestaurantClick)
+            HighlightedRestaurants(index, restaurantCollection.restaurants, onRestaurantClick)
         } else {
-            Restaurants(restaurantCollection.snacks, onRestaurantClick)
+            Restaurants(restaurantCollection.restaurants, onRestaurantClick)
         }
+    }
+}
+
+@Preview
+@Composable
+fun RestaurantCollectionPreview() {
+    HermosaHappyHourTheme {
+        val restaurantCollection = RestaurantCollection(
+            id = 1,
+            name = "Featured Deals",
+            restaurants = sampleSearchRestaurantData,
+            type = CollectionType.Highlight
+        )
+        RestaurantCollection(
+            restaurantCollection = restaurantCollection,
+            onRestaurantClick = {}
+        )
     }
 }
 
@@ -130,55 +147,16 @@ private fun HighlightedRestaurants(
     }
 }
 
+@Preview
 @Composable
-private fun Restaurants(
-    restaurants: List<Restaurant>,
-    onRestaurantClick: (Long) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    LazyRow(
-        modifier = modifier,
-        contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
-    ) {
-        items(restaurants) { snack ->
-            RestaurantItem(snack, onRestaurantClick)
-        }
-    }
-}
-
-@Composable
-fun RestaurantItem(
-    restaurant: Restaurant,
-    onRestaurantClick: (Long) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    HermosaHappyHourSurface(
-        shape = MaterialTheme.shapes.medium,
-        modifier = modifier.padding(
-            start = 4.dp,
-            end = 4.dp,
-            bottom = 8.dp
+fun HighlightedRestaurantsPreview() {
+    HermosaHappyHourTheme {
+        val restaurants = sampleSearchRestaurantData
+        HighlightedRestaurants(
+            index = 0,
+            restaurants = restaurants,
+            onRestaurantClick = {}
         )
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .clickable(onClick = { onRestaurantClick(restaurant.id) })
-                .padding(8.dp)
-        ) {
-            RestaurantImage(
-                imageUrl = restaurant.companyLogoUrl,
-                elevation = 4.dp,
-                contentDescription = null,
-                modifier = Modifier.size(120.dp)
-            )
-            Text(
-                text = restaurant.name,
-                style = MaterialTheme.typography.subtitle1,
-                color = HermosaHappyHourTheme.colors.textSecondary,
-                modifier = Modifier.padding(top = 8.dp)
-            )
-        }
     }
 }
 
@@ -253,6 +231,98 @@ fun HighlightRestaurantItem(
     }
 }
 
+@Preview
+@Composable
+fun HighlightRestaurantItemPreview() {
+    HermosaHappyHourTheme {
+        val restaurant = sampleSearchRestaurantData.first()
+        HighlightRestaurantItem(
+            restaurant = restaurant,
+            onRestaurantClick = {},
+            index = 0,
+            gradient = HermosaHappyHourTheme.colors.gradient6_1,
+            gradientWidth = gradientWidth,
+            scroll = 0
+        )
+    }
+}
+
+@Composable
+private fun Restaurants(
+    restaurants: List<Restaurant>,
+    onRestaurantClick: (Long) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LazyRow(
+        modifier = modifier,
+        contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
+    ) {
+        items(restaurants) { snack ->
+            RestaurantItem(snack, onRestaurantClick)
+        }
+    }
+}
+
+@Preview
+@Composable
+fun RestaurantsPreview() {
+    HermosaHappyHourTheme {
+        val restaurants = sampleSearchRestaurantData
+        Restaurants(
+            restaurants = restaurants,
+            onRestaurantClick = {}
+        )
+    }
+}
+
+@Composable
+fun RestaurantItem(
+    restaurant: Restaurant,
+    onRestaurantClick: (Long) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    HermosaHappyHourSurface(
+        shape = MaterialTheme.shapes.medium,
+        modifier = modifier.padding(
+            start = 4.dp,
+            end = 4.dp,
+            bottom = 8.dp
+        )
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .clickable(onClick = { onRestaurantClick(restaurant.id) })
+                .padding(8.dp)
+        ) {
+            RestaurantImage(
+                imageUrl = restaurant.companyLogoUrl,
+                elevation = 4.dp,
+                contentDescription = null,
+                modifier = Modifier.size(120.dp)
+            )
+            Text(
+                text = restaurant.name,
+                style = MaterialTheme.typography.subtitle1,
+                color = HermosaHappyHourTheme.colors.textSecondary,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun RestaurantItemPreview() {
+    HermosaHappyHourTheme {
+        val restaurant = sampleSearchRestaurantData.first()
+        RestaurantItem(
+            restaurant = restaurant,
+            onRestaurantClick = {}
+        )
+    }
+}
+
 @Composable
 fun RestaurantImage(
     imageUrl: String,
@@ -288,22 +358,6 @@ fun RestaurantImagePreview() {
             contentDescription = null,
             modifier = Modifier
                 .size(120.dp)
-        )
-    }
-}
-
-@Preview
-@Composable
-fun RestaurantCardPreview() {
-    HermosaHappyHourTheme {
-        val restaurant = sampleSearchRestaurantData.first()
-        HighlightRestaurantItem(
-            restaurant = restaurant,
-            onRestaurantClick = {},
-            index = 0,
-            gradient = HermosaHappyHourTheme.colors.gradient6_1,
-            gradientWidth = gradientWidth,
-            scroll = 0
         )
     }
 }

@@ -6,7 +6,7 @@ import androidx.compose.runtime.Immutable
 data class RestaurantCollection(
     val id: Long,
     val name: String,
-    val snacks: List<Restaurant>,
+    val restaurants: List<Restaurant>,
     val type: CollectionType = CollectionType.Normal
 )
 
