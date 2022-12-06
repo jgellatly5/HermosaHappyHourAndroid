@@ -11,3 +11,43 @@ data class RestaurantCollection(
 )
 
 enum class CollectionType { Normal, Highlight }
+
+object RestaurantRepo {
+    fun getRestaurants(): List<RestaurantCollection> = restaurantCollections
+    fun getFilters() = filters
+}
+
+private val featuredDeals = RestaurantCollection(
+    id = 1L,
+    name = "Featured Deals",
+    type = CollectionType.Highlight,
+    restaurants = sampleSearchRestaurantData
+)
+
+private val featuredEvents = RestaurantCollection(
+    id = 2L,
+    name = "Featured Events",
+    type = CollectionType.Highlight,
+    restaurants = sampleSearchRestaurantData
+)
+
+private val popularRestaurants = RestaurantCollection(
+    id = 3L,
+    name = "Popular Restaurants",
+    type = CollectionType.Normal,
+    restaurants = sampleSearchRestaurantData
+)
+
+private val newlyAdded = RestaurantCollection(
+    id = 4L,
+    name = "Newly Added",
+    type = CollectionType.Normal,
+    restaurants = sampleSearchRestaurantData
+)
+
+val restaurantCollections = listOf(
+    featuredDeals,
+    featuredEvents,
+    popularRestaurants,
+    newlyAdded
+)
