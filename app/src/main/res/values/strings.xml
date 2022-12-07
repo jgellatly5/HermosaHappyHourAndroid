@@ -9,4 +9,10 @@
     <string name="junkie_description">Lively gastropub with American chow, craft brews &amp; California wines plus multiple TVs for sports.</string>
     <string name="hennesseys_description">Irish-style pub chain serving breakfast, bar bites, burgers &amp; more in a casual, traditional space.</string>
     <string name="tower12_happy_hour">"Half off shots, bottled &amp; can beers / Wines $5.50 - $7.50 ask server for selections / Add $1 to any cocktail to make it 22oz double shot / Add $1 to any draft beer to make it 32oz double size"</string>
+
+    <!-- Home Tabs -->
+    <string name="home_feed">Home</string>
+    <string name="home_search">Search</string>
+    <string name="home_cart">My Cart</string>
+    <string name="home_profile">Profile</string>
 </resources>

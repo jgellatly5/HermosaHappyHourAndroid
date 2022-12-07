@@ -1,64 +1,108 @@
 package com.jordangellatly.hermosahappyhour
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Surface
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
-import androidx.navigation.NavType
+import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.jordangellatly.hermosahappyhour.ui.detail.DetailScreen
-import com.jordangellatly.hermosahappyhour.ui.home.HomeScreen
-import com.jordangellatly.hermosahappyhour.ui.search.SearchScreen
+import com.jordangellatly.hermosahappyhour.ui.components.HappyHourScaffold
+import com.jordangellatly.hermosahappyhour.ui.home.HappyHourBottomBar
+import com.jordangellatly.hermosahappyhour.ui.home.HomeSections
+import com.jordangellatly.hermosahappyhour.ui.home.addHomeGraph
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun HermosaHappyHourApp() {
     HermosaHappyHourTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            val navController = rememberNavController()
-            MyAppNavHost(navController = navController)
+        val appState = rememberHappyHourAppState()
+        HappyHourScaffold(
+            bottomBar = {
+                if (appState.shouldShowBottomBar) {
+                    HappyHourBottomBar(
+                        tabs = appState.bottomBarTabs,
+                        currentRoute = appState.currentRoute!!,
+                        navigateToRoute = appState::navigateToBottomBarRoute
+                    )
+                }
+            },
+//            snackbarHost = {
+//                SnackbarHost(
+//                    hostState = it,
+//                    modifier = Modifier.systemBarsPadding(),
+//                    snackbar = { snackbarData -> JetsnackSnackbar(snackbarData) }
+//                )
+//            },
+            scaffoldState = appState.scaffoldState
+        ) { innerPaddingModifier ->
+            NavHost(
+                navController = appState.navController,
+                startDestination = MainDestinations.HOME_ROUTE,
+                modifier = Modifier.padding(innerPaddingModifier)
+            ) {
+                happyHourNavGraph(
+                    onRestaurantSelected = appState::navigateToSnackDetail,
+                    upPress = appState::upPress
+                )
+            }
         }
     }
 }
 
-@Composable
-fun MyAppNavHost(
-    modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController()
+private fun NavGraphBuilder.happyHourNavGraph(
+    onRestaurantSelected: (Long, NavBackStackEntry) -> Unit,
+    upPress: () -> Unit
 ) {
-    NavHost(
-        modifier = modifier,
-        navController = navController,
-        startDestination = "home"
+    navigation(
+        route = MainDestinations.HOME_ROUTE,
+        startDestination = HomeSections.FEED.route
     ) {
-        composable(route = "home") {
-            HomeScreen(
-                navController = navController
-            )
-        }
-        composable(route = "search") {
-            SearchScreen(
-                navController = navController
-            )
-        }
-        composable(
-            route = "detail/{name}",
-            arguments = listOf(
-                navArgument("name") {
-                    type = NavType.StringType
-                }
-            )
-        ) {
-            DetailScreen(
-                navController = navController,
-                name = navController.currentBackStackEntry?.arguments?.getString("name").toString()
-            )
-        }
+        addHomeGraph(onRestaurantSelected)
+    }
+    composable(
+        "${MainDestinations.RESTAURANT_DETAIL_ROUTE}/{${MainDestinations.RESTAURANT_ID_KEY}}",
+        arguments = listOf(navArgument(MainDestinations.RESTAURANT_ID_KEY) {
+            type = NavType.LongType
+        })
+    ) { backStackEntry ->
+        val arguments = requireNotNull(backStackEntry.arguments)
+//        val snackId = arguments.getLong(MainDestinations.RESTAURANT_ID_KEY)
+//        RestaurantDetail(snackId, upPress)
     }
 }
+
+//@Composable
+//fun MyAppNavHost(
+//    modifier: Modifier = Modifier,
+//    navController: NavHostController = rememberNavController()
+//) {
+//    NavHost(
+//        modifier = modifier,
+//        navController = navController,
+//        startDestination = "home"
+//    ) {
+//        composable(route = "home") {
+//            HomeScreen(
+//                navController = navController
+//            )
+//        }
+//        composable(route = "search") {
+//            SearchScreen(
+//                navController = navController
+//            )
+//        }
+//        composable(
+//            route = "detail/{name}",
+//            arguments = listOf(
+//                navArgument("name") {
+//                    type = NavType.StringType
+//                }
+//            )
+//        ) {
+//            DetailScreen(
+//                navController = navController,
+//                name = navController.currentBackStackEntry?.arguments?.getString("name").toString()
+//            )
+//        }
+//    }
+//}
