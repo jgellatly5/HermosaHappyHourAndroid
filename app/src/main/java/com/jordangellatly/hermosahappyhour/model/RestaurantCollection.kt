@@ -10,7 +10,7 @@ data class RestaurantCollection(
     val type: CollectionType = CollectionType.Normal
 )
 
-enum class CollectionType { Normal, Highlight }
+enum class CollectionType { Normal, Highlight, Featured }
 
 object RestaurantRepo {
     fun getRestaurants(): List<RestaurantCollection> = restaurantCollections
@@ -20,7 +20,7 @@ object RestaurantRepo {
 private val featuredDeals = RestaurantCollection(
     id = 1L,
     name = "Featured Deals",
-    type = CollectionType.Highlight,
+    type = CollectionType.Featured,
     restaurants = sampleSearchRestaurantData
 )
 
