@@ -20,7 +20,7 @@ object RestaurantRepo {
 private val featuredDeals = RestaurantCollection(
     id = 1L,
     name = "Featured Deals",
-    type = CollectionType.Featured,
+    type = CollectionType.Highlight,
     restaurants = sampleSearchRestaurantData
 )
 

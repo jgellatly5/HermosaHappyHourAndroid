@@ -103,7 +103,7 @@ fun Specials(restaurant: Restaurant?) {
         val dateInString = date.toString("EEEE").uppercase()
         val dailyInfo =
             restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == dateInString }
-        val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Weekday Happy Hour" }
+        val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Happy Hour" }
         val happyHours = happyHourInfo?.hours
         val specials = happyHourInfo?.specials
         Text(
@@ -152,7 +152,7 @@ fun Specials(restaurant: Restaurant?) {
                 }
             }
         }
-        val specialEvent = if (happyHourInfo?.title.toString() == "Weekday Happy Hour") {
+        val specialEvent = if (happyHourInfo?.title.toString() == "Happy Hour") {
             "N/A"
         } else {
             happyHourInfo?.title.toString()
@@ -253,7 +253,7 @@ fun Hours(restaurant: Restaurant?) {
             )
             val dailyInfo = restaurant?.hoursAndSpecials?.find { it.dayOfWeek == dayOfWeek }
             val businessHours = dailyInfo?.businessHours
-            val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Weekday Happy Hour" }
+            val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Happy Hour" }
             val happyHours = if (happyHourInfo?.hours == null) {
                 "N/A"
             } else {
@@ -322,7 +322,7 @@ fun HoursPreview() {
                         businessHours = "11AM - 2AM",
                         specialEvents = listOf(
                             Event(
-                                title = "Weekday Happy Hour",
+                                title = "Happy Hour",
                                 hours = "3PM - 7PM",
                                 specials = listOf(
                                     Deal(
@@ -351,7 +351,7 @@ fun HoursPreview() {
                         businessHours = "11AM - 2AM",
                         specialEvents = listOf(
                             Event(
-                                title = "Weekday Happy Hour",
+                                title = "Happy Hour",
                                 hours = "3PM - 7PM",
                                 specials = listOf(
                                     Deal(
@@ -380,7 +380,7 @@ fun HoursPreview() {
                         businessHours = "11AM - 2AM",
                         specialEvents = listOf(
                             Event(
-                                title = "Weekday Happy Hour",
+                                title = "Happy Hour",
                                 hours = "3PM - 7PM",
                                 specials = listOf(
                                     Deal(
@@ -409,7 +409,7 @@ fun HoursPreview() {
                         businessHours = "11AM - 2AM",
                         specialEvents = listOf(
                             Event(
-                                title = "Weekday Happy Hour",
+                                title = "Happy Hour",
                                 hours = "3PM - 7PM",
                                 specials = listOf(
                                     Deal(
@@ -438,7 +438,7 @@ fun HoursPreview() {
                         businessHours = "11AM - 2AM",
                         specialEvents = listOf(
                             Event(
-                                title = "Weekday Happy Hour",
+                                title = "Happy Hour",
                                 hours = "3PM - 7PM",
                                 specials = listOf(
                                     Deal(

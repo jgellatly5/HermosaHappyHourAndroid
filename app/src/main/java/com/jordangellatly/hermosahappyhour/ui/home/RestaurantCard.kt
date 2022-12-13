@@ -54,8 +54,7 @@ fun RestaurantCollection(
     restaurantCollection: RestaurantCollection,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
-    index: Int = 0,
-    highlight: Boolean = true
+    index: Int = 0
 ) {
     Column(modifier = modifier) {
         Row(
@@ -89,9 +88,9 @@ fun RestaurantCollection(
             }
         }
         when (restaurantCollection.type) {
-            CollectionType.Featured -> {
-                FeaturedRestaurants(index, restaurantCollection.restaurants, onRestaurantClick)
-            }
+//            CollectionType.Featured -> {
+//                FeaturedRestaurants(index, restaurantCollection.restaurants, onRestaurantClick)
+//            }
             CollectionType.Highlight -> {
                 HighlightedRestaurants(index, restaurantCollection.restaurants, onRestaurantClick)
             }
@@ -229,7 +228,7 @@ fun FeaturedDealsItem(
     val date = getCurrentDateTime()
     val dateInString = date.toString("EEEE").uppercase()
     val dailyInfo = restaurant.hoursAndSpecials.find { it.dayOfWeek.toString() == dateInString }
-    val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Weekday Happy Hour" }
+    val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Happy Hour" }
     val happyHours = happyHourInfo?.hours
     HappyHourCard(
         modifier = modifier
@@ -290,7 +289,7 @@ fun FeaturedDealsItem(
                         Text(
                             text = deal.price,
                             style = MaterialTheme.typography.caption,
-                            color = HermosaHappyHourTheme.colors.textSecondary,
+                            color = HermosaHappyHourTheme.colors.brand,
                             modifier = Modifier
                                 .padding(horizontal = 16.dp)
                                 .width(80.dp)
@@ -340,7 +339,7 @@ fun HighlightRestaurantItem(
     val date = getCurrentDateTime()
     val dateInString = date.toString("EEEE").uppercase()
     val dailyInfo = restaurant.hoursAndSpecials.find { it.dayOfWeek.toString() == dateInString }
-    val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Weekday Happy Hour" }
+    val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Happy Hour" }
     val happyHours = happyHourInfo?.hours
     HappyHourCard(
         modifier = modifier
@@ -377,7 +376,7 @@ fun HighlightRestaurantItem(
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = restaurant.name,
+                text = happyHourInfo?.title.toString(),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.h6,
