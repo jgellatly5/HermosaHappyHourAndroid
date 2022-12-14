@@ -30,6 +30,12 @@ fun HappyHourItem(
             bottom = 8.dp
         )
     ) {
+        val date = getCurrentDateTime()
+        val dateInString = date.toString("EEEE").uppercase()
+        val hoursAndEventsToday =
+            restaurant.hoursAndSpecials.find { it.dayOfWeek.toString() == dateInString }
+        val happyHourEvent = hoursAndEventsToday?.specialEvents?.first()
+        val happyHours = happyHourEvent?.hours
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -43,7 +49,7 @@ fun HappyHourItem(
                 modifier = Modifier.size(120.dp)
             )
             Text(
-                text = restaurant.name,
+                text = happyHours.toString(),
                 style = MaterialTheme.typography.subtitle1,
                 color = HermosaHappyHourTheme.colors.textSecondary,
                 modifier = Modifier.padding(top = 8.dp)
