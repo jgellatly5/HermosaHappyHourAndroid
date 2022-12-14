@@ -19,8 +19,8 @@ object RestaurantRepo {
 
 private val featuredDeals = RestaurantCollection(
     id = 1L,
-    name = "Featured Deals",
-    type = CollectionType.HappyHour,
+    name = "Featured Happy Hours",
+    type = CollectionType.Normal,
     restaurants = sampleSearchRestaurantData
 )
 
