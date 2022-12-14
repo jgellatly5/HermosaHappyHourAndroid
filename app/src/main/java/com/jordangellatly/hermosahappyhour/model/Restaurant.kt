@@ -270,6 +270,18 @@ val mondayNightFootball = Event(
     image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
 )
 
+val wineWednesday = Event(
+    title = "Wine Wednesday",
+    hours = "5PM - 8PM",
+    specials = listOf(
+        Deal(
+            description = "Wine (ask server for selections)",
+            price = "$7"
+        )
+    ),
+    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+)
+
 val sampleSearchRestaurantData = listOf(
     Restaurant(
         id = 1,
@@ -307,7 +319,8 @@ val sampleSearchRestaurantData = listOf(
                 dayOfWeek = DayOfWeek.WEDNESDAY,
                 businessHours = "11AM - 2AM",
                 specialEvents = listOf(
-                    tower12HappyHour
+                    tower12HappyHour,
+                    wineWednesday
                 )
             ),
             HoursAndSpecials(
@@ -375,7 +388,8 @@ val sampleSearchRestaurantData = listOf(
                 dayOfWeek = DayOfWeek.WEDNESDAY,
                 businessHours = "11AM - 2AM",
                 specialEvents = listOf(
-                    sharkeezHappyHour
+                    sharkeezHappyHour,
+                    wineWednesday
                 )
             ),
             HoursAndSpecials(
@@ -443,7 +457,8 @@ val sampleSearchRestaurantData = listOf(
                 dayOfWeek = DayOfWeek.WEDNESDAY,
                 businessHours = "11AM - 2AM",
                 specialEvents = listOf(
-                    junkieHappyHour
+                    junkieHappyHour,
+                    wineWednesday
                 )
             ),
             HoursAndSpecials(
@@ -511,7 +526,8 @@ val sampleSearchRestaurantData = listOf(
                 dayOfWeek = DayOfWeek.WEDNESDAY,
                 businessHours = "11AM - 2AM",
                 specialEvents = listOf(
-                    hennesseysHappyHour
+                    hennesseysHappyHour,
+                    wineWednesday
                 )
             ),
             HoursAndSpecials(

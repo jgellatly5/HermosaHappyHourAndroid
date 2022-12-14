@@ -92,7 +92,20 @@ fun RestaurantCollection(
 //                FeaturedRestaurants(index, restaurantCollection.restaurants, onRestaurantClick)
 //            }
             CollectionType.HappyHour -> {
-                HighlightedRestaurants(index, restaurantCollection.restaurants, onRestaurantClick)
+                HighlightedRestaurants(
+                    index,
+                    restaurantCollection.restaurants,
+                    onRestaurantClick,
+                    type = CollectionType.HappyHour
+                )
+            }
+            CollectionType.Event -> {
+                HighlightedRestaurants(
+                    index,
+                    restaurantCollection.restaurants,
+                    onRestaurantClick,
+                    type = CollectionType.Event
+                )
             }
             CollectionType.Normal -> {
                 Restaurants(restaurantCollection.restaurants, onRestaurantClick)
@@ -123,7 +136,8 @@ private fun HighlightedRestaurants(
     index: Int,
     restaurants: List<Restaurant>,
     onRestaurantClick: (Long) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    type: CollectionType = CollectionType.Normal
 ) {
     val scroll = rememberScrollState(0)
     val gradient = when ((index / 2) % 2) {
@@ -141,12 +155,14 @@ private fun HighlightedRestaurants(
     ) {
         itemsIndexed(restaurants) { index, restaurant ->
             HighlightRestaurantItem(
-                restaurant,
-                onRestaurantClick,
-                index,
-                gradient,
-                gradientWidth,
-                scroll.value
+                restaurant = restaurant,
+                onRestaurantClick = onRestaurantClick,
+                index = index,
+                gradient = gradient,
+                gradientWidth = gradientWidth,
+                scroll = scroll.value,
+                modifier = modifier,
+                type = type
             )
         }
     }
@@ -173,16 +189,22 @@ fun HighlightRestaurantItem(
     gradient: List<Color>,
     gradientWidth: Float,
     scroll: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    type: CollectionType = CollectionType.Normal
 ) {
     val left = index * with(LocalDensity.current) {
         (HighlightCardWidth + HighlightCardPadding).toPx()
     }
     val date = getCurrentDateTime()
     val dateInString = date.toString("EEEE").uppercase()
-    val dailyInfo = restaurant.hoursAndSpecials.find { it.dayOfWeek.toString() == dateInString }
-    val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Happy Hour" }
-    val happyHours = happyHourInfo?.hours
+    val hoursAndEventsToday =
+        restaurant.hoursAndSpecials.find { it.dayOfWeek.toString() == dateInString }
+    val eventInfoToday = when (type) {
+        CollectionType.HappyHour -> hoursAndEventsToday?.specialEvents?.first()
+        CollectionType.Event -> hoursAndEventsToday?.specialEvents?.elementAtOrNull(1)
+        else -> hoursAndEventsToday?.specialEvents?.find { it.title == "Happy Hour" }
+    }
+    val eventHoursToday = eventInfoToday?.hours
     HappyHourCard(
         modifier = modifier
             .size(
@@ -218,7 +240,7 @@ fun HighlightRestaurantItem(
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = happyHourInfo?.title.toString(),
+                text = eventInfoToday?.title.toString(),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.h6,
@@ -227,7 +249,7 @@ fun HighlightRestaurantItem(
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = happyHours.toString(),
+                text = eventHoursToday.toString(),
                 style = MaterialTheme.typography.body1,
                 color = HermosaHappyHourTheme.colors.textHelp,
                 modifier = Modifier.padding(horizontal = 16.dp)
@@ -247,7 +269,8 @@ fun HighlightRestaurantItemPreview() {
             index = 0,
             gradient = HermosaHappyHourTheme.colors.gradient6_1,
             gradientWidth = gradientWidth,
-            scroll = 0
+            scroll = 0,
+            type = CollectionType.HappyHour
         )
     }
 }
