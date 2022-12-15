@@ -9,6 +9,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Restaurant
@@ -68,21 +72,6 @@ fun HappyHourItem(
         }
         endTime[Calendar.MINUTE] = 0
 
-        val timeText = when {
-            currentTime < startTime -> {
-                "Starts at $stringStart"
-            }
-            currentTime > startTime && currentTime < endTime -> {
-                "Ends at $stringEnd"
-            }
-            currentTime > endTime -> {
-                "Ended at $stringEnd"
-            }
-            else -> {
-                ""
-            }
-        }
-
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -95,8 +84,34 @@ fun HappyHourItem(
                 contentDescription = null,
                 modifier = Modifier.size(120.dp)
             )
+            val annotatedTimeString = buildAnnotatedString {
+                when {
+                    currentTime < startTime -> {
+                        withStyle(style = SpanStyle(Color.Green)) {
+                            append("Starts")
+                        }
+                        append(" at $stringStart")
+                    }
+                    currentTime > startTime && currentTime < endTime -> {
+                        withStyle(style = SpanStyle(HermosaHappyHourTheme.colors.orange)) {
+                            append("Ends")
+                        }
+                        append(" at $stringEnd")
+                    }
+                    currentTime > endTime -> {
+                        withStyle(style = SpanStyle(Color.Red)) {
+                            append("Ended")
+                        }
+                        append(" at $stringEnd")
+                    }
+                    else -> {
+                        append("")
+                    }
+                }
+
+            }
             Text(
-                text = timeText,
+                text = annotatedTimeString,
                 style = MaterialTheme.typography.subtitle1,
                 color = HermosaHappyHourTheme.colors.textSecondary,
                 modifier = Modifier.padding(top = 8.dp)

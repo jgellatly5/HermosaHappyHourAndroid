@@ -29,6 +29,7 @@ private val LightColorPalette = HermosaHappyHourColors(
     gradient2_2 = listOf(Ocean3, Shadow3),
     gradient2_3 = listOf(Lavender3, Rose2),
     tornado1 = listOf(Shadow4, Ocean3),
+    orange = Orange,
     isDark = false
 )
 
@@ -56,6 +57,7 @@ private val DarkColorPalette = HermosaHappyHourColors(
     gradient2_2 = listOf(Ocean4, Shadow2),
     gradient2_3 = listOf(Lavender3, Rose3),
     tornado1 = listOf(Shadow4, Ocean3),
+    orange = Orange,
     isDark = true
 )
 
@@ -122,6 +124,7 @@ class HermosaHappyHourColors(
     iconInteractiveInactive: Color,
     error: Color,
     notificationBadge: Color = error,
+    orange: Color,
     isDark: Boolean
 ) {
     var gradient6_1 by mutableStateOf(gradient6_1)
@@ -178,6 +181,8 @@ class HermosaHappyHourColors(
         private set
     var notificationBadge by mutableStateOf(notificationBadge)
         private set
+    var orange by mutableStateOf(orange)
+        private set
     var isDark by mutableStateOf(isDark)
         private set
 
@@ -209,6 +214,7 @@ class HermosaHappyHourColors(
         iconInteractiveInactive = other.iconInteractiveInactive
         error = other.error
         notificationBadge = other.notificationBadge
+        orange = other.orange
         isDark = other.isDark
     }
 
@@ -240,6 +246,7 @@ class HermosaHappyHourColors(
         iconInteractiveInactive = iconInteractiveInactive,
         error = error,
         notificationBadge = notificationBadge,
+        orange = orange,
         isDark = isDark,
     )
 }
