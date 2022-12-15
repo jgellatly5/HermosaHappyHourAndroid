@@ -15,6 +15,7 @@ import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.sampleSearchRestaurantData
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.util.*
 
 @Composable
 fun HappyHourItem(
@@ -31,11 +32,57 @@ fun HappyHourItem(
         )
     ) {
         val date = getCurrentDateTime()
-        val dateInString = date.toString("EEEE").uppercase()
+        val getDayFromDate = date.toString("EEEE").uppercase()
         val hoursAndEventsToday =
-            restaurant.hoursAndSpecials.find { it.dayOfWeek.toString() == dateInString }
+            restaurant.hoursAndSpecials.find { it.dayOfWeek.toString() == getDayFromDate }
         val happyHourEvent = hoursAndEventsToday?.specialEvents?.first()
         val happyHours = happyHourEvent?.hours
+
+        val currentTime = Calendar.getInstance()
+        val startTime = Calendar.getInstance()
+        val endTime = Calendar.getInstance()
+
+        val splitStartTimeFromHours = happyHours?.split("-")
+        val stringStart = splitStartTimeFromHours?.get(0)?.trim()
+        val stringEnd = splitStartTimeFromHours?.get(1)?.trim()
+
+        val splitIntStartTime = stringStart?.split("")
+        var intStartFirstDigit = splitIntStartTime?.get(1)?.toInt()
+        if (splitIntStartTime?.get(2).equals("P")) {
+            intStartFirstDigit = intStartFirstDigit?.plus(12)
+        }
+
+        val splitIntEndTime = stringEnd?.split("")
+        var intEndFirstDigit = splitIntEndTime?.get(1)?.toInt()
+        if (splitIntEndTime?.get(2).equals("P")) {
+            intEndFirstDigit = intEndFirstDigit?.plus(12)
+        }
+
+        if (intStartFirstDigit != null) {
+            startTime[Calendar.HOUR_OF_DAY] = intStartFirstDigit
+        }
+        startTime[Calendar.MINUTE] = 0
+
+        if (intEndFirstDigit != null) {
+            endTime[Calendar.HOUR_OF_DAY] = intEndFirstDigit
+        }
+        endTime[Calendar.MINUTE] = 0
+
+        val timeText = when {
+            currentTime < startTime -> {
+                "Starts at $stringStart"
+            }
+            currentTime > startTime && currentTime < endTime -> {
+                "Ends at $stringEnd"
+            }
+            currentTime > endTime -> {
+                "Ended at $stringEnd"
+            }
+            else -> {
+                ""
+            }
+        }
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -49,7 +96,7 @@ fun HappyHourItem(
                 modifier = Modifier.size(120.dp)
             )
             Text(
-                text = happyHours.toString(),
+                text = timeText,
                 style = MaterialTheme.typography.subtitle1,
                 color = HermosaHappyHourTheme.colors.textSecondary,
                 modifier = Modifier.padding(top = 8.dp)
