@@ -14,6 +14,7 @@ enum class CollectionType { Normal, HappyHour, Event }
 
 object RestaurantRepo {
     fun getRestaurants(): List<RestaurantCollection> = restaurantCollections
+    fun getRestaurant(restaurantId: Long) = sampleSearchRestaurantData.find { it.id == restaurantId }!!
     fun getFilters() = filters
 }
 

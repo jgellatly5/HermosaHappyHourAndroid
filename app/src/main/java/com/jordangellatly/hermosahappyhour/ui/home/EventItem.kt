@@ -56,7 +56,7 @@ fun EventItem(
     HappyHourCard(
         modifier = modifier
             .size(
-                width = 170.dp,
+                width = 250.dp,
                 height = 250.dp
             )
             .padding(bottom = 16.dp)
