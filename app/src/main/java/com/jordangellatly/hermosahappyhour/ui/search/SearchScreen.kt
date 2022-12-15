@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.jordangellatly.hermosahappyhour.ui.components.BottomNavigationBar
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -28,9 +27,6 @@ fun SearchScreen(
     navController: NavController
 ) {
     Scaffold(
-        bottomBar = {
-            BottomNavigationBar(navController = navController)
-        },
         backgroundColor = HermosaHappyHourTheme.colors.uiBackground
     ) { contentPadding ->
         Column(
