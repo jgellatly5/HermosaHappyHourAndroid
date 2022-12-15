@@ -7,6 +7,7 @@ import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourScaffold
+import com.jordangellatly.hermosahappyhour.ui.detail.RestaurantDetail
 import com.jordangellatly.hermosahappyhour.ui.home.HappyHourBottomBar
 import com.jordangellatly.hermosahappyhour.ui.home.HomeSections
 import com.jordangellatly.hermosahappyhour.ui.home.addHomeGraph
@@ -41,7 +42,7 @@ fun HermosaHappyHourApp() {
                 modifier = Modifier.padding(innerPaddingModifier)
             ) {
                 happyHourNavGraph(
-                    onRestaurantSelected = appState::navigateToSnackDetail,
+                    onRestaurantSelected = appState::navigateToRestaurantDetail,
                     upPress = appState::upPress
                 )
             }
@@ -66,8 +67,8 @@ private fun NavGraphBuilder.happyHourNavGraph(
         })
     ) { backStackEntry ->
         val arguments = requireNotNull(backStackEntry.arguments)
-//        val snackId = arguments.getLong(MainDestinations.RESTAURANT_ID_KEY)
-//        RestaurantDetail(snackId, upPress)
+        val restaurantId = arguments.getLong(MainDestinations.RESTAURANT_ID_KEY)
+        RestaurantDetail(restaurantId, upPress)
     }
 }
 

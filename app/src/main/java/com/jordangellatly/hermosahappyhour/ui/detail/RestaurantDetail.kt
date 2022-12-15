@@ -1,23 +1,22 @@
 package com.jordangellatly.hermosahappyhour.ui.detail
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
@@ -26,22 +25,23 @@ import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.*
-import com.jordangellatly.hermosahappyhour.ui.components.BottomNavigationBar
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
+import com.jordangellatly.hermosahappyhour.ui.utils.mirroringBackIcon
 import java.net.URI
 
 @Composable
-fun DetailScreen(
-    navController: NavController,
-    name: String
+fun RestaurantDetail(
+    restaurantId: Long,
+    upPress: () -> Unit
 ) {
-    val restaurant = sampleSearchRestaurantData.find { it.name == name }
+    val restaurant = remember(restaurantId) { RestaurantRepo.getRestaurant(restaurantId) }
     Scaffold(
-        bottomBar = {
-            BottomNavigationBar(navController = navController)
-        },
+//        bottomBar = {
+//            BottomNavigationBar(navController = navController)
+//        },
         backgroundColor = HermosaHappyHourTheme.colors.uiBackground
     ) { contentPadding ->
         Column(
@@ -49,10 +49,8 @@ fun DetailScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(contentPadding)
         ) {
-            Header(
-                navController = navController,
-                restaurant = restaurant
-            )
+            Header(restaurant = restaurant)
+            Up(upPress = upPress)
             Specials(restaurant = restaurant)
             GeneralInfo(restaurant = restaurant)
         }
@@ -60,8 +58,7 @@ fun DetailScreen(
 }
 
 @Composable
-fun Header(
-    navController: NavController,
+private fun Header(
     restaurant: Restaurant?
 ) {
     Box {
@@ -76,26 +73,34 @@ fun Header(
         TopAppBar(
             elevation = 0.dp,
             title = { Text(text = "") },
-            backgroundColor = Color.Transparent,
-            navigationIcon = if (navController.previousBackStackEntry != null) {
-                {
-                    IconButton(onClick = { navController.navigateUp() }) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "Back",
-                            tint = Color.White
-                        )
-                    }
-                }
-            } else {
-                null
-            }
+            backgroundColor = Color.Transparent
         )
     }
 }
 
 @Composable
-fun Specials(restaurant: Restaurant?) {
+private fun Up(upPress: () -> Unit) {
+    IconButton(
+        onClick = upPress,
+        modifier = Modifier
+            .statusBarsPadding()
+            .padding(horizontal = 16.dp, vertical = 10.dp)
+            .size(36.dp)
+            .background(
+                color = Neutral8.copy(alpha = 0.32f),
+                shape = CircleShape
+            )
+    ) {
+        Icon(
+            imageVector = mirroringBackIcon(),
+            tint = HermosaHappyHourTheme.colors.iconInteractive,
+            contentDescription = stringResource(R.string.label_back)
+        )
+    }
+}
+
+@Composable
+private fun Specials(restaurant: Restaurant?) {
     Column(
         modifier = Modifier.padding(8.dp)
     ) {
@@ -103,7 +108,7 @@ fun Specials(restaurant: Restaurant?) {
         val dateInString = date.toString("EEEE").uppercase()
         val dailyInfo =
             restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == dateInString }
-        val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Weekday Happy Hour" }
+        val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Happy Hour" }
         val happyHours = happyHourInfo?.hours
         val specials = happyHourInfo?.specials
         Text(
@@ -152,7 +157,7 @@ fun Specials(restaurant: Restaurant?) {
                 }
             }
         }
-        val specialEvent = if (happyHourInfo?.title.toString() == "Weekday Happy Hour") {
+        val specialEvent = if (happyHourInfo?.title.toString() == "Happy Hour") {
             "N/A"
         } else {
             happyHourInfo?.title.toString()
@@ -173,7 +178,7 @@ fun Specials(restaurant: Restaurant?) {
 }
 
 @Composable
-fun GeneralInfo(restaurant: Restaurant?) {
+private fun GeneralInfo(restaurant: Restaurant?) {
     Column(
         modifier = Modifier.padding(8.dp)
     ) {
@@ -231,17 +236,17 @@ fun GeneralInfo(restaurant: Restaurant?) {
 
 @Preview
 @Composable
-fun DetailScreenPreview() {
+private fun DetailScreenPreview() {
     HermosaHappyHourTheme {
-        DetailScreen(
-            navController = rememberNavController(),
-            name = "Tower12"
+        RestaurantDetail(
+            restaurantId = 1,
+            upPress = {}
         )
     }
 }
 
 @Composable
-fun Hours(restaurant: Restaurant?) {
+private fun Hours(restaurant: Restaurant?) {
     Column(
         modifier = Modifier.padding(8.dp)
     ) {
@@ -253,7 +258,7 @@ fun Hours(restaurant: Restaurant?) {
             )
             val dailyInfo = restaurant?.hoursAndSpecials?.find { it.dayOfWeek == dayOfWeek }
             val businessHours = dailyInfo?.businessHours
-            val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Weekday Happy Hour" }
+            val happyHourInfo = dailyInfo?.specialEvents?.find { it.title == "Happy Hour" }
             val happyHours = if (happyHourInfo?.hours == null) {
                 "N/A"
             } else {
@@ -274,7 +279,7 @@ fun Hours(restaurant: Restaurant?) {
 
 @Preview(showBackground = true)
 @Composable
-fun HoursPreview() {
+private fun HoursPreview() {
     HermosaHappyHourTheme {
         Hours(
             restaurant = Restaurant(
@@ -322,7 +327,7 @@ fun HoursPreview() {
                         businessHours = "11AM - 2AM",
                         specialEvents = listOf(
                             Event(
-                                title = "Weekday Happy Hour",
+                                title = "Happy Hour",
                                 hours = "3PM - 7PM",
                                 specials = listOf(
                                     Deal(
@@ -351,7 +356,7 @@ fun HoursPreview() {
                         businessHours = "11AM - 2AM",
                         specialEvents = listOf(
                             Event(
-                                title = "Weekday Happy Hour",
+                                title = "Happy Hour",
                                 hours = "3PM - 7PM",
                                 specials = listOf(
                                     Deal(
@@ -380,7 +385,7 @@ fun HoursPreview() {
                         businessHours = "11AM - 2AM",
                         specialEvents = listOf(
                             Event(
-                                title = "Weekday Happy Hour",
+                                title = "Happy Hour",
                                 hours = "3PM - 7PM",
                                 specials = listOf(
                                     Deal(
@@ -409,7 +414,7 @@ fun HoursPreview() {
                         businessHours = "11AM - 2AM",
                         specialEvents = listOf(
                             Event(
-                                title = "Weekday Happy Hour",
+                                title = "Happy Hour",
                                 hours = "3PM - 7PM",
                                 specials = listOf(
                                     Deal(
@@ -438,7 +443,7 @@ fun HoursPreview() {
                         businessHours = "11AM - 2AM",
                         specialEvents = listOf(
                             Event(
-                                title = "Weekday Happy Hour",
+                                title = "Happy Hour",
                                 hours = "3PM - 7PM",
                                 specials = listOf(
                                     Deal(

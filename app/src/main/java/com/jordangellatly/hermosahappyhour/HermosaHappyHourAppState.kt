@@ -98,7 +98,7 @@ class HappyHourAppState(
         }
     }
 
-    fun navigateToSnackDetail(restaurantId: Long, from: NavBackStackEntry) {
+    fun navigateToRestaurantDetail(restaurantId: Long, from: NavBackStackEntry) {
         // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
             navController.navigate("${MainDestinations.RESTAURANT_DETAIL_ROUTE}/$restaurantId")

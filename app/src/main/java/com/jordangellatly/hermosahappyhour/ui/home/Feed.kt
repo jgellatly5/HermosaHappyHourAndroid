@@ -70,7 +70,7 @@ private fun RestaurantCollectionList(
                     HappyHourDivider(thickness = 2.dp)
                 }
 
-                RestaurantCollection(
+                FeaturedCollection(
                     restaurantCollection = restaurantCollection,
                     onRestaurantClick = onRestaurantClick,
                     index = index
