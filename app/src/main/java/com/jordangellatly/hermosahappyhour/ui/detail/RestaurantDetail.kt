@@ -27,7 +27,9 @@ import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.jordangellatly.hermosahappyhour.R
-import com.jordangellatly.hermosahappyhour.model.*
+import com.jordangellatly.hermosahappyhour.model.Location
+import com.jordangellatly.hermosahappyhour.model.Restaurant
+import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -152,10 +154,9 @@ private fun Specials(restaurant: Restaurant?) {
             color = HermosaHappyHourTheme.colors.textSecondary
         )
         Text(
-            text = "Next Happy Hour:",
+            text = "Next Happy Hour",
             textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5,
-            color = HermosaHappyHourTheme.colors.textSecondary
+            style = MaterialTheme.typography.h5
         )
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -197,23 +198,21 @@ private fun Specials(restaurant: Restaurant?) {
         Text(
             text = "Happy Hour Specials",
             textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5,
-            color = HermosaHappyHourTheme.colors.textSecondary
+            style = MaterialTheme.typography.h5
         )
         Column {
             specials?.forEach { deal ->
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        text = deal.description,
-                        style = MaterialTheme.typography.subtitle1,
-                        modifier = Modifier.width(200.dp)
-                    )
+                Row(modifier = Modifier.fillMaxWidth()) {
                     Text(
                         text = deal.price,
-                        style = MaterialTheme.typography.subtitle1,
+                        style = MaterialTheme.typography.caption,
+                        color = HermosaHappyHourTheme.colors.brand,
+                        modifier = Modifier.weight(0.25f)
+                    )
+                    Text(
+                        text = deal.description,
+                        style = MaterialTheme.typography.caption,
+                        modifier = Modifier.weight(0.75f)
                     )
                 }
             }
