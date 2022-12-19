@@ -7,6 +7,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -272,49 +274,106 @@ private fun GeneralInfo(restaurant: Restaurant?) {
             style = MaterialTheme.typography.h4,
             modifier = Modifier.padding(8.dp)
         )
-        Text(
-            text = "Hours",
-            style = MaterialTheme.typography.h6,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-        )
-        Text(
-            text = dailyInfo?.businessHours.toString(),
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-        )
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column {
+                Text(
+                    text = "Hours",
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+                )
+                Text(
+                    text = dailyInfo?.businessHours.toString(),
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+                )
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowForward,
+                    contentDescription = "hours"
+                )
+            }
+        }
         HappyHourDivider()
-        Text(
-            text = "Website",
-            style = MaterialTheme.typography.h6,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-        )
-        Text(
-            text = restaurant?.website.toString(),
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-        )
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column {
+                Text(
+                    text = "Website",
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+                )
+                Text(
+                    text = restaurant?.website.toString(),
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+                )
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Filled.Send,
+                    contentDescription = "website"
+                )
+            }
+        }
         HappyHourDivider()
-        Text(
-            text = "Call",
-            style = MaterialTheme.typography.h6,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-        )
-        Text(
-            text = restaurant?.phoneNumber ?: "",
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-        )
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column {
+                Text(
+                    text = "Call",
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+                )
+                Text(
+                    text = restaurant?.phoneNumber ?: "",
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+                )
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Filled.Phone,
+                    contentDescription = "phone"
+                )
+            }
+        }
         HappyHourDivider()
-        Text(
-            text = "Get Directions",
-            style = MaterialTheme.typography.h6,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-        )
-        Text(
-            text = restaurant?.address?.line1 ?: "",
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-        )
-        Text(
-            text = restaurant?.address?.line2 ?: "",
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-        )
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column {
+                Text(
+                    text = "Get Directions",
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+                )
+                Text(
+                    text = restaurant?.address?.line1 ?: "",
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+                )
+                Text(
+                    text = restaurant?.address?.line2 ?: "",
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+                )
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Filled.Place,
+                    contentDescription = "get directions"
+                )
+            }
+        }
+        HappyHourDivider()
+
         val location = restaurant?.location ?: Location(0.0, 0.0)
         val latlng = LatLng(location.latitude, location.longitude)
         val cameraPositionState = rememberCameraPositionState {
