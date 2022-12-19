@@ -212,8 +212,8 @@ private fun Specials(restaurant: Restaurant?) {
             specials?.forEach { deal ->
                 Row(
                     modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 8.dp, end = 8.dp)
+                        .fillMaxWidth()
+                        .padding(start = 8.dp, end = 8.dp)
                 ) {
                     Text(
                         text = deal.price,
@@ -277,26 +277,44 @@ private fun GeneralInfo(restaurant: Restaurant?) {
             style = MaterialTheme.typography.h5,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
-        Text(text = dailyInfo?.businessHours.toString())
+        Text(
+            text = dailyInfo?.businessHours.toString(),
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+        )
         Text(
             text = "Website",
             textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
-        Text(text = restaurant?.website.toString())
+        Text(
+            text = restaurant?.website.toString(),
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+        )
         Text(
             text = "Call",
             textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
-        Text(text = restaurant?.phoneNumber ?: "")
+        Text(
+            text = restaurant?.phoneNumber ?: "",
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+        )
         Text(
             text = "Get Directions",
             textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
-        Text(text = restaurant?.address?.line1 ?: "")
-        Text(text = restaurant?.address?.line2 ?: "")
+        Text(
+            text = restaurant?.address?.line1 ?: "",
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+        )
+        Text(
+            text = restaurant?.address?.line2 ?: "",
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+        )
         val location = restaurant?.location ?: Location(0.0, 0.0)
         val latlng = LatLng(location.latitude, location.longitude)
         val cameraPositionState = rememberCameraPositionState {
