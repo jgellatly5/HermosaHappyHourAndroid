@@ -561,6 +561,4 @@ val sampleSearchRestaurantData = listOf(
     )
 )
 
-val sampleHomeRestaurantData = listOf(
-    sampleSearchRestaurantData[0]
-)
+val tower12RestaurantData = sampleSearchRestaurantData[0]
