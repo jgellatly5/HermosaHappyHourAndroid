@@ -151,12 +151,14 @@ private fun Specials(restaurant: Restaurant?) {
         Text(
             text = restaurant?.name.toString(),
             style = MaterialTheme.typography.h4,
-            color = HermosaHappyHourTheme.colors.textSecondary
+            color = HermosaHappyHourTheme.colors.textSecondary,
+            modifier = Modifier.padding(8.dp)
         )
         Text(
             text = "Next Happy Hour",
             textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -188,21 +190,31 @@ private fun Specials(restaurant: Restaurant?) {
                 }
 
             }
-            Text(text = annotatedTimeString, color = HermosaHappyHourTheme.colors.textSecondary)
+            Text(
+                text = annotatedTimeString,
+                color = HermosaHappyHourTheme.colors.textSecondary,
+                modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+            )
             Text(
                 text = "5:22:00 (Countdown timer)",
-                color = HermosaHappyHourTheme.colors.textSecondary
+                color = HermosaHappyHourTheme.colors.textSecondary,
+                modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
             )
         }
 
         Text(
             text = "Happy Hour Specials",
             textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
         Column {
             specials?.forEach { deal ->
-                Row(modifier = Modifier.fillMaxWidth()) {
+                Row(
+                    modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 8.dp, end = 8.dp)
+                ) {
                     Text(
                         text = deal.price,
                         style = MaterialTheme.typography.caption,
@@ -225,15 +237,23 @@ private fun Specials(restaurant: Restaurant?) {
         Text(
             text = "Today's Event",
             textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
         )
-        Text(text = specialEvent)
+        Text(
+            text = specialEvent,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+        )
         Text(
             text = "Event Specials",
             textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
         )
-        Text(text = "N/A")
+        Text(
+            text = "N/A",
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+        )
     }
 }
 
@@ -248,12 +268,14 @@ private fun GeneralInfo(restaurant: Restaurant?) {
             restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == dateInString }
         Text(
             text = "Info",
-            style = MaterialTheme.typography.h4
+            style = MaterialTheme.typography.h4,
+            modifier = Modifier.padding(8.dp)
         )
         Text(
             text = "Hours",
             textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
         Text(text = dailyInfo?.businessHours.toString())
         Text(
