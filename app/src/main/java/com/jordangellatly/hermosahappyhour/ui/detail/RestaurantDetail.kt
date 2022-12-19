@@ -30,6 +30,7 @@ import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.Location
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
+import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -273,38 +274,37 @@ private fun GeneralInfo(restaurant: Restaurant?) {
         )
         Text(
             text = "Hours",
-            textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5,
+            style = MaterialTheme.typography.h6,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
         Text(
             text = dailyInfo?.businessHours.toString(),
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
         )
+        HappyHourDivider()
         Text(
             text = "Website",
-            textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5,
+            style = MaterialTheme.typography.h6,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
         Text(
             text = restaurant?.website.toString(),
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
         )
+        HappyHourDivider()
         Text(
             text = "Call",
-            textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5,
+            style = MaterialTheme.typography.h6,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
         Text(
             text = restaurant?.phoneNumber ?: "",
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
         )
+        HappyHourDivider()
         Text(
             text = "Get Directions",
-            textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5,
+            style = MaterialTheme.typography.h6,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
         Text(
