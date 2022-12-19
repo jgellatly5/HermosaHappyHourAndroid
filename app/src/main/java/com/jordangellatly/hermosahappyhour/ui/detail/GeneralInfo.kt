@@ -1,5 +1,6 @@
 package com.jordangellatly.hermosahappyhour.ui.detail
 
+import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -11,7 +12,9 @@ import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
@@ -165,10 +168,27 @@ fun GeneralInfo(restaurant: Restaurant?) {
             Popup(
                 onDismissRequest = { popupControl = false }
             ) {
-                RestaurantHours(
-                    restaurant = restaurant,
-                    onClick = { popupControl = false }
-                )
+                var visible by remember { mutableStateOf(true) }
+                val density = LocalDensity.current
+                AnimatedVisibility(
+                    visible = visible,
+                    enter = slideInVertically {
+                        with(density) { -40.dp.roundToPx() }
+                    } + expandVertically(
+                        expandFrom = Alignment.Bottom
+                    ) + fadeIn(
+                        initialAlpha = 0.3f
+                    ),
+                    exit = slideOutVertically() + shrinkVertically() + fadeOut()
+                ) {
+                    RestaurantHours(
+                        restaurant = restaurant,
+                        onClick = {
+                            popupControl = false
+                            visible = false
+                        }
+                    )
+                }
             }
         }
     }
