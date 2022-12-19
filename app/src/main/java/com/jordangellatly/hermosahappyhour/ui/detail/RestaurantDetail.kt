@@ -8,9 +8,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Place
+import androidx.compose.material.icons.filled.Send
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -22,6 +24,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Popup
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
@@ -269,6 +272,7 @@ private fun GeneralInfo(restaurant: Restaurant?) {
         val dateInString = date.toString("EEEE").uppercase()
         val dailyInfo =
             restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == dateInString }
+        var popupControl by remember { mutableStateOf(false) }
         Text(
             text = "Info",
             style = MaterialTheme.typography.h4,
@@ -289,7 +293,7 @@ private fun GeneralInfo(restaurant: Restaurant?) {
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
                 )
             }
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { popupControl = true }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowForward,
                     contentDescription = "hours"
@@ -389,6 +393,14 @@ private fun GeneralInfo(restaurant: Restaurant?) {
                 state = MarkerState(position = latlng),
                 title = restaurant?.name
             )
+        }
+
+        if (popupControl) {
+            Popup(
+                onDismissRequest = { popupControl = false }
+            ) {
+                RestaurantHours(restaurant = restaurant)
+            }
         }
     }
 }
