@@ -1,5 +1,7 @@
 package com.jordangellatly.hermosahappyhour.ui.detail
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -11,6 +13,7 @@ import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -106,6 +109,9 @@ fun GeneralInfo(restaurant: Restaurant?) {
         }
         HappyHourDivider()
 
+        val context = LocalContext.current
+        val intent =
+            remember { Intent(Intent.ACTION_VIEW, Uri.parse(restaurant?.website.toString())) }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxWidth()
@@ -121,7 +127,11 @@ fun GeneralInfo(restaurant: Restaurant?) {
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
                 )
             }
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(
+                onClick = {
+                    context.startActivity(intent)
+                }
+            ) {
                 Icon(
                     painter = painterResource(id = R.drawable.open_in_new),
                     contentDescription = "website"

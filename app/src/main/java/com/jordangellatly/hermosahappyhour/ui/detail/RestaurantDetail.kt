@@ -223,7 +223,7 @@ private fun Specials(restaurant: Restaurant?) {
             }
         }
         val specialEvent = if (happyHourEvent?.title.toString() == "Happy Hour") {
-            "N/A"
+            "No Event Today"
         } else {
             happyHourEvent?.title.toString()
         }
@@ -244,7 +244,7 @@ private fun Specials(restaurant: Restaurant?) {
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
         )
         Text(
-            text = "N/A",
+            text = "None",
             modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
     }

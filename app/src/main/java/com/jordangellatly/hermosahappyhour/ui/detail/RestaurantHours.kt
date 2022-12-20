@@ -62,7 +62,7 @@ fun RestaurantHours(
                     hoursAndEventsToday?.specialEvents?.find { it.title == "Happy Hour" }
                 val happyHour = happyHourEvent?.hours
                 var hours = if (isHappyHour) happyHour else businessHours
-                hours = hours ?: "N/A"
+                hours = hours ?: "Not Available"
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
