@@ -25,7 +25,8 @@ import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 @Composable
 fun RestaurantHours(
     restaurant: Restaurant?,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    isHappyHour: Boolean = false
 ) {
     HermosaHappyHourSurface(
         shape = MaterialTheme.shapes.medium,
@@ -36,6 +37,7 @@ fun RestaurantHours(
         ),
         elevation = 2.dp
     ) {
+        val title = if (isHappyHour) "Happy Hour" else "Hours"
         Column(modifier = Modifier.padding(8.dp)) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -43,7 +45,7 @@ fun RestaurantHours(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = "Hours",
+                    text = title,
                     style = MaterialTheme.typography.h4,
                     modifier = Modifier.padding(16.dp)
                 )
@@ -53,8 +55,14 @@ fun RestaurantHours(
             }
 
             DayOfWeek.values().forEach { dayOfWeek ->
-                val dailyInfo = restaurant?.hoursAndSpecials?.find { it.dayOfWeek == dayOfWeek }
-                val businessHours = dailyInfo?.businessHours
+                val hoursAndEventsToday =
+                    restaurant?.hoursAndSpecials?.find { it.dayOfWeek == dayOfWeek }
+                val businessHours = hoursAndEventsToday?.businessHours
+                val happyHourEvent =
+                    hoursAndEventsToday?.specialEvents?.find { it.title == "Happy Hour" }
+                val happyHour = happyHourEvent?.hours
+                var hours = if (isHappyHour) happyHour else businessHours
+                hours = hours ?: "N/A"
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
@@ -68,7 +76,7 @@ fun RestaurantHours(
                         style = MaterialTheme.typography.h6,
                     )
                     Text(
-                        text = businessHours.toString(),
+                        text = hours.toString(),
                         style = MaterialTheme.typography.h6,
                     )
                 }

@@ -9,9 +9,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Place
-import androidx.compose.material.icons.filled.Send
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
@@ -21,6 +21,7 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
+import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.Location
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
@@ -35,10 +36,13 @@ fun GeneralInfo(restaurant: Restaurant?) {
         modifier = Modifier.padding(8.dp)
     ) {
         val date = getCurrentDateTime()
-        val dateInString = date.toString("EEEE").uppercase()
-        val dailyInfo =
-            restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == dateInString }
+        val getDayFromDate = date.toString("EEEE").uppercase()
+        val hoursAndEventsToday =
+            restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == getDayFromDate }
+        val happyHourEvent = hoursAndEventsToday?.specialEvents?.find { it.title == "Happy Hour" }
+        val happyHours = happyHourEvent?.hours
         var popupControl by remember { mutableStateOf(false) }
+        var isHappyHour by remember { mutableStateOf(false) }
         Text(
             text = "Info",
             style = MaterialTheme.typography.h4,
@@ -55,14 +59,48 @@ fun GeneralInfo(restaurant: Restaurant?) {
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp)
                 )
                 Text(
-                    text = dailyInfo?.businessHours.toString(),
+                    text = hoursAndEventsToday?.businessHours.toString(),
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
                 )
             }
-            IconButton(onClick = { popupControl = true }) {
+            IconButton(
+                onClick = {
+                    popupControl = true
+                    isHappyHour = false
+                }
+            ) {
                 Icon(
                     imageVector = Icons.Filled.ArrowForward,
                     contentDescription = "hours"
+                )
+            }
+        }
+        HappyHourDivider()
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column {
+                Text(
+                    text = "Happy Hour",
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+                )
+                Text(
+                    text = happyHours.toString(),
+                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+                )
+            }
+            IconButton(
+                onClick = {
+                    popupControl = true
+                    isHappyHour = true
+                }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.beer),
+                    contentDescription = "happy hour"
                 )
             }
         }
@@ -85,7 +123,7 @@ fun GeneralInfo(restaurant: Restaurant?) {
             }
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
-                    imageVector = Icons.Filled.Send,
+                    painter = painterResource(id = R.drawable.open_in_new),
                     contentDescription = "website"
                 )
             }
@@ -169,7 +207,8 @@ fun GeneralInfo(restaurant: Restaurant?) {
                     restaurant = restaurant,
                     onClick = {
                         popupControl = false
-                    }
+                    },
+                    isHappyHour = isHappyHour
                 )
             }
         }
