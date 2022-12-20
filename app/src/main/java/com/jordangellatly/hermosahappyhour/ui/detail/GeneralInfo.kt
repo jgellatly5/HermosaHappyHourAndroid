@@ -110,8 +110,9 @@ fun GeneralInfo(restaurant: Restaurant?) {
         HappyHourDivider()
 
         val context = LocalContext.current
-        val intent =
-            remember { Intent(Intent.ACTION_VIEW, Uri.parse(restaurant?.website.toString())) }
+        val website = restaurant?.website.toString()
+        val openWebsiteIntent =
+            remember { Intent(Intent.ACTION_VIEW, Uri.parse(website)) }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxWidth()
@@ -123,13 +124,13 @@ fun GeneralInfo(restaurant: Restaurant?) {
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp)
                 )
                 Text(
-                    text = restaurant?.website.toString(),
+                    text = website,
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
                 )
             }
             IconButton(
                 onClick = {
-                    context.startActivity(intent)
+                    context.startActivity(openWebsiteIntent)
                 }
             ) {
                 Icon(
@@ -140,6 +141,8 @@ fun GeneralInfo(restaurant: Restaurant?) {
         }
         HappyHourDivider()
 
+        val phoneNumber = restaurant?.phoneNumber ?: ""
+        val callNumberIntent = remember { Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber")) }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxWidth()
@@ -151,11 +154,15 @@ fun GeneralInfo(restaurant: Restaurant?) {
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp)
                 )
                 Text(
-                    text = restaurant?.phoneNumber ?: "",
+                    text = phoneNumber,
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
                 )
             }
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(
+                onClick = {
+                    context.startActivity(callNumberIntent)
+                }
+            ) {
                 Icon(
                     imageVector = Icons.Filled.Phone,
                     contentDescription = "phone"
