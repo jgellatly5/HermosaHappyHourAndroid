@@ -16,7 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
@@ -51,178 +53,63 @@ fun GeneralInfo(restaurant: Restaurant?) {
             style = MaterialTheme.typography.h4,
             modifier = Modifier.padding(8.dp)
         )
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Column {
-                Text(
-                    text = "Hours",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-                )
-                Text(
-                    text = hoursAndEventsToday?.businessHours.toString(),
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-                )
-            }
-            IconButton(
-                onClick = {
-                    popupControl = true
-                    isHappyHour = false
-                }
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.ArrowForward,
-                    contentDescription = "hours"
-                )
-            }
-        }
-        HappyHourDivider()
 
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Column {
-                Text(
-                    text = "Happy Hour",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-                )
-                Text(
-                    text = happyHours.toString(),
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-                )
+        InfoRow(
+            title = "Hours",
+            description = hoursAndEventsToday?.businessHours.toString(),
+            onClick = {
+                popupControl = true
+                isHappyHour = false
             }
-            IconButton(
-                onClick = {
-                    popupControl = true
-                    isHappyHour = true
-                }
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.beer),
-                    contentDescription = "happy hour"
-                )
+        )
+
+        InfoRow(
+            title = "Happy Hour",
+            description = happyHours.toString(),
+            onClick = {
+                popupControl = true
+                isHappyHour = true
             }
-        }
-        HappyHourDivider()
+        )
 
         val context = LocalContext.current
         val website = restaurant?.website.toString()
         val openWebsiteIntent =
             remember { Intent(Intent.ACTION_VIEW, Uri.parse(website)) }
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Column {
-                Text(
-                    text = "Website",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-                )
-                Text(
-                    text = website,
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-                )
+        InfoRow(
+            title = "Website",
+            description = website,
+            onClick = {
+                context.startActivity(openWebsiteIntent)
             }
-            IconButton(
-                onClick = {
-                    context.startActivity(openWebsiteIntent)
-                }
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.open_in_new),
-                    contentDescription = "website"
-                )
-            }
-        }
-        HappyHourDivider()
+        )
 
         val phoneNumber = restaurant?.phoneNumber ?: ""
-        val callNumberIntent = remember { Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber")) }
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Column {
-                Text(
-                    text = "Call",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-                )
-                Text(
-                    text = phoneNumber,
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-                )
+        val callNumberIntent =
+            remember { Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber")) }
+        InfoRow(
+            title = "Call",
+            description = phoneNumber,
+            onClick = {
+                context.startActivity(callNumberIntent)
             }
-            IconButton(
-                onClick = {
-                    context.startActivity(callNumberIntent)
-                }
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Phone,
-                    contentDescription = "phone"
-                )
-            }
-        }
-        HappyHourDivider()
+        )
 
         val addressLine1 = restaurant?.address?.line1 ?: ""
         val addressLine2 = restaurant?.address?.line2 ?: ""
         val fullAddress = addressLine1 + addressLine2
-        val getDirectionsIntent = Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=$fullAddress"))
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Column {
-                Text(
-                    text = "Get Directions",
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-                )
-                Text(
-                    text = addressLine1,
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-                )
-                Text(
-                    text = addressLine2,
-                    modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-                )
+        val displayAddress = "$addressLine1 \n$addressLine2"
+        val getDirectionsIntent =
+            Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=$fullAddress"))
+        InfoRow(
+            title = "Get Directions",
+            description = displayAddress,
+            onClick = {
+                context.startActivity(getDirectionsIntent)
             }
-            IconButton(
-                onClick = {
-                    context.startActivity(getDirectionsIntent)
-                }
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Place,
-                    contentDescription = "get directions"
-                )
-            }
-        }
-        HappyHourDivider()
+        )
 
-        val location = restaurant?.location ?: Location(0.0, 0.0)
-        val latlng = LatLng(location.latitude, location.longitude)
-        val cameraPositionState = rememberCameraPositionState {
-            position = CameraPosition.fromLatLngZoom(latlng, 16f)
-        }
-        GoogleMap(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp),
-            cameraPositionState = cameraPositionState
-        ) {
-            Marker(
-                state = MarkerState(position = latlng),
-                title = restaurant?.name
-            )
-        }
+        BottomMap(restaurant = restaurant)
 
         if (popupControl) {
             Popup(
@@ -237,6 +124,86 @@ fun GeneralInfo(restaurant: Restaurant?) {
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun InfoRow(
+    title: String,
+    description: String,
+    onClick: () -> Unit
+) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Column {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.h6,
+                modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+            )
+            Text(
+                text = description,
+                modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp),
+                lineHeight = if (title == "Get Directions") 20.sp else TextUnit.Unspecified
+            )
+        }
+        IconButton(onClick = onClick) {
+            when (title) {
+                "Hours" -> {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowForward,
+                        contentDescription = title
+                    )
+                }
+                "Happy Hour" -> {
+                    Icon(
+                        painter = painterResource(id = R.drawable.beer),
+                        contentDescription = title
+                    )
+                }
+                "Website" -> {
+                    Icon(
+                        painter = painterResource(id = R.drawable.open_in_new),
+                        contentDescription = title
+                    )
+                }
+                "Call" -> {
+                    Icon(
+                        imageVector = Icons.Filled.Phone,
+                        contentDescription = title
+                    )
+                }
+                "Get Directions" -> {
+                    Icon(
+                        imageVector = Icons.Filled.Place,
+                        contentDescription = title
+                    )
+                }
+            }
+        }
+    }
+    HappyHourDivider()
+}
+
+@Composable
+private fun BottomMap(restaurant: Restaurant?) {
+    val location = restaurant?.location ?: Location(0.0, 0.0)
+    val latlng = LatLng(location.latitude, location.longitude)
+    val cameraPositionState = rememberCameraPositionState {
+        position = CameraPosition.fromLatLngZoom(latlng, 16f)
+    }
+    GoogleMap(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp),
+        cameraPositionState = cameraPositionState
+    ) {
+        Marker(
+            state = MarkerState(position = latlng),
+            title = restaurant?.name
+        )
     }
 }
 
