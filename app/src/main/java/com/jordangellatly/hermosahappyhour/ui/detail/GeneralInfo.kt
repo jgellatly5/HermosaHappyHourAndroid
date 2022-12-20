@@ -171,6 +171,10 @@ fun GeneralInfo(restaurant: Restaurant?) {
         }
         HappyHourDivider()
 
+        val addressLine1 = restaurant?.address?.line1 ?: ""
+        val addressLine2 = restaurant?.address?.line2 ?: ""
+        val fullAddress = addressLine1 + addressLine2
+        val getDirectionsIntent = Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=$fullAddress"))
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxWidth()
@@ -182,15 +186,19 @@ fun GeneralInfo(restaurant: Restaurant?) {
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp)
                 )
                 Text(
-                    text = restaurant?.address?.line1 ?: "",
+                    text = addressLine1,
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp)
                 )
                 Text(
-                    text = restaurant?.address?.line2 ?: "",
+                    text = addressLine2,
                     modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
                 )
             }
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(
+                onClick = {
+                    context.startActivity(getDirectionsIntent)
+                }
+            ) {
                 Icon(
                     imageVector = Icons.Filled.Place,
                     contentDescription = "get directions"
