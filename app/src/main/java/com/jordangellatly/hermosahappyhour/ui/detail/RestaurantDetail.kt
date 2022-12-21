@@ -232,28 +232,35 @@ private fun NextHappyHour(
         modifier = Modifier.padding(start = 8.dp, end = 8.dp)
     )
     Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier.fillMaxWidth()
+        horizontalArrangement = Arrangement.spacedBy(20.dp)
     ) {
+        var millisInFuture = 0L
+        var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
         val annotatedTimeString = buildAnnotatedString {
             when {
                 currentTime < startTime -> {
-                    withStyle(style = SpanStyle(Color.Green)) {
+                    timeIndicatorColor = Color.Green
+                    withStyle(style = SpanStyle(timeIndicatorColor)) {
                         append("Starts")
                     }
                     append(" at $stringStart")
+                    millisInFuture = startTime.timeInMillis - currentTime.timeInMillis
                 }
                 currentTime > startTime && currentTime < endTime -> {
-                    withStyle(style = SpanStyle(HermosaHappyHourTheme.colors.orange)) {
+                    timeIndicatorColor = HermosaHappyHourTheme.colors.orange
+                    withStyle(style = SpanStyle(timeIndicatorColor)) {
                         append("Ends")
                     }
                     append(" at $stringEnd")
+                    millisInFuture = endTime.timeInMillis - currentTime.timeInMillis
                 }
                 currentTime > endTime -> {
-                    withStyle(style = SpanStyle(Color.Red)) {
+                    timeIndicatorColor = Color.Red
+                    withStyle(style = SpanStyle(timeIndicatorColor)) {
                         append("Ended")
                     }
                     append(" at $stringEnd")
+                    millisInFuture = 0L
                 }
                 else -> {
                     append("")
@@ -264,22 +271,18 @@ private fun NextHappyHour(
         Text(
             text = annotatedTimeString,
             color = HermosaHappyHourTheme.colors.textSecondary,
+            style = MaterialTheme.typography.body1,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
         )
 
-        val millisInFuture: Long = 10 * 1000 // TODO: get actual value
-
         val timeData = remember { mutableStateOf(millisInFuture) }
-
         val countDownTimer =
             object : CountDownTimer(millisInFuture, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     timeData.value = millisUntilFinished
                 }
 
-                override fun onFinish() {
-
-                }
+                override fun onFinish() {}
             }
 
         DisposableEffect(key1 = "key") {
@@ -295,7 +298,8 @@ private fun NextHappyHour(
 
         Text(
             text = timeText,
-            color = HermosaHappyHourTheme.colors.textSecondary,
+            color = timeIndicatorColor,
+            style = MaterialTheme.typography.body1,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
         )
     }
