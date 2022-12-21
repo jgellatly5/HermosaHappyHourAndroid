@@ -22,10 +22,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.Marker
-import com.google.maps.android.compose.MarkerState
-import com.google.maps.android.compose.rememberCameraPositionState
+import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.maps.android.compose.*
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.Location
 import com.jordangellatly.hermosahappyhour.model.Restaurant
@@ -198,7 +196,13 @@ private fun BottomMap(restaurant: Restaurant?) {
         modifier = Modifier
             .fillMaxWidth()
             .height(200.dp),
-        cameraPositionState = cameraPositionState
+        cameraPositionState = cameraPositionState,
+        properties = MapProperties(
+            mapStyleOptions = MapStyleOptions.loadRawResourceStyle(
+                LocalContext.current,
+                R.raw.style_json
+            )
+        )
     ) {
         Marker(
             state = MarkerState(position = latlng),

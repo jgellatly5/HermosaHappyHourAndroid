@@ -1,5 +1,6 @@
 package com.jordangellatly.hermosahappyhour.ui.detail
 
+import android.os.CountDownTimer
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,6 +9,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,6 +23,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
@@ -28,6 +32,7 @@ import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 import com.jordangellatly.hermosahappyhour.ui.utils.mirroringBackIcon
+import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
@@ -147,53 +152,14 @@ private fun Specials(restaurant: Restaurant?) {
             color = HermosaHappyHourTheme.colors.textSecondary,
             modifier = Modifier.padding(8.dp)
         )
-        Text(
-            text = "Next Happy Hour",
-            textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-        )
-        Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            val annotatedTimeString = buildAnnotatedString {
-                when {
-                    currentTime < startTime -> {
-                        withStyle(style = SpanStyle(Color.Green)) {
-                            append("Starts")
-                        }
-                        append(" at $stringStart")
-                    }
-                    currentTime > startTime && currentTime < endTime -> {
-                        withStyle(style = SpanStyle(HermosaHappyHourTheme.colors.orange)) {
-                            append("Ends")
-                        }
-                        append(" at $stringEnd")
-                    }
-                    currentTime > endTime -> {
-                        withStyle(style = SpanStyle(Color.Red)) {
-                            append("Ended")
-                        }
-                        append(" at $stringEnd")
-                    }
-                    else -> {
-                        append("")
-                    }
-                }
 
-            }
-            Text(
-                text = annotatedTimeString,
-                color = HermosaHappyHourTheme.colors.textSecondary,
-                modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-            )
-            Text(
-                text = "5:22:00 (Countdown timer)",
-                color = HermosaHappyHourTheme.colors.textSecondary,
-                modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-            )
-        }
+        NextHappyHour(
+            currentTime = currentTime,
+            startTime = startTime,
+            endTime = endTime,
+            stringStart = stringStart,
+            stringEnd = stringEnd
+        )
 
         Text(
             text = "Happy Hour Specials",
@@ -246,6 +212,91 @@ private fun Specials(restaurant: Restaurant?) {
         Text(
             text = "None",
             modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+        )
+    }
+}
+
+@Composable
+private fun NextHappyHour(
+    currentTime: Calendar,
+    startTime: Calendar,
+    endTime: Calendar,
+    stringStart: String?,
+    stringEnd: String?,
+    detailViewModel: DetailViewModel = viewModel()
+) {
+    Text(
+        text = "Next Happy Hour",
+        textDecoration = TextDecoration.Underline,
+        style = MaterialTheme.typography.h5,
+        modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+    )
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        val annotatedTimeString = buildAnnotatedString {
+            when {
+                currentTime < startTime -> {
+                    withStyle(style = SpanStyle(Color.Green)) {
+                        append("Starts")
+                    }
+                    append(" at $stringStart")
+                }
+                currentTime > startTime && currentTime < endTime -> {
+                    withStyle(style = SpanStyle(HermosaHappyHourTheme.colors.orange)) {
+                        append("Ends")
+                    }
+                    append(" at $stringEnd")
+                }
+                currentTime > endTime -> {
+                    withStyle(style = SpanStyle(Color.Red)) {
+                        append("Ended")
+                    }
+                    append(" at $stringEnd")
+                }
+                else -> {
+                    append("")
+                }
+            }
+
+        }
+        Text(
+            text = annotatedTimeString,
+            color = HermosaHappyHourTheme.colors.textSecondary,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+        )
+
+        val millisInFuture: Long = 10 * 1000 // TODO: get actual value
+
+        val timeData = remember { mutableStateOf(millisInFuture) }
+
+        val countDownTimer =
+            object : CountDownTimer(millisInFuture, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    timeData.value = millisUntilFinished
+                }
+
+                override fun onFinish() {
+
+                }
+            }
+
+        DisposableEffect(key1 = "key") {
+            countDownTimer.start()
+            onDispose {
+                countDownTimer.cancel()
+            }
+        }
+
+        val offset = SimpleDateFormat("HH:mm:ss", Locale.US)
+        offset.timeZone = TimeZone.getTimeZone("GMT")
+        val timeText = offset.format(timeData.value)
+
+        Text(
+            text = timeText,
+            color = HermosaHappyHourTheme.colors.textSecondary,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
         )
     }
 }
