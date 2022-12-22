@@ -1,12 +1,9 @@
 package com.jordangellatly.hermosahappyhour.ui.detail
 
 import android.os.CountDownTimer
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -20,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -84,7 +82,9 @@ private fun Header(
             text = restaurant?.name.toString(),
             style = MaterialTheme.typography.h4,
             color = HermosaHappyHourTheme.colors.textInteractive,
-            modifier = Modifier.align(Alignment.BottomStart).padding(16.dp)
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .padding(16.dp)
         )
     }
 }
@@ -225,15 +225,7 @@ private fun NextHappyHour(
     stringEnd: String?,
     detailViewModel: DetailViewModel = viewModel()
 ) {
-    Text(
-        text = "Next Happy Hour",
-        textDecoration = TextDecoration.Underline,
-        style = MaterialTheme.typography.h5,
-        modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-    )
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(20.dp)
-    ) {
+    Column {
         var millisInFuture = 0L
         var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
         val annotatedTimeString = buildAnnotatedString {
@@ -297,7 +289,20 @@ private fun NextHappyHour(
             text = annotatedTimeString,
             color = HermosaHappyHourTheme.colors.textSecondary,
             style = MaterialTheme.typography.body1,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+        )
+        Text(
+            text = "See all happy hours \u279C",
+            fontWeight = FontWeight.Bold,
+            color = HermosaHappyHourTheme.colors.brand,
+            style = MaterialTheme.typography.body1,
+            modifier = Modifier
+                .clickable(
+                    onClick = {
+
+                    }
+                )
+                .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
         )
     }
 }
