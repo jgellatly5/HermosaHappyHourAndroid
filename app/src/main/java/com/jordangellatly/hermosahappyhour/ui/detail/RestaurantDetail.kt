@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -79,6 +80,12 @@ private fun Header(
             backgroundColor = Color.Transparent
         )
         Up(upPress = upPress)
+        Text(
+            text = restaurant?.name.toString(),
+            style = MaterialTheme.typography.h4,
+            color = HermosaHappyHourTheme.colors.textInteractive,
+            modifier = Modifier.align(Alignment.BottomStart).padding(16.dp)
+        )
     }
 }
 
@@ -145,13 +152,6 @@ private fun Specials(restaurant: Restaurant?) {
             endTime[Calendar.HOUR_OF_DAY] = intEndFirstDigit
         }
         endTime[Calendar.MINUTE] = 0
-
-        Text(
-            text = restaurant?.name.toString(),
-            style = MaterialTheme.typography.h4,
-            color = HermosaHappyHourTheme.colors.textSecondary,
-            modifier = Modifier.padding(8.dp)
-        )
 
         NextHappyHour(
             currentTime = currentTime,
