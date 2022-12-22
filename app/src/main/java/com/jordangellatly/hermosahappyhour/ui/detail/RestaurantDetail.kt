@@ -237,6 +237,7 @@ private fun NextHappyHour(
         var millisInFuture = 0L
         var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
         val annotatedTimeString = buildAnnotatedString {
+            append("Happy Hour ")
             when {
                 currentTime < startTime -> {
                     timeIndicatorColor = Color.Green
@@ -266,39 +267,35 @@ private fun NextHappyHour(
                     append("")
                 }
             }
+            append(" \u2022 ")
 
+            val timeData = remember { mutableStateOf(millisInFuture) }
+            val countDownTimer =
+                object : CountDownTimer(millisInFuture, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {
+                        timeData.value = millisUntilFinished
+                    }
+
+                    override fun onFinish() {}
+                }
+
+            DisposableEffect(key1 = "key") {
+                countDownTimer.start()
+                onDispose {
+                    countDownTimer.cancel()
+                }
+            }
+
+            val offset = SimpleDateFormat("HH:mm:ss", Locale.US)
+            offset.timeZone = TimeZone.getTimeZone("GMT")
+            val timeText = offset.format(timeData.value)
+            withStyle(style = SpanStyle(timeIndicatorColor)) {
+                append(timeText)
+            }
         }
         Text(
             text = annotatedTimeString,
             color = HermosaHappyHourTheme.colors.textSecondary,
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-        )
-
-        val timeData = remember { mutableStateOf(millisInFuture) }
-        val countDownTimer =
-            object : CountDownTimer(millisInFuture, 1000) {
-                override fun onTick(millisUntilFinished: Long) {
-                    timeData.value = millisUntilFinished
-                }
-
-                override fun onFinish() {}
-            }
-
-        DisposableEffect(key1 = "key") {
-            countDownTimer.start()
-            onDispose {
-                countDownTimer.cancel()
-            }
-        }
-
-        val offset = SimpleDateFormat("HH:mm:ss", Locale.US)
-        offset.timeZone = TimeZone.getTimeZone("GMT")
-        val timeText = offset.format(timeData.value)
-
-        Text(
-            text = timeText,
-            color = timeIndicatorColor,
             style = MaterialTheme.typography.body1,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
         )
