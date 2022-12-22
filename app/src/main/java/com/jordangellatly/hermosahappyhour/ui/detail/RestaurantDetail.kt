@@ -5,10 +5,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +19,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Popup
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.Restaurant
@@ -154,6 +152,7 @@ private fun Specials(restaurant: Restaurant?) {
         endTime[Calendar.MINUTE] = 0
 
         NextHappyHour(
+            restaurant = restaurant,
             currentTime = currentTime,
             startTime = startTime,
             endTime = endTime,
@@ -218,13 +217,15 @@ private fun Specials(restaurant: Restaurant?) {
 
 @Composable
 private fun NextHappyHour(
+    restaurant: Restaurant?,
     currentTime: Calendar,
     startTime: Calendar,
     endTime: Calendar,
     stringStart: String?,
     stringEnd: String?,
-    detailViewModel: DetailViewModel = viewModel()
+    detailViewModel: DetailViewModel = viewModel(),
 ) {
+    var popupControl by remember { mutableStateOf(false) }
     Column {
         var millisInFuture = 0L
         var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
@@ -299,11 +300,24 @@ private fun NextHappyHour(
             modifier = Modifier
                 .clickable(
                     onClick = {
-
+                        popupControl = true
                     }
                 )
                 .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
         )
+        if (popupControl) {
+            Popup(
+                onDismissRequest = { popupControl = false }
+            ) {
+                RestaurantHours(
+                    restaurant = restaurant,
+                    onClick = {
+                        popupControl = false
+                    },
+                    isHappyHour = true
+                )
+            }
+        }
     }
 }
 
