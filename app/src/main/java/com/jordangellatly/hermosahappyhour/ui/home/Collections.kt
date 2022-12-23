@@ -19,15 +19,12 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.CollectionType
-import com.jordangellatly.hermosahappyhour.model.Restaurant
-import com.jordangellatly.hermosahappyhour.model.RestaurantCollection
-import com.jordangellatly.hermosahappyhour.model.sampleSearchRestaurantData
+import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.utils.mirroringIcon
 
 @Composable
-fun FeaturedCollection(
+fun FeaturedRestaurantCollection(
     restaurantCollection: RestaurantCollection,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
@@ -51,7 +48,7 @@ fun FeaturedCollection(
                     .wrapContentWidth(Alignment.Start)
             )
             IconButton(
-                onClick = { /* todo */ },
+                onClick = { /* TODO */ },
                 modifier = Modifier.align(Alignment.CenterVertically)
             ) {
                 Icon(
@@ -65,9 +62,6 @@ fun FeaturedCollection(
             }
         }
         when (restaurantCollection.type) {
-//            CollectionType.Featured -> {
-//                FeaturedRestaurants(index, restaurantCollection.restaurants, onRestaurantClick)
-//            }
             CollectionType.HappyHour -> {
                 EventCollection(
                     index,
@@ -93,7 +87,7 @@ fun FeaturedCollection(
 
 @Preview
 @Composable
-fun FeaturedCollectionPreview() {
+fun FeaturedRestaurantCollectionPreview() {
     HermosaHappyHourTheme {
         val restaurantCollection = RestaurantCollection(
             id = 1,
@@ -101,9 +95,69 @@ fun FeaturedCollectionPreview() {
             restaurants = sampleSearchRestaurantData,
             type = CollectionType.Normal
         )
-        FeaturedCollection(
+        FeaturedRestaurantCollection(
             restaurantCollection = restaurantCollection,
             onRestaurantClick = {}
+        )
+    }
+}
+
+@Composable
+fun FeaturedSpecialsCollection(
+    specialsCollection: SpecialsCollection,
+    onDealClick: (Long) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .heightIn(min = 56.dp)
+                .padding(start = 24.dp)
+        ) {
+            Text(
+                text = specialsCollection.name,
+                style = MaterialTheme.typography.h6,
+                color = HermosaHappyHourTheme.colors.brand,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier
+                    .weight(1f)
+                    .wrapContentWidth(Alignment.Start)
+            )
+            IconButton(
+                onClick = { /* todo */ },
+                modifier = Modifier.align(Alignment.CenterVertically)
+            ) {
+                Icon(
+                    imageVector = mirroringIcon(
+                        ltrIcon = Icons.Outlined.ArrowForward,
+                        rtlIcon = Icons.Outlined.ArrowBack
+                    ),
+                    tint = HermosaHappyHourTheme.colors.brand,
+                    contentDescription = null
+                )
+            }
+        }
+        HappyHourSpecialsCollection(
+            specials = specialsCollection.specials,
+            onDealClick = {/*TODO*/ }
+        )
+    }
+}
+
+@Preview
+@Composable
+fun FeaturedSpecialsCollectionPreview() {
+    HermosaHappyHourTheme {
+        val specialsCollection = SpecialsCollection(
+            id = 1L,
+            name = "Featured Specials",
+            specials = tower12HappyHour.specials
+        )
+        FeaturedSpecialsCollection(
+            specialsCollection = specialsCollection,
+            onDealClick = {}
         )
     }
 }
@@ -182,6 +236,34 @@ fun HappyHourCollectionPreview() {
         HappyHourCollection(
             restaurants = restaurants,
             onRestaurantClick = {}
+        )
+    }
+}
+
+@Composable
+fun HappyHourSpecialsCollection(
+    specials: List<Deal>,
+    onDealClick: (Long) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LazyRow(
+        modifier = modifier,
+        contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
+    ) {
+        items(specials) { deal ->
+            HappyHourSpecialsItem(deal, onDealClick)
+        }
+    }
+}
+
+@Preview
+@Composable
+fun HappyHourSpecialsCollectionPreview() {
+    HermosaHappyHourTheme {
+        val specials = tower12HappyHour.specials
+        HappyHourSpecialsCollection(
+            specials = specials,
+            onDealClick = {}
         )
     }
 }

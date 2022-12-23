@@ -24,6 +24,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
+import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
+import com.jordangellatly.hermosahappyhour.ui.home.FeaturedSpecialsCollection
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -160,33 +162,42 @@ private fun Specials(restaurant: Restaurant?) {
             stringEnd = stringEnd
         )
 
-        Text(
-            text = "Happy Hour Specials",
-            textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+        HappyHourSpecials(
+            specialsCollection = SpecialsCollection(
+                id = 1L,
+                name = "Featured Specials",
+                specials = specials ?: emptyList()
+            )
         )
-        Column {
-            specials?.forEach { deal ->
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 8.dp, end = 8.dp)
-                ) {
-                    Text(
-                        text = deal.price,
-                        style = MaterialTheme.typography.caption,
-                        color = HermosaHappyHourTheme.colors.brand,
-                        modifier = Modifier.weight(0.25f)
-                    )
-                    Text(
-                        text = deal.description,
-                        style = MaterialTheme.typography.caption,
-                        modifier = Modifier.weight(0.75f)
-                    )
-                }
-            }
-        }
+
+//        Text(
+//            text = "Happy Hour Specials",
+//            textDecoration = TextDecoration.Underline,
+//            style = MaterialTheme.typography.h5,
+//            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+//        )
+//        Column {
+//            specials?.forEach { deal ->
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(start = 8.dp, end = 8.dp)
+//                ) {
+//                    Text(
+//                        text = deal.price,
+//                        style = MaterialTheme.typography.caption,
+//                        color = HermosaHappyHourTheme.colors.brand,
+//                        modifier = Modifier.weight(0.25f)
+//                    )
+//                    Text(
+//                        text = deal.description,
+//                        style = MaterialTheme.typography.caption,
+//                        modifier = Modifier.weight(0.75f)
+//                    )
+//                }
+//            }
+//        }
+
         val specialEvent = if (happyHourEvent?.title.toString() == "Happy Hour") {
             "No Event Today"
         } else {
@@ -320,6 +331,16 @@ private fun NextHappyHour(
             }
         }
     }
+}
+
+@Composable
+private fun HappyHourSpecials(
+    specialsCollection: SpecialsCollection
+) {
+    FeaturedSpecialsCollection(
+        specialsCollection = specialsCollection,
+        onDealClick = {}
+    )
 }
 
 @Preview
