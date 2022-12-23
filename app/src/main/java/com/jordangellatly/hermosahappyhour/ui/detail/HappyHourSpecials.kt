@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.home
+package com.jordangellatly.hermosahappyhour.ui.detail
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
