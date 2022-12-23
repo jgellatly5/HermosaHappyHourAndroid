@@ -16,8 +16,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.DayOfWeek
-import com.jordangellatly.hermosahappyhour.model.Restaurant
-import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
+import com.jordangellatly.hermosahappyhour.model.HoursAndSpecials
+import com.jordangellatly.hermosahappyhour.model.tower12WeeklyHoursAndSpecials
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
@@ -27,7 +27,7 @@ import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 
 @Composable
 fun RestaurantHours(
-    restaurant: Restaurant?,
+    weeklyHoursAndSpecials: List<HoursAndSpecials>,
     onClick: () -> Unit,
     isHappyHour: Boolean = false
 ) {
@@ -63,7 +63,7 @@ fun RestaurantHours(
                 val fontWeight =
                     if (getDayFromDate == dayOfWeek.toString()) FontWeight.Bold else FontWeight.Normal
                 val hoursAndEventsToday =
-                    restaurant?.hoursAndSpecials?.find { it.dayOfWeek == dayOfWeek }
+                    weeklyHoursAndSpecials.find { it.dayOfWeek == dayOfWeek }
                 val businessHours = hoursAndEventsToday?.businessHours
                 val happyHourEvent =
                     hoursAndEventsToday?.specialEvents?.find { it.title == "Happy Hour" }
@@ -125,7 +125,7 @@ private fun Close(onClick: () -> Unit) {
 private fun RestaurantHoursPreview() {
     HermosaHappyHourTheme {
         RestaurantHours(
-            restaurant = tower12RestaurantData,
+            weeklyHoursAndSpecials = tower12WeeklyHoursAndSpecials,
             onClick = {}
         )
     }

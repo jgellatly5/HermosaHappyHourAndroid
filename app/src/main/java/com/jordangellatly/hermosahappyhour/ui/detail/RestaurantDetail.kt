@@ -18,7 +18,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.R
-import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.ui.detail.info.EventInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
@@ -39,13 +38,20 @@ fun RestaurantDetail(
 //        },
         backgroundColor = HermosaHappyHourTheme.colors.uiBackground
     ) { contentPadding ->
+        val weeklyHoursAndSpecials = restaurant.weeklyHoursAndSpecials
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .padding(contentPadding)
         ) {
-            Header(restaurant = restaurant, upPress = upPress)
-            HappyHourInfo(restaurant = restaurant)
+            Header(
+                restaurantName = restaurant.name,
+                imageResource = restaurant.image,
+                upPress = upPress
+            )
+            HappyHourInfo(
+                weeklyHoursAndSpecials = weeklyHoursAndSpecials
+            )
             EventInfo(restaurant = restaurant)
             GeneralInfo(restaurant = restaurant)
         }
@@ -54,15 +60,16 @@ fun RestaurantDetail(
 
 @Composable
 private fun Header(
-    restaurant: Restaurant?,
+    restaurantName: String,
+    imageResource: Int,
     upPress: () -> Unit
 ) {
     Box {
         Image(
             painter = painterResource(
-                id = restaurant?.image ?: R.drawable.tower12
+                id = imageResource
             ),
-            contentDescription = null,
+            contentDescription = "Restaurant Image",
             modifier = Modifier.fillMaxWidth(),
             contentScale = ContentScale.Crop,
         )
@@ -73,7 +80,7 @@ private fun Header(
         )
         Up(upPress = upPress)
         Text(
-            text = restaurant?.name.toString(),
+            text = restaurantName,
             style = MaterialTheme.typography.h4,
             color = HermosaHappyHourTheme.colors.textInteractive,
             modifier = Modifier

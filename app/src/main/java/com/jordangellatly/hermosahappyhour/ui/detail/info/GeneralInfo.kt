@@ -35,14 +35,16 @@ import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
-fun GeneralInfo(restaurant: Restaurant?) {
+fun GeneralInfo(
+    restaurant: Restaurant?
+) {
     Column(
         modifier = Modifier.padding(8.dp)
     ) {
         val date = getCurrentDateTime()
         val getDayFromDate = date.toString("EEEE").uppercase()
         val hoursAndEventsToday =
-            restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == getDayFromDate }
+            restaurant?.weeklyHoursAndSpecials?.find { it.dayOfWeek.toString() == getDayFromDate }
         val happyHourEvent = hoursAndEventsToday?.specialEvents?.find { it.title == "Happy Hour" }
         val happyHours = happyHourEvent?.hours
         var popupControl by remember { mutableStateOf(false) }
@@ -115,7 +117,7 @@ fun GeneralInfo(restaurant: Restaurant?) {
                 onDismissRequest = { popupControl = false }
             ) {
                 RestaurantHours(
-                    restaurant = restaurant,
+                    weeklyHoursAndSpecials = restaurant?.weeklyHoursAndSpecials ?: emptyList(),
                     onClick = {
                         popupControl = false
                     },

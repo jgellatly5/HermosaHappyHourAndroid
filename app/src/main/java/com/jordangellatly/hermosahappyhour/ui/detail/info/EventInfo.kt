@@ -24,7 +24,7 @@ fun EventInfo(
     val date = getCurrentDateTime()
     val getDayFromDate = date.toString("EEEE").uppercase()
     val hoursAndEventsToday =
-        restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == getDayFromDate }
+        restaurant?.weeklyHoursAndSpecials?.find { it.dayOfWeek.toString() == getDayFromDate }
     val happyHourEvent = hoursAndEventsToday?.specialEvents?.first()
     val scroll = rememberScrollState(0)
     val gradient = when ((0 / 2) % 2) {

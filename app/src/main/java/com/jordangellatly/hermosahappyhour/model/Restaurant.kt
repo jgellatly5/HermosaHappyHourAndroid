@@ -10,7 +10,7 @@ data class Restaurant(
     val companyLogoUrl: String,
     val image: Int,
     val location: Location,
-    val hoursAndSpecials: List<HoursAndSpecials>,
+    val weeklyHoursAndSpecials: List<HoursAndSpecials>,
     val address: Address,
     val phoneNumber: String,
     val website: String
@@ -304,6 +304,59 @@ val wineWednesday = Event(
     image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
 )
 
+val tower12WeeklyHoursAndSpecials = listOf(
+    HoursAndSpecials(
+        dayOfWeek = DayOfWeek.SUNDAY,
+        businessHours = "9AM - 2AM",
+        specialEvents = listOf(
+            tower12SportEvent
+        )
+    ),
+    HoursAndSpecials(
+        dayOfWeek = DayOfWeek.MONDAY,
+        businessHours = "11AM - 2AM",
+        specialEvents = listOf(
+            tower12HappyHour
+        )
+    ),
+    HoursAndSpecials(
+        dayOfWeek = DayOfWeek.TUESDAY,
+        businessHours = "11AM - 2AM",
+        specialEvents = listOf(
+            tower12HappyHour
+        )
+    ),
+    HoursAndSpecials(
+        dayOfWeek = DayOfWeek.WEDNESDAY,
+        businessHours = "11AM - 2AM",
+        specialEvents = listOf(
+            tower12HappyHour,
+            wineWednesday
+        )
+    ),
+    HoursAndSpecials(
+        dayOfWeek = DayOfWeek.THURSDAY,
+        businessHours = "11AM - 2AM",
+        specialEvents = listOf(
+            tower12HappyHour
+        )
+    ),
+    HoursAndSpecials(
+        dayOfWeek = DayOfWeek.FRIDAY,
+        businessHours = "11AM - 2AM",
+        specialEvents = listOf(
+            tower12HappyHour
+        )
+    ),
+    HoursAndSpecials(
+        dayOfWeek = DayOfWeek.SATURDAY,
+        businessHours = "9AM - 2AM",
+        specialEvents = listOf(
+            tower12SportEvent
+        )
+    )
+)
+
 val sampleSearchRestaurantData = listOf(
     Restaurant(
         id = 1,
@@ -315,58 +368,7 @@ val sampleSearchRestaurantData = listOf(
             latitude = 33.86222,
             longitude = -118.40085
         ),
-        hoursAndSpecials = listOf(
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.SUNDAY,
-                businessHours = "9AM - 2AM",
-                specialEvents = listOf(
-                    tower12SportEvent
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.MONDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    tower12HappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.TUESDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    tower12HappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.WEDNESDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    tower12HappyHour,
-                    wineWednesday
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.THURSDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    tower12HappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.FRIDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    tower12HappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.SATURDAY,
-                businessHours = "9AM - 2AM",
-                specialEvents = listOf(
-                    tower12SportEvent
-                )
-            )
-        ),
+        tower12WeeklyHoursAndSpecials,
         address = Address(
             line1 = "53 Pier Ave",
             line2 = "Hermosa Beach, CA 90254"
@@ -384,7 +386,7 @@ val sampleSearchRestaurantData = listOf(
             latitude = 33.861988,
             longitude = -118.40071
         ),
-        hoursAndSpecials = listOf(
+        weeklyHoursAndSpecials = listOf(
             HoursAndSpecials(
                 dayOfWeek = DayOfWeek.SUNDAY,
                 businessHours = "9AM - 2AM",
@@ -453,7 +455,7 @@ val sampleSearchRestaurantData = listOf(
             latitude = 33.862,
             longitude = -118.40047
         ),
-        hoursAndSpecials = listOf(
+        weeklyHoursAndSpecials = listOf(
             HoursAndSpecials(
                 dayOfWeek = DayOfWeek.SUNDAY,
                 businessHours = "9AM - 2AM",
@@ -522,7 +524,7 @@ val sampleSearchRestaurantData = listOf(
             latitude = 33.86182,
             longitude = -118.40152
         ),
-        hoursAndSpecials = listOf(
+        weeklyHoursAndSpecials = listOf(
             HoursAndSpecials(
                 dayOfWeek = DayOfWeek.SUNDAY,
                 businessHours = "9AM - 2AM",

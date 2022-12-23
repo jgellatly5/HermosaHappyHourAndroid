@@ -100,7 +100,7 @@ fun EventItem(
     val date = getCurrentDateTime()
     val dateInString = date.toString("EEEE").uppercase()
     val hoursAndEventsToday =
-        restaurant.hoursAndSpecials.find { it.dayOfWeek.toString() == dateInString }
+        restaurant.weeklyHoursAndSpecials.find { it.dayOfWeek.toString() == dateInString }
     val eventInfoToday = when (type) {
         CollectionType.HappyHour -> hoursAndEventsToday?.specialEvents?.first()
         CollectionType.Event -> hoursAndEventsToday?.specialEvents?.elementAtOrNull(1)
