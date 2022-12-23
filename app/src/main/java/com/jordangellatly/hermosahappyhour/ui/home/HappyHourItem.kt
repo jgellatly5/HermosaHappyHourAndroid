@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.sampleSearchRestaurantData
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
+import com.jordangellatly.hermosahappyhour.ui.components.RestaurantImage
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.util.*
 
