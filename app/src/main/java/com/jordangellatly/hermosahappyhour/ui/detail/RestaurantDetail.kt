@@ -288,12 +288,13 @@ private fun NextHappyHour(
         }
         Text(
             text = annotatedTimeString,
+            fontWeight = FontWeight.Bold,
             color = HermosaHappyHourTheme.colors.textSecondary,
             style = MaterialTheme.typography.body1,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
         Text(
-            text = "See all happy hours \u279C",
+            text = "See all happy hours \u279E",
             fontWeight = FontWeight.Bold,
             color = HermosaHappyHourTheme.colors.brand,
             style = MaterialTheme.typography.body1,
