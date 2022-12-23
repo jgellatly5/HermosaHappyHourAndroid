@@ -18,9 +18,9 @@ object RestaurantRepo {
     fun getFilters() = filters
 }
 
-private val featuredDeals = RestaurantCollection(
+private val featuredRestaurants = RestaurantCollection(
     id = 1L,
-    name = "Featured Happy Hours",
+    name = "Featured Restaurants",
     type = CollectionType.Normal,
     restaurants = sampleSearchRestaurantData
 )
@@ -32,23 +32,7 @@ private val featuredEvents = RestaurantCollection(
     restaurants = sampleSearchRestaurantData
 )
 
-//private val popularRestaurants = RestaurantCollection(
-//    id = 3L,
-//    name = "Popular Restaurants",
-//    type = CollectionType.Normal,
-//    restaurants = sampleSearchRestaurantData
-//)
-//
-//private val newlyAdded = RestaurantCollection(
-//    id = 4L,
-//    name = "Newly Added",
-//    type = CollectionType.Normal,
-//    restaurants = sampleSearchRestaurantData
-//)
-
 val restaurantCollections = listOf(
-    featuredDeals,
-    featuredEvents,
-//    popularRestaurants,
-//    newlyAdded
+    featuredRestaurants,
+    featuredEvents
 )
