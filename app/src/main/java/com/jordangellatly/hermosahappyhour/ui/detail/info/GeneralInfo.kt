@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail
+package com.jordangellatly.hermosahappyhour.ui.detail.info
 
 import android.content.Intent
 import android.net.Uri
@@ -29,6 +29,7 @@ import com.jordangellatly.hermosahappyhour.model.Location
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
+import com.jordangellatly.hermosahappyhour.ui.detail.RestaurantHours
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -213,7 +214,7 @@ private fun BottomMap(restaurant: Restaurant?) {
 
 @Preview(showBackground = true)
 @Composable
-private fun DetailScreenPreview() {
+private fun GeneralInfoPreview() {
     HermosaHappyHourTheme {
         GeneralInfo(
             restaurant = tower12RestaurantData

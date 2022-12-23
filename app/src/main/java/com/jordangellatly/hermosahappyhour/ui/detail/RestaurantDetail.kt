@@ -1,36 +1,31 @@
 package com.jordangellatly.hermosahappyhour.ui.detail
 
-import android.os.CountDownTimer
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Popup
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
-import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
-import com.jordangellatly.hermosahappyhour.ui.home.*
+import com.jordangellatly.hermosahappyhour.ui.detail.info.EventInfo
+import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
+import com.jordangellatly.hermosahappyhour.ui.detail.info.HappyHourInfo
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 import com.jordangellatly.hermosahappyhour.ui.utils.mirroringBackIcon
-import java.text.SimpleDateFormat
-import java.util.*
 
 @Composable
 fun RestaurantDetail(
@@ -105,235 +100,6 @@ private fun Up(upPress: () -> Unit) {
             imageVector = mirroringBackIcon(),
             tint = HermosaHappyHourTheme.colors.iconInteractive,
             contentDescription = stringResource(R.string.label_back)
-        )
-    }
-}
-
-@Composable
-private fun HappyHourInfo(restaurant: Restaurant?) {
-    Column(
-        modifier = Modifier.padding(8.dp)
-    ) {
-        val date = getCurrentDateTime()
-        val getDayFromDate = date.toString("EEEE").uppercase()
-        val hoursAndEventsToday =
-            restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == getDayFromDate }
-        val happyHourEvent = hoursAndEventsToday?.specialEvents?.find { it.title == "Happy Hour" }
-        val happyHours = happyHourEvent?.hours
-        val specials = happyHourEvent?.specials
-
-        val currentTime = Calendar.getInstance()
-        val startTime = Calendar.getInstance()
-        val endTime = Calendar.getInstance()
-
-        val splitStartTimeFromHours = happyHours?.split("-")
-        val stringStart = splitStartTimeFromHours?.get(0)?.trim()
-        val stringEnd = splitStartTimeFromHours?.get(1)?.trim()
-
-        val splitIntStartTime = stringStart?.split("")
-        var intStartFirstDigit = splitIntStartTime?.get(1)?.toInt()
-        if (splitIntStartTime?.get(2).equals("P")) {
-            intStartFirstDigit = intStartFirstDigit?.plus(12)
-        }
-
-        val splitIntEndTime = stringEnd?.split("")
-        var intEndFirstDigit = splitIntEndTime?.get(1)?.toInt()
-        if (splitIntEndTime?.get(2).equals("P")) {
-            intEndFirstDigit = intEndFirstDigit?.plus(12)
-        }
-
-        if (intStartFirstDigit != null) {
-            startTime[Calendar.HOUR_OF_DAY] = intStartFirstDigit
-        }
-        startTime[Calendar.MINUTE] = 0
-
-        if (intEndFirstDigit != null) {
-            endTime[Calendar.HOUR_OF_DAY] = intEndFirstDigit
-        }
-        endTime[Calendar.MINUTE] = 0
-
-        NextHappyHour(
-            restaurant = restaurant,
-            currentTime = currentTime,
-            startTime = startTime,
-            endTime = endTime,
-            stringStart = stringStart,
-            stringEnd = stringEnd
-        )
-
-        DrinkSpecials(
-            specialsCollection = SpecialsCollection(
-                id = 1L,
-                name = "Happy Hour Specials",
-                specials = specials ?: emptyList()
-            )
-        )
-    }
-}
-
-@Composable
-private fun NextHappyHour(
-    restaurant: Restaurant?,
-    currentTime: Calendar,
-    startTime: Calendar,
-    endTime: Calendar,
-    stringStart: String?,
-    stringEnd: String?,
-    detailViewModel: DetailViewModel = viewModel(),
-) {
-    var popupControl by remember { mutableStateOf(false) }
-    Column {
-        var millisInFuture = 0L
-        var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
-        val annotatedTimeString = buildAnnotatedString {
-            when {
-                currentTime < startTime -> {
-                    timeIndicatorColor = Color.Green
-                    withStyle(style = SpanStyle(timeIndicatorColor)) {
-                        append("Starts")
-                    }
-                    append(" at $stringStart")
-                    millisInFuture = startTime.timeInMillis - currentTime.timeInMillis
-                }
-                currentTime > startTime && currentTime < endTime -> {
-                    timeIndicatorColor = HermosaHappyHourTheme.colors.orange
-                    withStyle(style = SpanStyle(timeIndicatorColor)) {
-                        append("Ends")
-                    }
-                    append(" at $stringEnd")
-                    millisInFuture = endTime.timeInMillis - currentTime.timeInMillis
-                }
-                currentTime > endTime -> {
-                    timeIndicatorColor = Color.Red
-                    withStyle(style = SpanStyle(timeIndicatorColor)) {
-                        append("Ended")
-                    }
-                    append(" at $stringEnd")
-                    millisInFuture = 0L
-                }
-                else -> {
-                    append("")
-                }
-            }
-            append(" \u2022 ")
-
-            val timeData = remember { mutableStateOf(millisInFuture) }
-            val countDownTimer =
-                object : CountDownTimer(millisInFuture, 1000) {
-                    override fun onTick(millisUntilFinished: Long) {
-                        timeData.value = millisUntilFinished
-                    }
-
-                    override fun onFinish() {}
-                }
-
-            DisposableEffect(key1 = "key") {
-                countDownTimer.start()
-                onDispose {
-                    countDownTimer.cancel()
-                }
-            }
-
-            val offset = SimpleDateFormat("HH:mm:ss", Locale.US)
-            offset.timeZone = TimeZone.getTimeZone("GMT")
-            val timeText = offset.format(timeData.value)
-            withStyle(style = SpanStyle(timeIndicatorColor)) {
-                append(timeText)
-            }
-        }
-        Text(
-            text = "Happy Hour",
-            style = MaterialTheme.typography.h4,
-            modifier = Modifier.padding(8.dp)
-        )
-        Text(
-            text = annotatedTimeString,
-            fontWeight = FontWeight.Bold,
-            color = HermosaHappyHourTheme.colors.textSecondary,
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
-        )
-        Text(
-            text = "See all happy hours \u279E",
-            fontWeight = FontWeight.Bold,
-            color = HermosaHappyHourTheme.colors.brand,
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier
-                .clickable(
-                    onClick = {
-                        popupControl = true
-                    }
-                )
-                .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-        )
-        if (popupControl) {
-            Popup(
-                onDismissRequest = { popupControl = false }
-            ) {
-                RestaurantHours(
-                    restaurant = restaurant,
-                    onClick = {
-                        popupControl = false
-                    },
-                    isHappyHour = true
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun DrinkSpecials(
-    specialsCollection: SpecialsCollection
-) {
-    FeaturedSpecialsCollection(
-        specialsCollection = specialsCollection,
-        onDealClick = {}
-    )
-}
-
-@Composable
-private fun EventInfo(
-    restaurant: Restaurant?
-) {
-    val date = getCurrentDateTime()
-    val getDayFromDate = date.toString("EEEE").uppercase()
-    val hoursAndEventsToday =
-        restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == getDayFromDate }
-    val happyHourEvent = hoursAndEventsToday?.specialEvents?.first()
-    val scroll = rememberScrollState(0)
-    val gradient = when ((0 / 2) % 2) {
-        0 -> HermosaHappyHourTheme.colors.gradient6_1
-        else -> HermosaHappyHourTheme.colors.gradient6_2
-    }
-    // The Cards show a gradient which spans 3 cards and scrolls with parallax.
-    val gradientWidth = with(LocalDensity.current) {
-        (6 * (HighlightCardWidth + HighlightCardPadding).toPx())
-    }
-    Column(
-        modifier = Modifier.padding(8.dp)
-    ) {
-        Text(
-            text = "Today's Event",
-            style = MaterialTheme.typography.h4,
-            modifier = Modifier.padding(8.dp)
-        )
-        TodaysEventItem(
-            event = happyHourEvent,
-            onEventClick = {},
-            index = 0,
-            gradient = gradient,
-            gradientWidth = gradientWidth,
-            scroll = scroll.value,
-            modifier = Modifier.padding(16.dp)
-        )
-
-        DrinkSpecials(
-            specialsCollection = SpecialsCollection(
-                id = 2L,
-                name = "Event Specials",
-                specials = happyHourEvent?.specials ?: emptyList()
-            )
         )
     }
 }
