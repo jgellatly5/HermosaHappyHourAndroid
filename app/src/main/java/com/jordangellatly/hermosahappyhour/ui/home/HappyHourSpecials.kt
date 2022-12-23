@@ -28,7 +28,7 @@ fun HappyHourSpecialsCollection(
 ) {
     LazyRow(
         modifier = modifier,
-        contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
+        contentPadding = PaddingValues(start = 4.dp, end = 4.dp)
     ) {
         items(specials) { deal ->
             HappyHourSpecialsItem(deal, onDealClick)

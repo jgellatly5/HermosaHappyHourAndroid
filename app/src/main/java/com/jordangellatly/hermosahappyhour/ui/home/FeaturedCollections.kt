@@ -108,7 +108,7 @@ fun FeaturedSpecialsCollection(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .heightIn(min = 56.dp)
-                .padding(start = 24.dp)
+                .padding(start = 8.dp)
         ) {
             Text(
                 text = specialsCollection.name,
