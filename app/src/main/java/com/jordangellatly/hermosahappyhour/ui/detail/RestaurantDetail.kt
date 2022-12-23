@@ -10,6 +10,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
@@ -25,9 +27,7 @@ import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
-import com.jordangellatly.hermosahappyhour.ui.home.FeaturedSpecialsCollection
-import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
-import com.jordangellatly.hermosahappyhour.ui.home.toString
+import com.jordangellatly.hermosahappyhour.ui.home.*
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 import com.jordangellatly.hermosahappyhour.ui.utils.mirroringBackIcon
@@ -52,7 +52,8 @@ fun RestaurantDetail(
                 .padding(contentPadding)
         ) {
             Header(restaurant = restaurant, upPress = upPress)
-            Specials(restaurant = restaurant)
+            HappyHourInfo(restaurant = restaurant)
+            EventInfo(restaurant = restaurant)
             GeneralInfo(restaurant = restaurant)
         }
     }
@@ -111,7 +112,7 @@ private fun Up(upPress: () -> Unit) {
 }
 
 @Composable
-private fun Specials(restaurant: Restaurant?) {
+private fun HappyHourInfo(restaurant: Restaurant?) {
     Column(
         modifier = Modifier.padding(8.dp)
     ) {
@@ -168,60 +169,6 @@ private fun Specials(restaurant: Restaurant?) {
                 name = "Featured Specials",
                 specials = specials ?: emptyList()
             )
-        )
-
-//        Text(
-//            text = "Happy Hour Specials",
-//            textDecoration = TextDecoration.Underline,
-//            style = MaterialTheme.typography.h5,
-//            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-//        )
-//        Column {
-//            specials?.forEach { deal ->
-//                Row(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(start = 8.dp, end = 8.dp)
-//                ) {
-//                    Text(
-//                        text = deal.price,
-//                        style = MaterialTheme.typography.caption,
-//                        color = HermosaHappyHourTheme.colors.brand,
-//                        modifier = Modifier.weight(0.25f)
-//                    )
-//                    Text(
-//                        text = deal.description,
-//                        style = MaterialTheme.typography.caption,
-//                        modifier = Modifier.weight(0.75f)
-//                    )
-//                }
-//            }
-//        }
-
-        val specialEvent = if (happyHourEvent?.title.toString() == "Happy Hour") {
-            "No Event Today"
-        } else {
-            happyHourEvent?.title.toString()
-        }
-        Text(
-            text = "Today's Event",
-            textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
-        )
-        Text(
-            text = specialEvent,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
-        )
-        Text(
-            text = "Event Specials",
-            textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
-        )
-        Text(
-            text = "None",
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
         )
     }
 }
@@ -341,6 +288,55 @@ private fun HappyHourSpecials(
         specialsCollection = specialsCollection,
         onDealClick = {}
     )
+}
+
+@Composable
+private fun EventInfo(
+    restaurant: Restaurant?
+) {
+    val date = getCurrentDateTime()
+    val getDayFromDate = date.toString("EEEE").uppercase()
+    val hoursAndEventsToday =
+        restaurant?.hoursAndSpecials?.find { it.dayOfWeek.toString() == getDayFromDate }
+    val happyHourEvent = hoursAndEventsToday?.specialEvents?.first()
+    val scroll = rememberScrollState(0)
+    val gradient = when ((0 / 2) % 2) {
+        0 -> HermosaHappyHourTheme.colors.gradient6_1
+        else -> HermosaHappyHourTheme.colors.gradient6_2
+    }
+    // The Cards show a gradient which spans 3 cards and scrolls with parallax.
+    val gradientWidth = with(LocalDensity.current) {
+        (6 * (HighlightCardWidth + HighlightCardPadding).toPx())
+    }
+    Column(
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Text(
+            text = "Today's Event",
+            style = MaterialTheme.typography.h4,
+            modifier = Modifier.padding(8.dp)
+        )
+        TodaysEventItem(
+            event = happyHourEvent,
+            onEventClick = {},
+            index = 0,
+            gradient = gradient,
+            gradientWidth = gradientWidth,
+            scroll = scroll.value,
+            modifier = Modifier.padding(16.dp)
+        )
+
+        Text(
+            text = "Event Specials",
+            textDecoration = TextDecoration.Underline,
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
+        )
+        Text(
+            text = "None",
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+        )
+    }
 }
 
 @Preview

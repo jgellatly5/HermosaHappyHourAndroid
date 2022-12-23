@@ -38,7 +38,9 @@ data class Address(
 )
 
 data class Event(
+    val id: Long,
     val title: String,
+    val description: String,
     val hours: String,
     val specials: List<Deal>,
     val image: URI
@@ -55,7 +57,9 @@ enum class DayOfWeek {
 }
 
 val tower12HappyHour = Event(
+    id = 1,
     title = "Happy Hour",
+    description = "Bringing you wild drink specials",
     hours = "3PM - 7PM",
     specials = listOf(
         Deal(
@@ -79,7 +83,9 @@ val tower12HappyHour = Event(
 )
 
 val tower12SportEvent = Event(
+    id = 2,
     title = "Saturday & Sunday Football",
+    description = "Premiere sports viewing, we get all the games",
     hours = "9AM - 2AM",
     specials = listOf(
         Deal(
@@ -103,7 +109,9 @@ val tower12SportEvent = Event(
 )
 
 val sharkeezHappyHour = Event(
+    id = 3,
     title = "Happy Hour",
+    description = "Serving sunsets, ice cold drinks, & good vibes daily",
     hours = "3PM - 7PM",
     specials = listOf(
         Deal(
@@ -127,7 +135,9 @@ val sharkeezHappyHour = Event(
 )
 
 val sharkeezSportEvent = Event(
+    id = 4,
     title = "Saturday & Sunday Football",
+    description = "Premiere sports viewing, we get all the games",
     hours = "9AM - 2AM",
     specials = listOf(
         Deal(
@@ -151,7 +161,9 @@ val sharkeezSportEvent = Event(
 )
 
 val junkieHappyHour = Event(
+    id = 5,
     title = "Happy Hour",
+    description = "Serving sunsets, ice cold drinks, & good vibes daily",
     hours = "3PM - 7PM",
     specials = listOf(
         Deal(
@@ -175,7 +187,9 @@ val junkieHappyHour = Event(
 )
 
 val junkieSportEvent = Event(
+    id = 6,
     title = "Saturday & Sunday Football",
+    description = "Premiere sports viewing, we get all the games",
     hours = "9AM - 2AM",
     specials = listOf(
         Deal(
@@ -199,7 +213,9 @@ val junkieSportEvent = Event(
 )
 
 val hennesseysHappyHour = Event(
+    id = 7,
     title = "Happy Hour",
+    description = "Serving sunsets, ice cold drinks, & good vibes daily",
     hours = "3PM - 7PM",
     specials = listOf(
         Deal(
@@ -223,7 +239,9 @@ val hennesseysHappyHour = Event(
 )
 
 val hennesseysSportEvent = Event(
+    id = 8,
     title = "Saturday & Sunday Football",
+    description = "Premiere sports viewing, we get all the games",
     hours = "9AM - 2AM",
     specials = listOf(
         Deal(
@@ -247,7 +265,9 @@ val hennesseysSportEvent = Event(
 )
 
 val mondayNightFootball = Event(
+    id = 9,
     title = "Monday Night Football",
+    description = "Premiere sports viewing, we get all the games",
     hours = "5PM - 8PM",
     specials = listOf(
         Deal(
@@ -271,7 +291,9 @@ val mondayNightFootball = Event(
 )
 
 val wineWednesday = Event(
+    id = 10,
     title = "Wine Wednesday",
+    description = "Wine Wednesday is fun",
     hours = "5PM - 8PM",
     specials = listOf(
         Deal(
