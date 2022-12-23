@@ -10,14 +10,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -163,10 +161,10 @@ private fun HappyHourInfo(restaurant: Restaurant?) {
             stringEnd = stringEnd
         )
 
-        HappyHourSpecials(
+        DrinkSpecials(
             specialsCollection = SpecialsCollection(
                 id = 1L,
-                name = "Featured Specials",
+                name = "Happy Hour Specials",
                 specials = specials ?: emptyList()
             )
         )
@@ -188,7 +186,6 @@ private fun NextHappyHour(
         var millisInFuture = 0L
         var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
         val annotatedTimeString = buildAnnotatedString {
-            append("Happy Hour ")
             when {
                 currentTime < startTime -> {
                     timeIndicatorColor = Color.Green
@@ -245,11 +242,16 @@ private fun NextHappyHour(
             }
         }
         Text(
+            text = "Happy Hour",
+            style = MaterialTheme.typography.h4,
+            modifier = Modifier.padding(8.dp)
+        )
+        Text(
             text = annotatedTimeString,
             fontWeight = FontWeight.Bold,
             color = HermosaHappyHourTheme.colors.textSecondary,
             style = MaterialTheme.typography.body1,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
         )
         Text(
             text = "See all happy hours \u279E",
@@ -281,7 +283,7 @@ private fun NextHappyHour(
 }
 
 @Composable
-private fun HappyHourSpecials(
+private fun DrinkSpecials(
     specialsCollection: SpecialsCollection
 ) {
     FeaturedSpecialsCollection(
@@ -326,15 +328,12 @@ private fun EventInfo(
             modifier = Modifier.padding(16.dp)
         )
 
-        Text(
-            text = "Event Specials",
-            textDecoration = TextDecoration.Underline,
-            style = MaterialTheme.typography.h5,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
-        )
-        Text(
-            text = "None",
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp)
+        DrinkSpecials(
+            specialsCollection = SpecialsCollection(
+                id = 2L,
+                name = "Event Specials",
+                specials = happyHourEvent?.specials ?: emptyList()
+            )
         )
     }
 }
