@@ -2,6 +2,9 @@ package com.jordangellatly.hermosahappyhour.ui.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +32,56 @@ val gradientWidth
     get() = with(LocalDensity.current) {
         (3 * (HighlightCardWidth + HighlightCardPadding).toPx())
     }
+
+@Composable
+fun EventCollection(
+    index: Int,
+    restaurants: List<Restaurant>,
+    onRestaurantClick: (Long) -> Unit,
+    modifier: Modifier = Modifier,
+    type: CollectionType = CollectionType.Normal
+) {
+    val scroll = rememberScrollState(0)
+    val gradient = when ((index / 2) % 2) {
+        0 -> HermosaHappyHourTheme.colors.gradient6_1
+        else -> HermosaHappyHourTheme.colors.gradient6_2
+    }
+    // The Cards show a gradient which spans 3 cards and scrolls with parallax.
+    val gradientWidth = with(LocalDensity.current) {
+        (6 * (HighlightCardWidth + HighlightCardPadding).toPx())
+    }
+    LazyRow(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(start = 24.dp, end = 24.dp)
+    ) {
+        itemsIndexed(restaurants) { index, restaurant ->
+            EventItem(
+                restaurant = restaurant,
+                onRestaurantClick = onRestaurantClick,
+                index = index,
+                gradient = gradient,
+                gradientWidth = gradientWidth,
+                scroll = scroll.value,
+                modifier = modifier,
+                type = type
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun EventCollectionPreview() {
+    HermosaHappyHourTheme {
+        val restaurants = sampleSearchRestaurantData
+        EventCollection(
+            index = 0,
+            restaurants = restaurants,
+            onRestaurantClick = {}
+        )
+    }
+}
 
 @Composable
 fun EventItem(

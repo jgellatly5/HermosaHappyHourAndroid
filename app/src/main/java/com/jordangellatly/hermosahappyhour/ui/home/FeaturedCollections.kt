@@ -1,10 +1,6 @@
 package com.jordangellatly.hermosahappyhour.ui.home
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -15,7 +11,6 @@ import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -157,112 +152,6 @@ fun FeaturedSpecialsCollectionPreview() {
         )
         FeaturedSpecialsCollection(
             specialsCollection = specialsCollection,
-            onDealClick = {}
-        )
-    }
-}
-
-@Composable
-fun EventCollection(
-    index: Int,
-    restaurants: List<Restaurant>,
-    onRestaurantClick: (Long) -> Unit,
-    modifier: Modifier = Modifier,
-    type: CollectionType = CollectionType.Normal
-) {
-    val scroll = rememberScrollState(0)
-    val gradient = when ((index / 2) % 2) {
-        0 -> HermosaHappyHourTheme.colors.gradient6_1
-        else -> HermosaHappyHourTheme.colors.gradient6_2
-    }
-    // The Cards show a gradient which spans 3 cards and scrolls with parallax.
-    val gradientWidth = with(LocalDensity.current) {
-        (6 * (HighlightCardWidth + HighlightCardPadding).toPx())
-    }
-    LazyRow(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        contentPadding = PaddingValues(start = 24.dp, end = 24.dp)
-    ) {
-        itemsIndexed(restaurants) { index, restaurant ->
-            EventItem(
-                restaurant = restaurant,
-                onRestaurantClick = onRestaurantClick,
-                index = index,
-                gradient = gradient,
-                gradientWidth = gradientWidth,
-                scroll = scroll.value,
-                modifier = modifier,
-                type = type
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-fun EventCollectionPreview() {
-    HermosaHappyHourTheme {
-        val restaurants = sampleSearchRestaurantData
-        EventCollection(
-            index = 0,
-            restaurants = restaurants,
-            onRestaurantClick = {}
-        )
-    }
-}
-
-@Composable
-fun HappyHourCollection(
-    restaurants: List<Restaurant>,
-    onRestaurantClick: (Long) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    LazyRow(
-        modifier = modifier,
-        contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
-    ) {
-        items(restaurants) { snack ->
-            HappyHourItem(snack, onRestaurantClick)
-        }
-    }
-}
-
-@Preview
-@Composable
-fun HappyHourCollectionPreview() {
-    HermosaHappyHourTheme {
-        val restaurants = sampleSearchRestaurantData
-        HappyHourCollection(
-            restaurants = restaurants,
-            onRestaurantClick = {}
-        )
-    }
-}
-
-@Composable
-fun HappyHourSpecialsCollection(
-    specials: List<Deal>,
-    onDealClick: (Long) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    LazyRow(
-        modifier = modifier,
-        contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
-    ) {
-        items(specials) { deal ->
-            HappyHourSpecialsItem(deal, onDealClick)
-        }
-    }
-}
-
-@Preview
-@Composable
-fun HappyHourSpecialsCollectionPreview() {
-    HermosaHappyHourTheme {
-        val specials = tower12HappyHour.specials
-        HappyHourSpecialsCollection(
-            specials = specials,
             onDealClick = {}
         )
     }

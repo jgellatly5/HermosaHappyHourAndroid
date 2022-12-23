@@ -2,8 +2,11 @@ package com.jordangellatly.hermosahappyhour.ui.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -12,9 +15,38 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Deal
+import com.jordangellatly.hermosahappyhour.model.tower12HappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.DealImage
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+
+@Composable
+fun HappyHourSpecialsCollection(
+    specials: List<Deal>,
+    onDealClick: (Long) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LazyRow(
+        modifier = modifier,
+        contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
+    ) {
+        items(specials) { deal ->
+            HappyHourSpecialsItem(deal, onDealClick)
+        }
+    }
+}
+
+@Preview
+@Composable
+fun HappyHourSpecialsCollectionPreview() {
+    HermosaHappyHourTheme {
+        val specials = tower12HappyHour.specials
+        HappyHourSpecialsCollection(
+            specials = specials,
+            onDealClick = {}
+        )
+    }
+}
 
 @Composable
 fun HappyHourSpecialsItem(
