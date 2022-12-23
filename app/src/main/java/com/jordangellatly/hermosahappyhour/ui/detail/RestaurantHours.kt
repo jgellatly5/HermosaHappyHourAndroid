@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.DayOfWeek
@@ -19,6 +20,8 @@ import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
+import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
+import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 
@@ -55,6 +58,10 @@ fun RestaurantHours(
             }
 
             DayOfWeek.values().forEach { dayOfWeek ->
+                val date = getCurrentDateTime()
+                val getDayFromDate = date.toString("EEEE").uppercase()
+                val fontWeight =
+                    if (getDayFromDate == dayOfWeek.toString()) FontWeight.Bold else FontWeight.Normal
                 val hoursAndEventsToday =
                     restaurant?.hoursAndSpecials?.find { it.dayOfWeek == dayOfWeek }
                 val businessHours = hoursAndEventsToday?.businessHours
@@ -73,16 +80,20 @@ fun RestaurantHours(
                         text = dayOfWeek.toString().lowercase().replaceFirstChar {
                             it.uppercase()
                         },
+                        fontWeight = fontWeight,
                         style = MaterialTheme.typography.h6,
                     )
                     Text(
                         text = hours.toString(),
+                        fontWeight = fontWeight,
                         style = MaterialTheme.typography.h6,
                     )
                 }
-                HappyHourDivider(
-                    modifier = Modifier.padding(start = 16.dp, end = 16.dp)
-                )
+                if (dayOfWeek.toString() != "SATURDAY") {
+                    HappyHourDivider(
+                        modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+                    )
+                }
             }
         }
     }
