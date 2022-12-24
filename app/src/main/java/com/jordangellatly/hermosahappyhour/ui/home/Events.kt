@@ -72,7 +72,7 @@ fun EventCollection(
 
 @Preview
 @Composable
-fun EventCollectionPreview() {
+private fun EventCollectionPreview() {
     HermosaHappyHourTheme {
         val restaurants = sampleSearchRestaurantData
         EventCollection(
@@ -84,7 +84,7 @@ fun EventCollectionPreview() {
 }
 
 @Composable
-fun EventItem(
+private fun EventItem(
     restaurant: Restaurant,
     onRestaurantClick: (Long) -> Unit,
     index: Int,
@@ -162,7 +162,7 @@ fun EventItem(
 
 @Preview
 @Composable
-fun EventItemPreview() {
+private fun EventItemPreview() {
     HermosaHappyHourTheme {
         val restaurant = sampleSearchRestaurantData.first()
         EventItem(

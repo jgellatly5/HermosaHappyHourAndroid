@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -26,17 +26,17 @@ import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.util.*
 
 @Composable
-fun HappyHourCollection(
+fun HappyHourRestaurantCollection(
     restaurants: List<Restaurant>,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LazyRow(
+    LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
     ) {
-        items(restaurants) { snack ->
-            HappyHourItem(snack, onRestaurantClick)
+        items(restaurants) { restaurant ->
+            HappyHourItem(restaurant, onRestaurantClick)
         }
     }
 }
@@ -46,7 +46,7 @@ fun HappyHourCollection(
 fun HappyHourCollectionPreview() {
     HermosaHappyHourTheme {
         val restaurants = sampleSearchRestaurantData
-        HappyHourCollection(
+        HappyHourRestaurantCollection(
             restaurants = restaurants,
             onRestaurantClick = {}
         )

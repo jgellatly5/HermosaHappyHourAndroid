@@ -19,8 +19,8 @@ import androidx.compose.ui.window.Popup
 import com.jordangellatly.hermosahappyhour.model.HoursAndSpecials
 import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
 import com.jordangellatly.hermosahappyhour.model.tower12WeeklyHoursAndSpecials
+import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
 import com.jordangellatly.hermosahappyhour.ui.detail.RestaurantHours
-import com.jordangellatly.hermosahappyhour.ui.home.FeaturedSpecialsCollection
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
