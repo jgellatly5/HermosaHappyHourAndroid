@@ -1,5 +1,6 @@
 package com.jordangellatly.hermosahappyhour.ui.home
 
+import android.os.CountDownTimer
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -8,6 +9,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -23,6 +27,7 @@ import com.jordangellatly.hermosahappyhour.model.sampleSearchRestaurantData
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
@@ -129,30 +134,63 @@ private fun HappyHourRestaurantItem(
                 color = HermosaHappyHourTheme.colors.textSecondary,
                 modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
             )
+            var millisInFuture = 0L
+            var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
             val annotatedTimeString = buildAnnotatedString {
                 append("Happy Hour \u2022 ")
                 when {
                     currentTime < startTime -> {
-                        withStyle(style = SpanStyle(Color.Green)) {
+                        timeIndicatorColor = Color.Green
+                        withStyle(style = SpanStyle(timeIndicatorColor)) {
                             append("Starts")
                         }
                         append(" at $stringStart")
+                        millisInFuture = startTime.timeInMillis - currentTime.timeInMillis
                     }
                     currentTime > startTime && currentTime < endTime -> {
-                        withStyle(style = SpanStyle(HermosaHappyHourTheme.colors.orange)) {
+                        timeIndicatorColor = HermosaHappyHourTheme.colors.orange
+                        withStyle(style = SpanStyle(timeIndicatorColor)) {
                             append("Ends")
                         }
                         append(" at $stringEnd")
+                        millisInFuture = endTime.timeInMillis - currentTime.timeInMillis
                     }
                     currentTime > endTime -> {
-                        withStyle(style = SpanStyle(Color.Red)) {
+                        timeIndicatorColor = Color.Red
+                        withStyle(style = SpanStyle(timeIndicatorColor)) {
                             append("Ended")
                         }
                         append(" at $stringEnd")
+                        millisInFuture = 0L
                     }
                     else -> {
                         append("")
                     }
+                }
+                append(" \u2022 ")
+
+                val timeData = remember { mutableStateOf(millisInFuture) }
+                val countDownTimer =
+                    object : CountDownTimer(millisInFuture, 1000) {
+                        override fun onTick(millisUntilFinished: Long) {
+                            timeData.value = millisUntilFinished
+                        }
+
+                        override fun onFinish() {}
+                    }
+
+                DisposableEffect(key1 = "key") {
+                    countDownTimer.start()
+                    onDispose {
+                        countDownTimer.cancel()
+                    }
+                }
+
+                val offset = SimpleDateFormat("HH:mm:ss", Locale.US)
+                offset.timeZone = TimeZone.getTimeZone("GMT")
+                val timeText = offset.format(timeData.value)
+                withStyle(style = SpanStyle(timeIndicatorColor)) {
+                    append(timeText)
                 }
             }
             Text(
