@@ -57,18 +57,26 @@ fun NavGraphBuilder.addHomeGraph(
     modifier: Modifier = Modifier
 ) {
     composable(HomeSections.HomeFeed.route) { from ->
-        HappyHourFeed(onRestaurantClick = { id -> onRestaurantSelected(id, from) }, modifier)
+        Feed(
+            onRestaurantClick = { id -> onRestaurantSelected(id, from) },
+            modifier = modifier,
+            eventType = EventType.HappyHour
+        )
     }
     composable(HomeSections.EventFeed.route) { from ->
-        EventFeed(onRestaurantClick = { id -> onRestaurantSelected(id, from) }, modifier)
+        Feed(
+            onRestaurantClick = { id -> onRestaurantSelected(id, from) },
+            modifier = modifier,
+            eventType = EventType.Default
+        )
     }
     composable(HomeSections.SEARCH.route) { from ->
          // TODO Search route
-        HappyHourFeed(onRestaurantClick = { id -> onRestaurantSelected(id, from) }, modifier)
+        Feed(onRestaurantClick = { id -> onRestaurantSelected(id, from) }, modifier)
     }
     composable(HomeSections.PROFILE.route) { from ->
         // TODO Profile route
-        HappyHourFeed(onRestaurantClick = { id -> onRestaurantSelected(id, from) }, modifier)
+        Feed(onRestaurantClick = { id -> onRestaurantSelected(id, from) }, modifier)
     }
 }
 
