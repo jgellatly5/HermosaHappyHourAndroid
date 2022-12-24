@@ -12,12 +12,12 @@ import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
-fun Feed(
+fun EventFeed(
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val restaurantCollections = remember { RestaurantRepo.getHappyHourRestaurants() }
-    Feed(
+    val restaurantCollections = remember { RestaurantRepo.getRestaurantsWithEvents() }
+    EventFeed(
         restaurantCollections,
         onRestaurantClick,
         modifier
@@ -25,21 +25,21 @@ fun Feed(
 }
 
 @Composable
-private fun Feed(
+private fun EventFeed(
     restaurantCollection: RestaurantCollection,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     HermosaHappyHourSurface(modifier = modifier.fillMaxSize()) {
         Box {
-            HappyHourList(restaurantCollection, onRestaurantClick)
+            RestaurantsWithEventsList(restaurantCollection, onRestaurantClick)
             DateBar()
         }
     }
 }
 
 @Composable
-private fun HappyHourList(
+private fun RestaurantsWithEventsList(
     restaurantCollection: RestaurantCollection,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier
@@ -61,8 +61,8 @@ private fun HappyHourList(
 
 @Preview
 @Composable
-fun HomePreview() {
+fun EventFeedPreview() {
     HermosaHappyHourTheme {
-        Feed(onRestaurantClick = { })
+        HappyHourFeed(onRestaurantClick = { })
     }
 }

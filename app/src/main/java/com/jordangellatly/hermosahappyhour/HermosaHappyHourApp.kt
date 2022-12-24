@@ -56,7 +56,7 @@ private fun NavGraphBuilder.happyHourNavGraph(
 ) {
     navigation(
         route = MainDestinations.HOME_ROUTE,
-        startDestination = HomeSections.FEED.route
+        startDestination = HomeSections.HappyHourFeed.route
     ) {
         addHomeGraph(onRestaurantSelected)
     }
@@ -71,39 +71,3 @@ private fun NavGraphBuilder.happyHourNavGraph(
         RestaurantDetail(restaurantId, upPress)
     }
 }
-
-//@Composable
-//fun MyAppNavHost(
-//    modifier: Modifier = Modifier,
-//    navController: NavHostController = rememberNavController()
-//) {
-//    NavHost(
-//        modifier = modifier,
-//        navController = navController,
-//        startDestination = "home"
-//    ) {
-//        composable(route = "home") {
-//            HomeScreen(
-//                navController = navController
-//            )
-//        }
-//        composable(route = "search") {
-//            SearchScreen(
-//                navController = navController
-//            )
-//        }
-//        composable(
-//            route = "detail/{name}",
-//            arguments = listOf(
-//                navArgument("name") {
-//                    type = NavType.StringType
-//                }
-//            )
-//        ) {
-//            DetailScreen(
-//                navController = navController,
-//                name = navController.currentBackStackEntry?.arguments?.getString("name").toString()
-//            )
-//        }
-//    }
-//}

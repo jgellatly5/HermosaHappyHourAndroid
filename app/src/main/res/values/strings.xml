@@ -11,7 +11,8 @@
     <string name="tower12_happy_hour">"Half off shots, bottled &amp; can beers / Wines $5.50 - $7.50 ask server for selections / Add $1 to any cocktail to make it 22oz double shot / Add $1 to any draft beer to make it 32oz double size"</string>
 
     <!-- Home Tabs -->
-    <string name="home_feed">Home</string>
+    <string name="happy_hour_feed">Happy Hour</string>
+    <string name="event_feed">Events</string>
     <string name="home_search">Search</string>
     <string name="home_cart">My Cart</string>
     <string name="home_profile">Profile</string>
