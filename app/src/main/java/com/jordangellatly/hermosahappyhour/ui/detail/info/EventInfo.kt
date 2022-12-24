@@ -14,8 +14,11 @@ import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
 import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
+import com.jordangellatly.hermosahappyhour.ui.detail.HighlightCardPadding
+import com.jordangellatly.hermosahappyhour.ui.detail.HighlightCardWidth
 import com.jordangellatly.hermosahappyhour.ui.detail.TodaysEventItem
-import com.jordangellatly.hermosahappyhour.ui.home.*
+import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
+import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
