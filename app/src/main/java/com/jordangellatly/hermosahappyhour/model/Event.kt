@@ -12,6 +12,11 @@ data class Event(
     val image: URI
 )
 
+data class Deal(
+    val description: String,
+    val price: String
+)
+
 enum class EventType { HappyHour, Brunch, Sports, Default }
 
 val tower12HappyHour = Event(

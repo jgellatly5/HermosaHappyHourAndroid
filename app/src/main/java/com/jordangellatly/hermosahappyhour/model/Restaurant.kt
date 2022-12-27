@@ -17,11 +17,6 @@ data class Restaurant(
     val website: String
 )
 
-data class Deal(
-    val description: String,
-    val price: String
-)
-
 data class Location(
     val latitude: Double,
     val longitude: Double

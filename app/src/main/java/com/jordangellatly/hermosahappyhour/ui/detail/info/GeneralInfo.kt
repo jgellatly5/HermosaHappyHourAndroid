@@ -37,15 +37,14 @@ import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun GeneralInfo(
-    restaurant: Restaurant?
+    restaurant: Restaurant
 ) {
     Column(
         modifier = Modifier.padding(8.dp)
     ) {
         val date = getCurrentDateTime()
         val getDayFromDate = date.toString("EEEE").uppercase()
-        val happyHourToday = restaurant?.weeklyHappyHour?.get(getDayFromDate)
-        val happyHours = happyHourToday?.hours
+        val happyHours = restaurant.weeklyHappyHour[getDayFromDate]?.hours
         var popupControl by remember { mutableStateOf(false) }
         var isHappyHour by remember { mutableStateOf(false) }
         Text(
@@ -56,7 +55,7 @@ fun GeneralInfo(
 
         InfoRow(
             title = "Hours",
-            description = restaurant?.weeklyHours?.get(getDayFromDate).toString(),
+            description = restaurant.weeklyHours[getDayFromDate].toString(),
             onClick = {
                 popupControl = true
                 isHappyHour = false
@@ -73,7 +72,7 @@ fun GeneralInfo(
         )
 
         val context = LocalContext.current
-        val website = restaurant?.website.toString()
+        val website = restaurant.website
         val openWebsiteIntent =
             remember { Intent(Intent.ACTION_VIEW, Uri.parse(website)) }
         InfoRow(
@@ -84,7 +83,7 @@ fun GeneralInfo(
             }
         )
 
-        val phoneNumber = restaurant?.phoneNumber ?: ""
+        val phoneNumber = restaurant.phoneNumber
         val callNumberIntent =
             remember { Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber")) }
         InfoRow(
@@ -95,8 +94,8 @@ fun GeneralInfo(
             }
         )
 
-        val addressLine1 = restaurant?.address?.line1 ?: ""
-        val addressLine2 = restaurant?.address?.line2 ?: ""
+        val addressLine1 = restaurant.address.line1
+        val addressLine2 = restaurant.address.line2
         val fullAddress = addressLine1 + addressLine2
         val displayAddress = "$addressLine1 \n$addressLine2"
         val getDirectionsIntent =
@@ -116,23 +115,19 @@ fun GeneralInfo(
                 onDismissRequest = { popupControl = false }
             ) {
                 if (isHappyHour) {
-                    restaurant?.weeklyHappyHour?.let {
-                        HappyHourPopup(
-                            weeklyHappyHour = it,
-                            onClick = {
-                                popupControl = false
-                            }
-                        )
-                    }
+                    HappyHourPopup(
+                        weeklyHappyHour = restaurant.weeklyHappyHour,
+                        onClick = {
+                            popupControl = false
+                        }
+                    )
                 } else {
-                    restaurant?.weeklyHours?.let {
-                        HoursPopup(
-                            weeklyHours = it,
-                            onClick = {
-                                popupControl = false
-                            }
-                        )
-                    }
+                    HoursPopup(
+                        weeklyHours = restaurant.weeklyHours,
+                        onClick = {
+                            popupControl = false
+                        }
+                    )
                 }
             }
         }

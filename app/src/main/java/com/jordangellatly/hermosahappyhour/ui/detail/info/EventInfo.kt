@@ -23,11 +23,11 @@ import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun EventInfo(
-    restaurant: Restaurant?
+    restaurant: Restaurant
 ) {
     val date = getCurrentDateTime()
     val getDayFromDate = date.toString("EEEE").uppercase()
-    val happyHourEvent = restaurant?.weeklyEvents?.get(getDayFromDate)?.first()
+    val happyHourEvent = restaurant.weeklyEvents[getDayFromDate]?.first()
     val scroll = rememberScrollState(0)
     val gradient = when ((0 / 2) % 2) {
         0 -> HermosaHappyHourTheme.colors.gradient6_1
