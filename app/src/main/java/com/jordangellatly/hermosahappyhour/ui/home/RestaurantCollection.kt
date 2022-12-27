@@ -31,7 +31,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun RestaurantsWithEventsCollection(
+fun RestaurantCollection(
     restaurants: List<Restaurant>,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier
@@ -41,17 +41,17 @@ fun RestaurantsWithEventsCollection(
         contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
     ) {
         items(restaurants) { restaurant ->
-            RestaurantsWithEventsItem(restaurant, onRestaurantClick)
+            RestaurantItem(restaurant, onRestaurantClick)
         }
     }
 }
 
 @Preview
 @Composable
-private fun RestaurantsWithEventsCollectionPreview() {
+private fun RestaurantCollectionPreview() {
     HermosaHappyHourTheme {
         val restaurants = sampleSearchRestaurantData
-        RestaurantsWithEventsCollection(
+        RestaurantCollection(
             restaurants = restaurants,
             onRestaurantClick = {}
         )
@@ -59,7 +59,7 @@ private fun RestaurantsWithEventsCollectionPreview() {
 }
 
 @Composable
-private fun RestaurantsWithEventsItem(
+private fun RestaurantItem(
     restaurant: Restaurant,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier
@@ -203,10 +203,10 @@ private fun RestaurantsWithEventsItem(
 
 @Preview
 @Composable
-private fun RestaurantsWithEventsItemPreview() {
+private fun RestaurantItemPreview() {
     HermosaHappyHourTheme {
         val restaurant = tower12RestaurantData
-        RestaurantsWithEventsItem(
+        RestaurantItem(
             restaurant = restaurant,
             onRestaurantClick = {}
         )

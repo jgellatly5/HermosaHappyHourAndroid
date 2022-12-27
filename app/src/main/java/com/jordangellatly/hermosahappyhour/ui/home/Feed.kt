@@ -30,15 +30,13 @@ fun Feed(
 private fun Feed(
     restaurantList: List<Restaurant>,
     onRestaurantClick: (Long) -> Unit,
-    modifier: Modifier = Modifier,
-    eventType: EventType = EventType.HappyHour
+    modifier: Modifier = Modifier
 ) {
     HermosaHappyHourSurface(modifier = modifier.fillMaxSize()) {
         Box {
             RestaurantList(
                 restaurantList = restaurantList,
-                onRestaurantClick = onRestaurantClick,
-                eventType = eventType
+                onRestaurantClick = onRestaurantClick
             )
             DateBar()
         }
@@ -49,8 +47,7 @@ private fun Feed(
 private fun RestaurantList(
     restaurantList: List<Restaurant>,
     onRestaurantClick: (Long) -> Unit,
-    modifier: Modifier = Modifier,
-    eventType: EventType = EventType.HappyHour
+    modifier: Modifier = Modifier
 ) {
     Box(modifier) {
         Column {
@@ -59,26 +56,10 @@ private fun RestaurantList(
                     WindowInsets.statusBars.add(WindowInsets(top = 56.dp))
                 )
             )
-            when (eventType) {
-                EventType.HappyHour -> {
-                    HappyHourRestaurantCollection(
-                        restaurants = restaurantList,
-                        onRestaurantClick = onRestaurantClick
-                    )
-                }
-                EventType.Default -> {
-                    RestaurantsWithEventsCollection(
-                        restaurants = restaurantList,
-                        onRestaurantClick = onRestaurantClick
-                    )
-                }
-                else -> {
-                    HappyHourRestaurantCollection(
-                        restaurants = restaurantList,
-                        onRestaurantClick = onRestaurantClick
-                    )
-                }
-            }
+            RestaurantCollection(
+                restaurants = restaurantList,
+                onRestaurantClick = onRestaurantClick
+            )
         }
     }
 }
