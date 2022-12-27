@@ -6,7 +6,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.RestaurantCollection
+import com.jordangellatly.hermosahappyhour.model.EventType
+import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -17,31 +18,17 @@ fun Feed(
     modifier: Modifier = Modifier,
     eventType: EventType = EventType.HappyHour
 ) {
-    val restaurantCollections = remember {
-        when (eventType) {
-            EventType.HappyHour -> {
-                RestaurantRepo.getHappyHourRestaurants()
-            }
-            EventType.Default -> {
-                RestaurantRepo.getRestaurantsWithEvents()
-            }
-            else -> {
-                RestaurantRepo.getHappyHourRestaurants()
-            }
-        }
-    }
+    val restaurantList = remember { RestaurantRepo.getRestaurantsByEventType(eventType) }
     Feed(
-        restaurantCollection = restaurantCollections,
+        restaurantList = restaurantList,
         onRestaurantClick = onRestaurantClick,
         modifier = modifier
     )
 }
 
-enum class EventType { HappyHour, Brunch, Sports, Default }
-
 @Composable
 private fun Feed(
-    restaurantCollection: RestaurantCollection,
+    restaurantList: List<Restaurant>,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
     eventType: EventType = EventType.HappyHour
@@ -49,7 +36,7 @@ private fun Feed(
     HermosaHappyHourSurface(modifier = modifier.fillMaxSize()) {
         Box {
             RestaurantList(
-                restaurantCollection = restaurantCollection,
+                restaurantList = restaurantList,
                 onRestaurantClick = onRestaurantClick,
                 eventType = eventType
             )
@@ -60,7 +47,7 @@ private fun Feed(
 
 @Composable
 private fun RestaurantList(
-    restaurantCollection: RestaurantCollection,
+    restaurantList: List<Restaurant>,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
     eventType: EventType = EventType.HappyHour
@@ -75,19 +62,19 @@ private fun RestaurantList(
             when (eventType) {
                 EventType.HappyHour -> {
                     HappyHourRestaurantCollection(
-                        restaurants = restaurantCollection.restaurants,
+                        restaurants = restaurantList,
                         onRestaurantClick = onRestaurantClick
                     )
                 }
                 EventType.Default -> {
                     RestaurantsWithEventsCollection(
-                        restaurants = restaurantCollection.restaurants,
+                        restaurants = restaurantList,
                         onRestaurantClick = onRestaurantClick
                     )
                 }
                 else -> {
                     HappyHourRestaurantCollection(
-                        restaurants = restaurantCollection.restaurants,
+                        restaurants = restaurantList,
                         onRestaurantClick = onRestaurantClick
                     )
                 }

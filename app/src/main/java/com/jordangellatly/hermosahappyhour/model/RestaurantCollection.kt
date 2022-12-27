@@ -1,6 +1,8 @@
 package com.jordangellatly.hermosahappyhour.model
 
 import androidx.compose.runtime.Immutable
+import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
+import com.jordangellatly.hermosahappyhour.ui.home.toString
 
 @Immutable
 data class RestaurantCollection(
@@ -13,9 +15,15 @@ data class RestaurantCollection(
 enum class CollectionType { Normal, HappyHour, Event }
 
 object RestaurantRepo {
-    fun getHappyHourRestaurants(): RestaurantCollection = happyHourRestaurants
+    val date = getCurrentDateTime()
+    val getDayFromDate = date.toString("EEEE").uppercase()
+    fun getRestaurantsByEventType(eventType: EventType): List<Restaurant> =
+        sampleSearchRestaurantData
+
     fun getRestaurantsWithEvents(): RestaurantCollection = restaurantsWithEvents
-    fun getRestaurant(restaurantId: Long) = sampleSearchRestaurantData.find { it.id == restaurantId }!!
+    fun getRestaurant(restaurantId: Long) =
+        sampleSearchRestaurantData.find { it.id == restaurantId }!!
+
     fun getFilters() = filters
 }
 

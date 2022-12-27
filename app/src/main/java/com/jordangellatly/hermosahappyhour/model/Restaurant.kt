@@ -39,12 +39,15 @@ data class Address(
 
 data class Event(
     val id: Long,
+    val eventType: EventType,
     val title: String,
     val description: String,
     val hours: String,
     val specials: List<Deal>,
     val image: URI
 )
+
+enum class EventType { HappyHour, Brunch, Sports, Default }
 
 enum class DayOfWeek {
     SUNDAY,
@@ -58,6 +61,7 @@ enum class DayOfWeek {
 
 val tower12HappyHour = Event(
     id = 1,
+    eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Bringing you wild drink specials",
     hours = "3PM - 7PM",
@@ -84,6 +88,7 @@ val tower12HappyHour = Event(
 
 val tower12SportEvent = Event(
     id = 2,
+    eventType = EventType.Sports,
     title = "Saturday & Sunday Football",
     description = "Premiere sports viewing, we get all the games",
     hours = "9AM - 2AM",
@@ -110,6 +115,7 @@ val tower12SportEvent = Event(
 
 val sharkeezHappyHour = Event(
     id = 3,
+    eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     hours = "3PM - 7PM",
@@ -136,6 +142,7 @@ val sharkeezHappyHour = Event(
 
 val sharkeezSportEvent = Event(
     id = 4,
+    eventType = EventType.Sports,
     title = "Saturday & Sunday Football",
     description = "Premiere sports viewing, we get all the games",
     hours = "9AM - 2AM",
@@ -162,6 +169,7 @@ val sharkeezSportEvent = Event(
 
 val junkieHappyHour = Event(
     id = 5,
+    eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     hours = "3PM - 7PM",
@@ -188,6 +196,7 @@ val junkieHappyHour = Event(
 
 val junkieSportEvent = Event(
     id = 6,
+    eventType = EventType.Sports,
     title = "Saturday & Sunday Football",
     description = "Premiere sports viewing, we get all the games",
     hours = "9AM - 2AM",
@@ -214,6 +223,7 @@ val junkieSportEvent = Event(
 
 val hennesseysHappyHour = Event(
     id = 7,
+    eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     hours = "3PM - 7PM",
@@ -240,6 +250,7 @@ val hennesseysHappyHour = Event(
 
 val hennesseysSportEvent = Event(
     id = 8,
+    eventType = EventType.Sports,
     title = "Saturday & Sunday Football",
     description = "Premiere sports viewing, we get all the games",
     hours = "9AM - 2AM",
@@ -266,6 +277,7 @@ val hennesseysSportEvent = Event(
 
 val mondayNightFootball = Event(
     id = 9,
+    eventType = EventType.Sports,
     title = "Monday Night Football",
     description = "Premiere sports viewing, we get all the games",
     hours = "5PM - 8PM",
@@ -292,6 +304,7 @@ val mondayNightFootball = Event(
 
 val wineWednesday = Event(
     id = 10,
+    eventType = EventType.Default,
     title = "Wine Wednesday",
     description = "Wine Wednesday is fun",
     hours = "5PM - 8PM",
