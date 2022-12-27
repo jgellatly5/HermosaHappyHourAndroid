@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail
+package com.jordangellatly.hermosahappyhour.ui.detail.popup
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

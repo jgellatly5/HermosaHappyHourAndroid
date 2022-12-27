@@ -17,12 +17,6 @@ data class Restaurant(
     val website: String
 )
 
-data class HoursAndSpecials(
-    val dayOfWeek: DayOfWeek,
-    val businessHours: String,
-    val specialEvents: List<Event>
-)
-
 data class Deal(
     val description: String,
     val price: String

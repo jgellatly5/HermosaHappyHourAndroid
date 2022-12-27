@@ -20,7 +20,7 @@ import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
 import com.jordangellatly.hermosahappyhour.model.tower12WeeklyHappyHour
 import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
-import com.jordangellatly.hermosahappyhour.ui.detail.HappyHourPopup
+import com.jordangellatly.hermosahappyhour.ui.detail.popup.HappyHourPopup
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
