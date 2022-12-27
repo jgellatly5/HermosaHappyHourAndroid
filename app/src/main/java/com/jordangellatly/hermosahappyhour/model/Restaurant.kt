@@ -1,7 +1,6 @@
 package com.jordangellatly.hermosahappyhour.model
 
 import com.jordangellatly.hermosahappyhour.R
-import java.net.URI
 
 data class Restaurant(
     val id: Long,
@@ -10,7 +9,9 @@ data class Restaurant(
     val companyLogoUrl: String,
     val image: Int,
     val location: Location,
-    val weeklyHoursAndSpecials: List<HoursAndSpecials>,
+    val weeklyHours: Map<String, String>,
+    val weeklyHappyHour: Map<String, Event>,
+    val weeklyEvents: Map<String, List<Event>>,
     val address: Address,
     val phoneNumber: String,
     val website: String
@@ -37,18 +38,6 @@ data class Address(
     val line2: String
 )
 
-data class Event(
-    val id: Long,
-    val eventType: EventType,
-    val title: String,
-    val description: String,
-    val hours: String,
-    val specials: List<Deal>,
-    val image: URI
-)
-
-enum class EventType { HappyHour, Brunch, Sports, Default }
-
 enum class DayOfWeek {
     SUNDAY,
     MONDAY,
@@ -59,315 +48,32 @@ enum class DayOfWeek {
     SATURDAY
 }
 
-val tower12HappyHour = Event(
-    id = 1,
-    eventType = EventType.HappyHour,
-    title = "Happy Hour",
-    description = "Bringing you wild drink specials",
-    hours = "3PM - 7PM",
-    specials = listOf(
-        Deal(
-            description = "Shots, bottled & can beers",
-            price = "50% off"
-        ),
-        Deal(
-            description = "Wines (ask server for selections)",
-            price = "$5.50 - 7.50"
-        ),
-        Deal(
-            description = "To any cocktail to make it 22oz double shot",
-            price = "Add 1$"
-        ),
-        Deal(
-            description = "To any draft beer to make it 32oz double size",
-            price = "Add 1$"
-        )
-    ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+val tower12WeeklyHours = mapOf(
+    "SUNDAY" to "9AM - 2AM",
+    "MONDAY" to "11AM - 2AM",
+    "TUESDAY" to "11AM - 2AM",
+    "WEDNESDAY" to "11AM - 2AM",
+    "THURSDAY" to "11AM - 2AM",
+    "FRIDAY" to "11AM - 2AM",
+    "SATURDAY" to "9AM - 2AM"
 )
 
-val tower12SportEvent = Event(
-    id = 2,
-    eventType = EventType.Sports,
-    title = "Saturday & Sunday Football",
-    description = "Premiere sports viewing, we get all the games",
-    hours = "9AM - 2AM",
-    specials = listOf(
-        Deal(
-            description = "Bloody Mary's Well",
-            price = "$7"
-        ),
-        Deal(
-            description = "Bloody Mary's Titos",
-            price = "$9"
-        ),
-        Deal(
-            description = "22 oz double shot Skyy or Epsolon cocktails",
-            price = "$16 (add Red Bull for $3.50)"
-        ),
-        Deal(
-            description = "22 oz Mavericks Mimosas schooners",
-            price = "$10"
-        )
-    ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+val tower12WeeklyHappyHour = mapOf(
+    "MONDAY" to tower12HappyHour,
+    "TUESDAY" to tower12HappyHour,
+    "WEDNESDAY" to tower12HappyHour,
+    "THURSDAY" to tower12HappyHour,
+    "FRIDAY" to tower12HappyHour
 )
 
-val sharkeezHappyHour = Event(
-    id = 3,
-    eventType = EventType.HappyHour,
-    title = "Happy Hour",
-    description = "Serving sunsets, ice cold drinks, & good vibes daily",
-    hours = "3PM - 7PM",
-    specials = listOf(
-        Deal(
-            description = "Shots, bottled & can beers",
-            price = "50% off"
-        ),
-        Deal(
-            description = "Add Red Bull",
-            price = "$3"
-        ),
-        Deal(
-            description = "To any well, call, or premium to make it a 22oz double shot double size cocktail",
-            price = "Add 1$"
-        ),
-        Deal(
-            description = "To any draft beer to make it a 22oz giant schooner",
-            price = "Add 1$"
-        )
-    ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
-)
-
-val sharkeezSportEvent = Event(
-    id = 4,
-    eventType = EventType.Sports,
-    title = "Saturday & Sunday Football",
-    description = "Premiere sports viewing, we get all the games",
-    hours = "9AM - 2AM",
-    specials = listOf(
-        Deal(
-            description = "Bloody Mary's Well",
-            price = "$7"
-        ),
-        Deal(
-            description = "Bloody Mary's Titos",
-            price = "$9"
-        ),
-        Deal(
-            description = "22 oz double shot Skyy or Epsolon cocktails",
-            price = "$16 (add Red Bull for $3.50)"
-        ),
-        Deal(
-            description = "22 oz Mavericks Mimosas schooners",
-            price = "$10"
-        )
-    ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
-)
-
-val junkieHappyHour = Event(
-    id = 5,
-    eventType = EventType.HappyHour,
-    title = "Happy Hour",
-    description = "Serving sunsets, ice cold drinks, & good vibes daily",
-    hours = "3PM - 7PM",
-    specials = listOf(
-        Deal(
-            description = "Shots, bottled & can beers",
-            price = "50% off"
-        ),
-        Deal(
-            description = "Add Red Bull",
-            price = "$3"
-        ),
-        Deal(
-            description = "To any well, call, or premium to make it a 22oz double shot double size cocktail",
-            price = "Add 1$"
-        ),
-        Deal(
-            description = "To any draft beer to make it a 22oz giant schooner",
-            price = "Add 1$"
-        )
-    ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
-)
-
-val junkieSportEvent = Event(
-    id = 6,
-    eventType = EventType.Sports,
-    title = "Saturday & Sunday Football",
-    description = "Premiere sports viewing, we get all the games",
-    hours = "9AM - 2AM",
-    specials = listOf(
-        Deal(
-            description = "Bloody Mary's Well",
-            price = "$7"
-        ),
-        Deal(
-            description = "Bloody Mary's Titos",
-            price = "$9"
-        ),
-        Deal(
-            description = "22 oz double shot Skyy or Epsolon cocktails",
-            price = "$16 (add Red Bull for $3.50)"
-        ),
-        Deal(
-            description = "22 oz Mavericks Mimosas schooners",
-            price = "$10"
-        )
-    ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
-)
-
-val hennesseysHappyHour = Event(
-    id = 7,
-    eventType = EventType.HappyHour,
-    title = "Happy Hour",
-    description = "Serving sunsets, ice cold drinks, & good vibes daily",
-    hours = "3PM - 7PM",
-    specials = listOf(
-        Deal(
-            description = "Shots, bottled & can beers",
-            price = "50% off"
-        ),
-        Deal(
-            description = "Add Red Bull",
-            price = "$3"
-        ),
-        Deal(
-            description = "To any well, call, or premium to make it a 22oz double shot double size cocktail",
-            price = "Add 1$"
-        ),
-        Deal(
-            description = "To any draft beer to make it a 22oz giant schooner",
-            price = "Add 1$"
-        )
-    ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
-)
-
-val hennesseysSportEvent = Event(
-    id = 8,
-    eventType = EventType.Sports,
-    title = "Saturday & Sunday Football",
-    description = "Premiere sports viewing, we get all the games",
-    hours = "9AM - 2AM",
-    specials = listOf(
-        Deal(
-            description = "Bloody Mary's Well",
-            price = "$7"
-        ),
-        Deal(
-            description = "Bloody Mary's Titos",
-            price = "$9"
-        ),
-        Deal(
-            description = "22 oz double shot Skyy or Epsolon cocktails",
-            price = "$16 (add Red Bull for $3.50)"
-        ),
-        Deal(
-            description = "22 oz Mavericks Mimosas schooners",
-            price = "$10"
-        )
-    ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
-)
-
-val mondayNightFootball = Event(
-    id = 9,
-    eventType = EventType.Sports,
-    title = "Monday Night Football",
-    description = "Premiere sports viewing, we get all the games",
-    hours = "5PM - 8PM",
-    specials = listOf(
-        Deal(
-            description = "Bloody Mary's Well",
-            price = "$7"
-        ),
-        Deal(
-            description = "Bloody Mary's Titos",
-            price = "$9"
-        ),
-        Deal(
-            description = "22 oz double shot Skyy or Epsolon cocktails",
-            price = "$16 (add Red Bull for $3.50)"
-        ),
-        Deal(
-            description = "22 oz Mavericks Mimosas schooners",
-            price = "$10"
-        )
-    ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
-)
-
-val wineWednesday = Event(
-    id = 10,
-    eventType = EventType.Default,
-    title = "Wine Wednesday",
-    description = "Wine Wednesday is fun",
-    hours = "5PM - 8PM",
-    specials = listOf(
-        Deal(
-            description = "Wine (ask server for selections)",
-            price = "$7"
-        )
-    ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
-)
-
-val tower12WeeklyHoursAndSpecials = listOf(
-    HoursAndSpecials(
-        dayOfWeek = DayOfWeek.SUNDAY,
-        businessHours = "9AM - 2AM",
-        specialEvents = listOf(
-            tower12SportEvent
-        )
-    ),
-    HoursAndSpecials(
-        dayOfWeek = DayOfWeek.MONDAY,
-        businessHours = "11AM - 2AM",
-        specialEvents = listOf(
-            tower12HappyHour
-        )
-    ),
-    HoursAndSpecials(
-        dayOfWeek = DayOfWeek.TUESDAY,
-        businessHours = "11AM - 2AM",
-        specialEvents = listOf(
-            tower12HappyHour
-        )
-    ),
-    HoursAndSpecials(
-        dayOfWeek = DayOfWeek.WEDNESDAY,
-        businessHours = "11AM - 2AM",
-        specialEvents = listOf(
-            tower12HappyHour,
-            wineWednesday
-        )
-    ),
-    HoursAndSpecials(
-        dayOfWeek = DayOfWeek.THURSDAY,
-        businessHours = "11AM - 2AM",
-        specialEvents = listOf(
-            tower12HappyHour
-        )
-    ),
-    HoursAndSpecials(
-        dayOfWeek = DayOfWeek.FRIDAY,
-        businessHours = "11AM - 2AM",
-        specialEvents = listOf(
-            tower12HappyHour
-        )
-    ),
-    HoursAndSpecials(
-        dayOfWeek = DayOfWeek.SATURDAY,
-        businessHours = "9AM - 2AM",
-        specialEvents = listOf(
-            tower12SportEvent
-        )
-    )
+val tower12WeeklyEvents = mapOf(
+    "SUNDAY" to listOf(tower12SportEvent),
+    "MONDAY" to listOf(mondayNightFootball),
+    "TUESDAY" to listOf(tacoTuesday),
+    "WEDNESDAY" to listOf(wineWednesday),
+    "THURSDAY" to listOf(thursdayNightFootball),
+    "FRIDAY" to listOf(fridayNightTrivia),
+    "SATURDAY" to listOf(tower12SportEvent)
 )
 
 val sampleSearchRestaurantData = listOf(
@@ -381,7 +87,9 @@ val sampleSearchRestaurantData = listOf(
             latitude = 33.86222,
             longitude = -118.40085
         ),
-        tower12WeeklyHoursAndSpecials,
+        weeklyHours = tower12WeeklyHours,
+        weeklyHappyHour = tower12WeeklyHappyHour,
+        weeklyEvents = tower12WeeklyEvents,
         address = Address(
             line1 = "53 Pier Ave",
             line2 = "Hermosa Beach, CA 90254"
@@ -399,58 +107,9 @@ val sampleSearchRestaurantData = listOf(
             latitude = 33.861988,
             longitude = -118.40071
         ),
-        weeklyHoursAndSpecials = listOf(
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.SUNDAY,
-                businessHours = "9AM - 2AM",
-                specialEvents = listOf(
-                    sharkeezSportEvent
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.MONDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    sharkeezHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.TUESDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    sharkeezHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.WEDNESDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    sharkeezHappyHour,
-                    wineWednesday
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.THURSDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    sharkeezHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.FRIDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    sharkeezHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.SATURDAY,
-                businessHours = "9AM - 2AM",
-                specialEvents = listOf(
-                    sharkeezSportEvent
-                )
-            )
-        ),
+        weeklyHours = tower12WeeklyHours,
+        weeklyHappyHour = tower12WeeklyHappyHour,
+        weeklyEvents = tower12WeeklyEvents,
         address = Address(
             line1 = "52 Pier Ave",
             line2 = "Hermosa Beach, CA 90254"
@@ -468,58 +127,9 @@ val sampleSearchRestaurantData = listOf(
             latitude = 33.862,
             longitude = -118.40047
         ),
-        weeklyHoursAndSpecials = listOf(
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.SUNDAY,
-                businessHours = "9AM - 2AM",
-                specialEvents = listOf(
-                    junkieSportEvent
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.MONDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    junkieHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.TUESDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    junkieHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.WEDNESDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    junkieHappyHour,
-                    wineWednesday
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.THURSDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    junkieHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.FRIDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    junkieHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.SATURDAY,
-                businessHours = "9AM - 2AM",
-                specialEvents = listOf(
-                    junkieSportEvent
-                )
-            )
-        ),
+        weeklyHours = tower12WeeklyHours,
+        weeklyHappyHour = tower12WeeklyHappyHour,
+        weeklyEvents = tower12WeeklyEvents,
         address = Address(
             line1 = "68 Pier Ave",
             line2 = "Hermosa Beach, CA 90254"
@@ -537,58 +147,9 @@ val sampleSearchRestaurantData = listOf(
             latitude = 33.86182,
             longitude = -118.40152
         ),
-        weeklyHoursAndSpecials = listOf(
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.SUNDAY,
-                businessHours = "9AM - 2AM",
-                specialEvents = listOf(
-                    hennesseysSportEvent
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.MONDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    hennesseysHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.TUESDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    hennesseysHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.WEDNESDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    hennesseysHappyHour,
-                    wineWednesday
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.THURSDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    hennesseysHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.FRIDAY,
-                businessHours = "11AM - 2AM",
-                specialEvents = listOf(
-                    hennesseysHappyHour
-                )
-            ),
-            HoursAndSpecials(
-                dayOfWeek = DayOfWeek.SATURDAY,
-                businessHours = "9AM - 2AM",
-                specialEvents = listOf(
-                    hennesseysSportEvent
-                )
-            )
-        ),
+        weeklyHours = tower12WeeklyHours,
+        weeklyHappyHour = tower12WeeklyHappyHour,
+        weeklyEvents = tower12WeeklyEvents,
         address = Address(
             line1 = "8 Pier Ave",
             line2 = "Hermosa Beach, CA 90254"

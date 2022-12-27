@@ -29,7 +29,8 @@ import com.jordangellatly.hermosahappyhour.model.Location
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
-import com.jordangellatly.hermosahappyhour.ui.detail.RestaurantHours
+import com.jordangellatly.hermosahappyhour.ui.detail.HappyHourPopup
+import com.jordangellatly.hermosahappyhour.ui.detail.HoursPopup
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -43,10 +44,8 @@ fun GeneralInfo(
     ) {
         val date = getCurrentDateTime()
         val getDayFromDate = date.toString("EEEE").uppercase()
-        val hoursAndEventsToday =
-            restaurant?.weeklyHoursAndSpecials?.find { it.dayOfWeek.toString() == getDayFromDate }
-        val happyHourEvent = hoursAndEventsToday?.specialEvents?.find { it.title == "Happy Hour" }
-        val happyHours = happyHourEvent?.hours
+        val happyHourToday = restaurant?.weeklyHappyHour?.get(getDayFromDate)
+        val happyHours = happyHourToday?.hours
         var popupControl by remember { mutableStateOf(false) }
         var isHappyHour by remember { mutableStateOf(false) }
         Text(
@@ -57,7 +56,7 @@ fun GeneralInfo(
 
         InfoRow(
             title = "Hours",
-            description = hoursAndEventsToday?.businessHours.toString(),
+            description = restaurant?.weeklyHours?.get(getDayFromDate).toString(),
             onClick = {
                 popupControl = true
                 isHappyHour = false
@@ -116,13 +115,25 @@ fun GeneralInfo(
             Popup(
                 onDismissRequest = { popupControl = false }
             ) {
-                RestaurantHours(
-                    weeklyHoursAndSpecials = restaurant?.weeklyHoursAndSpecials ?: emptyList(),
-                    onClick = {
-                        popupControl = false
-                    },
-                    isHappyHour = isHappyHour
-                )
+                if (isHappyHour) {
+                    restaurant?.weeklyHappyHour?.let {
+                        HappyHourPopup(
+                            weeklyHappyHour = it,
+                            onClick = {
+                                popupControl = false
+                            }
+                        )
+                    }
+                } else {
+                    restaurant?.weeklyHours?.let {
+                        HoursPopup(
+                            weeklyHours = it,
+                            onClick = {
+                                popupControl = false
+                            }
+                        )
+                    }
+                }
             }
         }
     }

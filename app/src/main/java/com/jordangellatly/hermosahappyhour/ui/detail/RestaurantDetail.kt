@@ -38,7 +38,6 @@ fun RestaurantDetail(
 //        },
         backgroundColor = HermosaHappyHourTheme.colors.uiBackground
     ) { contentPadding ->
-        val weeklyHoursAndSpecials = restaurant.weeklyHoursAndSpecials
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
@@ -49,9 +48,7 @@ fun RestaurantDetail(
                 imageResource = restaurant.image,
                 upPress = upPress
             )
-            HappyHourInfo(
-                weeklyHoursAndSpecials = weeklyHoursAndSpecials
-            )
+            HappyHourInfo(weeklyHappyHour = restaurant.weeklyHappyHour)
             EventInfo(restaurant = restaurant)
             GeneralInfo(restaurant = restaurant)
         }

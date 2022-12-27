@@ -71,10 +71,8 @@ private fun HappyHourRestaurantItem(
     ) {
         val date = getCurrentDateTime()
         val getDayFromDate = date.toString("EEEE").uppercase()
-        val hoursAndEventsToday =
-            restaurant.weeklyHoursAndSpecials.find { it.dayOfWeek.toString() == getDayFromDate }
-        val happyHourEvent = hoursAndEventsToday?.specialEvents?.first()
-        val happyHours = happyHourEvent?.hours
+        val happyHourToday = restaurant.weeklyHappyHour[getDayFromDate]
+        val happyHours = happyHourToday?.hours
 
         val currentTime = Calendar.getInstance()
         val startTime = Calendar.getInstance()
