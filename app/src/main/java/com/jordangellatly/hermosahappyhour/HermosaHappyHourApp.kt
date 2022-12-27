@@ -56,7 +56,7 @@ private fun NavGraphBuilder.happyHourNavGraph(
 ) {
     navigation(
         route = MainDestinations.HOME_ROUTE,
-        startDestination = HomeSections.HomeFeed.route
+        startDestination = HomeSections.HOME.route
     ) {
         addHomeGraph(onRestaurantSelected)
     }

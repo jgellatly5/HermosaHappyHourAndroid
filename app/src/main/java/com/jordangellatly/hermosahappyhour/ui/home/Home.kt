@@ -57,18 +57,11 @@ fun NavGraphBuilder.addHomeGraph(
     onRestaurantSelected: (Long, NavBackStackEntry) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    composable(HomeSections.HomeFeed.route) { from ->
+    composable(HomeSections.HOME.route) { from ->
         Feed(
             onRestaurantClick = { id -> onRestaurantSelected(id, from) },
             modifier = modifier,
             eventType = EventType.HappyHour
-        )
-    }
-    composable(HomeSections.EventFeed.route) { from ->
-        Feed(
-            onRestaurantClick = { id -> onRestaurantSelected(id, from) },
-            modifier = modifier,
-            eventType = EventType.Default
         )
     }
     composable(HomeSections.SEARCH.route) { from ->
@@ -86,8 +79,7 @@ enum class HomeSections(
     val icon: ImageVector,
     val route: String
 ) {
-    HomeFeed(R.string.home_happy_hour, Icons.Outlined.Home, "home/happyHour"),
-    EventFeed(R.string.home_event, Icons.Outlined.Star, "home/events"),
+    HOME(R.string.home_feed, Icons.Outlined.Home, "home/feed"),
     SEARCH(R.string.home_search, Icons.Outlined.Search, "home/search"),
     PROFILE(R.string.home_profile, Icons.Outlined.AccountCircle, "home/profile")
 }
@@ -352,7 +344,7 @@ private fun HappyHourBottomNavPreview() {
     HermosaHappyHourTheme {
         HappyHourBottomBar(
             tabs = HomeSections.values(),
-            currentRoute = "home/happyHour",
+            currentRoute = "home/feed",
             navigateToRoute = { }
         )
     }
