@@ -27,16 +27,6 @@ data class Address(
     val line2: String
 )
 
-enum class DayOfWeek {
-    SUNDAY,
-    MONDAY,
-    TUESDAY,
-    WEDNESDAY,
-    THURSDAY,
-    FRIDAY,
-    SATURDAY
-}
-
 val tower12WeeklyHours = mapOf(
     "SUNDAY" to "9AM - 2AM",
     "MONDAY" to "11AM - 2AM",

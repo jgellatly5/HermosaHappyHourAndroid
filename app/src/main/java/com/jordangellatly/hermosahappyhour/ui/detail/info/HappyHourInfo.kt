@@ -20,7 +20,7 @@ import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
 import com.jordangellatly.hermosahappyhour.model.tower12WeeklyHappyHour
 import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
-import com.jordangellatly.hermosahappyhour.ui.detail.popup.HappyHourPopup
+import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -188,8 +188,10 @@ private fun NextHappyHour(
             Popup(
                 onDismissRequest = { popupControl = false }
             ) {
-                HappyHourPopup(
-                    weeklyHappyHour = weeklyHappyHour,
+                val weeklyHours = weeklyHappyHour.mapValues { it.value.hours }
+                HoursPopup(
+                    title = "Happy Hour",
+                    weeklyHours = weeklyHours,
                     onClick = {
                         popupControl = false
                     }

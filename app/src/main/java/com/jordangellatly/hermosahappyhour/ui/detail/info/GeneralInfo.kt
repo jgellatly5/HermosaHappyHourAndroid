@@ -29,7 +29,6 @@ import com.jordangellatly.hermosahappyhour.model.Location
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
-import com.jordangellatly.hermosahappyhour.ui.detail.popup.HappyHourPopup
 import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
@@ -114,21 +113,21 @@ fun GeneralInfo(
             Popup(
                 onDismissRequest = { popupControl = false }
             ) {
-                if (isHappyHour) {
-                    HappyHourPopup(
-                        weeklyHappyHour = restaurant.weeklyHappyHour,
-                        onClick = {
-                            popupControl = false
-                        }
-                    )
+                val title = if (isHappyHour) "Happy Hour" else "Hours"
+                val hours = if (isHappyHour) {
+                    restaurant.weeklyHappyHour.mapValues {
+                        it.value.hours
+                    }
                 } else {
-                    HoursPopup(
-                        weeklyHours = restaurant.weeklyHours,
-                        onClick = {
-                            popupControl = false
-                        }
-                    )
+                    restaurant.weeklyHours
                 }
+                HoursPopup(
+                    title = title,
+                    weeklyHours = hours,
+                    onClick = {
+                        popupControl = false
+                    }
+                )
             }
         }
     }
