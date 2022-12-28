@@ -49,7 +49,7 @@ fun RestaurantDetail(
                 upPress = upPress
             )
             HappyHourInfo(weeklyHappyHour = restaurant.weeklyHappyHour)
-            EventInfo(restaurant = restaurant)
+            EventInfo(weeklyEvents = restaurant.weeklyEvents)
             GeneralInfo(restaurant = restaurant)
         }
     }
