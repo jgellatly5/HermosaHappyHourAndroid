@@ -59,7 +59,7 @@ fun HoursPopup(
                 val getDayFromDate = date.toString("EEEE").uppercase()
                 val fontWeight =
                     if (getDayFromDate == dayOfWeek) FontWeight.Bold else FontWeight.Normal
-                val hoursToday = weeklyHours[getDayFromDate] ?: "Not Available"
+                val hoursToday = weeklyHours.getValue(dayOfWeek)
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier

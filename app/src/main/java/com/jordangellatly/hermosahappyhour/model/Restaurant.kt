@@ -10,8 +10,7 @@ data class Restaurant(
     val image: Int,
     val location: Location,
     val weeklyHours: Map<String, String>,
-    val weeklyHappyHour: Map<String, Event>,
-    val weeklyEvents: Map<String, List<Event>>,
+    val weeklyEvents: Map<String, Map<EventType, Event>>,
     val address: Address,
     val phoneNumber: String,
     val website: String
@@ -46,19 +45,38 @@ val tower12WeeklyHappyHour = mapOf(
 )
 
 val tower12WeeklyEvents = mapOf(
-    "SUNDAY" to listOf(tower12SportEvent),
-    "MONDAY" to listOf(mondayNightFootball),
-    "TUESDAY" to listOf(tacoTuesday),
-    "WEDNESDAY" to listOf(wineWednesday),
-    "THURSDAY" to listOf(thursdayNightFootball),
-    "FRIDAY" to listOf(fridayNightTrivia),
-    "SATURDAY" to listOf(tower12SportEvent)
+    "SUNDAY" to mapOf(
+        EventType.Sports to tower12SportEvent
+    ),
+    "MONDAY" to mapOf(
+        EventType.HappyHour to tower12HappyHour,
+        EventType.Sports to mondayNightFootball
+    ),
+    "TUESDAY" to mapOf(
+        EventType.HappyHour to tower12HappyHour,
+        EventType.Default to tacoTuesday
+    ),
+    "WEDNESDAY" to mapOf(
+        EventType.HappyHour to tower12HappyHour,
+        EventType.Default to wineWednesday
+    ),
+    "THURSDAY" to mapOf(
+        EventType.HappyHour to tower12HappyHour,
+        EventType.Sports to thursdayNightFootball
+    ),
+    "FRIDAY" to mapOf(
+        EventType.HappyHour to tower12HappyHour,
+        EventType.Default to fridayNightTrivia
+    ),
+    "SATURDAY" to mapOf(
+        EventType.Sports to tower12SportEvent
+    )
 )
 
 val sampleSearchRestaurantData = listOf(
     Restaurant(
         id = 1,
-        name = "Tower12",
+        name = "Tower 12",
         description = "New American classics & fancy snacks in a beachy, relaxed bar with romantic patio seating.",
         companyLogoUrl = "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/292336365_435159251951538_4078078271979326231_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=C_tAC12x4o0AX9uN-Yg&_nc_ht=scontent-lax3-2.xx&oh=00_AfAAxhYzzBx-bK8gDhRHmOeMrzUxDDsDMZeCaTyFHRr3Ug&oe=638F052F",
         image = R.drawable.tower12,
@@ -67,7 +85,6 @@ val sampleSearchRestaurantData = listOf(
             longitude = -118.40085
         ),
         weeklyHours = tower12WeeklyHours,
-        weeklyHappyHour = tower12WeeklyHappyHour,
         weeklyEvents = tower12WeeklyEvents,
         address = Address(
             line1 = "53 Pier Ave",
@@ -87,7 +104,6 @@ val sampleSearchRestaurantData = listOf(
             longitude = -118.40071
         ),
         weeklyHours = tower12WeeklyHours,
-        weeklyHappyHour = tower12WeeklyHappyHour,
         weeklyEvents = tower12WeeklyEvents,
         address = Address(
             line1 = "52 Pier Ave",
@@ -107,7 +123,6 @@ val sampleSearchRestaurantData = listOf(
             longitude = -118.40047
         ),
         weeklyHours = tower12WeeklyHours,
-        weeklyHappyHour = tower12WeeklyHappyHour,
         weeklyEvents = tower12WeeklyEvents,
         address = Address(
             line1 = "68 Pier Ave",
@@ -127,7 +142,6 @@ val sampleSearchRestaurantData = listOf(
             longitude = -118.40152
         ),
         weeklyHours = tower12WeeklyHours,
-        weeklyHappyHour = tower12WeeklyHappyHour,
         weeklyEvents = tower12WeeklyEvents,
         address = Address(
             line1 = "8 Pier Ave",

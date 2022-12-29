@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.sampleSearchRestaurantData
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
@@ -71,37 +72,34 @@ private fun RestaurantItem(
     ) {
         val date = getCurrentDateTime()
         val getDayFromDate = date.toString("EEEE").uppercase()
-        val happyHourToday = restaurant.weeklyHappyHour[getDayFromDate]
-        val happyHours = happyHourToday?.hours
+        val happyHourToday =
+            restaurant.weeklyEvents.getValue(getDayFromDate).getValue(EventType.HappyHour)
+        val happyHours = happyHourToday.hours
 
         val currentTime = Calendar.getInstance()
         val startTime = Calendar.getInstance()
         val endTime = Calendar.getInstance()
 
-        val splitStartTimeFromHours = happyHours?.split("-")
-        val stringStart = splitStartTimeFromHours?.get(0)?.trim()
-        val stringEnd = splitStartTimeFromHours?.get(1)?.trim()
+        val splitStartTimeFromHours = happyHours.split("-")
+        val stringStart = splitStartTimeFromHours[0].trim()
+        val stringEnd = splitStartTimeFromHours.get(index = 1).trim()
 
-        val splitIntStartTime = stringStart?.split("")
-        var intStartFirstDigit = splitIntStartTime?.get(1)?.toInt()
-        if (splitIntStartTime?.get(2).equals("P")) {
-            intStartFirstDigit = intStartFirstDigit?.plus(12)
+        val splitIntStartTime = stringStart.split("")
+        var intStartFirstDigit = splitIntStartTime.get(index = 1).toInt()
+        if (splitIntStartTime[2] == "P") {
+            intStartFirstDigit += 12
         }
 
-        val splitIntEndTime = stringEnd?.split("")
-        var intEndFirstDigit = splitIntEndTime?.get(1)?.toInt()
-        if (splitIntEndTime?.get(2).equals("P")) {
-            intEndFirstDigit = intEndFirstDigit?.plus(12)
+        val splitIntEndTime = stringEnd.split("")
+        var intEndFirstDigit = splitIntEndTime[1].toInt()
+        if (splitIntEndTime[2] == "P") {
+            intEndFirstDigit += 12
         }
 
-        if (intStartFirstDigit != null) {
-            startTime[Calendar.HOUR_OF_DAY] = intStartFirstDigit
-        }
+        startTime[Calendar.HOUR_OF_DAY] = intStartFirstDigit
         startTime[Calendar.MINUTE] = 0
 
-        if (intEndFirstDigit != null) {
-            endTime[Calendar.HOUR_OF_DAY] = intEndFirstDigit
-        }
+        endTime[Calendar.HOUR_OF_DAY] = intEndFirstDigit
         endTime[Calendar.MINUTE] = 0
 
         Column(

@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.maps.android.compose.*
 import com.jordangellatly.hermosahappyhour.R
+import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.Location
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
@@ -43,7 +44,7 @@ fun GeneralInfo(
     ) {
         val date = getCurrentDateTime()
         val getDayFromDate = date.toString("EEEE").uppercase()
-        val happyHours = restaurant.weeklyHappyHour[getDayFromDate]?.hours
+        val happyHours = restaurant.weeklyEvents.getValue(getDayFromDate).getValue(EventType.HappyHour).hours
         var popupControl by remember { mutableStateOf(false) }
         var isHappyHour by remember { mutableStateOf(false) }
         Text(
@@ -54,7 +55,7 @@ fun GeneralInfo(
 
         InfoRow(
             title = "Hours",
-            description = restaurant.weeklyHours[getDayFromDate].toString(),
+            description = restaurant.weeklyHours.getValue(getDayFromDate),
             onClick = {
                 popupControl = true
                 isHappyHour = false
@@ -63,7 +64,7 @@ fun GeneralInfo(
 
         InfoRow(
             title = "Happy Hour",
-            description = happyHours.toString(),
+            description = happyHours,
             onClick = {
                 popupControl = true
                 isHappyHour = true
@@ -115,9 +116,9 @@ fun GeneralInfo(
             ) {
                 val title = if (isHappyHour) "Happy Hour" else "Hours"
                 val hours = if (isHappyHour) {
-                    restaurant.weeklyHappyHour.mapValues {
-                        it.value.hours
-                    }
+                    restaurant.weeklyEvents
+                        .mapValues { it.value[EventType.HappyHour] }
+                        .mapValues { it.value?.hours ?: "Not Available" }
                 } else {
                     restaurant.weeklyHours
                 }
