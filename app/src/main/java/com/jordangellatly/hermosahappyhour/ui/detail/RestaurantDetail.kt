@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
+import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.info.EventInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.info.HappyHourInfo
@@ -32,27 +33,17 @@ fun RestaurantDetail(
     upPress: () -> Unit
 ) {
     val restaurant = remember(restaurantId) { RestaurantRepo.getRestaurant(restaurantId) }
-    Scaffold(
-//        bottomBar = {
-//            BottomNavigationBar(navController = navController)
-//        },
-        backgroundColor = HermosaHappyHourTheme.colors.uiBackground
-    ) { contentPadding ->
-        val weeklyHoursAndSpecials = restaurant.weeklyHoursAndSpecials
+    HermosaHappyHourSurface {
         Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(contentPadding)
+            modifier = Modifier.verticalScroll(rememberScrollState())
         ) {
             Header(
                 restaurantName = restaurant.name,
                 imageResource = restaurant.image,
                 upPress = upPress
             )
-            HappyHourInfo(
-                weeklyHoursAndSpecials = weeklyHoursAndSpecials
-            )
-            EventInfo(restaurant = restaurant)
+            HappyHourInfo(weeklyEvents = restaurant.weeklyEvents)
+            EventInfo(weeklyEvents = restaurant.weeklyEvents)
             GeneralInfo(restaurant = restaurant)
         }
     }

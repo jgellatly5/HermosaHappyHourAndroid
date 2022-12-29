@@ -15,10 +15,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AccountCircle
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material.icons.outlined.ShoppingCart
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -43,6 +40,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.jordangellatly.hermosahappyhour.R
+import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
@@ -56,23 +54,23 @@ fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String 
 fun getCurrentDateTime(): Date = Calendar.getInstance().time
 
 fun NavGraphBuilder.addHomeGraph(
-    onSnackSelected: (Long, NavBackStackEntry) -> Unit,
+    onRestaurantSelected: (Long, NavBackStackEntry) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    composable(HomeSections.FEED.route) { from ->
-        Feed(onRestaurantClick = { id -> onSnackSelected(id, from) }, modifier)
+    composable(HomeSections.HOME.route) { from ->
+        Feed(
+            onRestaurantClick = { id -> onRestaurantSelected(id, from) },
+            modifier = modifier,
+            eventType = EventType.HappyHour
+        )
     }
     composable(HomeSections.SEARCH.route) { from ->
-//        Search(onSnackClick = { id -> onSnackSelected(id, from) }, modifier)
-        Feed(onRestaurantClick = { id -> onSnackSelected(id, from) }, modifier)
-    }
-    composable(HomeSections.CART.route) { from ->
-//        Cart(onSnackClick = { id -> onSnackSelected(id, from) }, modifier)
-        Feed(onRestaurantClick = { id -> onSnackSelected(id, from) }, modifier)
+         // TODO Search route
+        Feed(onRestaurantClick = { id -> onRestaurantSelected(id, from) }, modifier)
     }
     composable(HomeSections.PROFILE.route) { from ->
-//        Profile(modifier)
-        Feed(onRestaurantClick = { id -> onSnackSelected(id, from) }, modifier)
+        // TODO Profile route
+        Feed(onRestaurantClick = { id -> onRestaurantSelected(id, from) }, modifier)
     }
 }
 
@@ -81,9 +79,8 @@ enum class HomeSections(
     val icon: ImageVector,
     val route: String
 ) {
-    FEED(R.string.home_feed, Icons.Outlined.Home, "home/feed"),
+    HOME(R.string.home_feed, Icons.Outlined.Home, "home/feed"),
     SEARCH(R.string.home_search, Icons.Outlined.Search, "home/search"),
-    CART(R.string.home_cart, Icons.Outlined.ShoppingCart, "home/cart"),
     PROFILE(R.string.home_profile, Icons.Outlined.AccountCircle, "home/profile")
 }
 

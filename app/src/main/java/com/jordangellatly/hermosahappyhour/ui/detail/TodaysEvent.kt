@@ -17,10 +17,17 @@ import com.jordangellatly.hermosahappyhour.model.tower12SportEvent
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.components.RestaurantImage
 import com.jordangellatly.hermosahappyhour.ui.components.offsetGradientBackground
-import com.jordangellatly.hermosahappyhour.ui.home.HighlightCardPadding
-import com.jordangellatly.hermosahappyhour.ui.home.HighlightCardWidth
-import com.jordangellatly.hermosahappyhour.ui.home.gradientWidth
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+
+val HighlightCardWidth = 170.dp
+val HighlightCardPadding = 16.dp
+
+// The Cards show a gradient which spans 3 cards and scrolls with parallax.
+val gradientWidth
+    @Composable
+    get() = with(LocalDensity.current) {
+        (3 * (HighlightCardWidth + HighlightCardPadding).toPx())
+    }
 
 @Composable
 fun TodaysEventItem(

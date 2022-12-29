@@ -10,22 +10,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.Restaurant
+import com.jordangellatly.hermosahappyhour.model.Event
+import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
+import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
+import com.jordangellatly.hermosahappyhour.ui.detail.HighlightCardPadding
+import com.jordangellatly.hermosahappyhour.ui.detail.HighlightCardWidth
 import com.jordangellatly.hermosahappyhour.ui.detail.TodaysEventItem
-import com.jordangellatly.hermosahappyhour.ui.home.*
+import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
+import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun EventInfo(
-    restaurant: Restaurant?
+    weeklyEvents: Map<String, Map<EventType, Event>>
 ) {
     val date = getCurrentDateTime()
     val getDayFromDate = date.toString("EEEE").uppercase()
-    val hoursAndEventsToday =
-        restaurant?.weeklyHoursAndSpecials?.find { it.dayOfWeek.toString() == getDayFromDate }
-    val happyHourEvent = hoursAndEventsToday?.specialEvents?.first()
+    val event = weeklyEvents
+        .getValue(getDayFromDate)
+        .filterKeys { it != EventType.HappyHour }
+        .firstNotNullOf { it.value }
     val scroll = rememberScrollState(0)
     val gradient = when ((0 / 2) % 2) {
         0 -> HermosaHappyHourTheme.colors.gradient6_1
@@ -44,7 +50,7 @@ fun EventInfo(
             modifier = Modifier.padding(8.dp)
         )
         TodaysEventItem(
-            event = happyHourEvent,
+            event = event,
             onEventClick = {},
             index = 0,
             gradient = gradient,
@@ -57,7 +63,7 @@ fun EventInfo(
             specialsCollection = SpecialsCollection(
                 id = 2L,
                 name = "Event Specials",
-                specials = happyHourEvent?.specials ?: emptyList()
+                specials = event.specials
             ),
             onDealClick = {}
         )
@@ -69,7 +75,7 @@ fun EventInfo(
 private fun EventInfoPreview() {
     HermosaHappyHourTheme {
         EventInfo(
-            restaurant = tower12RestaurantData
+            weeklyEvents = tower12RestaurantData.weeklyEvents
         )
     }
 }

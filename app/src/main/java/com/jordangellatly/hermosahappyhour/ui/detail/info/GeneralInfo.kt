@@ -25,28 +25,26 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.maps.android.compose.*
 import com.jordangellatly.hermosahappyhour.R
+import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.Location
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
-import com.jordangellatly.hermosahappyhour.ui.detail.RestaurantHours
+import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun GeneralInfo(
-    restaurant: Restaurant?
+    restaurant: Restaurant
 ) {
     Column(
         modifier = Modifier.padding(8.dp)
     ) {
         val date = getCurrentDateTime()
         val getDayFromDate = date.toString("EEEE").uppercase()
-        val hoursAndEventsToday =
-            restaurant?.weeklyHoursAndSpecials?.find { it.dayOfWeek.toString() == getDayFromDate }
-        val happyHourEvent = hoursAndEventsToday?.specialEvents?.find { it.title == "Happy Hour" }
-        val happyHours = happyHourEvent?.hours
+        val happyHours = restaurant.weeklyEvents.getValue(getDayFromDate).getValue(EventType.HappyHour).hours
         var popupControl by remember { mutableStateOf(false) }
         var isHappyHour by remember { mutableStateOf(false) }
         Text(
@@ -57,7 +55,7 @@ fun GeneralInfo(
 
         InfoRow(
             title = "Hours",
-            description = hoursAndEventsToday?.businessHours.toString(),
+            description = restaurant.weeklyHours.getValue(getDayFromDate),
             onClick = {
                 popupControl = true
                 isHappyHour = false
@@ -66,7 +64,7 @@ fun GeneralInfo(
 
         InfoRow(
             title = "Happy Hour",
-            description = happyHours.toString(),
+            description = happyHours,
             onClick = {
                 popupControl = true
                 isHappyHour = true
@@ -74,7 +72,7 @@ fun GeneralInfo(
         )
 
         val context = LocalContext.current
-        val website = restaurant?.website.toString()
+        val website = restaurant.website
         val openWebsiteIntent =
             remember { Intent(Intent.ACTION_VIEW, Uri.parse(website)) }
         InfoRow(
@@ -85,7 +83,7 @@ fun GeneralInfo(
             }
         )
 
-        val phoneNumber = restaurant?.phoneNumber ?: ""
+        val phoneNumber = restaurant.phoneNumber
         val callNumberIntent =
             remember { Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber")) }
         InfoRow(
@@ -96,8 +94,8 @@ fun GeneralInfo(
             }
         )
 
-        val addressLine1 = restaurant?.address?.line1 ?: ""
-        val addressLine2 = restaurant?.address?.line2 ?: ""
+        val addressLine1 = restaurant.address.line1
+        val addressLine2 = restaurant.address.line2
         val fullAddress = addressLine1 + addressLine2
         val displayAddress = "$addressLine1 \n$addressLine2"
         val getDirectionsIntent =
@@ -116,12 +114,20 @@ fun GeneralInfo(
             Popup(
                 onDismissRequest = { popupControl = false }
             ) {
-                RestaurantHours(
-                    weeklyHoursAndSpecials = restaurant?.weeklyHoursAndSpecials ?: emptyList(),
+                val title = if (isHappyHour) "Happy Hour" else "Hours"
+                val hours = if (isHappyHour) {
+                    restaurant.weeklyEvents
+                        .mapValues { it.value[EventType.HappyHour] }
+                        .mapValues { it.value?.hours ?: "Not Available" }
+                } else {
+                    restaurant.weeklyHours
+                }
+                HoursPopup(
+                    title = title,
+                    weeklyHours = hours,
                     onClick = {
                         popupControl = false
-                    },
-                    isHappyHour = isHappyHour
+                    }
                 )
             }
         }

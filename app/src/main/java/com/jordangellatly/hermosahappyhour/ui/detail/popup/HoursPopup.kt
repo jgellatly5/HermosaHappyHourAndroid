@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail
+package com.jordangellatly.hermosahappyhour.ui.detail.popup
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -15,9 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.DayOfWeek
-import com.jordangellatly.hermosahappyhour.model.HoursAndSpecials
-import com.jordangellatly.hermosahappyhour.model.tower12WeeklyHoursAndSpecials
+import com.jordangellatly.hermosahappyhour.model.tower12WeeklyHours
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
@@ -26,10 +24,10 @@ import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 
 @Composable
-fun RestaurantHours(
-    weeklyHoursAndSpecials: List<HoursAndSpecials>,
-    onClick: () -> Unit,
-    isHappyHour: Boolean = false
+fun HoursPopup(
+    title: String,
+    weeklyHours: Map<String, String>,
+    onClick: () -> Unit
 ) {
     HermosaHappyHourSurface(
         shape = MaterialTheme.shapes.medium,
@@ -40,7 +38,6 @@ fun RestaurantHours(
         ),
         elevation = 2.dp
     ) {
-        val title = if (isHappyHour) "Happy Hour" else "Hours"
         Column(modifier = Modifier.padding(8.dp)) {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -57,19 +54,12 @@ fun RestaurantHours(
                 )
             }
 
-            DayOfWeek.values().forEach { dayOfWeek ->
+            weeklyHours.keys.forEach { dayOfWeek ->
                 val date = getCurrentDateTime()
                 val getDayFromDate = date.toString("EEEE").uppercase()
                 val fontWeight =
-                    if (getDayFromDate == dayOfWeek.toString()) FontWeight.Bold else FontWeight.Normal
-                val hoursAndEventsToday =
-                    weeklyHoursAndSpecials.find { it.dayOfWeek == dayOfWeek }
-                val businessHours = hoursAndEventsToday?.businessHours
-                val happyHourEvent =
-                    hoursAndEventsToday?.specialEvents?.find { it.title == "Happy Hour" }
-                val happyHour = happyHourEvent?.hours
-                var hours = if (isHappyHour) happyHour else businessHours
-                hours = hours ?: "Not Available"
+                    if (getDayFromDate == dayOfWeek) FontWeight.Bold else FontWeight.Normal
+                val hoursToday = weeklyHours.getValue(dayOfWeek)
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
@@ -77,19 +67,19 @@ fun RestaurantHours(
                         .padding(16.dp)
                 ) {
                     Text(
-                        text = dayOfWeek.toString().lowercase().replaceFirstChar {
+                        text = dayOfWeek.lowercase().replaceFirstChar {
                             it.uppercase()
                         },
                         fontWeight = fontWeight,
                         style = MaterialTheme.typography.h6,
                     )
                     Text(
-                        text = hours.toString(),
+                        text = hoursToday,
                         fontWeight = fontWeight,
                         style = MaterialTheme.typography.h6,
                     )
                 }
-                if (dayOfWeek.toString() != "SATURDAY") {
+                if (dayOfWeek != "SATURDAY") {
                     HappyHourDivider(
                         modifier = Modifier.padding(start = 16.dp, end = 16.dp)
                     )
@@ -122,10 +112,11 @@ private fun Close(onClick: () -> Unit) {
 
 @Preview
 @Composable
-private fun RestaurantHoursPreview() {
+private fun HoursPopupPreview() {
     HermosaHappyHourTheme {
-        RestaurantHours(
-            weeklyHoursAndSpecials = tower12WeeklyHoursAndSpecials,
+        HoursPopup(
+            title = "Hours",
+            weeklyHours = tower12WeeklyHours,
             onClick = {}
         )
     }

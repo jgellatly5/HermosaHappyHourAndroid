@@ -1,99 +1,72 @@
 package com.jordangellatly.hermosahappyhour.ui.home
 
-import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.Filter
-import com.jordangellatly.hermosahappyhour.model.RestaurantCollection
+import com.jordangellatly.hermosahappyhour.model.EventType
+import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
-import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun Feed(
     onRestaurantClick: (Long) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    eventType: EventType = EventType.HappyHour
 ) {
-    val restaurantCollections = remember { RestaurantRepo.getRestaurants() }
-    val filters = remember { RestaurantRepo.getFilters() }
+    val restaurantList = remember { RestaurantRepo.getRestaurantsByEventType(eventType) }
     Feed(
-        restaurantCollections,
-        filters,
-        onRestaurantClick,
-        modifier
+        restaurantList = restaurantList,
+        onRestaurantClick = onRestaurantClick,
+        modifier = modifier
     )
 }
 
 @Composable
 private fun Feed(
-    restaurantCollections: List<RestaurantCollection>,
-    filters: List<Filter>,
+    restaurantList: List<Restaurant>,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     HermosaHappyHourSurface(modifier = modifier.fillMaxSize()) {
         Box {
-            RestaurantCollectionList(restaurantCollections, filters, onRestaurantClick)
+            RestaurantList(
+                restaurantList = restaurantList,
+                onRestaurantClick = onRestaurantClick
+            )
             DateBar()
         }
     }
 }
 
 @Composable
-private fun RestaurantCollectionList(
-    restaurantCollections: List<RestaurantCollection>,
-    filters: List<Filter>,
+private fun RestaurantList(
+    restaurantList: List<Restaurant>,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var filtersVisible by rememberSaveable { mutableStateOf(false) }
     Box(modifier) {
-        LazyColumn {
-            item {
-                Spacer(
-                    Modifier.windowInsetsTopHeight(
-                        WindowInsets.statusBars.add(WindowInsets(top = 56.dp))
-                    )
+        Column {
+            Spacer(
+                Modifier.windowInsetsTopHeight(
+                    WindowInsets.statusBars.add(WindowInsets(top = 56.dp))
                 )
-//                FilterBar(filters, onShowFilters = { filtersVisible = true })
-            }
-            itemsIndexed(restaurantCollections) { index, restaurantCollection ->
-                if (index > 0) {
-                    HappyHourDivider(thickness = 2.dp)
-                }
-
-                FeaturedRestaurantCollection(
-                    restaurantCollection = restaurantCollection,
-                    onRestaurantClick = onRestaurantClick,
-                    index = index
-                )
-            }
+            )
+            RestaurantCollection(
+                restaurants = restaurantList,
+                onRestaurantClick = onRestaurantClick
+            )
         }
-    }
-    AnimatedVisibility(
-        visible = filtersVisible,
-        enter = slideInVertically() + expandVertically(
-            expandFrom = Alignment.Top
-        ) + fadeIn(initialAlpha = 0.3f),
-        exit = slideOutVertically() + shrinkVertically() + fadeOut()
-    ) {
-//        FilterScreen(
-//            onDismiss = { filtersVisible = false }
-//        )
     }
 }
 
 @Preview
 @Composable
-fun HomePreview() {
+private fun FeedPreview() {
     HermosaHappyHourTheme {
         Feed(onRestaurantClick = { })
     }
