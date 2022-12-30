@@ -25,9 +25,13 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.maps.android.compose.*
 import com.jordangellatly.hermosahappyhour.R
-import com.jordangellatly.hermosahappyhour.model.*
+import com.jordangellatly.hermosahappyhour.model.EventType
+import com.jordangellatly.hermosahappyhour.model.Location
+import com.jordangellatly.hermosahappyhour.model.Restaurant
+import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
+import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -41,7 +45,12 @@ fun GeneralInfo(
     ) {
         val date = getCurrentDateTime()
         val getDayFromDate = date.toString("EEEE").uppercase()
-        val happyHours = restaurant.eventsToday.getValue(getDayFromDate).getValue(EventType.HappyHour).hours
+        val happyHourEvent =
+            restaurant.eventsToday.getValue(getDayFromDate).getValue(EventType.HappyHour)
+
+        val happyHourStart = formatTimestamp(happyHourEvent.startTimestamp, "ha")
+        val happyHourEnd = formatTimestamp(happyHourEvent.endTimestamp, "ha")
+
         var popupControl by remember { mutableStateOf(false) }
         var isHappyHour by remember { mutableStateOf(false) }
         Text(
@@ -61,7 +70,7 @@ fun GeneralInfo(
 
         InfoRow(
             title = "Happy Hour",
-            description = happyHours,
+            description = "$happyHourStart - $happyHourEnd",
             onClick = {
                 popupControl = true
                 isHappyHour = true
@@ -115,7 +124,20 @@ fun GeneralInfo(
                 val hours = if (isHappyHour) {
                     restaurant.eventsToday
                         .mapValues { it.value[EventType.HappyHour] }
-                        .mapValues { it.value?.hours ?: "Not Available" }
+                        .mapValues {
+                            val happyHourDayStart =
+                                it.value?.startTimestamp?.let { startTimestamp ->
+                                    formatTimestamp(startTimestamp, "ha")
+                                } ?: ""
+                            val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
+                                formatTimestamp(endTimestamp, "ha")
+                            } ?: ""
+                            if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
+                                "Not Available"
+                            } else {
+                                "$happyHourDayStart - $happyHourDayEnd"
+                            }
+                        }
                 } else {
                     restaurant.weeklyHours
                 }

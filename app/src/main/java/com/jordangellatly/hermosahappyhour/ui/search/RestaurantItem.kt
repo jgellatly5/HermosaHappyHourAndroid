@@ -24,6 +24,7 @@ import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
+import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -45,33 +46,28 @@ fun RestaurantItem(
         val getDayFromDate = date.toString("EEEE").uppercase()
         val happyHourToday =
             restaurant.eventsToday.getValue(getDayFromDate).getValue(EventType.HappyHour)
-        val happyHours = happyHourToday.hours
+
+
+        val defaultFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+
+        val startDate = defaultFormat.parse(happyHourToday.startTimestamp)
+        val startTime = Calendar.getInstance().apply {
+            if (startDate != null) {
+                time = startDate
+            }
+        }
+
+        val endDate = defaultFormat.parse(happyHourToday.endTimestamp)
+        val endTime = Calendar.getInstance().apply {
+            if (endDate != null) {
+                time = endDate
+            }
+        }
 
         val currentTime = Calendar.getInstance()
-        val startTime = Calendar.getInstance()
-        val endTime = Calendar.getInstance()
 
-        val splitStartTimeFromHours = happyHours.split("-")
-        val stringStart = splitStartTimeFromHours[0].trim()
-        val stringEnd = splitStartTimeFromHours.get(index = 1).trim()
-
-        val splitIntStartTime = stringStart.split("")
-        var intStartFirstDigit = splitIntStartTime.get(index = 1).toInt()
-        if (splitIntStartTime[2] == "P") {
-            intStartFirstDigit += 12
-        }
-
-        val splitIntEndTime = stringEnd.split("")
-        var intEndFirstDigit = splitIntEndTime[1].toInt()
-        if (splitIntEndTime[2] == "P") {
-            intEndFirstDigit += 12
-        }
-
-        startTime[Calendar.HOUR_OF_DAY] = intStartFirstDigit
-        startTime[Calendar.MINUTE] = 0
-
-        endTime[Calendar.HOUR_OF_DAY] = intEndFirstDigit
-        endTime[Calendar.MINUTE] = 0
+        val formattedStart = formatTimestamp(happyHourToday.startTimestamp, "ha")
+        val formattedEnd = formatTimestamp(happyHourToday.endTimestamp, "ha")
 
         Column(
             modifier = Modifier
@@ -111,7 +107,7 @@ fun RestaurantItem(
                         withStyle(style = SpanStyle(timeIndicatorColor)) {
                             append("Starts")
                         }
-                        append(" at $stringStart")
+                        append(" at $formattedStart")
                         millisInFuture = startTime.timeInMillis - currentTime.timeInMillis
                     }
                     currentTime > startTime && currentTime < endTime -> {
@@ -119,7 +115,7 @@ fun RestaurantItem(
                         withStyle(style = SpanStyle(timeIndicatorColor)) {
                             append("Ends")
                         }
-                        append(" at $stringEnd")
+                        append(" at $formattedEnd")
                         millisInFuture = endTime.timeInMillis - currentTime.timeInMillis
                     }
                     currentTime > endTime -> {
@@ -127,7 +123,7 @@ fun RestaurantItem(
                         withStyle(style = SpanStyle(timeIndicatorColor)) {
                             append("Ended")
                         }
-                        append(" at $stringEnd")
+                        append(" at $formattedEnd")
                         millisInFuture = 0L
                     }
                     else -> {

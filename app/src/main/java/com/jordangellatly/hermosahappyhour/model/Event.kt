@@ -7,8 +7,9 @@ data class Event(
     val eventType: EventType,
     val title: String,
     val description: String,
+    val startTimestamp: String,
+    val endTimestamp: String,
     val restaurantId: Long,
-    val hours: String,
     val specials: List<Deal>,
     val image: URI
 )
@@ -26,7 +27,8 @@ val tower12HappyHour = Event(
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = tower12RestaurantId,
-    hours = "3PM - 7PM",
+    startTimestamp = "2022-12-29T15:00",
+    endTimestamp = "2022-12-29T19:00",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -51,10 +53,11 @@ val tower12HappyHour = Event(
 val tower12SportEvent = Event(
     id = 2,
     eventType = EventType.Sports,
-    title = "Saturday & Sunday Football",
+    title = "Sunday Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    hours = "9AM - 2AM",
+    startTimestamp = "2023-01-01T09:00",
+    endTimestamp = "2023-01-01T21:00",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -82,7 +85,8 @@ val sharkeezHappyHour = Event(
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = bajaSharkeezRestaurantId,
-    hours = "3PM - 7PM",
+    startTimestamp = "2022-12-29T15:00",
+    endTimestamp = "2022-12-29T19:00",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -107,10 +111,11 @@ val sharkeezHappyHour = Event(
 val sharkeezSportEvent = Event(
     id = 4,
     eventType = EventType.Sports,
-    title = "Saturday & Sunday Football",
+    title = "Sunday Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = bajaSharkeezRestaurantId,
-    hours = "9AM - 2AM",
+    startTimestamp = "2023-01-01T09:00",
+    endTimestamp = "2023-01-01T21:00",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -138,7 +143,8 @@ val junkieHappyHour = Event(
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = americanJunkieRestaurantId,
-    hours = "3PM - 7PM",
+    startTimestamp = "2022-12-29T15:00",
+    endTimestamp = "2022-12-29T19:00",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -163,10 +169,11 @@ val junkieHappyHour = Event(
 val junkieSportEvent = Event(
     id = 6,
     eventType = EventType.Sports,
-    title = "Saturday & Sunday Football",
+    title = "Sunday Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = americanJunkieRestaurantId,
-    hours = "9AM - 2AM",
+    startTimestamp = "2023-01-01T09:00",
+    endTimestamp = "2023-01-01T21:00",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -194,7 +201,8 @@ val hennesseysHappyHour = Event(
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = hennesseysRestaurantId,
-    hours = "3PM - 7PM",
+    startTimestamp = "2022-12-29T15:00",
+    endTimestamp = "2022-12-29T19:00",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -219,10 +227,11 @@ val hennesseysHappyHour = Event(
 val hennesseysSportEvent = Event(
     id = 8,
     eventType = EventType.Sports,
-    title = "Saturday & Sunday Football",
+    title = "Sunday Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = hennesseysRestaurantId,
-    hours = "9AM - 2AM",
+    startTimestamp = "2023-01-01T09:00",
+    endTimestamp = "2023-01-01T21:00",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -250,7 +259,8 @@ val mondayNightFootball = Event(
     title = "Monday Night Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    hours = "5PM - 8PM",
+    startTimestamp = "2023-01-02T17:00",
+    endTimestamp = "2023-01-02T20:00",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -278,7 +288,8 @@ val tacoTuesday = Event(
     title = "Taco Tuesday",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    hours = "5PM - 8PM",
+    startTimestamp = "2023-01-03T17:00",
+    endTimestamp = "2023-01-03T20:00",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -306,7 +317,8 @@ val wineWednesday = Event(
     title = "Wine Wednesday",
     description = "Wine Wednesday is fun",
     restaurantId = tower12RestaurantId,
-    hours = "5PM - 8PM",
+    startTimestamp = "2023-01-04T17:00",
+    endTimestamp = "2023-01-04T20:00",
     specials = listOf(
         Deal(
             description = "Wine (ask server for selections)",
@@ -322,7 +334,8 @@ val thursdayNightFootball = Event(
     title = "Thursday Night Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    hours = "5PM - 8PM",
+    startTimestamp = "2023-12-29T17:00",
+    endTimestamp = "2023-12-29T20:00",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -350,7 +363,8 @@ val fridayNightTrivia = Event(
     title = "Friday Night Trivia",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    hours = "5PM - 8PM",
+    startTimestamp = "2023-12-30T17:00",
+    endTimestamp = "2023-12-30T20:00",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",

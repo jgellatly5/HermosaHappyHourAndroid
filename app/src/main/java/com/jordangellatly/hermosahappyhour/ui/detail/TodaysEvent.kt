@@ -17,6 +17,7 @@ import com.jordangellatly.hermosahappyhour.model.tower12SportEvent
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.components.RestaurantImage
 import com.jordangellatly.hermosahappyhour.ui.components.offsetGradientBackground
+import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 val HighlightCardWidth = 170.dp
@@ -31,7 +32,7 @@ val gradientWidth
 
 @Composable
 fun TodaysEventItem(
-    event: Event?,
+    event: Event,
     onEventClick: (Long) -> Unit,
     index: Int,
     gradient: List<Color>,
@@ -50,7 +51,7 @@ fun TodaysEventItem(
     ) {
         Column(
             modifier = Modifier
-                .clickable(onClick = { onEventClick(event?.id ?: 0) })
+                .clickable(onClick = { onEventClick(event.id) })
                 .fillMaxSize()
         ) {
             Box(
@@ -66,7 +67,7 @@ fun TodaysEventItem(
                         .offsetGradientBackground(gradient, gradientWidth, gradientOffset)
                 )
                 RestaurantImage(
-                    imageUrl = event?.image.toString(),
+                    imageUrl = event.image.toString(),
                     contentDescription = null,
                     modifier = Modifier
                         .size(120.dp)
@@ -75,7 +76,7 @@ fun TodaysEventItem(
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = event?.title.toString(),
+                text = event.title,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.h6,
@@ -83,14 +84,24 @@ fun TodaysEventItem(
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
             Spacer(modifier = Modifier.height(4.dp))
+
+            val formattedStart = formatTimestamp(event.startTimestamp, "ha") ?: ""
+            val formattedEnd = formatTimestamp(event.endTimestamp, "ha") ?: ""
+
+            val hours = if (formattedStart.isEmpty() || formattedEnd.isEmpty()) {
+                "Not Available"
+            } else {
+                "$formattedStart - $formattedEnd"
+            }
+
             Text(
-                text = event?.hours.toString(),
+                text = hours,
                 style = MaterialTheme.typography.body1,
                 color = HermosaHappyHourTheme.colors.textHelp,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
             Text(
-                text = event?.description.toString(),
+                text = event.description,
                 style = MaterialTheme.typography.body1,
                 color = HermosaHappyHourTheme.colors.textSecondary,
                 modifier = Modifier.padding(horizontal = 16.dp)

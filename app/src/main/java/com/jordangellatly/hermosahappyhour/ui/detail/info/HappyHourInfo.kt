@@ -19,6 +19,7 @@ import androidx.compose.ui.window.Popup
 import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
 import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
+import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -34,35 +35,30 @@ fun HappyHourInfo(
     ) {
         val date = getCurrentDateTime()
         val getDayFromDate = date.toString("EEEE").uppercase()
-        val happyHourToday = weeklyEvents.getValue(getDayFromDate).getValue(EventType.HappyHour)
-        val happyHours = happyHourToday.hours
-        val specials = happyHourToday.specials
+        val happyHourEvent = weeklyEvents.getValue(getDayFromDate).getValue(EventType.HappyHour)
+
+        val specials = happyHourEvent.specials
+
+        val defaultFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+
+        val startDate = defaultFormat.parse(happyHourEvent.startTimestamp)
+        val startTime = Calendar.getInstance().apply {
+            if (startDate != null) {
+                time = startDate
+            }
+        }
+
+        val endDate = defaultFormat.parse(happyHourEvent.endTimestamp)
+        val endTime = Calendar.getInstance().apply {
+            if (endDate != null) {
+                time = endDate
+            }
+        }
 
         val currentTime = Calendar.getInstance()
-        val startTime = Calendar.getInstance()
-        val endTime = Calendar.getInstance()
 
-        val splitStartTimeFromHours = happyHours.split("-")
-        val stringStart = splitStartTimeFromHours[0].trim()
-        val stringEnd = splitStartTimeFromHours[1].trim()
-
-        val splitIntStartTime = stringStart.split("")
-        var intStartFirstDigit = splitIntStartTime[1].toInt()
-        if (splitIntStartTime[2] == "P") {
-            intStartFirstDigit += 12
-        }
-
-        val splitIntEndTime = stringEnd.split("")
-        var intEndFirstDigit = splitIntEndTime[1].toInt()
-        if (splitIntEndTime[2] == "P") {
-            intEndFirstDigit += 12
-        }
-
-        startTime[Calendar.HOUR_OF_DAY] = intStartFirstDigit
-        startTime[Calendar.MINUTE] = 0
-
-        endTime[Calendar.HOUR_OF_DAY] = intEndFirstDigit
-        endTime[Calendar.MINUTE] = 0
+        val formattedStart = formatTimestamp(happyHourEvent.startTimestamp, "ha")
+        val formattedEnd = formatTimestamp(happyHourEvent.endTimestamp, "ha")
 
         val weeklyHappyHour = weeklyEvents.mapValues {
             it.value[EventType.HappyHour]
@@ -73,8 +69,8 @@ fun HappyHourInfo(
             currentTime = currentTime,
             startTime = startTime,
             endTime = endTime,
-            stringStart = stringStart,
-            stringEnd = stringEnd
+            stringStart = formattedStart,
+            stringEnd = formattedEnd
         )
 
         FeaturedSpecialsCollection(
@@ -187,7 +183,17 @@ private fun NextHappyHour(
                 onDismissRequest = { popupControl = false }
             ) {
                 val weeklyHours = weeklyHappyHour.mapValues {
-                    it.value?.hours ?: "Not Available"
+                    val happyHourDayStart = it.value?.startTimestamp?.let { startTimestamp ->
+                        formatTimestamp(startTimestamp, "ha")
+                    } ?: ""
+                    val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
+                        formatTimestamp(endTimestamp, "ha")
+                    } ?: ""
+                    if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
+                        "Not Available"
+                    } else {
+                        "$happyHourDayStart - $happyHourDayEnd"
+                    }
                 }
                 HoursPopup(
                     title = "Happy Hour",

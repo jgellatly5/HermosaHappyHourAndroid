@@ -15,7 +15,9 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -53,6 +55,13 @@ fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String 
 
 fun getCurrentDateTime(): Date = Calendar.getInstance().time
 
+fun formatTimestamp(timestamp: String, pattern: String): String? {
+    val defaultFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+    val date = defaultFormat.parse(timestamp)
+    val newFormat = SimpleDateFormat(pattern, Locale.getDefault())
+    return date?.let { newFormat.format(it) }
+}
+
 fun NavGraphBuilder.addHomeGraph(
     onRestaurantSelected: (Long, NavBackStackEntry) -> Unit,
     modifier: Modifier = Modifier
@@ -65,7 +74,7 @@ fun NavGraphBuilder.addHomeGraph(
         )
     }
     composable(HomeSections.SEARCH.route) { from ->
-         // TODO Search route
+        // TODO Search route
         EventFeed(onEventClick = { id -> onRestaurantSelected(id, from) }, modifier)
     }
     composable(HomeSections.PROFILE.route) { from ->
