@@ -48,44 +48,6 @@ fun SearchScreen(
     }
 }
 
-//@Composable
-//fun RestaurantList(
-//    navController: NavController,
-//    state: MutableState<TextFieldValue>
-//) {
-//    val viewModel = RestaurantViewModel()
-//    val restaurants = viewModel.sampleSearchRestaurantData
-//    var filteredRestaurants: List<Restaurant>
-//    LazyColumn(
-//        modifier = Modifier
-//            .fillMaxWidth(),
-//        verticalArrangement = Arrangement.spacedBy(16.dp),
-//        contentPadding = PaddingValues(16.dp)
-//    ) {
-//        val searchedText = state.value.text
-//        filteredRestaurants = if (searchedText.isEmpty()) {
-//            restaurants
-//        } else {
-//            val resultList = ArrayList<Restaurant>()
-//            for (restaurant in restaurants) {
-//                if (restaurant.name.lowercase(Locale.getDefault())
-//                        .contains(searchedText.lowercase(Locale.getDefault()))
-//                ) {
-//                    resultList.add(restaurant)
-//                }
-//            }
-//            resultList
-//        }
-//        items(filteredRestaurants) { restaurant ->
-//            RestaurantCard(
-//                name = restaurant.name,
-//                image = restaurant.companyLogoUrl
-//            ) {
-//                navController.navigate("detail/${restaurant.name}")
-//            }
-//        }
-//    }
-//}
 
 @Composable
 fun SearchBar(

@@ -2,15 +2,17 @@ package com.jordangellatly.hermosahappyhour.model
 
 object EventRepo {
 
-    fun getAllEventsToday(getDayFromDate: String): List<Event> =
-        sampleSearchRestaurantData.flatMap { restaurant ->
-            restaurant.weeklyEvents.getValue(getDayFromDate).map { eventMap ->
-                eventMap.value
-            }
-        }
+    fun getAllEventsToday(getDayFromDate: String): List<Event> = sampleEventData
+
+//    fun getAllEventsToday(getDayFromDate: String): List<Event> =
+//        sampleSearchRestaurantData.flatMap { restaurant ->
+//            restaurant.eventsToday.getValue(getDayFromDate).map { eventMap ->
+//                eventMap.value
+//            }
+//        }
 
     fun getAllEvents(): List<Event> = sampleSearchRestaurantData.flatMap { restaurant ->
-        restaurant.weeklyEvents.values.flatMap { eventMap ->
+        restaurant.eventsToday.values.flatMap { eventMap ->
             eventMap.values
         }
     }

@@ -9,7 +9,7 @@ object RestaurantRepo {
 
     fun getRestaurantsByEventType(eventType: EventType): List<Restaurant> =
         sampleSearchRestaurantData.filter { restaurant ->
-            restaurant.weeklyEvents.getValue(getDayFromDate).containsKey(eventType)
+            restaurant.eventsToday.getValue(getDayFromDate).containsKey(eventType)
         }
 
     fun getRestaurant(restaurantId: Long) =

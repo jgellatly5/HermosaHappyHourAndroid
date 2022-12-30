@@ -7,6 +7,7 @@ data class Event(
     val eventType: EventType,
     val title: String,
     val description: String,
+    val restaurantId: Long,
     val hours: String,
     val specials: List<Deal>,
     val image: URI
@@ -22,8 +23,9 @@ enum class EventType { HappyHour, Brunch, Sports, Default }
 val tower12HappyHour = Event(
     id = 1,
     eventType = EventType.HappyHour,
-    title = "Happy Hour",
+    title = "Jungle Hour",
     description = "Bringing you wild drink specials",
+    restaurantId = tower12RestaurantId,
     hours = "3PM - 7PM",
     specials = listOf(
         Deal(
@@ -51,6 +53,7 @@ val tower12SportEvent = Event(
     eventType = EventType.Sports,
     title = "Saturday & Sunday Football",
     description = "Premiere sports viewing, we get all the games",
+    restaurantId = tower12RestaurantId,
     hours = "9AM - 2AM",
     specials = listOf(
         Deal(
@@ -78,6 +81,7 @@ val sharkeezHappyHour = Event(
     eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
+    restaurantId = bajaSharkeezRestaurantId,
     hours = "3PM - 7PM",
     specials = listOf(
         Deal(
@@ -105,6 +109,7 @@ val sharkeezSportEvent = Event(
     eventType = EventType.Sports,
     title = "Saturday & Sunday Football",
     description = "Premiere sports viewing, we get all the games",
+    restaurantId = bajaSharkeezRestaurantId,
     hours = "9AM - 2AM",
     specials = listOf(
         Deal(
@@ -132,6 +137,7 @@ val junkieHappyHour = Event(
     eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
+    restaurantId = americanJunkieRestaurantId,
     hours = "3PM - 7PM",
     specials = listOf(
         Deal(
@@ -159,6 +165,7 @@ val junkieSportEvent = Event(
     eventType = EventType.Sports,
     title = "Saturday & Sunday Football",
     description = "Premiere sports viewing, we get all the games",
+    restaurantId = americanJunkieRestaurantId,
     hours = "9AM - 2AM",
     specials = listOf(
         Deal(
@@ -186,6 +193,7 @@ val hennesseysHappyHour = Event(
     eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
+    restaurantId = hennesseysRestaurantId,
     hours = "3PM - 7PM",
     specials = listOf(
         Deal(
@@ -213,6 +221,7 @@ val hennesseysSportEvent = Event(
     eventType = EventType.Sports,
     title = "Saturday & Sunday Football",
     description = "Premiere sports viewing, we get all the games",
+    restaurantId = hennesseysRestaurantId,
     hours = "9AM - 2AM",
     specials = listOf(
         Deal(
@@ -240,6 +249,7 @@ val mondayNightFootball = Event(
     eventType = EventType.Sports,
     title = "Monday Night Football",
     description = "Premiere sports viewing, we get all the games",
+    restaurantId = tower12RestaurantId,
     hours = "5PM - 8PM",
     specials = listOf(
         Deal(
@@ -267,6 +277,7 @@ val tacoTuesday = Event(
     eventType = EventType.Default,
     title = "Taco Tuesday",
     description = "Premiere sports viewing, we get all the games",
+    restaurantId = tower12RestaurantId,
     hours = "5PM - 8PM",
     specials = listOf(
         Deal(
@@ -294,6 +305,7 @@ val wineWednesday = Event(
     eventType = EventType.Default,
     title = "Wine Wednesday",
     description = "Wine Wednesday is fun",
+    restaurantId = tower12RestaurantId,
     hours = "5PM - 8PM",
     specials = listOf(
         Deal(
@@ -309,6 +321,7 @@ val thursdayNightFootball = Event(
     eventType = EventType.Sports,
     title = "Thursday Night Football",
     description = "Premiere sports viewing, we get all the games",
+    restaurantId = tower12RestaurantId,
     hours = "5PM - 8PM",
     specials = listOf(
         Deal(
@@ -336,6 +349,7 @@ val fridayNightTrivia = Event(
     eventType = EventType.Default,
     title = "Friday Night Trivia",
     description = "Premiere sports viewing, we get all the games",
+    restaurantId = tower12RestaurantId,
     hours = "5PM - 8PM",
     specials = listOf(
         Deal(
@@ -356,4 +370,20 @@ val fridayNightTrivia = Event(
         )
     ),
     image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+)
+
+val sampleEventData = listOf(
+    tower12HappyHour,
+    tower12SportEvent,
+    sharkeezHappyHour,
+    sharkeezSportEvent,
+    junkieHappyHour,
+    junkieSportEvent,
+    hennesseysHappyHour,
+    hennesseysSportEvent,
+    mondayNightFootball,
+    tacoTuesday,
+    wineWednesday,
+    thursdayNightFootball,
+    fridayNightTrivia
 )

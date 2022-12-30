@@ -25,10 +25,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.maps.android.compose.*
 import com.jordangellatly.hermosahappyhour.R
-import com.jordangellatly.hermosahappyhour.model.EventType
-import com.jordangellatly.hermosahappyhour.model.Location
-import com.jordangellatly.hermosahappyhour.model.Restaurant
-import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
+import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
@@ -44,7 +41,7 @@ fun GeneralInfo(
     ) {
         val date = getCurrentDateTime()
         val getDayFromDate = date.toString("EEEE").uppercase()
-        val happyHours = restaurant.weeklyEvents.getValue(getDayFromDate).getValue(EventType.HappyHour).hours
+        val happyHours = restaurant.eventsToday.getValue(getDayFromDate).getValue(EventType.HappyHour).hours
         var popupControl by remember { mutableStateOf(false) }
         var isHappyHour by remember { mutableStateOf(false) }
         Text(
@@ -116,7 +113,7 @@ fun GeneralInfo(
             ) {
                 val title = if (isHappyHour) "Happy Hour" else "Hours"
                 val hours = if (isHappyHour) {
-                    restaurant.weeklyEvents
+                    restaurant.eventsToday
                         .mapValues { it.value[EventType.HappyHour] }
                         .mapValues { it.value?.hours ?: "Not Available" }
                 } else {
@@ -225,7 +222,7 @@ private fun BottomMap(restaurant: Restaurant?) {
 private fun GeneralInfoPreview() {
     HermosaHappyHourTheme {
         GeneralInfo(
-            restaurant = tower12RestaurantData
+            restaurant = tower12
         )
     }
 }

@@ -42,8 +42,8 @@ fun RestaurantDetail(
                 imageResource = restaurant.image,
                 upPress = upPress
             )
-            HappyHourInfo(weeklyEvents = restaurant.weeklyEvents)
-            EventInfo(weeklyEvents = restaurant.weeklyEvents)
+            HappyHourInfo(weeklyEvents = restaurant.eventsToday)
+            EventInfo(weeklyEvents = restaurant.eventsToday)
             GeneralInfo(restaurant = restaurant)
         }
     }

@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
-import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
+import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
 import com.jordangellatly.hermosahappyhour.ui.detail.HighlightCardPadding
 import com.jordangellatly.hermosahappyhour.ui.detail.HighlightCardWidth
@@ -75,7 +75,7 @@ fun EventInfo(
 private fun EventInfoPreview() {
     HermosaHappyHourTheme {
         EventInfo(
-            weeklyEvents = tower12RestaurantData.weeklyEvents
+            weeklyEvents = tower12.eventsToday
         )
     }
 }

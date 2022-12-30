@@ -13,13 +13,13 @@ import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
-fun Feed(
+fun RestaurantFeed(
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
     eventType: EventType = EventType.HappyHour
 ) {
     val restaurantList = remember { RestaurantRepo.getRestaurantsByEventType(eventType) }
-    Feed(
+    RestaurantFeed(
         restaurantList = restaurantList,
         onRestaurantClick = onRestaurantClick,
         modifier = modifier
@@ -27,7 +27,7 @@ fun Feed(
 }
 
 @Composable
-private fun Feed(
+private fun RestaurantFeed(
     restaurantList: List<Restaurant>,
     onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier
@@ -66,8 +66,8 @@ private fun RestaurantList(
 
 @Preview
 @Composable
-private fun FeedPreview() {
+private fun RestaurantFeedPreview() {
     HermosaHappyHourTheme {
-        Feed(onRestaurantClick = { })
+        RestaurantFeed(onRestaurantClick = { })
     }
 }

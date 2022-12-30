@@ -22,44 +22,47 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.*
+import com.jordangellatly.hermosahappyhour.model.Event
+import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
+import com.jordangellatly.hermosahappyhour.model.sampleEventData
+import com.jordangellatly.hermosahappyhour.model.tower12HappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun RestaurantCollection(
-    restaurants: List<Restaurant>,
-    onRestaurantClick: (Long) -> Unit,
+fun EventCollection(
+    events: List<Event>,
+    onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
     ) {
-        items(restaurants) { restaurant ->
-            RestaurantItem(restaurant, onRestaurantClick)
+        items(events) { event ->
+            EventItem(event, onEventClick)
         }
     }
 }
 
 @Preview
 @Composable
-private fun RestaurantCollectionPreview() {
+private fun EventCollectionPreview() {
     HermosaHappyHourTheme {
-        val restaurants = sampleSearchRestaurantData
-        RestaurantCollection(
-            restaurants = restaurants,
-            onRestaurantClick = {}
+        val events = sampleEventData
+        EventCollection(
+            events = events,
+            onEventClick = {}
         )
     }
 }
 
 @Composable
-private fun RestaurantItem(
-    restaurant: Restaurant,
-    onRestaurantClick: (Long) -> Unit,
+private fun EventItem(
+    event: Event,
+    onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     HappyHourCard(
@@ -67,17 +70,13 @@ private fun RestaurantItem(
             .fillMaxWidth()
             .padding(bottom = 16.dp)
     ) {
-        val date = getCurrentDateTime()
-        val getDayFromDate = date.toString("EEEE").uppercase()
-        val happyHourToday =
-            restaurant.eventsToday.getValue(getDayFromDate).getValue(EventType.HappyHour)
-        val happyHours = happyHourToday.hours
+        val eventHours = event.hours
 
         val currentTime = Calendar.getInstance()
         val startTime = Calendar.getInstance()
         val endTime = Calendar.getInstance()
 
-        val splitStartTimeFromHours = happyHours.split("-")
+        val splitStartTimeFromHours = eventHours.split("-")
         val stringStart = splitStartTimeFromHours[0].trim()
         val stringEnd = splitStartTimeFromHours.get(index = 1).trim()
 
@@ -101,9 +100,10 @@ private fun RestaurantItem(
 
         Column(
             modifier = Modifier
-                .clickable(onClick = { onRestaurantClick(restaurant.id) })
+                .clickable(onClick = { onEventClick(event.restaurantId) })
                 .fillMaxSize()
         ) {
+            val restaurant = remember { RestaurantRepo.getRestaurant(event.restaurantId) }
             Box(
                 modifier = Modifier
                     .height(160.dp)
@@ -130,7 +130,7 @@ private fun RestaurantItem(
             var millisInFuture = 0L
             var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
             val annotatedTimeString = buildAnnotatedString {
-                append("Happy Hour \u2022 ")
+                append("${event.title} \u2022 ")
                 when {
                     currentTime < startTime -> {
                         timeIndicatorColor = Color.Green
@@ -198,12 +198,12 @@ private fun RestaurantItem(
 
 @Preview
 @Composable
-private fun RestaurantItemPreview() {
+private fun EventItemPreview() {
     HermosaHappyHourTheme {
-        val restaurant = tower12
-        RestaurantItem(
-            restaurant = restaurant,
-            onRestaurantClick = {}
+        val event = tower12HappyHour
+        EventItem(
+            event = event,
+            onEventClick = {}
         )
     }
 }
