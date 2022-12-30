@@ -1,11 +1,9 @@
-package com.jordangellatly.hermosahappyhour.ui.home
+package com.jordangellatly.hermosahappyhour.ui.search
 
 import android.os.CountDownTimer
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -22,47 +20,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.Event
-import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
-import com.jordangellatly.hermosahappyhour.model.sampleEventData
-import com.jordangellatly.hermosahappyhour.model.tower12HappyHour
+import com.jordangellatly.hermosahappyhour.model.EventType
+import com.jordangellatly.hermosahappyhour.model.Restaurant
+import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
+import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
+import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun EventCollection(
-    events: List<Event>,
-    onEventClick: (Long) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    LazyColumn(
-        modifier = modifier,
-        contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
-    ) {
-        items(events) { event ->
-            EventItem(event, onEventClick)
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun EventCollectionPreview() {
-    HermosaHappyHourTheme {
-        val events = sampleEventData
-        EventCollection(
-            events = events,
-            onEventClick = {}
-        )
-    }
-}
-
-@Composable
-private fun EventItem(
-    event: Event,
-    onEventClick: (Long) -> Unit,
+fun RestaurantItem(
+    restaurant: Restaurant,
+    onRestaurantClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     HappyHourCard(
@@ -70,13 +41,17 @@ private fun EventItem(
             .fillMaxWidth()
             .padding(bottom = 16.dp)
     ) {
-        val eventHours = event.hours
+        val date = getCurrentDateTime()
+        val getDayFromDate = date.toString("EEEE").uppercase()
+        val happyHourToday =
+            restaurant.eventsToday.getValue(getDayFromDate).getValue(EventType.HappyHour)
+        val happyHours = happyHourToday.hours
 
         val currentTime = Calendar.getInstance()
         val startTime = Calendar.getInstance()
         val endTime = Calendar.getInstance()
 
-        val splitStartTimeFromHours = eventHours.split("-")
+        val splitStartTimeFromHours = happyHours.split("-")
         val stringStart = splitStartTimeFromHours[0].trim()
         val stringEnd = splitStartTimeFromHours.get(index = 1).trim()
 
@@ -100,10 +75,9 @@ private fun EventItem(
 
         Column(
             modifier = Modifier
-                .clickable(onClick = { onEventClick(event.restaurantId) })
+                .clickable(onClick = { onRestaurantClick(restaurant.id) })
                 .fillMaxSize()
         ) {
-            val restaurant = remember { RestaurantRepo.getRestaurant(event.restaurantId) }
             Box(
                 modifier = Modifier
                     .height(160.dp)
@@ -130,7 +104,7 @@ private fun EventItem(
             var millisInFuture = 0L
             var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
             val annotatedTimeString = buildAnnotatedString {
-                append("${event.title} \u2022 ")
+                append("Happy Hour \u2022 ")
                 when {
                     currentTime < startTime -> {
                         timeIndicatorColor = Color.Green
@@ -196,14 +170,14 @@ private fun EventItem(
     }
 }
 
-@Preview
+@Preview(heightDp = 240)
 @Composable
-private fun EventItemPreview() {
+private fun RestaurantItemPreview() {
     HermosaHappyHourTheme {
-        val event = tower12HappyHour
-        EventItem(
-            event = event,
-            onEventClick = {}
+        val restaurant = tower12
+        RestaurantItem(
+            restaurant = restaurant,
+            onRestaurantClick = {}
         )
     }
 }

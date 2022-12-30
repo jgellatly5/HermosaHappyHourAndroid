@@ -1,6 +1,8 @@
 package com.jordangellatly.hermosahappyhour.ui.home
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -20,9 +22,9 @@ fun EventFeed(
 ) {
     val date = getCurrentDateTime()
     val getDayFromDate = date.toString("EEEE").uppercase()
-    val eventList = remember { EventRepo.getAllEventsToday(getDayFromDate) }
+    val events = remember { EventRepo.getAllEventsToday(getDayFromDate) }
     EventFeed(
-        eventList = eventList,
+        events = events,
         onEventClick = onEventClick,
         modifier = modifier
     )
@@ -30,14 +32,14 @@ fun EventFeed(
 
 @Composable
 private fun EventFeed(
-    eventList: List<Event>,
+    events: List<Event>,
     onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     HermosaHappyHourSurface(modifier = modifier.fillMaxSize()) {
         Box {
             EventList(
-                eventList = eventList,
+                events = events,
                 onEventClick = onEventClick
             )
             DateBar()
@@ -47,7 +49,7 @@ private fun EventFeed(
 
 @Composable
 private fun EventList(
-    eventList: List<Event>,
+    events: List<Event>,
     onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -58,10 +60,14 @@ private fun EventList(
                     WindowInsets.statusBars.add(WindowInsets(top = 56.dp))
                 )
             )
-            EventCollection(
-                events = eventList,
-                onEventClick = onEventClick
-            )
+            LazyColumn(
+                modifier = modifier,
+                contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
+            ) {
+                items(events) { event ->
+                    EventItem(event, onEventClick)
+                }
+            }
         }
     }
 }
