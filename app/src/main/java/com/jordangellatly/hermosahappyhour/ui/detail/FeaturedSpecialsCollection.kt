@@ -15,7 +15,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
-import com.jordangellatly.hermosahappyhour.model.tower12HappyHour
+import com.jordangellatly.hermosahappyhour.model.tower12FridayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.utils.mirroringIcon
 
@@ -70,7 +70,7 @@ private fun FeaturedSpecialsCollectionPreview() {
         val specialsCollection = SpecialsCollection(
             id = 1L,
             name = "Featured Specials",
-            specials = tower12HappyHour.specials
+            specials = tower12FridayHappyHour.specials
         )
         FeaturedSpecialsCollection(
             specialsCollection = specialsCollection,

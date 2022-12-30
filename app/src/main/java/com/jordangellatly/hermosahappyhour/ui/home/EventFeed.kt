@@ -21,8 +21,7 @@ fun EventFeed(
     eventType: EventType = EventType.HappyHour
 ) {
     val date = getCurrentDateTime()
-    val getDayFromDate = date.toString("EEEE").uppercase()
-    val events = remember { EventRepo.getAllEventsToday(getDayFromDate) }
+    val events = remember { EventRepo.getAllEventsByDate(date) }
     EventFeed(
         events = events,
         onEventClick = onEventClick,
