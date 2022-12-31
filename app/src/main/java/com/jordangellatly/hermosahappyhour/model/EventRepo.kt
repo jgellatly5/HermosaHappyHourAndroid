@@ -22,7 +22,7 @@ object EventRepo {
 //        }
 
     fun getAllEvents(): List<Event> = sampleSearchRestaurantData.flatMap { restaurant ->
-        restaurant.eventsToday.values.flatMap { eventMap ->
+        restaurant.eventsByDate.values.flatMap { eventMap ->
             eventMap.values
         }
     }

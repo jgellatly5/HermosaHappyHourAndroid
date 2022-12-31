@@ -35,6 +35,8 @@ import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Composable
 fun GeneralInfo(
@@ -44,13 +46,6 @@ fun GeneralInfo(
         modifier = Modifier.padding(8.dp)
     ) {
         val date = getCurrentDateTime()
-        val getDayFromDate = date.toString("EEEE").uppercase()
-        val happyHourEvent =
-            restaurant.eventsToday.getValue(getDayFromDate).getValue(EventType.HappyHour)
-
-        val happyHourStart = formatTimestamp(happyHourEvent.startTimestamp, "ha")
-        val happyHourEnd = formatTimestamp(happyHourEvent.endTimestamp, "ha")
-
         var popupControl by remember { mutableStateOf(false) }
         var isHappyHour by remember { mutableStateOf(false) }
         Text(
@@ -59,6 +54,7 @@ fun GeneralInfo(
             modifier = Modifier.padding(8.dp)
         )
 
+        val getDayFromDate = date.toString("EEEE").uppercase()
         InfoRow(
             title = "Hours",
             description = restaurant.weeklyHours.getValue(getDayFromDate),
@@ -68,9 +64,23 @@ fun GeneralInfo(
             }
         )
 
+        var happyHourStart = ""
+        var happyHourEnd = ""
+
+        val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val formattedDateTimestamp = defaultFormat.format(date)
+        restaurant.eventsByDate[formattedDateTimestamp]?.get(EventType.HappyHour)?.let {
+            happyHourStart = formatTimestamp(it.startTimestamp, "ha") ?: ""
+            happyHourEnd = formatTimestamp(it.endTimestamp, "ha") ?: ""
+        }
+        val happyHourTime = if (happyHourStart.isNotEmpty() && happyHourEnd.isNotEmpty()) {
+            "$happyHourStart - $happyHourEnd"
+        } else {
+            "Not Available Today"
+        }
         InfoRow(
             title = "Happy Hour",
-            description = "$happyHourStart - $happyHourEnd",
+            description = happyHourTime,
             onClick = {
                 popupControl = true
                 isHappyHour = true
@@ -122,7 +132,7 @@ fun GeneralInfo(
             ) {
                 val title = if (isHappyHour) "Happy Hour" else "Hours"
                 val hours = if (isHappyHour) {
-                    restaurant.eventsToday
+                    restaurant.eventsByDate
                         .mapValues { it.value[EventType.HappyHour] }
                         .mapValues {
                             val happyHourDayStart =

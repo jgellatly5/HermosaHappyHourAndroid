@@ -19,17 +19,19 @@ import com.jordangellatly.hermosahappyhour.ui.detail.HighlightCardPadding
 import com.jordangellatly.hermosahappyhour.ui.detail.HighlightCardWidth
 import com.jordangellatly.hermosahappyhour.ui.detail.TodaysEventItem
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
-import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Composable
 fun EventInfo(
     weeklyEvents: Map<String, Map<EventType, Event>>
 ) {
     val date = getCurrentDateTime()
-    val getDayFromDate = date.toString("EEEE").uppercase()
+    val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val formattedDateTimestamp = defaultFormat.format(date)
     val event = weeklyEvents
-        .getValue(getDayFromDate)
+        .getValue(formattedDateTimestamp)
         .filterKeys { it != EventType.HappyHour }
         .firstNotNullOf { it.value }
     val scroll = rememberScrollState(0)
@@ -75,7 +77,7 @@ fun EventInfo(
 private fun EventInfoPreview() {
     HermosaHappyHourTheme {
         EventInfo(
-            weeklyEvents = tower12.eventsToday
+            weeklyEvents = tower12.eventsByDate
         )
     }
 }

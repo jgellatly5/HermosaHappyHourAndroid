@@ -45,7 +45,7 @@ fun RestaurantItem(
         val date = getCurrentDateTime()
         val getDayFromDate = date.toString("EEEE").uppercase()
         val happyHourToday =
-            restaurant.eventsToday.getValue(getDayFromDate).getValue(EventType.HappyHour)
+            restaurant.eventsByDate.getValue(getDayFromDate).getValue(EventType.HappyHour)
 
 
         val defaultFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())

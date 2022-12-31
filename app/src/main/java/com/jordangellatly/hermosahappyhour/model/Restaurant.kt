@@ -10,7 +10,7 @@ data class Restaurant(
     val image: Int,
     val location: Location,
     val weeklyHours: Map<String, String>,
-    val eventsToday: Map<String, Map<EventType, Event>>,
+    val eventsByDate: Map<String, Map<EventType, Event>>,
     val address: Address,
     val phoneNumber: String,
     val website: String
@@ -37,31 +37,31 @@ val tower12WeeklyHours = mapOf(
 )
 
 val tower12EventsByDate = mapOf(
-    "SUNDAY" to mapOf(
-        EventType.Sports to tower12SportEvent
+    "2022-01-01" to mapOf(
+        EventType.Sports to tower12SundaySportEvent
     ),
-    "MONDAY" to mapOf(
+    "2022-01-02" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
         EventType.Sports to mondayNightFootball
     ),
-    "TUESDAY" to mapOf(
+    "2022-01-03" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
         EventType.Default to tacoTuesday
     ),
-    "WEDNESDAY" to mapOf(
+    "2022-01-04" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
         EventType.Default to wineWednesday
     ),
-    "THURSDAY" to mapOf(
+    "2022-01-05" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
         EventType.Sports to thursdayNightFootball
     ),
-    "FRIDAY" to mapOf(
+    "2022-12-30" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
         EventType.Default to fridayNightTrivia
     ),
-    "SATURDAY" to mapOf(
-        EventType.Sports to tower12SportEvent
+    "2022-12-31" to mapOf(
+        EventType.Sports to tower12SundaySportEvent
     )
 )
 
@@ -81,7 +81,7 @@ val tower12 = Restaurant(
         longitude = -118.40085
     ),
     weeklyHours = tower12WeeklyHours,
-    eventsToday = tower12EventsByDate,
+    eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "53 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"
@@ -101,7 +101,7 @@ val bajaSharkeez = Restaurant(
         longitude = -118.40071
     ),
     weeklyHours = tower12WeeklyHours,
-    eventsToday = tower12EventsByDate,
+    eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "52 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"
@@ -121,7 +121,7 @@ val americanJunkie = Restaurant(
         longitude = -118.40047
     ),
     weeklyHours = tower12WeeklyHours,
-    eventsToday = tower12EventsByDate,
+    eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "68 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"
@@ -141,7 +141,7 @@ val hennesseys = Restaurant(
         longitude = -118.40152
     ),
     weeklyHours = tower12WeeklyHours,
-    eventsToday = tower12EventsByDate,
+    eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "8 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"

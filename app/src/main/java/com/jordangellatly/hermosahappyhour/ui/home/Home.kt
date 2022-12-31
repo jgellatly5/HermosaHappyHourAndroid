@@ -62,6 +62,26 @@ fun formatTimestamp(timestamp: String, pattern: String): String? {
     return date?.let { newFormat.format(it) }
 }
 
+fun String.getDayOfWeekFromTimestamp(): String {
+    val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val date = defaultFormat.parse(this)
+    val calendar = Calendar.getInstance().apply {
+        if (date != null) {
+            time = date
+        }
+    }
+    return when (calendar.get(Calendar.DAY_OF_WEEK)) {
+        Calendar.SUNDAY -> "Sunday"
+        Calendar.MONDAY -> "Monday"
+        Calendar.TUESDAY -> "Tuesday"
+        Calendar.WEDNESDAY -> "Wednesday"
+        Calendar.THURSDAY -> "Thursday"
+        Calendar.FRIDAY -> "Friday"
+        Calendar.SATURDAY -> "Saturday"
+        else -> ""
+    }
+}
+
 fun NavGraphBuilder.addHomeGraph(
     onRestaurantSelected: (Long, NavBackStackEntry) -> Unit,
     modifier: Modifier = Modifier

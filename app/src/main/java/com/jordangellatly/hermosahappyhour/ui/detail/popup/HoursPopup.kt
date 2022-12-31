@@ -15,10 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jordangellatly.hermosahappyhour.model.EventType
+import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.model.tower12WeeklyHours
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
+import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
+import com.jordangellatly.hermosahappyhour.ui.home.getDayOfWeekFromTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
@@ -117,6 +121,36 @@ private fun HoursPopupPreview() {
         HoursPopup(
             title = "Hours",
             weeklyHours = tower12WeeklyHours,
+            onClick = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun HappyHourPopupPreview() {
+    HermosaHappyHourTheme {
+        val weeklyEventMap = tower12.eventsByDate
+        val weeklyHappyHourMap = weeklyEventMap
+            .mapKeys { it.key.getDayOfWeekFromTimestamp() }
+            .mapValues { it.value[EventType.HappyHour] }
+        val weeklyHours = weeklyHappyHourMap
+            .mapValues {
+                val happyHourDayStart = it.value?.startTimestamp?.let { startTimestamp ->
+                    formatTimestamp(startTimestamp, "ha")
+                } ?: ""
+                val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
+                    formatTimestamp(endTimestamp, "ha")
+                } ?: ""
+                if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
+                    "Not Available"
+                } else {
+                    "$happyHourDayStart - $happyHourDayEnd"
+                }
+            }
+        HoursPopup(
+            title = "Happy Hour",
+            weeklyHours = weeklyHours,
             onClick = {}
         )
     }

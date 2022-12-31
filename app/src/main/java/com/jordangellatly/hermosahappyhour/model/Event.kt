@@ -50,7 +50,36 @@ val tower12FridayHappyHour = Event(
     image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
 )
 
-val tower12SportEvent = Event(
+val tower12SaturdaySportEvent = Event(
+    id = 14,
+    eventType = EventType.Sports,
+    title = "Saturday Football",
+    description = "Premiere sports viewing, we get all the games",
+    restaurantId = tower12RestaurantId,
+    startTimestamp = "2022-12-31T09:00",
+    endTimestamp = "2022-12-31T21:00",
+    specials = listOf(
+        Deal(
+            description = "Bloody Mary's Well",
+            price = "$7"
+        ),
+        Deal(
+            description = "Bloody Mary's Titos",
+            price = "$9"
+        ),
+        Deal(
+            description = "22 oz double shot Skyy or Epsolon cocktails",
+            price = "$16 (add Red Bull for $3.50)"
+        ),
+        Deal(
+            description = "22 oz Mavericks Mimosas schooners",
+            price = "$10"
+        )
+    ),
+    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+)
+
+val tower12SundaySportEvent = Event(
     id = 2,
     eventType = EventType.Sports,
     title = "Sunday Football",
@@ -388,7 +417,8 @@ val fridayNightTrivia = Event(
 
 val sampleEventData = listOf(
     tower12FridayHappyHour,
-    tower12SportEvent,
+    tower12SaturdaySportEvent,
+    tower12SundaySportEvent,
     sharkeezFridayHappyHour,
     sharkeezSportEvent,
     junkieFridayHappyHour,

@@ -16,12 +16,15 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
-import com.jordangellatly.hermosahappyhour.model.*
+import com.jordangellatly.hermosahappyhour.model.Event
+import com.jordangellatly.hermosahappyhour.model.EventType
+import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
+import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
 import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
-import com.jordangellatly.hermosahappyhour.ui.home.toString
+import com.jordangellatly.hermosahappyhour.ui.home.getDayOfWeekFromTimestamp
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
 import java.util.*
@@ -34,12 +37,12 @@ fun HappyHourInfo(
         modifier = Modifier.padding(8.dp)
     ) {
         val date = getCurrentDateTime()
-        val getDayFromDate = date.toString("EEEE").uppercase()
-        val happyHourEvent = weeklyEvents.getValue(getDayFromDate).getValue(EventType.HappyHour)
+        val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val formattedDateTimestamp = defaultFormat.format(date)
+        val happyHourEvent =
+            weeklyEvents.getValue(formattedDateTimestamp).getValue(EventType.HappyHour)
 
         val specials = happyHourEvent.specials
-
-        val defaultFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
 
         val startDate = defaultFormat.parse(happyHourEvent.startTimestamp)
         val startTime = Calendar.getInstance().apply {
@@ -60,9 +63,9 @@ fun HappyHourInfo(
         val formattedStart = formatTimestamp(happyHourEvent.startTimestamp, "ha")
         val formattedEnd = formatTimestamp(happyHourEvent.endTimestamp, "ha")
 
-        val weeklyHappyHour = weeklyEvents.mapValues {
-            it.value[EventType.HappyHour]
-        }
+        val weeklyHappyHour = weeklyEvents
+            .mapKeys { it.key.getDayOfWeekFromTimestamp() }
+            .mapValues { it.value[EventType.HappyHour] }
 
         NextHappyHour(
             weeklyHappyHour = weeklyHappyHour,
@@ -182,19 +185,20 @@ private fun NextHappyHour(
             Popup(
                 onDismissRequest = { popupControl = false }
             ) {
-                val weeklyHours = weeklyHappyHour.mapValues {
-                    val happyHourDayStart = it.value?.startTimestamp?.let { startTimestamp ->
-                        formatTimestamp(startTimestamp, "ha")
-                    } ?: ""
-                    val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
-                        formatTimestamp(endTimestamp, "ha")
-                    } ?: ""
-                    if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
-                        "Not Available"
-                    } else {
-                        "$happyHourDayStart - $happyHourDayEnd"
+                val weeklyHours = weeklyHappyHour
+                    .mapValues {
+                        val happyHourDayStart = it.value?.startTimestamp?.let { startTimestamp ->
+                            formatTimestamp(startTimestamp, "ha")
+                        } ?: ""
+                        val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
+                            formatTimestamp(endTimestamp, "ha")
+                        } ?: ""
+                        if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
+                            "Not Available"
+                        } else {
+                            "$happyHourDayStart - $happyHourDayEnd"
+                        }
                     }
-                }
                 HoursPopup(
                     title = "Happy Hour",
                     weeklyHours = weeklyHours,
@@ -212,7 +216,7 @@ private fun NextHappyHour(
 private fun HappyHourInfoPreview() {
     HermosaHappyHourTheme {
         HappyHourInfo(
-            weeklyEvents = tower12.eventsToday
+            weeklyEvents = tower12.eventsByDate
         )
     }
 }
