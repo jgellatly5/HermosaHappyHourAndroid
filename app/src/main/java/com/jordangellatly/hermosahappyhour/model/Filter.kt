@@ -14,8 +14,8 @@ class Filter(
 }
 
 val filters = listOf(
-    Filter(name = "Food"),
-    Filter(name = "Drink"),
+    Filter(name = "Happy Hour"),
     Filter(name = "Brunch"),
-    Filter(name = "Sports")
+    Filter(name = "Sports"),
+    Filter(name = "Default")
 )
