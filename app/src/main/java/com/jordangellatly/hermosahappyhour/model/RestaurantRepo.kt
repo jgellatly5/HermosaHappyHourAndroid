@@ -6,8 +6,10 @@ import java.util.*
 
 object RestaurantRepo {
     private val date = getCurrentDateTime()
-    private val format = SimpleDateFormat("EEEE, yyyy-MM-dd", Locale.getDefault())
+    private val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     private val formattedDateTimestamp = format.format(date)
+
+    fun getAllRestaurants(): List<Restaurant> = sampleSearchRestaurantData
 
     fun getRestaurantsByEventType(eventType: EventType): List<Restaurant> =
         sampleSearchRestaurantData.filter { restaurant ->

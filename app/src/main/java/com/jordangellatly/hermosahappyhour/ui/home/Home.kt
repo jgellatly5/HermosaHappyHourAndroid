@@ -44,6 +44,7 @@ import androidx.navigation.compose.composable
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
+import com.jordangellatly.hermosahappyhour.ui.search.SearchFeed
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
 import java.util.*
@@ -94,8 +95,10 @@ fun NavGraphBuilder.addHomeGraph(
         )
     }
     composable(HomeSections.SEARCH.route) { from ->
-        // TODO Search route
-        EventFeed(onEventClick = { id -> onRestaurantSelected(id, from) }, modifier)
+        SearchFeed(
+            onRestaurantClick = { id -> onRestaurantSelected(id, from) },
+            modifier = modifier
+        )
     }
     composable(HomeSections.PROFILE.route) { from ->
         // TODO Profile route
