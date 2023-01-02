@@ -8,9 +8,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.Event
-import com.jordangellatly.hermosahappyhour.model.EventRepo
-import com.jordangellatly.hermosahappyhour.model.Filter
+import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.components.FilterBar
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -52,7 +50,7 @@ private fun EventList(
     modifier: Modifier = Modifier
 ) {
     var filterPageVisible by rememberSaveable { mutableStateOf(false) }
-    val events = remember { mutableStateListOf<Event>() }
+    val events = remember { EventRepo.getAllEventsByDate(getCurrentDateTime()) }
     Box(modifier) {
         Column {
             Spacer(
@@ -62,6 +60,10 @@ private fun EventList(
             )
             FilterBar(
                 filters = filters,
+                onFilterClick = {
+                    events.clear()
+                    events.addAll(EventRepo.getEventsByType(EventType.HappyHour))
+                },
                 onShowFilterPopup = { filterPageVisible = true }
             )
             LazyColumn(

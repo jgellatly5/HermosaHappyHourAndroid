@@ -1,5 +1,6 @@
 package com.jordangellatly.hermosahappyhour.model
 
+import androidx.compose.runtime.mutableStateListOf
 import java.net.URI
 
 data class Event(
@@ -415,7 +416,7 @@ val fridayNightTrivia = Event(
     image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
 )
 
-val sampleEventData = listOf(
+val sampleEventData = mutableStateListOf(
     tower12FridayHappyHour,
     tower12SaturdaySportEvent,
     tower12SundaySportEvent,

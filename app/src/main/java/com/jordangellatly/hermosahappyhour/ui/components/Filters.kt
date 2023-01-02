@@ -1,8 +1,10 @@
 package com.jordangellatly.hermosahappyhour.ui.components
 
 import android.content.res.Configuration
+import android.util.Log
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
@@ -33,6 +35,7 @@ import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 @Composable
 fun FilterBar(
     filters: List<Filter>,
+    onFilterClick: () -> Unit,
     onShowFilterPopup: () -> Unit
 ) {
 
@@ -56,7 +59,11 @@ fun FilterBar(
             }
         }
         items(filters) { filter ->
-            FilterChip(filter = filter, shape = MaterialTheme.shapes.small)
+            FilterChip(
+                filter = filter,
+                onFilterClick = onFilterClick,
+                shape = MaterialTheme.shapes.small
+            )
         }
     }
 }
@@ -64,6 +71,7 @@ fun FilterBar(
 @Composable
 fun FilterChip(
     filter: Filter,
+    onFilterClick: () -> Unit,
     modifier: Modifier = Modifier,
     shape: Shape = MaterialTheme.shapes.small
 ) {
@@ -102,14 +110,15 @@ fun FilterChip(
             }
         Box(
             modifier = Modifier
-                .toggleable(
-                    value = selected,
-                    onValueChange = setSelected,
-                    interactionSource = interactionSource,
-                    indication = null
-                )
-                .then(backgroundPressed)
-                .then(border),
+                .clickable(onClick = onFilterClick)
+//                .toggleable(
+//                    value = selected,
+//                    onValueChange = setSelected,
+//                    interactionSource = interactionSource,
+//                    indication = null
+//                )
+//                .then(backgroundPressed)
+//                .then(border)
         ) {
             Text(
                 text = filter.name,
@@ -130,7 +139,11 @@ fun FilterChip(
 @Composable
 private fun FilterDisabledPreview() {
     HermosaHappyHourTheme {
-        FilterChip(Filter(name = "Demo", enabled = false), Modifier.padding(4.dp))
+        FilterChip(
+            filter = Filter(name = "Demo", enabled = false),
+            onFilterClick = {},
+            modifier = Modifier.padding(4.dp)
+        )
     }
 }
 
@@ -140,6 +153,9 @@ private fun FilterDisabledPreview() {
 @Composable
 private fun FilterEnabledPreview() {
     HermosaHappyHourTheme {
-        FilterChip(Filter(name = "Demo", enabled = true))
+        FilterChip(
+            filter = Filter(name = "Demo", enabled = true),
+            onFilterClick = {}
+        )
     }
 }
