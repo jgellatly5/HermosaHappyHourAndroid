@@ -18,5 +18,6 @@ val filters = listOf(
     Filter(name = "Happy Hour", eventType = EventType.HappyHour),
     Filter(name = "Brunch", eventType = EventType.Brunch),
     Filter(name = "Sports", eventType = EventType.Sports),
-    Filter(name = "Default", eventType = EventType.Special)
+    Filter(name = "Special", eventType = EventType.Special),
+    Filter(name = "All", eventType = EventType.All),
 )

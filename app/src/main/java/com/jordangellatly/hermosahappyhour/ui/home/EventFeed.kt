@@ -49,8 +49,9 @@ private fun EventList(
     onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val date = getCurrentDateTime()
     var filterPageVisible by rememberSaveable { mutableStateOf(false) }
-    val events = remember { EventRepo.getAllEventsByDate(getCurrentDateTime()) }
+    val events = remember { EventRepo.getAllEventsByDate(date) }
     Box(modifier) {
         Column {
             Spacer(
@@ -61,8 +62,13 @@ private fun EventList(
             FilterBar(
                 filters = filters,
                 onFilterClick = { filter ->
+                    val filteredEvents = if (filter.eventType == EventType.All) {
+                        EventRepo.getAllEventsByDate(date)
+                    } else {
+                        EventRepo.getEventsByDateAndType(date, filter.eventType)
+                    }
                     events.clear()
-                    events.addAll(EventRepo.getEventsByType(filter.eventType))
+                    events.addAll(filteredEvents)
                 },
                 onShowFilterPopup = { filterPageVisible = true }
             )

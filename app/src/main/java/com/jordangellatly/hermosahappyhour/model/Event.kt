@@ -20,16 +20,16 @@ data class Deal(
     val price: String
 )
 
-enum class EventType { HappyHour, Brunch, Sports, Special }
+enum class EventType { HappyHour, Brunch, Sports, Special, All }
 
-val tower12FridayHappyHour = Event(
+val tower12MondayHappyHour = Event(
     id = 1,
     eventType = EventType.HappyHour,
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2022-12-30T15:00",
-    endTimestamp = "2022-12-30T19:00",
+    startTimestamp = "2023-01-02T15:00",
+    endTimestamp = "2023-01-02T19:00",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -109,14 +109,14 @@ val tower12SundaySportEvent = Event(
     image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
 )
 
-val sharkeezFridayHappyHour = Event(
+val sharkeezMondayHappyHour = Event(
     id = 3,
     eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = bajaSharkeezRestaurantId,
-    startTimestamp = "2022-12-30T15:00",
-    endTimestamp = "2022-12-30T19:00",
+    startTimestamp = "2023-01-02T15:00",
+    endTimestamp = "2023-01-02T19:00",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -167,14 +167,14 @@ val sharkeezSportEvent = Event(
     image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
 )
 
-val junkieFridayHappyHour = Event(
+val junkieMondayHappyHour = Event(
     id = 5,
     eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = americanJunkieRestaurantId,
-    startTimestamp = "2022-12-30T15:00",
-    endTimestamp = "2022-12-30T19:00",
+    startTimestamp = "2023-01-02T15:00",
+    endTimestamp = "2023-01-02T19:00",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -225,14 +225,14 @@ val junkieSportEvent = Event(
     image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
 )
 
-val hennesseysFridayHappyHour = Event(
+val hennesseysMondayHappyHour = Event(
     id = 7,
     eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = hennesseysRestaurantId,
-    startTimestamp = "2022-12-30T15:00",
-    endTimestamp = "2022-12-30T19:00",
+    startTimestamp = "2023-01-02T15:00",
+    endTimestamp = "2023-01-02T19:00",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -417,14 +417,14 @@ val fridayNightTrivia = Event(
 )
 
 val sampleEventData = mutableStateListOf(
-    tower12FridayHappyHour,
+    tower12MondayHappyHour,
     tower12SaturdaySportEvent,
     tower12SundaySportEvent,
-    sharkeezFridayHappyHour,
+    sharkeezMondayHappyHour,
     sharkeezSportEvent,
-    junkieFridayHappyHour,
+    junkieMondayHappyHour,
     junkieSportEvent,
-    hennesseysFridayHappyHour,
+    hennesseysMondayHappyHour,
     hennesseysSportEvent,
     mondayNightFootball,
     tacoTuesday,

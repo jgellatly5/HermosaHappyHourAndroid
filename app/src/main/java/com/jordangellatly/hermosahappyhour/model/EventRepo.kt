@@ -16,8 +16,12 @@ object EventRepo {
         formattedCurrentDateString == formattedEventStartString
     }.toMutableStateList()
 
-    fun getEventsByType(eventType: EventType): List<Event> = sampleEventData.filter {
-        it.eventType == eventType
+    fun getEventsByDateAndType(date: Date, eventType: EventType): List<Event> = sampleEventData.filter {
+        val defaultFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+        val currentDateTimestamp = defaultFormat.format(date)
+        val formattedCurrentDateString = formatTimestamp(currentDateTimestamp, "yyyy-MM-dd")
+        val formattedEventStartString = formatTimestamp(it.startTimestamp, "yyyy-MM-dd")
+        formattedCurrentDateString == formattedEventStartString && it.eventType == eventType
     }
 
     fun getAllEvents(): List<Event> = sampleSearchRestaurantData.flatMap { restaurant ->
