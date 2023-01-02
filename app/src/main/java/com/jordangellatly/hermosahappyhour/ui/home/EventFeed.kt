@@ -60,9 +60,9 @@ private fun EventList(
             )
             FilterBar(
                 filters = filters,
-                onFilterClick = {
+                onFilterClick = { filter ->
                     events.clear()
-                    events.addAll(EventRepo.getEventsByType(EventType.HappyHour))
+                    events.addAll(EventRepo.getEventsByType(filter.eventType))
                 },
                 onShowFilterPopup = { filterPageVisible = true }
             )

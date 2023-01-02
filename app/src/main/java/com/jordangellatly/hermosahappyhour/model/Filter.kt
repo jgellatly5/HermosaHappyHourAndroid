@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 @Stable
 class Filter(
     val name: String,
+    val eventType: EventType,
     enabled: Boolean = false,
     val icon: ImageVector? = null
 ) {
@@ -14,8 +15,8 @@ class Filter(
 }
 
 val filters = listOf(
-    Filter(name = "Happy Hour"),
-    Filter(name = "Brunch"),
-    Filter(name = "Sports"),
-    Filter(name = "Default")
+    Filter(name = "Happy Hour", eventType = EventType.HappyHour),
+    Filter(name = "Brunch", eventType = EventType.Brunch),
+    Filter(name = "Sports", eventType = EventType.Sports),
+    Filter(name = "Default", eventType = EventType.Special)
 )

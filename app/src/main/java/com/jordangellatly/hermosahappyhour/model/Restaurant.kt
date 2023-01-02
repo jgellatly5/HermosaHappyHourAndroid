@@ -46,11 +46,11 @@ val tower12EventsByDate = mapOf(
     ),
     "2023-01-03" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
-        EventType.Default to tacoTuesday
+        EventType.Special to tacoTuesday
     ),
     "2023-01-04" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
-        EventType.Default to wineWednesday
+        EventType.Special to wineWednesday
     ),
     "2023-01-05" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
@@ -58,7 +58,7 @@ val tower12EventsByDate = mapOf(
     ),
     "2022-12-30" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
-        EventType.Default to fridayNightTrivia
+        EventType.Special to fridayNightTrivia
     ),
     "2022-12-31" to mapOf(
         EventType.Sports to tower12SundaySportEvent

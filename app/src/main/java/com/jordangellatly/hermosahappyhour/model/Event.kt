@@ -20,7 +20,7 @@ data class Deal(
     val price: String
 )
 
-enum class EventType { HappyHour, Brunch, Sports, Default }
+enum class EventType { HappyHour, Brunch, Sports, Special }
 
 val tower12FridayHappyHour = Event(
     id = 1,
@@ -314,7 +314,7 @@ val mondayNightFootball = Event(
 
 val tacoTuesday = Event(
     id = 10,
-    eventType = EventType.Default,
+    eventType = EventType.Special,
     title = "Taco Tuesday",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
@@ -343,7 +343,7 @@ val tacoTuesday = Event(
 
 val wineWednesday = Event(
     id = 11,
-    eventType = EventType.Default,
+    eventType = EventType.Special,
     title = "Wine Wednesday",
     description = "Wine Wednesday is fun",
     restaurantId = tower12RestaurantId,
@@ -389,7 +389,7 @@ val thursdayNightFootball = Event(
 
 val fridayNightTrivia = Event(
     id = 13,
-    eventType = EventType.Default,
+    eventType = EventType.Special,
     title = "Friday Night Trivia",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
