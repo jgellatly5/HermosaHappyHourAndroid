@@ -37,22 +37,22 @@ val tower12WeeklyHours = mapOf(
 )
 
 val tower12EventsByDate = mapOf(
-    "2022-01-01" to mapOf(
+    "2023-01-01" to mapOf(
         EventType.Sports to tower12SundaySportEvent
     ),
-    "2022-01-02" to mapOf(
+    "2023-01-02" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
         EventType.Sports to mondayNightFootball
     ),
-    "2022-01-03" to mapOf(
+    "2023-01-03" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
         EventType.Default to tacoTuesday
     ),
-    "2022-01-04" to mapOf(
+    "2023-01-04" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
         EventType.Default to wineWednesday
     ),
-    "2022-01-05" to mapOf(
+    "2023-01-05" to mapOf(
         EventType.HappyHour to tower12FridayHappyHour,
         EventType.Sports to thursdayNightFootball
     ),

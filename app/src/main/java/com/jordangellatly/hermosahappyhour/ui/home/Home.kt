@@ -42,7 +42,6 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.jordangellatly.hermosahappyhour.R
-import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.search.SearchFeed
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -90,8 +89,7 @@ fun NavGraphBuilder.addHomeGraph(
     composable(HomeSections.HOME.route) { from ->
         EventFeed(
             onEventClick = { id -> onRestaurantSelected(id, from) },
-            modifier = modifier,
-            eventType = EventType.HappyHour
+            modifier = modifier
         )
     }
     composable(HomeSections.SEARCH.route) { from ->

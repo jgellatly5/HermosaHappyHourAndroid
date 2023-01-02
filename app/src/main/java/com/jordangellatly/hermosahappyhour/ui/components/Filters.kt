@@ -33,7 +33,7 @@ import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 @Composable
 fun FilterBar(
     filters: List<Filter>,
-    onShowFilters: () -> Unit
+    onShowFilterPopup: () -> Unit
 ) {
 
     LazyRow(
@@ -43,7 +43,7 @@ fun FilterBar(
         modifier = Modifier.heightIn(min = 56.dp)
     ) {
         item {
-            IconButton(onClick = onShowFilters) {
+            IconButton(onClick = onShowFilterPopup) {
                 Icon(
                     imageVector = Icons.Rounded.FilterList,
                     tint = HermosaHappyHourTheme.colors.brand,
