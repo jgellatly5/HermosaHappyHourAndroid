@@ -119,7 +119,7 @@ fun FilterChip(
 //                    indication = null
 //                )
 //                .then(backgroundPressed)
-//                .then(border)
+                .then(border)
         ) {
             Text(
                 text = filter.name,
