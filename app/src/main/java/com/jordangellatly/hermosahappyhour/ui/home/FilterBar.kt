@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.components
+package com.jordangellatly.hermosahappyhour.ui.home
 
 import android.content.res.Configuration
 import androidx.compose.animation.animateColorAsState
@@ -29,6 +29,10 @@ import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.Filter
+import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
+import com.jordangellatly.hermosahappyhour.ui.components.diagonalGradientBorder
+import com.jordangellatly.hermosahappyhour.ui.components.fadeInDiagonalGradientBorder
+import com.jordangellatly.hermosahappyhour.ui.components.offsetGradientBackground
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable

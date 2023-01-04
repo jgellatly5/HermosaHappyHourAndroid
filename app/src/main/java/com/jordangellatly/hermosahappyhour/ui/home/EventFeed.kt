@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.*
-import com.jordangellatly.hermosahappyhour.ui.components.FilterBar
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
