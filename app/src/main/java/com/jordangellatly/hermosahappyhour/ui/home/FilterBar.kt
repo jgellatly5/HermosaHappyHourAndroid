@@ -3,12 +3,12 @@ package com.jordangellatly.hermosahappyhour.ui.home
 import android.content.res.Configuration
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -41,7 +41,6 @@ fun FilterBar(
     onFilterClick: (Filter) -> Unit,
     onShowFilterPopup: () -> Unit
 ) {
-
     LazyRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -113,16 +112,20 @@ fun FilterChip(
             }
         Box(
             modifier = Modifier
-                .clickable {
-                    onFilterClick(filter)
-                }
-//                .toggleable(
-//                    value = selected,
-//                    onValueChange = setSelected,
-//                    interactionSource = interactionSource,
-//                    indication = null
-//                )
-//                .then(backgroundPressed)
+//                .clickable {
+//                    selected = !selected
+//
+//                }
+                .toggleable(
+                    value = selected,
+                    onValueChange = {
+                        setSelected(it)
+                        onFilterClick(filter)
+                    },
+                    interactionSource = interactionSource,
+                    indication = null
+                )
+                .then(backgroundPressed)
                 .then(border)
         ) {
             Text(
