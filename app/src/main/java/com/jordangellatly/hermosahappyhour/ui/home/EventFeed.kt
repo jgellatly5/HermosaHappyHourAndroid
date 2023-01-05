@@ -5,10 +5,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.*
+import com.jordangellatly.hermosahappyhour.model.EventRepo
+import com.jordangellatly.hermosahappyhour.model.EventType
+import com.jordangellatly.hermosahappyhour.model.Filter
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
@@ -17,7 +20,7 @@ fun EventFeed(
     onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val filters = remember { EventRepo.getFilters() }
+    val filters: SnapshotStateList<Filter> = remember { EventRepo.getFilters() }
     EventFeed(
         filters = filters,
         onEventClick = onEventClick,
@@ -27,7 +30,7 @@ fun EventFeed(
 
 @Composable
 private fun EventFeed(
-    filters: List<Filter>,
+    filters: SnapshotStateList<Filter>,
     onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -44,7 +47,7 @@ private fun EventFeed(
 
 @Composable
 private fun EventList(
-    filters: List<Filter>,
+    filters: SnapshotStateList<Filter>,
     onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
