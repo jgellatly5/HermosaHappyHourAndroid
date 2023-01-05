@@ -61,8 +61,10 @@ private fun EventList(
                     WindowInsets.statusBars.add(WindowInsets(top = 56.dp))
                 )
             )
+            val selectedType = remember { mutableStateOf(EventType.HappyHour) }
             FilterBar(
                 filters = filters,
+                selectedType = selectedType,
                 onFilterClick = { filter ->
                     val filteredEvents = if (filter.eventType == EventType.All) {
                         EventRepo.getAllEventsByDate(date)
