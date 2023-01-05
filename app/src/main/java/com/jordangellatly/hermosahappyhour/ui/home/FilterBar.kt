@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -103,8 +104,9 @@ fun FilterChip(
     ) {
         val interactionSource = remember { MutableInteractionSource() }
 
+        val pressed by interactionSource.collectIsPressedAsState()
         val backgroundPressed =
-            if (selected) {
+            if (pressed) {
                 Modifier.offsetGradientBackground(
                     HermosaHappyHourTheme.colors.interactiveSecondary,
                     200f,
