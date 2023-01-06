@@ -10,8 +10,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.EventRepo
@@ -96,6 +99,13 @@ private fun EventList(
                 EventType.Special -> "Special"
                 else -> ""
             }
+            val emptyEventMessage = buildAnnotatedString {
+                append("Sorry, there are no ")
+                withStyle(style = SpanStyle(HermosaHappyHourTheme.colors.brand)) {
+                    append(eventType)
+                }
+                append(" events today.")
+            }
             if (events.isEmpty()) {
                 Column(
                     modifier = Modifier.fillMaxSize(),
@@ -103,7 +113,7 @@ private fun EventList(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "Sorry, there are no $eventType events today.",
+                        text = emptyEventMessage,
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.subtitle1,
