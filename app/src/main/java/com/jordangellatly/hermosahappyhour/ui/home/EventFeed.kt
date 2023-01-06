@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.EventRepo
 import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.Filter
@@ -92,38 +93,49 @@ private fun EventList(
                     EventItem(event, onEventClick)
                 }
             }
-            val eventType = when (selectedType.value) {
-                EventType.HappyHour -> "Happy Hour"
-                EventType.Brunch -> "Brunch"
-                EventType.Sports -> "Sports"
-                EventType.Special -> "Special"
-                else -> ""
-            }
-            val emptyEventMessage = buildAnnotatedString {
-                append("Sorry, there are no ")
-                withStyle(style = SpanStyle(HermosaHappyHourTheme.colors.brand)) {
-                    append(eventType)
-                }
-                append(" events today.")
-            }
-            if (events.isEmpty()) {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = emptyEventMessage,
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold,
-                        style = MaterialTheme.typography.subtitle1,
-                        color = HermosaHappyHourTheme.colors.textSecondary,
-                        modifier = Modifier
-                            .width(300.dp)
-                            .padding(start = 16.dp, end = 16.dp)
-                    )
-                }
-            }
+            EmptyStateMessage(
+                selectedType = selectedType,
+                events = events
+            )
+        }
+    }
+}
+
+@Composable
+fun EmptyStateMessage(
+    selectedType: MutableState<EventType>,
+    events: SnapshotStateList<Event>
+) {
+    val eventType = when (selectedType.value) {
+        EventType.HappyHour -> "Happy Hour"
+        EventType.Brunch -> "Brunch"
+        EventType.Sports -> "Sports"
+        EventType.Special -> "Special"
+        else -> ""
+    }
+    val emptyEventMessage = buildAnnotatedString {
+        append("Sorry, there are no ")
+        withStyle(style = SpanStyle(HermosaHappyHourTheme.colors.brand)) {
+            append(eventType)
+        }
+        append(" events today.")
+    }
+    if (events.isEmpty()) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = emptyEventMessage,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.subtitle1,
+                color = HermosaHappyHourTheme.colors.textSecondary,
+                modifier = Modifier
+                    .width(300.dp)
+                    .padding(start = 16.dp, end = 16.dp)
+            )
         }
     }
 }
