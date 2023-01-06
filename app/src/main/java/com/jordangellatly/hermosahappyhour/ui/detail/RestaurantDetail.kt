@@ -18,14 +18,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.R
+import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.info.EventInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.info.HappyHourInfo
+import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 import com.jordangellatly.hermosahappyhour.ui.utils.mirroringBackIcon
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Composable
 fun RestaurantDetail(
@@ -42,8 +46,14 @@ fun RestaurantDetail(
                 imageResource = restaurant.image,
                 upPress = upPress
             )
-            HappyHourInfo(weeklyEvents = restaurant.weeklyEvents)
-            EventInfo(weeklyEvents = restaurant.weeklyEvents)
+            val date = getCurrentDateTime()
+            val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val formattedDateTimestamp = defaultFormat.format(date)
+            restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let {
+                HappyHourInfo(weeklyEvents = restaurant.eventsByDate)
+            }
+
+            EventInfo(weeklyEvents = restaurant.eventsByDate)
             GeneralInfo(restaurant = restaurant)
         }
     }

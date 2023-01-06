@@ -1,7 +1,10 @@
 package com.jordangellatly.hermosahappyhour.ui.search
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -18,74 +21,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
-
-@Composable
-fun SearchScreen(
-    navController: NavController
-) {
-    Scaffold(
-        backgroundColor = HermosaHappyHourTheme.colors.uiBackground
-    ) { contentPadding ->
-        Column(
-            modifier = Modifier
-                .padding(top = 40.dp)
-                .fillMaxWidth()
-                .padding(contentPadding),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            val textState = remember { mutableStateOf(TextFieldValue("")) }
-            SearchBar(
-                state = textState
-            )
-//            RestaurantList(
-//                navController = navController,
-//                state = textState
-//            )
-        }
-    }
-}
-
-//@Composable
-//fun RestaurantList(
-//    navController: NavController,
-//    state: MutableState<TextFieldValue>
-//) {
-//    val viewModel = RestaurantViewModel()
-//    val restaurants = viewModel.sampleSearchRestaurantData
-//    var filteredRestaurants: List<Restaurant>
-//    LazyColumn(
-//        modifier = Modifier
-//            .fillMaxWidth(),
-//        verticalArrangement = Arrangement.spacedBy(16.dp),
-//        contentPadding = PaddingValues(16.dp)
-//    ) {
-//        val searchedText = state.value.text
-//        filteredRestaurants = if (searchedText.isEmpty()) {
-//            restaurants
-//        } else {
-//            val resultList = ArrayList<Restaurant>()
-//            for (restaurant in restaurants) {
-//                if (restaurant.name.lowercase(Locale.getDefault())
-//                        .contains(searchedText.lowercase(Locale.getDefault()))
-//                ) {
-//                    resultList.add(restaurant)
-//                }
-//            }
-//            resultList
-//        }
-//        items(filteredRestaurants) { restaurant ->
-//            RestaurantCard(
-//                name = restaurant.name,
-//                image = restaurant.companyLogoUrl
-//            ) {
-//                navController.navigate("detail/${restaurant.name}")
-//            }
-//        }
-//    }
-//}
 
 @Composable
 fun SearchBar(
@@ -150,10 +86,10 @@ fun SearchBar(
 
 @Preview(showBackground = true)
 @Composable
-fun SearchScreenPreview() {
+fun SearchBarPreview() {
     HermosaHappyHourTheme {
-        SearchScreen(
-            navController = rememberNavController()
+        SearchBar(
+            state = remember { mutableStateOf(TextFieldValue("")) }
         )
     }
 }

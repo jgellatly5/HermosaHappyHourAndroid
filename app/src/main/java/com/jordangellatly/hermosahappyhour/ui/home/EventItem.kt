@@ -4,8 +4,6 @@ import android.os.CountDownTimer
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -22,47 +20,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.EventType
-import com.jordangellatly.hermosahappyhour.model.Restaurant
-import com.jordangellatly.hermosahappyhour.model.sampleSearchRestaurantData
-import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
+import com.jordangellatly.hermosahappyhour.model.Event
+import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
+import com.jordangellatly.hermosahappyhour.model.tower12MondayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun RestaurantCollection(
-    restaurants: List<Restaurant>,
-    onRestaurantClick: (Long) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    LazyColumn(
-        modifier = modifier,
-        contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
-    ) {
-        items(restaurants) { restaurant ->
-            RestaurantItem(restaurant, onRestaurantClick)
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun RestaurantCollectionPreview() {
-    HermosaHappyHourTheme {
-        val restaurants = sampleSearchRestaurantData
-        RestaurantCollection(
-            restaurants = restaurants,
-            onRestaurantClick = {}
-        )
-    }
-}
-
-@Composable
-private fun RestaurantItem(
-    restaurant: Restaurant,
-    onRestaurantClick: (Long) -> Unit,
+fun EventItem(
+    event: Event,
+    onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     HappyHourCard(
@@ -70,43 +39,33 @@ private fun RestaurantItem(
             .fillMaxWidth()
             .padding(bottom = 16.dp)
     ) {
-        val date = getCurrentDateTime()
-        val getDayFromDate = date.toString("EEEE").uppercase()
-        val happyHourToday =
-            restaurant.weeklyEvents.getValue(getDayFromDate).getValue(EventType.HappyHour)
-        val happyHours = happyHourToday.hours
+        val defaultFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+
+        val startDate = defaultFormat.parse(event.startTimestamp)
+        val startTime = Calendar.getInstance().apply {
+            if (startDate != null) {
+                time = startDate
+            }
+        }
+
+        val endDate = defaultFormat.parse(event.endTimestamp)
+        val endTime = Calendar.getInstance().apply {
+            if (endDate != null) {
+                time = endDate
+            }
+        }
 
         val currentTime = Calendar.getInstance()
-        val startTime = Calendar.getInstance()
-        val endTime = Calendar.getInstance()
 
-        val splitStartTimeFromHours = happyHours.split("-")
-        val stringStart = splitStartTimeFromHours[0].trim()
-        val stringEnd = splitStartTimeFromHours.get(index = 1).trim()
-
-        val splitIntStartTime = stringStart.split("")
-        var intStartFirstDigit = splitIntStartTime.get(index = 1).toInt()
-        if (splitIntStartTime[2] == "P") {
-            intStartFirstDigit += 12
-        }
-
-        val splitIntEndTime = stringEnd.split("")
-        var intEndFirstDigit = splitIntEndTime[1].toInt()
-        if (splitIntEndTime[2] == "P") {
-            intEndFirstDigit += 12
-        }
-
-        startTime[Calendar.HOUR_OF_DAY] = intStartFirstDigit
-        startTime[Calendar.MINUTE] = 0
-
-        endTime[Calendar.HOUR_OF_DAY] = intEndFirstDigit
-        endTime[Calendar.MINUTE] = 0
+        val formattedStart = formatTimestamp(event.startTimestamp, "ha")
+        val formattedEnd = formatTimestamp(event.endTimestamp, "ha")
 
         Column(
             modifier = Modifier
-                .clickable(onClick = { onRestaurantClick(restaurant.id) })
+                .clickable(onClick = { onEventClick(event.restaurantId) })
                 .fillMaxSize()
         ) {
+            val restaurant = remember { RestaurantRepo.getRestaurant(event.restaurantId) }
             Box(
                 modifier = Modifier
                     .height(160.dp)
@@ -133,14 +92,14 @@ private fun RestaurantItem(
             var millisInFuture = 0L
             var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
             val annotatedTimeString = buildAnnotatedString {
-                append("Happy Hour \u2022 ")
+                append("${event.title} \u2022 ")
                 when {
                     currentTime < startTime -> {
                         timeIndicatorColor = Color.Green
                         withStyle(style = SpanStyle(timeIndicatorColor)) {
                             append("Starts")
                         }
-                        append(" at $stringStart")
+                        append(" at $formattedStart")
                         millisInFuture = startTime.timeInMillis - currentTime.timeInMillis
                     }
                     currentTime > startTime && currentTime < endTime -> {
@@ -148,7 +107,7 @@ private fun RestaurantItem(
                         withStyle(style = SpanStyle(timeIndicatorColor)) {
                             append("Ends")
                         }
-                        append(" at $stringEnd")
+                        append(" at $formattedEnd")
                         millisInFuture = endTime.timeInMillis - currentTime.timeInMillis
                     }
                     currentTime > endTime -> {
@@ -156,7 +115,7 @@ private fun RestaurantItem(
                         withStyle(style = SpanStyle(timeIndicatorColor)) {
                             append("Ended")
                         }
-                        append(" at $stringEnd")
+                        append(" at $formattedEnd")
                         millisInFuture = 0L
                     }
                     else -> {
@@ -199,14 +158,14 @@ private fun RestaurantItem(
     }
 }
 
-@Preview
+@Preview(heightDp = 240)
 @Composable
-private fun RestaurantItemPreview() {
+private fun EventItemPreview() {
     HermosaHappyHourTheme {
-        val restaurant = tower12RestaurantData
-        RestaurantItem(
-            restaurant = restaurant,
-            onRestaurantClick = {}
+        val event = tower12MondayHappyHour
+        EventItem(
+            event = event,
+            onEventClick = {}
         )
     }
 }

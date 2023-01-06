@@ -28,12 +28,15 @@ import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.Location
 import com.jordangellatly.hermosahappyhour.model.Restaurant
-import com.jordangellatly.hermosahappyhour.model.tower12RestaurantData
+import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
+import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Composable
 fun GeneralInfo(
@@ -43,8 +46,6 @@ fun GeneralInfo(
         modifier = Modifier.padding(8.dp)
     ) {
         val date = getCurrentDateTime()
-        val getDayFromDate = date.toString("EEEE").uppercase()
-        val happyHours = restaurant.weeklyEvents.getValue(getDayFromDate).getValue(EventType.HappyHour).hours
         var popupControl by remember { mutableStateOf(false) }
         var isHappyHour by remember { mutableStateOf(false) }
         Text(
@@ -53,6 +54,7 @@ fun GeneralInfo(
             modifier = Modifier.padding(8.dp)
         )
 
+        val getDayFromDate = date.toString("EEEE").uppercase()
         InfoRow(
             title = "Hours",
             description = restaurant.weeklyHours.getValue(getDayFromDate),
@@ -62,9 +64,23 @@ fun GeneralInfo(
             }
         )
 
+        var happyHourStart = ""
+        var happyHourEnd = ""
+
+        val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val formattedDateTimestamp = defaultFormat.format(date)
+        restaurant.eventsByDate[formattedDateTimestamp]?.get(EventType.HappyHour)?.let {
+            happyHourStart = formatTimestamp(it.startTimestamp, "ha") ?: ""
+            happyHourEnd = formatTimestamp(it.endTimestamp, "ha") ?: ""
+        }
+        val happyHourTime = if (happyHourStart.isNotEmpty() && happyHourEnd.isNotEmpty()) {
+            "$happyHourStart - $happyHourEnd"
+        } else {
+            "Not Available Today"
+        }
         InfoRow(
             title = "Happy Hour",
-            description = happyHours,
+            description = happyHourTime,
             onClick = {
                 popupControl = true
                 isHappyHour = true
@@ -116,9 +132,22 @@ fun GeneralInfo(
             ) {
                 val title = if (isHappyHour) "Happy Hour" else "Hours"
                 val hours = if (isHappyHour) {
-                    restaurant.weeklyEvents
+                    restaurant.eventsByDate
                         .mapValues { it.value[EventType.HappyHour] }
-                        .mapValues { it.value?.hours ?: "Not Available" }
+                        .mapValues {
+                            val happyHourDayStart =
+                                it.value?.startTimestamp?.let { startTimestamp ->
+                                    formatTimestamp(startTimestamp, "ha")
+                                } ?: ""
+                            val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
+                                formatTimestamp(endTimestamp, "ha")
+                            } ?: ""
+                            if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
+                                "Not Available"
+                            } else {
+                                "$happyHourDayStart - $happyHourDayEnd"
+                            }
+                        }
                 } else {
                     restaurant.weeklyHours
                 }
@@ -225,7 +254,7 @@ private fun BottomMap(restaurant: Restaurant?) {
 private fun GeneralInfoPreview() {
     HermosaHappyHourTheme {
         GeneralInfo(
-            restaurant = tower12RestaurantData
+            restaurant = tower12
         )
     }
 }

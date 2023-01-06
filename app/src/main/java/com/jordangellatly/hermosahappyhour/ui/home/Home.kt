@@ -15,7 +15,9 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -40,8 +42,8 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.jordangellatly.hermosahappyhour.R
-import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
+import com.jordangellatly.hermosahappyhour.ui.search.SearchFeed
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
 import java.util.*
@@ -53,24 +55,52 @@ fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String 
 
 fun getCurrentDateTime(): Date = Calendar.getInstance().time
 
+fun formatTimestamp(timestamp: String, pattern: String): String? {
+    val defaultFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+    val date = defaultFormat.parse(timestamp)
+    val newFormat = SimpleDateFormat(pattern, Locale.getDefault())
+    return date?.let { newFormat.format(it) }
+}
+
+fun String.getDayOfWeekFromTimestamp(): String {
+    val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val date = defaultFormat.parse(this)
+    val calendar = Calendar.getInstance().apply {
+        if (date != null) {
+            time = date
+        }
+    }
+    return when (calendar.get(Calendar.DAY_OF_WEEK)) {
+        Calendar.SUNDAY -> "Sunday"
+        Calendar.MONDAY -> "Monday"
+        Calendar.TUESDAY -> "Tuesday"
+        Calendar.WEDNESDAY -> "Wednesday"
+        Calendar.THURSDAY -> "Thursday"
+        Calendar.FRIDAY -> "Friday"
+        Calendar.SATURDAY -> "Saturday"
+        else -> ""
+    }
+}
+
 fun NavGraphBuilder.addHomeGraph(
     onRestaurantSelected: (Long, NavBackStackEntry) -> Unit,
     modifier: Modifier = Modifier
 ) {
     composable(HomeSections.HOME.route) { from ->
-        Feed(
-            onRestaurantClick = { id -> onRestaurantSelected(id, from) },
-            modifier = modifier,
-            eventType = EventType.HappyHour
+        EventFeed(
+            onEventClick = { id -> onRestaurantSelected(id, from) },
+            modifier = modifier
         )
     }
     composable(HomeSections.SEARCH.route) { from ->
-         // TODO Search route
-        Feed(onRestaurantClick = { id -> onRestaurantSelected(id, from) }, modifier)
+        SearchFeed(
+            onRestaurantClick = { id -> onRestaurantSelected(id, from) },
+            modifier = modifier
+        )
     }
     composable(HomeSections.PROFILE.route) { from ->
         // TODO Profile route
-        Feed(onRestaurantClick = { id -> onRestaurantSelected(id, from) }, modifier)
+        EventFeed(onEventClick = { id -> onRestaurantSelected(id, from) }, modifier)
     }
 }
 

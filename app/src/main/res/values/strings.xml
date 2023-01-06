@@ -15,5 +15,8 @@
     <string name="home_search">Search</string>
     <string name="home_profile">Profile</string>
 
+    <!-- Home -->
+    <string name="label_filters">Filters</string>
+
     <string name="label_back">Back</string>
 </resources>
