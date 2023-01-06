@@ -3,10 +3,15 @@ package com.jordangellatly.hermosahappyhour.ui.home
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.EventRepo
@@ -82,6 +87,31 @@ private fun EventList(
             ) {
                 items(events) { event ->
                     EventItem(event, onEventClick)
+                }
+            }
+            val eventType = when (selectedType.value) {
+                EventType.HappyHour -> "Happy Hour"
+                EventType.Brunch -> "Brunch"
+                EventType.Sports -> "Sports"
+                EventType.Special -> "Special"
+                else -> ""
+            }
+            if (events.isEmpty()) {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Sorry, there are no $eventType events today.",
+                        textAlign = TextAlign.Center,
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.subtitle1,
+                        color = HermosaHappyHourTheme.colors.textSecondary,
+                        modifier = Modifier
+                            .width(300.dp)
+                            .padding(start = 16.dp, end = 16.dp)
+                    )
                 }
             }
         }
