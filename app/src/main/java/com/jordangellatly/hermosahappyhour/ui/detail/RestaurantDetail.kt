@@ -36,6 +36,9 @@ fun RestaurantDetail(
     restaurantId: Long,
     upPress: () -> Unit
 ) {
+    val date = getCurrentDateTime()
+    val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val formattedDateTimestamp = defaultFormat.format(date)
     val restaurant = remember(restaurantId) { RestaurantRepo.getRestaurant(restaurantId) }
     HermosaHappyHourSurface {
         Column(
@@ -46,13 +49,9 @@ fun RestaurantDetail(
                 imageResource = restaurant.image,
                 upPress = upPress
             )
-            val date = getCurrentDateTime()
-            val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val formattedDateTimestamp = defaultFormat.format(date)
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let {
                 HappyHourInfo(weeklyEvents = restaurant.eventsByDate)
             }
-
             EventInfo(weeklyEvents = restaurant.eventsByDate)
             GeneralInfo(restaurant = restaurant)
         }

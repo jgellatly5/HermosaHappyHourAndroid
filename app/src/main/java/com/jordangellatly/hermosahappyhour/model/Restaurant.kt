@@ -36,32 +36,62 @@ val generalWeeklyHours = mapOf(
     "SATURDAY" to "9AM - 2AM"
 )
 
-val tower12EventsByDate = mapOf(
+val eventsByDateForTesting = mapOf(
     "2023-01-08" to mapOf(
-        EventType.Sports to tower12SundaySportEvent
+        EventType.Sports to sundaySportEvent
     ),
     "2023-01-09" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour,
+        EventType.HappyHour to mondayHappyHour,
         EventType.Sports to mondayNightFootball
     ),
     "2023-01-10" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour,
+        EventType.HappyHour to mondayHappyHour,
         EventType.Special to tacoTuesday
     ),
     "2023-01-11" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour,
+        EventType.HappyHour to mondayHappyHour,
         EventType.Special to wineWednesday
     ),
     "2023-01-12" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour,
+        EventType.HappyHour to mondayHappyHour,
         EventType.Sports to thursdayNightFootball
     ),
     "2023-01-13" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour,
+        EventType.HappyHour to mondayHappyHour,
         EventType.Special to fridayNightTrivia
     ),
     "2023-01-07" to mapOf(
-        EventType.Sports to tower12SundaySportEvent
+        EventType.HappyHour to mondayHappyHour,
+        EventType.Sports to sundaySportEvent
+    )
+)
+
+val tower12EventsByDate = mapOf(
+    "2023-01-08" to mapOf(
+        EventType.Sports to sundaySportEvent
+    ),
+    "2023-01-09" to mapOf(
+        EventType.HappyHour to mondayHappyHour,
+        EventType.Sports to mondayNightFootball
+    ),
+    "2023-01-10" to mapOf(
+        EventType.HappyHour to mondayHappyHour,
+        EventType.Special to tacoTuesday
+    ),
+    "2023-01-11" to mapOf(
+        EventType.HappyHour to mondayHappyHour,
+        EventType.Special to wineWednesday
+    ),
+    "2023-01-12" to mapOf(
+        EventType.HappyHour to mondayHappyHour,
+        EventType.Sports to thursdayNightFootball
+    ),
+    "2023-01-13" to mapOf(
+        EventType.HappyHour to mondayHappyHour,
+        EventType.Special to fridayNightTrivia
+    ),
+    "2023-01-07" to mapOf(
+        EventType.Sports to sundaySportEvent
     )
 )
 
