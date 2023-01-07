@@ -26,7 +26,7 @@ data class Address(
     val line2: String
 )
 
-val tower12WeeklyHours = mapOf(
+val generalWeeklyHours = mapOf(
     "SUNDAY" to "9AM - 2AM",
     "MONDAY" to "11AM - 2AM",
     "TUESDAY" to "11AM - 2AM",
@@ -37,30 +37,30 @@ val tower12WeeklyHours = mapOf(
 )
 
 val tower12EventsByDate = mapOf(
-    "2023-01-01" to mapOf(
+    "2023-01-08" to mapOf(
         EventType.Sports to tower12SundaySportEvent
     ),
-    "2023-01-02" to mapOf(
+    "2023-01-09" to mapOf(
         EventType.HappyHour to tower12MondayHappyHour,
         EventType.Sports to mondayNightFootball
     ),
-    "2023-01-03" to mapOf(
+    "2023-01-10" to mapOf(
         EventType.HappyHour to tower12MondayHappyHour,
         EventType.Special to tacoTuesday
     ),
-    "2023-01-04" to mapOf(
+    "2023-01-11" to mapOf(
         EventType.HappyHour to tower12MondayHappyHour,
         EventType.Special to wineWednesday
     ),
-    "2023-01-05" to mapOf(
+    "2023-01-12" to mapOf(
         EventType.HappyHour to tower12MondayHappyHour,
         EventType.Sports to thursdayNightFootball
     ),
-    "2022-12-30" to mapOf(
+    "2023-01-13" to mapOf(
         EventType.HappyHour to tower12MondayHappyHour,
         EventType.Special to fridayNightTrivia
     ),
-    "2022-12-31" to mapOf(
+    "2023-01-07" to mapOf(
         EventType.Sports to tower12SundaySportEvent
     )
 )
@@ -80,7 +80,7 @@ val tower12 = Restaurant(
         latitude = 33.86222,
         longitude = -118.40085
     ),
-    weeklyHours = tower12WeeklyHours,
+    weeklyHours = generalWeeklyHours,
     eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "53 Pier Ave",
@@ -100,7 +100,7 @@ val bajaSharkeez = Restaurant(
         latitude = 33.861988,
         longitude = -118.40071
     ),
-    weeklyHours = tower12WeeklyHours,
+    weeklyHours = generalWeeklyHours,
     eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "52 Pier Ave",
@@ -120,7 +120,7 @@ val americanJunkie = Restaurant(
         latitude = 33.862,
         longitude = -118.40047
     ),
-    weeklyHours = tower12WeeklyHours,
+    weeklyHours = generalWeeklyHours,
     eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "68 Pier Ave",
@@ -140,7 +140,7 @@ val hennesseys = Restaurant(
         latitude = 33.86182,
         longitude = -118.40152
     ),
-    weeklyHours = tower12WeeklyHours,
+    weeklyHours = generalWeeklyHours,
     eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "8 Pier Ave",
