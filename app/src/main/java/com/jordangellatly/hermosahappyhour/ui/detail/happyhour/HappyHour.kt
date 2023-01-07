@@ -19,41 +19,41 @@ import java.util.*
 fun HappyHour(
     weeklyEvents: Map<String, Map<EventType, Event>>
 ) {
+    val date = getCurrentDateTime()
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val timestampFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+    val formattedDateTimestamp = dateFormat.format(date)
+    val happyHourEvent =
+        weeklyEvents.getValue(formattedDateTimestamp).getValue(EventType.HappyHour)
+
+    val specials = happyHourEvent.specials
+
+    val startDate = timestampFormat.parse(happyHourEvent.startTimestamp)
+    val startTime = Calendar.getInstance().apply {
+        if (startDate != null) {
+            time = startDate
+        }
+    }
+
+    val endDate = timestampFormat.parse(happyHourEvent.endTimestamp)
+    val endTime = Calendar.getInstance().apply {
+        if (endDate != null) {
+            time = endDate
+        }
+    }
+
+    val currentTime = Calendar.getInstance()
+
+    val formattedStart = formatTimestamp(happyHourEvent.startTimestamp, "ha")
+    val formattedEnd = formatTimestamp(happyHourEvent.endTimestamp, "ha")
+
+    val weeklyHappyHour = weeklyEvents
+        .mapKeys { it.key.getDayOfWeekFromTimestamp() }
+        .mapValues { it.value[EventType.HappyHour] }
+
     Column(
         modifier = Modifier.padding(8.dp)
     ) {
-        val date = getCurrentDateTime()
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val timestampFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
-        val formattedDateTimestamp = dateFormat.format(date)
-        val happyHourEvent =
-            weeklyEvents.getValue(formattedDateTimestamp).getValue(EventType.HappyHour)
-
-        val specials = happyHourEvent.specials
-
-        val startDate = timestampFormat.parse(happyHourEvent.startTimestamp)
-        val startTime = Calendar.getInstance().apply {
-            if (startDate != null) {
-                time = startDate
-            }
-        }
-
-        val endDate = timestampFormat.parse(happyHourEvent.endTimestamp)
-        val endTime = Calendar.getInstance().apply {
-            if (endDate != null) {
-                time = endDate
-            }
-        }
-
-        val currentTime = Calendar.getInstance()
-
-        val formattedStart = formatTimestamp(happyHourEvent.startTimestamp, "ha")
-        val formattedEnd = formatTimestamp(happyHourEvent.endTimestamp, "ha")
-
-        val weeklyHappyHour = weeklyEvents
-            .mapKeys { it.key.getDayOfWeekFromTimestamp() }
-            .mapValues { it.value[EventType.HappyHour] }
-
         HappyHourTimer(
             weeklyHappyHour = weeklyHappyHour,
             currentTime = currentTime,
