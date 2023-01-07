@@ -23,7 +23,7 @@ import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.info.EventInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
-import com.jordangellatly.hermosahappyhour.ui.detail.info.HappyHourInfo
+import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
@@ -50,7 +50,7 @@ fun RestaurantDetail(
                 upPress = upPress
             )
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let {
-                HappyHourInfo(weeklyEvents = restaurant.eventsByDate)
+                HappyHour(weeklyEvents = restaurant.eventsByDate)
             }
             EventInfo(weeklyEvents = restaurant.eventsByDate)
             GeneralInfo(restaurant = restaurant)

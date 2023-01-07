@@ -38,6 +38,8 @@ val generalWeeklyHours = mapOf(
 
 val eventsByDateForTesting = mapOf(
     "2023-01-08" to mapOf(
+        EventType.Brunch to sundayBrunch,
+        EventType.HappyHour to sundayHappyHour,
         EventType.Sports to sundaySportEvent
     ),
     "2023-01-09" to mapOf(
@@ -45,24 +47,25 @@ val eventsByDateForTesting = mapOf(
         EventType.Sports to mondayNightFootball
     ),
     "2023-01-10" to mapOf(
-        EventType.HappyHour to mondayHappyHour,
+        EventType.HappyHour to tuesdayHappyHour,
         EventType.Special to tacoTuesday
     ),
     "2023-01-11" to mapOf(
-        EventType.HappyHour to mondayHappyHour,
+        EventType.HappyHour to wednesdayHappyHour,
         EventType.Special to wineWednesday
     ),
     "2023-01-12" to mapOf(
-        EventType.HappyHour to mondayHappyHour,
+        EventType.HappyHour to thursdayHappyHour,
         EventType.Sports to thursdayNightFootball
     ),
     "2023-01-13" to mapOf(
-        EventType.HappyHour to mondayHappyHour,
+        EventType.HappyHour to fridayHappyHour,
         EventType.Special to fridayNightTrivia
     ),
     "2023-01-07" to mapOf(
-        EventType.HappyHour to mondayHappyHour,
-        EventType.Sports to sundaySportEvent
+        EventType.Brunch to saturdayBrunch,
+        EventType.HappyHour to saturdayHappyHour,
+        EventType.Sports to saturdaySportEvent
     )
 )
 
@@ -111,7 +114,7 @@ val tower12 = Restaurant(
         longitude = -118.40085
     ),
     weeklyHours = generalWeeklyHours,
-    eventsByDate = tower12EventsByDate,
+    eventsByDate = eventsByDateForTesting,
     address = Address(
         line1 = "53 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"
@@ -131,7 +134,7 @@ val bajaSharkeez = Restaurant(
         longitude = -118.40071
     ),
     weeklyHours = generalWeeklyHours,
-    eventsByDate = tower12EventsByDate,
+    eventsByDate = eventsByDateForTesting,
     address = Address(
         line1 = "52 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"
@@ -151,7 +154,7 @@ val americanJunkie = Restaurant(
         longitude = -118.40047
     ),
     weeklyHours = generalWeeklyHours,
-    eventsByDate = tower12EventsByDate,
+    eventsByDate = eventsByDateForTesting,
     address = Address(
         line1 = "68 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"
@@ -171,7 +174,7 @@ val hennesseys = Restaurant(
         longitude = -118.40152
     ),
     weeklyHours = generalWeeklyHours,
-    eventsByDate = tower12EventsByDate,
+    eventsByDate = eventsByDateForTesting,
     address = Address(
         line1 = "8 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"

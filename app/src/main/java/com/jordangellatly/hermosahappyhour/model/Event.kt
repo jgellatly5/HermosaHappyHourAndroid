@@ -416,6 +416,64 @@ val fridayNightTrivia = Event(
     image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
 )
 
+val saturdayHappyHour = Event(
+    id = 15,
+    eventType = EventType.HappyHour,
+    title = "Happy Hour",
+    description = "Serving sunsets, ice cold drinks, & good vibes daily",
+    restaurantId = tower12RestaurantId,
+    startTimestamp = "2023-01-07T15:00",
+    endTimestamp = "2023-01-07T19:00",
+    specials = listOf(
+        Deal(
+            description = "Shots, bottled & can beers",
+            price = "50% off"
+        ),
+        Deal(
+            description = "Add Red Bull",
+            price = "$3"
+        ),
+        Deal(
+            description = "To any well, call, or premium to make it a 22oz double shot double size cocktail",
+            price = "Add 1$"
+        ),
+        Deal(
+            description = "To any draft beer to make it a 22oz giant schooner",
+            price = "Add 1$"
+        )
+    ),
+    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+)
+
+val sundayHappyHour = Event(
+    id = 16,
+    eventType = EventType.HappyHour,
+    title = "Happy Hour",
+    description = "Serving sunsets, ice cold drinks, & good vibes daily",
+    restaurantId = tower12RestaurantId,
+    startTimestamp = "2023-01-08T15:00",
+    endTimestamp = "2023-01-08T19:00",
+    specials = listOf(
+        Deal(
+            description = "Shots, bottled & can beers",
+            price = "50% off"
+        ),
+        Deal(
+            description = "Add Red Bull",
+            price = "$3"
+        ),
+        Deal(
+            description = "To any well, call, or premium to make it a 22oz double shot double size cocktail",
+            price = "Add 1$"
+        ),
+        Deal(
+            description = "To any draft beer to make it a 22oz giant schooner",
+            price = "Add 1$"
+        )
+    ),
+    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+)
+
 val sampleEventData = mutableStateListOf(
     mondayHappyHour,
     tuesdayHappyHour,
@@ -430,5 +488,7 @@ val sampleEventData = mutableStateListOf(
     saturdayBrunch,
     saturdaySportEvent,
     sundayBrunch,
-    sundaySportEvent
+    sundaySportEvent,
+    saturdayHappyHour,
+    sundayHappyHour
 )
