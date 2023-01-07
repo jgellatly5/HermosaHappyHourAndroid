@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.tower12
-import com.jordangellatly.hermosahappyhour.model.tower12WeeklyHours
+import com.jordangellatly.hermosahappyhour.model.generalWeeklyHours
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
@@ -120,7 +120,7 @@ private fun HoursPopupPreview() {
     HermosaHappyHourTheme {
         HoursPopup(
             title = "Hours",
-            weeklyHours = tower12WeeklyHours,
+            weeklyHours = generalWeeklyHours,
             onClick = {}
         )
     }
