@@ -15,7 +15,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Popup
 import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.eventsByDateForTesting
@@ -136,17 +135,12 @@ fun HappyHourTimer(
                         "$happyHourDayStart - $happyHourDayEnd"
                     }
                 }
-            Popup(
+            HoursPopup(
+                title = "Happy Hour",
+                weeklyHours = weeklyHours,
+                onClick = { popupControl = false },
                 onDismissRequest = { popupControl = false }
-            ) {
-                HoursPopup(
-                    title = "Happy Hour",
-                    weeklyHours = weeklyHours,
-                    onClick = {
-                        popupControl = false
-                    }
-                )
-            }
+            )
         }
     }
 }
@@ -158,15 +152,15 @@ private fun HappyHourTimerPreview() {
     val weeklyHappyHour = eventsByDateForTesting
         .mapKeys { it.key.getDayOfWeekFromTimestamp() }
         .mapValues { it.value[EventType.HappyHour] }
-    val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    val startDate = defaultFormat.parse(happyHourEvent.startTimestamp)
+    val timestampFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+    val startDate = timestampFormat.parse(happyHourEvent.startTimestamp)
     val startTime = Calendar.getInstance().apply {
         if (startDate != null) {
             time = startDate
         }
     }
 
-    val endDate = defaultFormat.parse(happyHourEvent.endTimestamp)
+    val endDate = timestampFormat.parse(happyHourEvent.endTimestamp)
     val endTime = Calendar.getInstance().apply {
         if (endDate != null) {
             time = endDate

@@ -19,7 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Popup
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
@@ -127,38 +126,33 @@ fun GeneralInfo(
         BottomMap(restaurant = restaurant)
 
         if (popupControl) {
-            Popup(
-                onDismissRequest = { popupControl = false }
-            ) {
-                val title = if (isHappyHour) "Happy Hour" else "Hours"
-                val hours = if (isHappyHour) {
-                    restaurant.eventsByDate
-                        .mapValues { it.value[EventType.HappyHour] }
-                        .mapValues {
-                            val happyHourDayStart =
-                                it.value?.startTimestamp?.let { startTimestamp ->
-                                    formatTimestamp(startTimestamp, "ha")
-                                } ?: ""
-                            val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
-                                formatTimestamp(endTimestamp, "ha")
+            val title = if (isHappyHour) "Happy Hour" else "Hours"
+            val hours = if (isHappyHour) {
+                restaurant.eventsByDate
+                    .mapValues { it.value[EventType.HappyHour] }
+                    .mapValues {
+                        val happyHourDayStart =
+                            it.value?.startTimestamp?.let { startTimestamp ->
+                                formatTimestamp(startTimestamp, "ha")
                             } ?: ""
-                            if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
-                                "Not Available"
-                            } else {
-                                "$happyHourDayStart - $happyHourDayEnd"
-                            }
+                        val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
+                            formatTimestamp(endTimestamp, "ha")
+                        } ?: ""
+                        if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
+                            "Not Available"
+                        } else {
+                            "$happyHourDayStart - $happyHourDayEnd"
                         }
-                } else {
-                    restaurant.weeklyHours
-                }
-                HoursPopup(
-                    title = title,
-                    weeklyHours = hours,
-                    onClick = {
-                        popupControl = false
                     }
-                )
+            } else {
+                restaurant.weeklyHours
             }
+            HoursPopup(
+                title = title,
+                weeklyHours = hours,
+                onClick = { popupControl = false },
+                onDismissRequest = { popupControl = false }
+            )
         }
     }
 }

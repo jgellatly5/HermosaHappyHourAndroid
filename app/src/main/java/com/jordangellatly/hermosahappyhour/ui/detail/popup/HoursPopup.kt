@@ -15,9 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Popup
 import com.jordangellatly.hermosahappyhour.model.EventType
-import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.model.generalWeeklyHours
+import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
@@ -31,62 +32,65 @@ import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 fun HoursPopup(
     title: String,
     weeklyHours: Map<String, String>,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onDismissRequest: () -> Unit
 ) {
-    HermosaHappyHourSurface(
-        shape = MaterialTheme.shapes.medium,
-        modifier = Modifier.padding(
-            start = 16.dp,
-            end = 16.dp,
-            bottom = 16.dp
-        ),
-        elevation = 2.dp
-    ) {
-        Column(modifier = Modifier.padding(8.dp)) {
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.h4,
-                    modifier = Modifier.padding(16.dp)
-                )
-                Close(
-                    onClick = onClick
-                )
-            }
-
-            weeklyHours.keys.forEach { dayOfWeek ->
-                val date = getCurrentDateTime()
-                val getDayFromDate = date.toString("EEEE").uppercase()
-                val fontWeight =
-                    if (getDayFromDate == dayOfWeek) FontWeight.Bold else FontWeight.Normal
-                val hoursToday = weeklyHours.getValue(dayOfWeek)
+    Popup(onDismissRequest = onDismissRequest) {
+        HermosaHappyHourSurface(
+            shape = MaterialTheme.shapes.medium,
+            modifier = Modifier.padding(
+                start = 16.dp,
+                end = 16.dp,
+                bottom = 16.dp
+            ),
+            elevation = 2.dp
+        ) {
+            Column(modifier = Modifier.padding(8.dp)) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = dayOfWeek.lowercase().replaceFirstChar {
-                            it.uppercase()
-                        },
-                        fontWeight = fontWeight,
-                        style = MaterialTheme.typography.h6,
+                        text = title,
+                        style = MaterialTheme.typography.h4,
+                        modifier = Modifier.padding(16.dp)
                     )
-                    Text(
-                        text = hoursToday,
-                        fontWeight = fontWeight,
-                        style = MaterialTheme.typography.h6,
+                    Close(
+                        onClick = onClick
                     )
                 }
-                if (dayOfWeek != "SATURDAY") {
-                    HappyHourDivider(
-                        modifier = Modifier.padding(start = 16.dp, end = 16.dp)
-                    )
+
+                weeklyHours.keys.forEach { dayOfWeek ->
+                    val date = getCurrentDateTime()
+                    val getDayFromDate = date.toString("EEEE").uppercase()
+                    val fontWeight =
+                        if (getDayFromDate == dayOfWeek) FontWeight.Bold else FontWeight.Normal
+                    val hoursToday = weeklyHours.getValue(dayOfWeek)
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                    ) {
+                        Text(
+                            text = dayOfWeek.lowercase().replaceFirstChar {
+                                it.uppercase()
+                            },
+                            fontWeight = fontWeight,
+                            style = MaterialTheme.typography.h6,
+                        )
+                        Text(
+                            text = hoursToday,
+                            fontWeight = fontWeight,
+                            style = MaterialTheme.typography.h6,
+                        )
+                    }
+                    if (dayOfWeek != "SATURDAY") {
+                        HappyHourDivider(
+                            modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+                        )
+                    }
                 }
             }
         }
@@ -121,7 +125,8 @@ private fun HoursPopupPreview() {
         HoursPopup(
             title = "Hours",
             weeklyHours = generalWeeklyHours,
-            onClick = {}
+            onClick = {},
+            onDismissRequest = {}
         )
     }
 }
@@ -151,7 +156,8 @@ private fun HappyHourPopupPreview() {
         HoursPopup(
             title = "Happy Hour",
             weeklyHours = weeklyHours,
-            onClick = {}
+            onClick = {},
+            onDismissRequest = {}
         )
     }
 }
