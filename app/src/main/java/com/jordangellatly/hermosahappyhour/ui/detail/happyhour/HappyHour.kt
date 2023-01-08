@@ -25,8 +25,22 @@ fun HappyHour(
     stringEnd: String?
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
+        val weeklyHours = weeklyHappyHour
+            .mapValues {
+                val happyHourDayStart = it.value?.startTimestamp?.let { startTimestamp ->
+                    formatTimestamp(startTimestamp, "ha")
+                } ?: ""
+                val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
+                    formatTimestamp(endTimestamp, "ha")
+                } ?: ""
+                if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
+                    "Not Available"
+                } else {
+                    "$happyHourDayStart - $happyHourDayEnd"
+                }
+            }
         HappyHourTimer(
-            weeklyHappyHour = weeklyHappyHour,
+            weeklyHours = weeklyHours,
             currentTime = currentTime,
             startTime = startTime,
             endTime = endTime,
