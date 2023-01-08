@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail
+package com.jordangellatly.hermosahappyhour.ui.detail.special
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -13,7 +13,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Event
-import com.jordangellatly.hermosahappyhour.model.sundaySportEvent
+import com.jordangellatly.hermosahappyhour.model.sundaySilentDiscoSunset
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.components.RestaurantImage
 import com.jordangellatly.hermosahappyhour.ui.components.offsetGradientBackground
@@ -31,7 +31,7 @@ val gradientWidth
     }
 
 @Composable
-fun TodaysEventItem(
+fun SpecialEventItem(
     event: Event,
     onEventClick: (Long) -> Unit,
     index: Int,
@@ -45,7 +45,6 @@ fun TodaysEventItem(
     }
     HappyHourCard(
         modifier = modifier
-            .height(400.dp)
             .fillMaxWidth()
             .padding(bottom = 16.dp)
     ) {
@@ -110,13 +109,12 @@ fun TodaysEventItem(
     }
 }
 
-@Preview
+@Preview(heightDp = 260)
 @Composable
-fun TodaysEventItemPreview() {
+fun SpecialEventItemPreview() {
     HermosaHappyHourTheme {
-        val event = sundaySportEvent
-        TodaysEventItem(
-            event = event,
+        SpecialEventItem(
+            event = sundaySilentDiscoSunset,
             onEventClick = {},
             index = 0,
             gradient = HermosaHappyHourTheme.colors.gradient6_1,

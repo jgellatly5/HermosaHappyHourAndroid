@@ -30,9 +30,9 @@ import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
-import com.jordangellatly.hermosahappyhour.ui.detail.info.EventInfo
-import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
+import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
+import com.jordangellatly.hermosahappyhour.ui.detail.special.SpecialEvent
 import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
@@ -71,7 +71,8 @@ fun RestaurantDetail(
                 )
             }
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let { event ->
-                val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.HappyHour)
+                val weeklyHours =
+                    getWeeklyEventScheduleFromRestaurant(restaurant, EventType.HappyHour)
                 val annotatedTimeString = buildAnnotatedTimerString(event)
                 HappyHour(
                     weeklyHours = weeklyHours,
@@ -88,7 +89,16 @@ fun RestaurantDetail(
                     specials = event.specials
                 )
             }
-            EventInfo(weeklyEvents = restaurant.eventsByDate)
+            restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Special]?.let { event ->
+                val weeklyHours =
+                    getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Special)
+                val annotatedTimeString = buildAnnotatedTimerString(event)
+                SpecialEvent(
+                    weeklyHours = weeklyHours,
+                    annotatedTimeString = annotatedTimeString,
+                    specials = event.specials
+                )
+            }
             GeneralInfo(restaurant = restaurant)
         }
     }

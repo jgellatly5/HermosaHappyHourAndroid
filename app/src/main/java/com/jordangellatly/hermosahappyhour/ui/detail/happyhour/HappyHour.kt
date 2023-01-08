@@ -8,7 +8,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.*
-import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
+import com.jordangellatly.hermosahappyhour.ui.detail.deals.FeaturedSpecialsCollection
 import com.jordangellatly.hermosahappyhour.ui.detail.buildAnnotatedTimerString
 import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme

@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.sports
+package com.jordangellatly.hermosahappyhour.ui.detail.special
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -11,24 +11,21 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.EventType
-import com.jordangellatly.hermosahappyhour.model.saturdayHappyHour
-import com.jordangellatly.hermosahappyhour.model.saturdaySportEvent
-import com.jordangellatly.hermosahappyhour.model.tower12
+import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.detail.buildAnnotatedTimerString
 import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
-fun SportsTimer(
+fun SpecialEventTimer(
     weeklyHours: Map<String, String>,
     annotatedTimeString: AnnotatedString
 ) {
     var popupControl by remember { mutableStateOf(false) }
     Column {
         Text(
-            text = "Sports",
+            text = "Special Event",
             style = MaterialTheme.typography.h4,
             modifier = Modifier.padding(8.dp)
         )
@@ -40,7 +37,7 @@ fun SportsTimer(
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
         )
         Text(
-            text = "See all sports hours \u279E",
+            text = "See all special event hours \u279E",
             fontWeight = FontWeight.Bold,
             color = HermosaHappyHourTheme.colors.brand,
             style = MaterialTheme.typography.body1,
@@ -50,7 +47,7 @@ fun SportsTimer(
         )
         if (popupControl) {
             HoursPopup(
-                title = "Sports",
+                title = "Special Events",
                 weeklyHours = weeklyHours,
                 onClick = { popupControl = false },
                 onDismissRequest = { popupControl = false }
@@ -61,13 +58,13 @@ fun SportsTimer(
 
 @Preview(showBackground = true)
 @Composable
-private fun SportsTimerPreview() {
+private fun SpecialEventTimerPreview() {
     val restaurant = tower12
-    val event = saturdaySportEvent
-    val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Sports)
+    val event = sundaySilentDiscoSunset
+    val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Special)
     val annotatedTimeString = buildAnnotatedTimerString(event)
     HermosaHappyHourTheme {
-        SportsTimer(
+        SpecialEventTimer(
             weeklyHours = weeklyHours,
             annotatedTimeString = annotatedTimeString
         )
