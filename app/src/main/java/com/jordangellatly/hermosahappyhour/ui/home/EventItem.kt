@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
-import com.jordangellatly.hermosahappyhour.model.mondayHappyHour
+import com.jordangellatly.hermosahappyhour.model.saturdayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
@@ -162,7 +162,7 @@ fun EventItem(
 @Composable
 private fun EventItemPreview() {
     HermosaHappyHourTheme {
-        val event = mondayHappyHour
+        val event = saturdayHappyHour
         EventItem(
             event = event,
             onEventClick = {}
