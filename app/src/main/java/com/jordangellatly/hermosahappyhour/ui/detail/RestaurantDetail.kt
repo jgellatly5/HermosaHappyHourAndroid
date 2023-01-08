@@ -50,7 +50,10 @@ fun RestaurantDetail(
                 upPress = upPress
             )
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let {
-                HappyHour(weeklyEvents = restaurant.eventsByDate)
+                HappyHour(
+                    happyHourEvent = it,
+                    weeklyEvents = restaurant.eventsByDate
+                )
             }
             EventInfo(weeklyEvents = restaurant.eventsByDate)
             GeneralInfo(restaurant = restaurant)

@@ -2,14 +2,13 @@ package com.jordangellatly.hermosahappyhour.ui.detail.happyhour
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
-import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.getDayOfWeekFromTimestamp
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
@@ -17,14 +16,10 @@ import java.util.*
 
 @Composable
 fun HappyHour(
+    happyHourEvent: Event,
     weeklyEvents: Map<String, Map<EventType, Event>>
 ) {
-    val date = getCurrentDateTime()
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     val timestampFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
-    val formattedDateTimestamp = dateFormat.format(date)
-    val happyHourEvent =
-        weeklyEvents.getValue(formattedDateTimestamp).getValue(EventType.HappyHour)
 
     val specials = happyHourEvent.specials
 
@@ -51,9 +46,7 @@ fun HappyHour(
         .mapKeys { it.key.getDayOfWeekFromTimestamp() }
         .mapValues { it.value[EventType.HappyHour] }
 
-    Column(
-        modifier = Modifier.padding(8.dp)
-    ) {
+    Column(modifier = Modifier.padding(8.dp)) {
         HappyHourTimer(
             weeklyHappyHour = weeklyHappyHour,
             currentTime = currentTime,
@@ -79,6 +72,7 @@ fun HappyHour(
 private fun HappyHourPreview() {
     HermosaHappyHourTheme {
         HappyHour(
+            happyHourEvent = saturdayHappyHour,
             weeklyEvents = eventsByDateForTesting
         )
     }
