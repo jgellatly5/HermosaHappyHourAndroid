@@ -24,7 +24,9 @@ import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.info.EventInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
+import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
+import com.jordangellatly.hermosahappyhour.ui.home.getDayOfWeekFromTimestamp
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 import com.jordangellatly.hermosahappyhour.ui.utils.mirroringBackIcon
@@ -49,10 +51,35 @@ fun RestaurantDetail(
                 imageResource = restaurant.image,
                 upPress = upPress
             )
-            restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let {
+            restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let { event ->
+                val timestampFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+                val startDate = timestampFormat.parse(event.startTimestamp)
+                val startTime = Calendar.getInstance().apply {
+                    if (startDate != null) {
+                        time = startDate
+                    }
+                }
+                val endDate = timestampFormat.parse(event.endTimestamp)
+                val endTime = Calendar.getInstance().apply {
+                    if (endDate != null) {
+                        time = endDate
+                    }
+                }
+                val currentTime = Calendar.getInstance()
+                val stringStart = formatTimestamp(event.startTimestamp, "ha")
+                val stringEnd = formatTimestamp(event.endTimestamp, "ha")
+
+                val weeklyHappyHour = restaurant.eventsByDate
+                    .mapKeys { it.key.getDayOfWeekFromTimestamp() }
+                    .mapValues { it.value[EventType.HappyHour] }
                 HappyHour(
-                    happyHourEvent = it,
-                    weeklyEvents = restaurant.eventsByDate
+                    weeklyHappyHour = weeklyHappyHour,
+                    specials = event.specials,
+                    currentTime = currentTime,
+                    startTime = startTime,
+                    endTime = endTime,
+                    stringStart = stringStart,
+                    stringEnd = stringEnd
                 )
             }
             EventInfo(weeklyEvents = restaurant.eventsByDate)

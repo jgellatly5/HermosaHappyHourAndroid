@@ -16,44 +16,22 @@ import java.util.*
 
 @Composable
 fun HappyHour(
-    happyHourEvent: Event,
-    weeklyEvents: Map<String, Map<EventType, Event>>
+    weeklyHappyHour: Map<String, Event?>,
+    specials: List<Deal>,
+    currentTime: Calendar,
+    startTime: Calendar,
+    endTime: Calendar,
+    stringStart: String?,
+    stringEnd: String?
 ) {
-    val timestampFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
-
-    val specials = happyHourEvent.specials
-
-    val startDate = timestampFormat.parse(happyHourEvent.startTimestamp)
-    val startTime = Calendar.getInstance().apply {
-        if (startDate != null) {
-            time = startDate
-        }
-    }
-
-    val endDate = timestampFormat.parse(happyHourEvent.endTimestamp)
-    val endTime = Calendar.getInstance().apply {
-        if (endDate != null) {
-            time = endDate
-        }
-    }
-
-    val currentTime = Calendar.getInstance()
-
-    val formattedStart = formatTimestamp(happyHourEvent.startTimestamp, "ha")
-    val formattedEnd = formatTimestamp(happyHourEvent.endTimestamp, "ha")
-
-    val weeklyHappyHour = weeklyEvents
-        .mapKeys { it.key.getDayOfWeekFromTimestamp() }
-        .mapValues { it.value[EventType.HappyHour] }
-
     Column(modifier = Modifier.padding(8.dp)) {
         HappyHourTimer(
             weeklyHappyHour = weeklyHappyHour,
             currentTime = currentTime,
             startTime = startTime,
             endTime = endTime,
-            stringStart = formattedStart,
-            stringEnd = formattedEnd
+            stringStart = stringStart,
+            stringEnd = stringEnd
         )
 
         FeaturedSpecialsCollection(
@@ -70,10 +48,37 @@ fun HappyHour(
 @Preview(showBackground = true)
 @Composable
 private fun HappyHourPreview() {
+    val restaurant = tower12
+    val event = saturdayHappyHour
+    val timestampFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+    val startDate = timestampFormat.parse(event.startTimestamp)
+    val startTime = Calendar.getInstance().apply {
+        if (startDate != null) {
+            time = startDate
+        }
+    }
+    val endDate = timestampFormat.parse(event.endTimestamp)
+    val endTime = Calendar.getInstance().apply {
+        if (endDate != null) {
+            time = endDate
+        }
+    }
+    val currentTime = Calendar.getInstance()
+    val stringStart = formatTimestamp(event.startTimestamp, "ha")
+    val stringEnd = formatTimestamp(event.endTimestamp, "ha")
+
+    val weeklyHappyHour = restaurant.eventsByDate
+        .mapKeys { it.key.getDayOfWeekFromTimestamp() }
+        .mapValues { it.value[EventType.HappyHour] }
     HermosaHappyHourTheme {
         HappyHour(
-            happyHourEvent = saturdayHappyHour,
-            weeklyEvents = eventsByDateForTesting
+            weeklyHappyHour = weeklyHappyHour,
+            specials = event.specials,
+            currentTime = currentTime,
+            startTime = startTime,
+            endTime = endTime,
+            stringStart = stringStart,
+            stringEnd = stringEnd
         )
     }
 }
