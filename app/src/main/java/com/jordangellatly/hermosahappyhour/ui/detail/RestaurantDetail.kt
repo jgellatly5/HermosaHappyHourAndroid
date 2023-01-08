@@ -75,7 +75,7 @@ fun RestaurantDetail(
 }
 
 @Composable
-private fun buildAnnotatedTimerString(event: Event) =
+fun buildAnnotatedTimerString(event: Event) =
     buildAnnotatedString {
         var millisInFuture = 0L
         var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
@@ -151,7 +151,7 @@ private fun buildAnnotatedTimerString(event: Event) =
         }
     }
 
-private fun getHappyHoursFromRestaurant(restaurant: Restaurant) =
+fun getHappyHoursFromRestaurant(restaurant: Restaurant) =
     restaurant.eventsByDate
         .mapKeys { it.key.getDayOfWeekFromTimestamp() }
         .mapValues { it.value[EventType.HappyHour] }
