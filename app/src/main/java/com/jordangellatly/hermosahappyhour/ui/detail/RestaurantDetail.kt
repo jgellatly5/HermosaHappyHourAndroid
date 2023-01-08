@@ -29,6 +29,7 @@ import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
+import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
 import com.jordangellatly.hermosahappyhour.ui.detail.info.EventInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
@@ -59,8 +60,17 @@ fun RestaurantDetail(
                 imageResource = restaurant.image,
                 upPress = upPress
             )
+            restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Brunch]?.let { event ->
+                val weeklyHours = getWeeklyBrunchScheduleFromRestaurant(restaurant)
+                val annotatedTimeString = buildAnnotatedTimerString(event)
+                Brunch(
+                    weeklyHours = weeklyHours,
+                    annotatedTimeString = annotatedTimeString,
+                    specials = event.specials
+                )
+            }
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let { event ->
-                val weeklyHours = getHappyHoursFromRestaurant(restaurant)
+                val weeklyHours = getWeeklyHappyHourScheduleFromRestaurant(restaurant)
                 val annotatedTimeString = buildAnnotatedTimerString(event)
                 HappyHour(
                     weeklyHours = weeklyHours,
@@ -151,7 +161,7 @@ fun buildAnnotatedTimerString(event: Event) =
         }
     }
 
-fun getHappyHoursFromRestaurant(restaurant: Restaurant) =
+fun getWeeklyHappyHourScheduleFromRestaurant(restaurant: Restaurant) =
     restaurant.eventsByDate
         .mapKeys { it.key.getDayOfWeekFromTimestamp() }
         .mapValues { it.value[EventType.HappyHour] }
@@ -166,6 +176,24 @@ fun getHappyHoursFromRestaurant(restaurant: Restaurant) =
                 "Not Available"
             } else {
                 "$happyHourDayStart - $happyHourDayEnd"
+            }
+        }
+
+fun getWeeklyBrunchScheduleFromRestaurant(restaurant: Restaurant) =
+    restaurant.eventsByDate
+        .mapKeys { it.key.getDayOfWeekFromTimestamp() }
+        .mapValues { it.value[EventType.Brunch] }
+        .mapValues {
+            val brunchDayStart = it.value?.startTimestamp?.let { startTimestamp ->
+                formatTimestamp(startTimestamp, "ha")
+            } ?: ""
+            val brunchDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
+                formatTimestamp(endTimestamp, "ha")
+            } ?: ""
+            if (brunchDayStart.isEmpty() || brunchDayEnd.isEmpty()) {
+                "Not Available"
+            } else {
+                "$brunchDayStart - $brunchDayEnd"
             }
         }
 

@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.happyhour
+package com.jordangellatly.hermosahappyhour.ui.detail.brunch
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -7,30 +7,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.Deal
-import com.jordangellatly.hermosahappyhour.model.SpecialsCollection
-import com.jordangellatly.hermosahappyhour.model.saturdayHappyHour
-import com.jordangellatly.hermosahappyhour.model.tower12
+import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
 import com.jordangellatly.hermosahappyhour.ui.detail.buildAnnotatedTimerString
+import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyBrunchScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyHappyHourScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
-fun HappyHour(
+fun Brunch(
     weeklyHours: Map<String, String>,
     annotatedTimeString: AnnotatedString,
     specials: List<Deal>
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
-        HappyHourTimer(
+        BrunchTimer(
             weeklyHours = weeklyHours,
             annotatedTimeString = annotatedTimeString
         )
         FeaturedSpecialsCollection(
             specialsCollection = SpecialsCollection(
                 id = 1L,
-                name = "Happy Hour Specials",
+                name = "Brunch Specials",
                 specials = specials
             ),
             onDealClick = {}
@@ -40,13 +38,13 @@ fun HappyHour(
 
 @Preview(showBackground = true)
 @Composable
-private fun HappyHourPreview() {
+private fun BrunchPreview() {
     val restaurant = tower12
-    val event = saturdayHappyHour
-    val weeklyHours = getWeeklyHappyHourScheduleFromRestaurant(restaurant)
+    val event = saturdayBrunch
+    val weeklyHours = getWeeklyBrunchScheduleFromRestaurant(restaurant)
     val annotatedTimeString = buildAnnotatedTimerString(event)
     HermosaHappyHourTheme {
-        HappyHour(
+        Brunch(
             weeklyHours = weeklyHours,
             annotatedTimeString = annotatedTimeString,
             specials = event.specials

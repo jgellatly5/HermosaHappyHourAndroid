@@ -16,14 +16,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
-import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.generalWeeklyHours
 import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
-import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
+import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyBrunchScheduleFromRestaurant
+import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyHappyHourScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
-import com.jordangellatly.hermosahappyhour.ui.home.getDayOfWeekFromTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
@@ -135,26 +134,23 @@ private fun HoursPopupPreview() {
 @Composable
 private fun HappyHourPopupPreview() {
     HermosaHappyHourTheme {
-        val weeklyEventMap = tower12.eventsByDate
-        val weeklyHappyHourMap = weeklyEventMap
-            .mapKeys { it.key.getDayOfWeekFromTimestamp() }
-            .mapValues { it.value[EventType.HappyHour] }
-        val weeklyHours = weeklyHappyHourMap
-            .mapValues {
-                val happyHourDayStart = it.value?.startTimestamp?.let { startTimestamp ->
-                    formatTimestamp(startTimestamp, "ha")
-                } ?: ""
-                val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
-                    formatTimestamp(endTimestamp, "ha")
-                } ?: ""
-                if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
-                    "Not Available"
-                } else {
-                    "$happyHourDayStart - $happyHourDayEnd"
-                }
-            }
+        val weeklyHours = getWeeklyHappyHourScheduleFromRestaurant(tower12)
         HoursPopup(
             title = "Happy Hour",
+            weeklyHours = weeklyHours,
+            onClick = {},
+            onDismissRequest = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun BrunchPopupPreview() {
+    HermosaHappyHourTheme {
+        val weeklyHours = getWeeklyBrunchScheduleFromRestaurant(tower12)
+        HoursPopup(
+            title = "Brunch",
             weeklyHours = weeklyHours,
             onClick = {},
             onDismissRequest = {}

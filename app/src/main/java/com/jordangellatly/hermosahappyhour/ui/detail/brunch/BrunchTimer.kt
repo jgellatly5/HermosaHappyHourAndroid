@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.happyhour
+package com.jordangellatly.hermosahappyhour.ui.detail.brunch
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -19,14 +19,14 @@ import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
-fun HappyHourTimer(
+fun BrunchTimer(
     weeklyHours: Map<String, String>,
     annotatedTimeString: AnnotatedString
 ) {
     var popupControl by remember { mutableStateOf(false) }
     Column {
         Text(
-            text = "Happy Hour",
+            text = "Brunch",
             style = MaterialTheme.typography.h4,
             modifier = Modifier.padding(8.dp)
         )
@@ -38,7 +38,7 @@ fun HappyHourTimer(
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
         )
         Text(
-            text = "See all happy hours \u279E",
+            text = "See all brunch hours \u279E",
             fontWeight = FontWeight.Bold,
             color = HermosaHappyHourTheme.colors.brand,
             style = MaterialTheme.typography.body1,
@@ -48,7 +48,7 @@ fun HappyHourTimer(
         )
         if (popupControl) {
             HoursPopup(
-                title = "Happy Hour",
+                title = "Brunch",
                 weeklyHours = weeklyHours,
                 onClick = { popupControl = false },
                 onDismissRequest = { popupControl = false }
@@ -59,13 +59,13 @@ fun HappyHourTimer(
 
 @Preview(showBackground = true)
 @Composable
-private fun HappyHourTimerPreview() {
+private fun BrunchTimerPreview() {
     val restaurant = tower12
     val event = saturdayHappyHour
     val weeklyHours = getWeeklyHappyHourScheduleFromRestaurant(restaurant)
     val annotatedTimeString = buildAnnotatedTimerString(event)
     HermosaHappyHourTheme {
-        HappyHourTimer(
+        BrunchTimer(
             weeklyHours = weeklyHours,
             annotatedTimeString = annotatedTimeString
         )
