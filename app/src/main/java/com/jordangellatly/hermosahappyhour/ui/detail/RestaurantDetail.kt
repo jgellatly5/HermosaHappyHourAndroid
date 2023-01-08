@@ -1,5 +1,6 @@
 package com.jordangellatly.hermosahappyhour.ui.detail
 
+import android.os.CountDownTimer
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,6 +9,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,6 +18,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.R
@@ -72,14 +78,82 @@ fun RestaurantDetail(
                 val weeklyHappyHour = restaurant.eventsByDate
                     .mapKeys { it.key.getDayOfWeekFromTimestamp() }
                     .mapValues { it.value[EventType.HappyHour] }
+                val weeklyHours = weeklyHappyHour
+                    .mapValues {
+                        val happyHourDayStart = it.value?.startTimestamp?.let { startTimestamp ->
+                            formatTimestamp(startTimestamp, "ha")
+                        } ?: ""
+                        val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
+                            formatTimestamp(endTimestamp, "ha")
+                        } ?: ""
+                        if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
+                            "Not Available"
+                        } else {
+                            "$happyHourDayStart - $happyHourDayEnd"
+                        }
+                    }
+                val annotatedTimeString = buildAnnotatedString {
+                    var millisInFuture = 0L
+                    var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
+                    when {
+                        currentTime < startTime -> {
+                            timeIndicatorColor = Color.Green
+                            withStyle(style = SpanStyle(timeIndicatorColor)) {
+                                append("Starts")
+                            }
+                            append(" at $stringStart")
+                            millisInFuture = startTime.timeInMillis - currentTime.timeInMillis
+                        }
+                        currentTime > startTime && currentTime < endTime -> {
+                            timeIndicatorColor = HermosaHappyHourTheme.colors.orange
+                            withStyle(style = SpanStyle(timeIndicatorColor)) {
+                                append("Ends")
+                            }
+                            append(" at $stringEnd")
+                            millisInFuture = endTime.timeInMillis - currentTime.timeInMillis
+                        }
+                        currentTime > endTime -> {
+                            timeIndicatorColor = Color.Red
+                            withStyle(style = SpanStyle(timeIndicatorColor)) {
+                                append("Ended")
+                            }
+                            append(" at $stringEnd")
+                            millisInFuture = 0L
+                        }
+                        else -> {
+                            append("")
+                        }
+                    }
+                    append(" \u2022 ")
+
+                    val timeData = remember { mutableStateOf(millisInFuture) }
+                    val countDownTimer =
+                        object : CountDownTimer(millisInFuture, 1000) {
+                            override fun onTick(millisUntilFinished: Long) {
+                                timeData.value = millisUntilFinished
+                            }
+
+                            override fun onFinish() {}
+                        }
+
+                    DisposableEffect(key1 = "key") {
+                        countDownTimer.start()
+                        onDispose {
+                            countDownTimer.cancel()
+                        }
+                    }
+
+                    val offset = SimpleDateFormat("HH:mm:ss", Locale.US)
+                    offset.timeZone = TimeZone.getTimeZone("GMT")
+                    val timeText = offset.format(timeData.value)
+                    withStyle(style = SpanStyle(timeIndicatorColor)) {
+                        append(timeText)
+                    }
+                }
                 HappyHour(
-                    weeklyHappyHour = weeklyHappyHour,
-                    specials = event.specials,
-                    currentTime = currentTime,
-                    startTime = startTime,
-                    endTime = endTime,
-                    stringStart = stringStart,
-                    stringEnd = stringEnd
+                    weeklyHours = weeklyHours,
+                    annotatedTimeString = annotatedTimeString,
+                    specials = event.specials
                 )
             }
             EventInfo(weeklyEvents = restaurant.eventsByDate)
