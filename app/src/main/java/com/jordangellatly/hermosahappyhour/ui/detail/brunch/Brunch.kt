@@ -10,8 +10,7 @@ import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.detail.FeaturedSpecialsCollection
 import com.jordangellatly.hermosahappyhour.ui.detail.buildAnnotatedTimerString
-import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyBrunchScheduleFromRestaurant
-import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyHappyHourScheduleFromRestaurant
+import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -41,7 +40,7 @@ fun Brunch(
 private fun BrunchPreview() {
     val restaurant = tower12
     val event = saturdayBrunch
-    val weeklyHours = getWeeklyBrunchScheduleFromRestaurant(restaurant)
+    val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Brunch)
     val annotatedTimeString = buildAnnotatedTimerString(event)
     HermosaHappyHourTheme {
         Brunch(

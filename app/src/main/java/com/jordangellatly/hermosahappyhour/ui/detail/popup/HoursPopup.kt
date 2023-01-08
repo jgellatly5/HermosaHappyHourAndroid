@@ -16,12 +16,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
+import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.generalWeeklyHours
 import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
-import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyBrunchScheduleFromRestaurant
-import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyHappyHourScheduleFromRestaurant
+import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -134,7 +134,7 @@ private fun HoursPopupPreview() {
 @Composable
 private fun HappyHourPopupPreview() {
     HermosaHappyHourTheme {
-        val weeklyHours = getWeeklyHappyHourScheduleFromRestaurant(tower12)
+        val weeklyHours = getWeeklyEventScheduleFromRestaurant(tower12, EventType.HappyHour)
         HoursPopup(
             title = "Happy Hour",
             weeklyHours = weeklyHours,
@@ -148,7 +148,7 @@ private fun HappyHourPopupPreview() {
 @Composable
 private fun BrunchPopupPreview() {
     HermosaHappyHourTheme {
-        val weeklyHours = getWeeklyBrunchScheduleFromRestaurant(tower12)
+        val weeklyHours = getWeeklyEventScheduleFromRestaurant(tower12, EventType.Brunch)
         HoursPopup(
             title = "Brunch",
             weeklyHours = weeklyHours,

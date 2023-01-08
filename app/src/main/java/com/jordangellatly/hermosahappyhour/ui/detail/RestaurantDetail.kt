@@ -61,7 +61,7 @@ fun RestaurantDetail(
                 upPress = upPress
             )
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Brunch]?.let { event ->
-                val weeklyHours = getWeeklyBrunchScheduleFromRestaurant(restaurant)
+                val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Brunch)
                 val annotatedTimeString = buildAnnotatedTimerString(event)
                 Brunch(
                     weeklyHours = weeklyHours,
@@ -70,7 +70,7 @@ fun RestaurantDetail(
                 )
             }
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let { event ->
-                val weeklyHours = getWeeklyHappyHourScheduleFromRestaurant(restaurant)
+                val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.HappyHour)
                 val annotatedTimeString = buildAnnotatedTimerString(event)
                 HappyHour(
                     weeklyHours = weeklyHours,
@@ -161,28 +161,10 @@ fun buildAnnotatedTimerString(event: Event) =
         }
     }
 
-fun getWeeklyHappyHourScheduleFromRestaurant(restaurant: Restaurant) =
+fun getWeeklyEventScheduleFromRestaurant(restaurant: Restaurant, eventType: EventType) =
     restaurant.eventsByDate
         .mapKeys { it.key.getDayOfWeekFromTimestamp() }
-        .mapValues { it.value[EventType.HappyHour] }
-        .mapValues {
-            val happyHourDayStart = it.value?.startTimestamp?.let { startTimestamp ->
-                formatTimestamp(startTimestamp, "ha")
-            } ?: ""
-            val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
-                formatTimestamp(endTimestamp, "ha")
-            } ?: ""
-            if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
-                "Not Available"
-            } else {
-                "$happyHourDayStart - $happyHourDayEnd"
-            }
-        }
-
-fun getWeeklyBrunchScheduleFromRestaurant(restaurant: Restaurant) =
-    restaurant.eventsByDate
-        .mapKeys { it.key.getDayOfWeekFromTimestamp() }
-        .mapValues { it.value[EventType.Brunch] }
+        .mapValues { it.value[eventType] }
         .mapValues {
             val brunchDayStart = it.value?.startTimestamp?.let { startTimestamp ->
                 formatTimestamp(startTimestamp, "ha")
