@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -28,16 +29,82 @@ import java.util.*
 @Composable
 fun HappyHourTimer(
     weeklyHours: Map<String, String>,
-    currentTime: Calendar,
-    startTime: Calendar,
-    endTime: Calendar,
-    stringStart: String?,
-    stringEnd: String?
+    annotatedTimeString: AnnotatedString
 ) {
     var popupControl by remember { mutableStateOf(false) }
-    var millisInFuture = 0L
-    var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
+    Column {
+        Text(
+            text = "Happy Hour",
+            style = MaterialTheme.typography.h4,
+            modifier = Modifier.padding(8.dp)
+        )
+        Text(
+            text = annotatedTimeString,
+            fontWeight = FontWeight.Bold,
+            color = HermosaHappyHourTheme.colors.textSecondary,
+            style = MaterialTheme.typography.body1,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
+        )
+        Text(
+            text = "See all happy hours \u279E",
+            fontWeight = FontWeight.Bold,
+            color = HermosaHappyHourTheme.colors.brand,
+            style = MaterialTheme.typography.body1,
+            modifier = Modifier
+                .clickable(onClick = { popupControl = true })
+                .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+        )
+        if (popupControl) {
+            HoursPopup(
+                title = "Happy Hour",
+                weeklyHours = weeklyHours,
+                onClick = { popupControl = false },
+                onDismissRequest = { popupControl = false }
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun HappyHourTimerPreview() {
+    val happyHourEvent = saturdayHappyHour
+    val weeklyHappyHour = eventsByDateForTesting
+        .mapKeys { it.key.getDayOfWeekFromTimestamp() }
+        .mapValues { it.value[EventType.HappyHour] }
+    val timestampFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+    val startDate = timestampFormat.parse(happyHourEvent.startTimestamp)
+    val startTime = Calendar.getInstance().apply {
+        if (startDate != null) {
+            time = startDate
+        }
+    }
+    val endDate = timestampFormat.parse(happyHourEvent.endTimestamp)
+    val endTime = Calendar.getInstance().apply {
+        if (endDate != null) {
+            time = endDate
+        }
+    }
+    val currentTime = Calendar.getInstance()
+    val stringStart = formatTimestamp(happyHourEvent.startTimestamp, "ha")
+    val stringEnd = formatTimestamp(happyHourEvent.endTimestamp, "ha")
+    val weeklyHours = weeklyHappyHour
+        .mapValues {
+            val happyHourDayStart = it.value?.startTimestamp?.let { startTimestamp ->
+                formatTimestamp(startTimestamp, "ha")
+            } ?: ""
+            val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
+                formatTimestamp(endTimestamp, "ha")
+            } ?: ""
+            if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
+                "Not Available"
+            } else {
+                "$happyHourDayStart - $happyHourDayEnd"
+            }
+        }
     val annotatedTimeString = buildAnnotatedString {
+        var millisInFuture = 0L
+        var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
         when {
             currentTime < startTime -> {
                 timeIndicatorColor = Color.Green
@@ -93,84 +160,10 @@ fun HappyHourTimer(
             append(timeText)
         }
     }
-    Column {
-        Text(
-            text = "Happy Hour",
-            style = MaterialTheme.typography.h4,
-            modifier = Modifier.padding(8.dp)
-        )
-        Text(
-            text = annotatedTimeString,
-            fontWeight = FontWeight.Bold,
-            color = HermosaHappyHourTheme.colors.textSecondary,
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
-        )
-        Text(
-            text = "See all happy hours \u279E",
-            fontWeight = FontWeight.Bold,
-            color = HermosaHappyHourTheme.colors.brand,
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier
-                .clickable(onClick = { popupControl = true })
-                .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-        )
-        if (popupControl) {
-            HoursPopup(
-                title = "Happy Hour",
-                weeklyHours = weeklyHours,
-                onClick = { popupControl = false },
-                onDismissRequest = { popupControl = false }
-            )
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun HappyHourTimerPreview() {
-    val happyHourEvent = saturdayHappyHour
-    val weeklyHappyHour = eventsByDateForTesting
-        .mapKeys { it.key.getDayOfWeekFromTimestamp() }
-        .mapValues { it.value[EventType.HappyHour] }
-    val timestampFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
-    val startDate = timestampFormat.parse(happyHourEvent.startTimestamp)
-    val startTime = Calendar.getInstance().apply {
-        if (startDate != null) {
-            time = startDate
-        }
-    }
-    val endDate = timestampFormat.parse(happyHourEvent.endTimestamp)
-    val endTime = Calendar.getInstance().apply {
-        if (endDate != null) {
-            time = endDate
-        }
-    }
-    val currentTime = Calendar.getInstance()
-    val formattedStart = formatTimestamp(happyHourEvent.startTimestamp, "ha")
-    val formattedEnd = formatTimestamp(happyHourEvent.endTimestamp, "ha")
-    val weeklyHours = weeklyHappyHour
-        .mapValues {
-            val happyHourDayStart = it.value?.startTimestamp?.let { startTimestamp ->
-                formatTimestamp(startTimestamp, "ha")
-            } ?: ""
-            val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
-                formatTimestamp(endTimestamp, "ha")
-            } ?: ""
-            if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
-                "Not Available"
-            } else {
-                "$happyHourDayStart - $happyHourDayEnd"
-            }
-        }
     HermosaHappyHourTheme {
         HappyHourTimer(
             weeklyHours = weeklyHours,
-            currentTime = currentTime,
-            startTime = startTime,
-            endTime = endTime,
-            stringStart = formattedStart,
-            stringEnd = formattedEnd
+            annotatedTimeString = annotatedTimeString
         )
     }
 }
