@@ -27,13 +27,6 @@ fun HermosaHappyHourApp() {
                     )
                 }
             },
-//            snackbarHost = {
-//                SnackbarHost(
-//                    hostState = it,
-//                    modifier = Modifier.systemBarsPadding(),
-//                    snackbar = { snackbarData -> JetsnackSnackbar(snackbarData) }
-//                )
-//            },
             scaffoldState = appState.scaffoldState
         ) { innerPaddingModifier ->
             NavHost(

@@ -18,5 +18,10 @@
     <!-- Home -->
     <string name="label_filters">Filters</string>
 
+    <!-- Detail -->
     <string name="label_back">Back</string>
+
+    <!-- Profile -->
+    <string name="work_in_progress">This is currently work in progress.</string>
+    <string name="check_back_later">Please check back later!</string>
 </resources>
