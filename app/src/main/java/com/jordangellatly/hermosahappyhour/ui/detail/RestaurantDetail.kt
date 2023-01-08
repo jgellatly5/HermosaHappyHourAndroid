@@ -33,6 +33,7 @@ import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
 import com.jordangellatly.hermosahappyhour.ui.detail.info.EventInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
+import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.getDayOfWeekFromTimestamp
@@ -73,6 +74,15 @@ fun RestaurantDetail(
                 val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.HappyHour)
                 val annotatedTimeString = buildAnnotatedTimerString(event)
                 HappyHour(
+                    weeklyHours = weeklyHours,
+                    annotatedTimeString = annotatedTimeString,
+                    specials = event.specials
+                )
+            }
+            restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Sports]?.let { event ->
+                val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Sports)
+                val annotatedTimeString = buildAnnotatedTimerString(event)
+                Sports(
                     weeklyHours = weeklyHours,
                     annotatedTimeString = annotatedTimeString,
                     specials = event.specials
