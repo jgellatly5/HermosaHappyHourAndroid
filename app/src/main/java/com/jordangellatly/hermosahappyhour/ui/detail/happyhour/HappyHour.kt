@@ -42,10 +42,11 @@ private fun HappyHourPreview() {
     val event = sundayHappyHour
     val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.HappyHour)
     HermosaHappyHourTheme {
-        HappyHourTimer(
+        HappyHour(
             weeklyHours = weeklyHours,
             eventStart = event.startTimestamp,
-            eventEnd = event.endTimestamp
+            eventEnd = event.endTimestamp,
+            specials = event.specials
         )
     }
 }

@@ -42,10 +42,11 @@ private fun BrunchPreview() {
     val event = sundayBrunch
     val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Brunch)
     HermosaHappyHourTheme {
-        BrunchTimer(
+        Brunch(
             weeklyHours = weeklyHours,
             eventStart = event.startTimestamp,
-            eventEnd = event.endTimestamp
+            eventEnd = event.endTimestamp,
+            specials = event.specials
         )
     }
 }
