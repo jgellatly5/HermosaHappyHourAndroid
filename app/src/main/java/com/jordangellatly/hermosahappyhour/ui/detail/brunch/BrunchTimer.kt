@@ -1,6 +1,5 @@
 package com.jordangellatly.hermosahappyhour.ui.detail.brunch
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
@@ -13,9 +12,9 @@ import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.sundayBrunch
 import com.jordangellatly.hermosahappyhour.model.tower12
-import com.jordangellatly.hermosahappyhour.ui.detail.timer.EventCountdown
 import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
+import com.jordangellatly.hermosahappyhour.ui.detail.timer.EventCountdownBrunch
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -31,18 +30,16 @@ fun BrunchTimer(
             style = MaterialTheme.typography.h4,
             modifier = Modifier.padding(8.dp)
         )
-        EventCountdown(
+        Text(
+            text = "Sat. & Sun. \u2022 10AM - 2PM",
+            fontWeight = FontWeight.Bold,
+            color = HermosaHappyHourTheme.colors.textSecondary,
+            style = MaterialTheme.typography.body1,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
+        )
+        EventCountdownBrunch(
             eventStart = eventStart,
             eventEnd = eventEnd,
-        )
-        Text(
-            text = "See all brunch hours \u279E",
-            fontWeight = FontWeight.Bold,
-            color = HermosaHappyHourTheme.colors.brand,
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier
-                .clickable(onClick = { popupControl = true })
-                .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
         )
         if (popupControl) {
             HoursPopup(
