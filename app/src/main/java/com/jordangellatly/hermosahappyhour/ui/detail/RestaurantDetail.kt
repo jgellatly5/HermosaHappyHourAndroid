@@ -89,12 +89,11 @@ fun RestaurantDetail(
                 )
             }
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Special]?.let { event ->
-                val weeklyHours =
-                    getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Special)
-                val annotatedTimeString = buildAnnotatedTimerString(event)
+                val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Special)
                 SpecialEvent(
                     weeklyHours = weeklyHours,
-                    annotatedTimeString = annotatedTimeString,
+                    eventStart = event.startTimestamp,
+                    eventEnd = event.endTimestamp,
                     specials = event.specials
                 )
             }
