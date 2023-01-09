@@ -10,7 +10,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,7 +17,7 @@ import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.model.saturdayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
-import com.jordangellatly.hermosahappyhour.ui.detail.buildAnnotatedTimerString
+import com.jordangellatly.hermosahappyhour.ui.detail.timer.EventCountdownWithTitle
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -28,11 +27,6 @@ fun EventItem(
     modifier: Modifier = Modifier
 ) {
     val restaurant = remember { RestaurantRepo.getRestaurant(event.restaurantId) }
-    val annotatedTimeString = buildAnnotatedTimerString(event)
-    val completeTimeString = buildAnnotatedString {
-        append("${event.title} \u2022 ")
-        append(annotatedTimeString)
-    }
     HappyHourCard(
         modifier = modifier
             .fillMaxWidth()
@@ -64,11 +58,10 @@ fun EventItem(
                 color = HermosaHappyHourTheme.colors.textSecondary,
                 modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
             )
-            Text(
-                text = completeTimeString,
-                style = MaterialTheme.typography.body1,
-                color = HermosaHappyHourTheme.colors.textHelp,
-                modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 16.dp)
+            EventCountdownWithTitle(
+                eventStart = event.startTimestamp,
+                eventEnd = event.endTimestamp,
+                eventTitle = event.title
             )
         }
     }

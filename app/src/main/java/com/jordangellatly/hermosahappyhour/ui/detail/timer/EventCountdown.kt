@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail
+package com.jordangellatly.hermosahappyhour.ui.detail.timer
 
 import android.os.CountDownTimer
 import androidx.compose.foundation.layout.padding
@@ -23,8 +23,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun EventCountdown(eventStart: String, eventEnd: String) {
+fun EventCountdown(eventStart: String, eventEnd: String, eventTitle: String = "") {
     val annotatedTimeString = buildAnnotatedString {
+        if (eventTitle.isNotEmpty()) append("$eventTitle \u2022 ")
         var millisInFuture = 0L
         var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
         val currentTime = Calendar.getInstance()
