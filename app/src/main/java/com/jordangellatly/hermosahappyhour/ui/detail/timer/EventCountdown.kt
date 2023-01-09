@@ -44,6 +44,7 @@ fun EventCountdown(eventStart: String, eventEnd: String, eventTitle: String = ""
         }
         val stringStart = formatTimestamp(eventStart, "ha")
         val stringEnd = formatTimestamp(eventEnd, "ha")
+        var hasEventEnded = false
         when {
             currentTime < startTime -> {
                 timeIndicatorColor = Color.Green
@@ -62,6 +63,7 @@ fun EventCountdown(eventStart: String, eventEnd: String, eventTitle: String = ""
                 millisInFuture = endTime.timeInMillis - currentTime.timeInMillis
             }
             currentTime > endTime -> {
+                hasEventEnded = true
                 timeIndicatorColor = Color.Red
                 withStyle(style = SpanStyle(timeIndicatorColor)) {
                     append("Ended")
@@ -73,30 +75,31 @@ fun EventCountdown(eventStart: String, eventEnd: String, eventTitle: String = ""
                 append("")
             }
         }
-        append(" \u2022 ")
+        if (!hasEventEnded) {
+            append(" \u2022 ")
+            val timeData = remember { mutableStateOf(millisInFuture) }
+            val countDownTimer =
+                object : CountDownTimer(millisInFuture, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {
+                        timeData.value = millisUntilFinished
+                    }
 
-        val timeData = remember { mutableStateOf(millisInFuture) }
-        val countDownTimer =
-            object : CountDownTimer(millisInFuture, 1000) {
-                override fun onTick(millisUntilFinished: Long) {
-                    timeData.value = millisUntilFinished
+                    override fun onFinish() {}
                 }
 
-                override fun onFinish() {}
+            DisposableEffect(key1 = "key") {
+                countDownTimer.start()
+                onDispose {
+                    countDownTimer.cancel()
+                }
             }
 
-        DisposableEffect(key1 = "key") {
-            countDownTimer.start()
-            onDispose {
-                countDownTimer.cancel()
+            val offset = SimpleDateFormat("HH:mm:ss", Locale.US)
+            offset.timeZone = TimeZone.getTimeZone("GMT")
+            val timeText = offset.format(timeData.value)
+            withStyle(style = SpanStyle(timeIndicatorColor)) {
+                append(timeText)
             }
-        }
-
-        val offset = SimpleDateFormat("HH:mm:ss", Locale.US)
-        offset.timeZone = TimeZone.getTimeZone("GMT")
-        val timeText = offset.format(timeData.value)
-        withStyle(style = SpanStyle(timeIndicatorColor)) {
-            append(timeText)
         }
     }
     Text(
