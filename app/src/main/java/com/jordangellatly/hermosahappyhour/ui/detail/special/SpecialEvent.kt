@@ -25,13 +25,15 @@ fun SpecialEvent(
     weeklyHours: Map<String, String>,
     eventStart: String,
     eventEnd: String,
+    eventTitle: String,
     specials: List<Deal>
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
         SpecialEventTimer(
             weeklyHours = weeklyHours,
             eventStart = eventStart,
-            eventEnd = eventEnd
+            eventEnd = eventEnd,
+            eventTitle = eventTitle
         )
         SpecialEventRow(
             title = "Drink Specials",
@@ -85,6 +87,7 @@ private fun SpecialEventPreview() {
             weeklyHours = weeklyHours,
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
+            eventTitle = event.title,
             specials = event.specials
         )
     }

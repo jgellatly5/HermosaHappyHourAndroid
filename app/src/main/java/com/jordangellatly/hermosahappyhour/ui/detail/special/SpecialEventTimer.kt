@@ -20,11 +20,12 @@ import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 fun SpecialEventTimer(
     weeklyHours: Map<String, String>,
     eventStart: String,
-    eventEnd: String
+    eventEnd: String,
+    eventTitle: String
 ) {
     Column {
         Text(
-            text = "Special Event",
+            text = eventTitle,
             style = MaterialTheme.typography.h4,
             modifier = Modifier.padding(8.dp)
         )
@@ -52,7 +53,8 @@ private fun SpecialEventTimerPreview() {
         SpecialEventTimer(
             weeklyHours = weeklyHours,
             eventStart = event.startTimestamp,
-            eventEnd = event.endTimestamp
+            eventEnd = event.endTimestamp,
+            eventTitle = event.title
         )
     }
 }
