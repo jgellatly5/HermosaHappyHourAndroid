@@ -74,9 +74,8 @@ fun RestaurantDetail(
                 )
             }
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Sports]?.let { event ->
-                val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Sports)
                 Sports(
-                    weeklyHours = weeklyHours,
+                    weeklyHoursDescription = event.weeklyHoursDescription,
                     eventStart = event.startTimestamp,
                     eventEnd = event.endTimestamp,
                     eventTitle = event.title,
