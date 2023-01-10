@@ -10,7 +10,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.EventType
-import com.jordangellatly.hermosahappyhour.model.sundaySportEvent
+import com.jordangellatly.hermosahappyhour.model.mondayNightFootball
 import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.detail.timer.EventCountdown
@@ -20,16 +20,17 @@ import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 fun SportsTimer(
     weeklyHours: Map<String, String>,
     eventStart: String,
-    eventEnd: String
+    eventEnd: String,
+    eventTitle: String
 ) {
     Column {
         Text(
-            text = "Sports",
+            text = eventTitle,
             style = MaterialTheme.typography.h4,
             modifier = Modifier.padding(8.dp)
         )
         Text(
-            text = "Today only \u2022 5PM - 9PM",
+            text = "Today only \u2022 5PM - 8PM",
             fontWeight = FontWeight.Bold,
             color = HermosaHappyHourTheme.colors.textSecondary,
             style = MaterialTheme.typography.body1,
@@ -46,13 +47,14 @@ fun SportsTimer(
 @Composable
 private fun SportsTimerPreview() {
     val restaurant = tower12
-    val event = sundaySportEvent
+    val event = mondayNightFootball
     val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Sports)
     HermosaHappyHourTheme {
         SportsTimer(
             weeklyHours = weeklyHours,
             eventStart = event.startTimestamp,
-            eventEnd = event.endTimestamp
+            eventEnd = event.endTimestamp,
+            eventTitle = event.title
         )
     }
 }

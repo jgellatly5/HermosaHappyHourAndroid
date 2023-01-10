@@ -79,6 +79,7 @@ fun RestaurantDetail(
                     weeklyHours = weeklyHours,
                     eventStart = event.startTimestamp,
                     eventEnd = event.endTimestamp,
+                    eventTitle = event.title,
                     specials = event.specials
                 )
             }

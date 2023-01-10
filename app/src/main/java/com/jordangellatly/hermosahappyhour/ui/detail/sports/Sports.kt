@@ -12,10 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.Deal
-import com.jordangellatly.hermosahappyhour.model.EventType
-import com.jordangellatly.hermosahappyhour.model.sundaySportEvent
-import com.jordangellatly.hermosahappyhour.model.tower12
+import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -25,13 +22,15 @@ fun Sports(
     weeklyHours: Map<String, String>,
     eventStart: String,
     eventEnd: String,
+    eventTitle: String,
     specials: List<Deal>
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
         SportsTimer(
             weeklyHours = weeklyHours,
             eventStart = eventStart,
-            eventEnd = eventEnd
+            eventEnd = eventEnd,
+            eventTitle = eventTitle
         )
         SportsRow(
             title = "Drinks Specials",
@@ -78,13 +77,14 @@ private fun SportsRow(
 @Composable
 private fun SportsPreview() {
     val restaurant = tower12
-    val event = sundaySportEvent
+    val event = mondayNightFootball
     val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Sports)
     HermosaHappyHourTheme {
         Sports(
             weeklyHours = weeklyHours,
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
+            eventTitle = event.title,
             specials = event.specials
         )
     }
