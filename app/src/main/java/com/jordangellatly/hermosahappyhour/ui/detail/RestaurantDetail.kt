@@ -19,7 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.EventType
-import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
@@ -27,9 +26,7 @@ import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
 import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.special.SpecialEvent
 import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
-import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
-import com.jordangellatly.hermosahappyhour.ui.home.getDayOfWeekFromTimestamp
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 import com.jordangellatly.hermosahappyhour.ui.utils.mirroringBackIcon
@@ -53,9 +50,8 @@ fun RestaurantDetail(
                 upPress = upPress
             )
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Brunch]?.let { event ->
-                val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Brunch)
                 Brunch(
-                    weeklyHours = weeklyHours,
+                    weeklyHoursDescription = event.weeklyHoursDescription,
                     eventStart = event.startTimestamp,
                     eventEnd = event.endTimestamp,
                     eventTitle = event.title,
@@ -93,24 +89,6 @@ fun RestaurantDetail(
         }
     }
 }
-
-fun getWeeklyEventScheduleFromRestaurant(restaurant: Restaurant, eventType: EventType) =
-    restaurant.eventsByDate
-        .mapKeys { it.key.getDayOfWeekFromTimestamp() }
-        .mapValues { it.value[eventType] }
-        .mapValues {
-            val brunchDayStart = it.value?.startTimestamp?.let { startTimestamp ->
-                formatTimestamp(startTimestamp, "ha")
-            } ?: ""
-            val brunchDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
-                formatTimestamp(endTimestamp, "ha")
-            } ?: ""
-            if (brunchDayStart.isEmpty() || brunchDayEnd.isEmpty()) {
-                "Not Available"
-            } else {
-                "$brunchDayStart - $brunchDayEnd"
-            }
-        }
 
 @Composable
 private fun Header(

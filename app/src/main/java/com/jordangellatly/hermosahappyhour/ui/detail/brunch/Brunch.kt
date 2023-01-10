@@ -17,16 +17,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Deal
-import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.sundayBrunch
-import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
-import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun Brunch(
-    weeklyHours: Map<String, String>,
+    weeklyHoursDescription: String,
     eventStart: String,
     eventEnd: String,
     eventTitle: String,
@@ -34,7 +31,7 @@ fun Brunch(
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
         BrunchTimer(
-            weeklyHours = weeklyHours,
+            weeklyHoursDescription = weeklyHoursDescription,
             eventStart = eventStart,
             eventEnd = eventEnd,
             eventTitle = eventTitle
@@ -95,12 +92,10 @@ private fun BrunchRow(
 @Preview(showBackground = true)
 @Composable
 private fun BrunchPreview() {
-    val restaurant = tower12
     val event = sundayBrunch
-    val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Brunch)
     HermosaHappyHourTheme {
         Brunch(
-            weeklyHours = weeklyHours,
+            weeklyHoursDescription = event.weeklyHoursDescription,
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
             eventTitle = event.title,
