@@ -17,7 +17,7 @@ import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.model.saturdayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
-import com.jordangellatly.hermosahappyhour.ui.detail.timer.EventCountdown
+import com.jordangellatly.hermosahappyhour.ui.detail.shared.EventHeader
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -58,7 +58,7 @@ fun EventItem(
                 color = HermosaHappyHourTheme.colors.textSecondary,
                 modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
             )
-            EventCountdown(
+            EventHeader(
                 eventStart = event.startTimestamp,
                 eventEnd = event.endTimestamp,
                 eventTitle = event.title

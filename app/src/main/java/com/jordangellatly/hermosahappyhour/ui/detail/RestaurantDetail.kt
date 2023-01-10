@@ -23,7 +23,7 @@ import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
 import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
-import com.jordangellatly.hermosahappyhour.ui.detail.info.GeneralInfo
+import com.jordangellatly.hermosahappyhour.ui.detail.shared.GeneralInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.special.SpecialEvent
 import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime

@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.special
+package com.jordangellatly.hermosahappyhour.ui.detail.shared
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -9,12 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.tacoTuesday
-import com.jordangellatly.hermosahappyhour.ui.detail.timer.EventCountdown
+import com.jordangellatly.hermosahappyhour.model.sundayBrunch
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
-fun SpecialEventTimer(
+fun EventTimer(
     weeklyHoursDescription: String,
     eventStart: String,
     eventEnd: String,
@@ -33,7 +32,7 @@ fun SpecialEventTimer(
             style = MaterialTheme.typography.body1,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
         )
-        EventCountdown(
+        EventHeader(
             eventStart = eventStart,
             eventEnd = eventEnd,
         )
@@ -42,10 +41,10 @@ fun SpecialEventTimer(
 
 @Preview(showBackground = true)
 @Composable
-private fun SpecialEventTimerPreview() {
-    val event = tacoTuesday
+private fun EventTimerPreview() {
+    val event = sundayBrunch
     HermosaHappyHourTheme {
-        SpecialEventTimer(
+        EventTimer(
             weeklyHoursDescription = event.weeklyHoursDescription,
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,

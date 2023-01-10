@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Deal
 import com.jordangellatly.hermosahappyhour.model.sundayBrunch
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
+import com.jordangellatly.hermosahappyhour.ui.detail.shared.EventTimer
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -30,7 +31,7 @@ fun Brunch(
     specials: List<Deal>
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
-        BrunchTimer(
+        EventTimer(
             weeklyHoursDescription = weeklyHoursDescription,
             eventStart = eventStart,
             eventEnd = eventEnd,

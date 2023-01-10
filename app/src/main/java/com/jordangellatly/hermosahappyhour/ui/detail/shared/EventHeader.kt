@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.timer
+package com.jordangellatly.hermosahappyhour.ui.detail.shared
 
 import android.os.CountDownTimer
 import androidx.compose.foundation.layout.padding
@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun EventCountdown(eventStart: String, eventEnd: String, eventTitle: String = "") {
+fun EventHeader(eventStart: String, eventEnd: String, eventTitle: String = "") {
     var fontWeight = FontWeight.Bold
     var color = HermosaHappyHourTheme.colors.textSecondary
     var textModifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
@@ -121,10 +121,10 @@ fun EventCountdown(eventStart: String, eventEnd: String, eventTitle: String = ""
 
 @Preview(showBackground = true)
 @Composable
-private fun EventCountdownPreview() {
+private fun EventHeaderPreview() {
     val event = mondayHappyHour
     HermosaHappyHourTheme {
-        EventCountdown(
+        EventHeader(
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp
         )
@@ -133,10 +133,10 @@ private fun EventCountdownPreview() {
 
 @Preview(showBackground = true)
 @Composable
-private fun EventCountdownWithTitlePreview() {
+private fun EventHeaderWithTitlePreview() {
     val event = mondayHappyHour
     HermosaHappyHourTheme {
-        EventCountdown(
+        EventHeader(
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
             eventTitle = "Jungle Hour"
