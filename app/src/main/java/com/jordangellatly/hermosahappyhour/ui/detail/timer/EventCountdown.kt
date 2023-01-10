@@ -24,8 +24,16 @@ import java.util.*
 
 @Composable
 fun EventCountdown(eventStart: String, eventEnd: String, eventTitle: String = "") {
+    var fontWeight = FontWeight.Bold
+    var color = HermosaHappyHourTheme.colors.textSecondary
+    var textModifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
     val annotatedTimeString = buildAnnotatedString {
-        if (eventTitle.isNotEmpty()) append("$eventTitle \u2022 ")
+        if (eventTitle.isNotEmpty()) {
+            append("$eventTitle \u2022 ")
+            fontWeight = FontWeight.Normal
+            color = HermosaHappyHourTheme.colors.textHelp
+            textModifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 16.dp)
+        }
         var millisInFuture = 0L
         var timeIndicatorColor = HermosaHappyHourTheme.colors.textSecondary
         val currentTime = Calendar.getInstance()
@@ -104,10 +112,10 @@ fun EventCountdown(eventStart: String, eventEnd: String, eventTitle: String = ""
     }
     Text(
         text = annotatedTimeString,
-        fontWeight = FontWeight.Bold,
-        color = HermosaHappyHourTheme.colors.textSecondary,
+        fontWeight = fontWeight,
+        color = color,
         style = MaterialTheme.typography.body1,
-        modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+        modifier = textModifier
     )
 }
 
@@ -119,6 +127,19 @@ private fun EventCountdownPreview() {
         EventCountdown(
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun EventCountdownWithTitlePreview() {
+    val event = mondayHappyHour
+    HermosaHappyHourTheme {
+        EventCountdown(
+            eventStart = event.startTimestamp,
+            eventEnd = event.endTimestamp,
+            eventTitle = "Jungle Hour"
         )
     }
 }
