@@ -29,16 +29,19 @@ fun Brunch(
     weeklyHours: Map<String, String>,
     eventStart: String,
     eventEnd: String,
+    eventTitle: String,
     specials: List<Deal>
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
         BrunchTimer(
             weeklyHours = weeklyHours,
             eventStart = eventStart,
-            eventEnd = eventEnd
+            eventEnd = eventEnd,
+            eventTitle = eventTitle
         )
         val context = LocalContext.current
-        val brunchMenu = "https://tower12hb.com/wp-content/uploads/2022/11/Tower-Brunch-8.5x11_11.2022-scaled.jpg"
+        val brunchMenu =
+            "https://tower12hb.com/wp-content/uploads/2022/11/Tower-Brunch-8.5x11_11.2022-scaled.jpg"
         val openBrunchMenu = remember { Intent(Intent.ACTION_VIEW, Uri.parse(brunchMenu)) }
         BrunchRow(
             title = "Brunch Menu",
@@ -46,8 +49,10 @@ fun Brunch(
                 context.startActivity(openBrunchMenu)
             }
         )
-        val brunchCocktails = "https://tower12hb.com/wp-content/uploads/2022/11/Tower-Brunch-drinks_8.5x11_11.2022-scaled.jpg"
-        val openBrunchCocktails = remember { Intent(Intent.ACTION_VIEW, Uri.parse(brunchCocktails)) }
+        val brunchCocktails =
+            "https://tower12hb.com/wp-content/uploads/2022/11/Tower-Brunch-drinks_8.5x11_11.2022-scaled.jpg"
+        val openBrunchCocktails =
+            remember { Intent(Intent.ACTION_VIEW, Uri.parse(brunchCocktails)) }
         BrunchRow(
             title = "Brunch Cocktails",
             onClick = {
@@ -98,6 +103,7 @@ private fun BrunchPreview() {
             weeklyHours = weeklyHours,
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
+            eventTitle = event.title,
             specials = event.specials
         )
     }

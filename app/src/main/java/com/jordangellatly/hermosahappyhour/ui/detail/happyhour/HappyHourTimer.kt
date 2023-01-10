@@ -20,11 +20,12 @@ import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 fun HappyHourTimer(
     weeklyHours: Map<String, String>,
     eventStart: String,
-    eventEnd: String
+    eventEnd: String,
+    eventTitle: String
 ) {
     Column {
         Text(
-            text = "Happy Hour",
+            text = eventTitle,
             style = MaterialTheme.typography.h4,
             modifier = Modifier.padding(8.dp)
         )
@@ -52,7 +53,8 @@ private fun HappyHourTimerPreview() {
         HappyHourTimer(
             weeklyHours = weeklyHours,
             eventStart = event.startTimestamp,
-            eventEnd = event.endTimestamp
+            eventEnd = event.endTimestamp,
+            eventTitle = event.title
         )
     }
 }
