@@ -503,6 +503,35 @@ val sundaySilentDiscoSunset = Event(
     image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
 )
 
+val mondayBrunch = Event(
+    id = 18,
+    eventType = EventType.Brunch,
+    title = "Monday Brunch",
+    description = "Brunch is fun",
+    restaurantId = tower12RestaurantId,
+    startTimestamp = "2023-01-09T09:00",
+    endTimestamp = "2023-01-09T14:00",
+    specials = listOf(
+        Deal(
+            description = "Bloody Mary's Well",
+            price = "$7"
+        ),
+        Deal(
+            description = "Bloody Mary's Titos",
+            price = "$9"
+        ),
+        Deal(
+            description = "22 oz double shot Skyy or Epsolon cocktails",
+            price = "$16 (add Red Bull for $3.50)"
+        ),
+        Deal(
+            description = "22 oz Mavericks Mimosas schooners",
+            price = "$10"
+        )
+    ),
+    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+)
+
 val sampleEventData = mutableStateListOf(
     mondayHappyHour,
     tuesdayHappyHour,
@@ -520,5 +549,6 @@ val sampleEventData = mutableStateListOf(
     sundaySportEvent,
     saturdayHappyHour,
 //    sundayHappyHour,
-    sundaySilentDiscoSunset
+    sundaySilentDiscoSunset,
+    mondayBrunch
 )

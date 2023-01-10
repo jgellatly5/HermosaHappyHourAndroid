@@ -1,5 +1,7 @@
 package com.jordangellatly.hermosahappyhour.ui.detail.brunch
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -8,8 +10,10 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Deal
@@ -33,13 +37,22 @@ fun Brunch(
             eventStart = eventStart,
             eventEnd = eventEnd
         )
+        val context = LocalContext.current
+        val brunchMenu = "https://tower12hb.com/wp-content/uploads/2022/11/Tower-Brunch-8.5x11_11.2022-scaled.jpg"
+        val openBrunchMenu = remember { Intent(Intent.ACTION_VIEW, Uri.parse(brunchMenu)) }
         BrunchRow(
             title = "Brunch Menu",
-            onClick = {}
+            onClick = {
+                context.startActivity(openBrunchMenu)
+            }
         )
+        val brunchCocktails = "https://tower12hb.com/wp-content/uploads/2022/11/Tower-Brunch-drinks_8.5x11_11.2022-scaled.jpg"
+        val openBrunchCocktails = remember { Intent(Intent.ACTION_VIEW, Uri.parse(brunchCocktails)) }
         BrunchRow(
             title = "Brunch Cocktails",
-            onClick = {}
+            onClick = {
+                context.startActivity(openBrunchCocktails)
+            }
         )
     }
 }

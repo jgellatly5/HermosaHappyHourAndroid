@@ -44,6 +44,7 @@ val eventsByDateForTesting = mapOf(
         EventType.Special to sundaySilentDiscoSunset
     ),
     "2023-01-09" to mapOf(
+        EventType.Brunch to mondayBrunch,
         EventType.HappyHour to mondayHappyHour,
         EventType.Sports to mondayNightFootball
     ),
