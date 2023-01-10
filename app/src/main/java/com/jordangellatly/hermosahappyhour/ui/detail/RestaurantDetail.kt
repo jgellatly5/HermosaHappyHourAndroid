@@ -63,10 +63,8 @@ fun RestaurantDetail(
                 )
             }
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let { event ->
-                val weeklyHours =
-                    getWeeklyEventScheduleFromRestaurant(restaurant, EventType.HappyHour)
                 HappyHour(
-                    weeklyHours = weeklyHours,
+                    weeklyHoursDescription = event.weeklyHoursDescription,
                     eventStart = event.startTimestamp,
                     eventEnd = event.endTimestamp,
                     eventTitle = event.title,
