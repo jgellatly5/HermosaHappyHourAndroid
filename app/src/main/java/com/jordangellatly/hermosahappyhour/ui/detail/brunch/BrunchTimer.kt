@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -13,7 +13,6 @@ import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.sundayBrunch
 import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
-import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
 import com.jordangellatly.hermosahappyhour.ui.detail.timer.EventCountdownBrunch
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
@@ -23,7 +22,6 @@ fun BrunchTimer(
     eventStart: String,
     eventEnd: String
 ) {
-    var popupControl by remember { mutableStateOf(false) }
     Column {
         Text(
             text = "Brunch",
@@ -41,14 +39,6 @@ fun BrunchTimer(
             eventStart = eventStart,
             eventEnd = eventEnd,
         )
-        if (popupControl) {
-            HoursPopup(
-                title = "Brunch",
-                weeklyHours = weeklyHours,
-                onClick = { popupControl = false },
-                onDismissRequest = { popupControl = false }
-            )
-        }
     }
 }
 

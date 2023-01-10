@@ -1,21 +1,19 @@
 package com.jordangellatly.hermosahappyhour.ui.detail.happyhour
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.EventType
-import com.jordangellatly.hermosahappyhour.model.sundayHappyHour
+import com.jordangellatly.hermosahappyhour.model.mondayHappyHour
 import com.jordangellatly.hermosahappyhour.model.tower12
-import com.jordangellatly.hermosahappyhour.ui.detail.timer.EventCountdown
 import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
-import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
+import com.jordangellatly.hermosahappyhour.ui.detail.timer.EventCountdownBrunch
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -24,34 +22,23 @@ fun HappyHourTimer(
     eventStart: String,
     eventEnd: String
 ) {
-    var popupControl by remember { mutableStateOf(false) }
     Column {
         Text(
             text = "Happy Hour",
             style = MaterialTheme.typography.h4,
             modifier = Modifier.padding(8.dp)
         )
-        EventCountdown(
+        Text(
+            text = "M - F \u2022 3PM - 7PM",
+            fontWeight = FontWeight.Bold,
+            color = HermosaHappyHourTheme.colors.textSecondary,
+            style = MaterialTheme.typography.body1,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
+        )
+        EventCountdownBrunch(
             eventStart = eventStart,
             eventEnd = eventEnd,
         )
-        Text(
-            text = "See all happy hours \u279E",
-            fontWeight = FontWeight.Bold,
-            color = HermosaHappyHourTheme.colors.brand,
-            style = MaterialTheme.typography.body1,
-            modifier = Modifier
-                .clickable(onClick = { popupControl = true })
-                .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-        )
-        if (popupControl) {
-            HoursPopup(
-                title = "Happy Hour",
-                weeklyHours = weeklyHours,
-                onClick = { popupControl = false },
-                onDismissRequest = { popupControl = false }
-            )
-        }
     }
 }
 
@@ -59,7 +46,7 @@ fun HappyHourTimer(
 @Composable
 private fun HappyHourTimerPreview() {
     val restaurant = tower12
-    val event = sundayHappyHour
+    val event = mondayHappyHour
     val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.HappyHour)
     HermosaHappyHourTheme {
         HappyHourTimer(
