@@ -13,7 +13,7 @@ import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.sundayBrunch
 import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
-import com.jordangellatly.hermosahappyhour.ui.detail.timer.EventCountdownBrunch
+import com.jordangellatly.hermosahappyhour.ui.detail.timer.EventCountdown
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -35,7 +35,7 @@ fun BrunchTimer(
             style = MaterialTheme.typography.body1,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
         )
-        EventCountdownBrunch(
+        EventCountdown(
             eventStart = eventStart,
             eventEnd = eventEnd,
         )

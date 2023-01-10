@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.sundayBrunch
+import com.jordangellatly.hermosahappyhour.model.mondayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
@@ -107,14 +107,14 @@ fun EventCountdown(eventStart: String, eventEnd: String, eventTitle: String = ""
         fontWeight = FontWeight.Bold,
         color = HermosaHappyHourTheme.colors.textSecondary,
         style = MaterialTheme.typography.body1,
-        modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
+        modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
     )
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun EventCountdownPreview() {
-    val event = sundayBrunch
+    val event = mondayHappyHour
     HermosaHappyHourTheme {
         EventCountdown(
             eventStart = event.startTimestamp,
