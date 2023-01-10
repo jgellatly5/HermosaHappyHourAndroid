@@ -30,7 +30,7 @@ fun BrunchTimer(
             modifier = Modifier.padding(8.dp)
         )
         Text(
-            text = "Sat. & Sun. \u2022 10AM - 2PM",
+            text = "Sat & Sun \u2022 10AM - 2PM",
             fontWeight = FontWeight.Bold,
             color = HermosaHappyHourTheme.colors.textSecondary,
             style = MaterialTheme.typography.body1,

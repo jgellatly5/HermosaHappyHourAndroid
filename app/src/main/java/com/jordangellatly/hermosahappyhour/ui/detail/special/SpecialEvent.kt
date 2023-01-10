@@ -13,16 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Deal
-import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.sundaySilentDiscoSunset
-import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
-import com.jordangellatly.hermosahappyhour.ui.detail.getWeeklyEventScheduleFromRestaurant
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun SpecialEvent(
-    weeklyHours: Map<String, String>,
+    weeklyHoursDescription: String,
     eventStart: String,
     eventEnd: String,
     eventTitle: String,
@@ -30,7 +27,7 @@ fun SpecialEvent(
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
         SpecialEventTimer(
-            weeklyHours = weeklyHours,
+            weeklyHoursDescription = weeklyHoursDescription,
             eventStart = eventStart,
             eventEnd = eventEnd,
             eventTitle = eventTitle
@@ -79,12 +76,10 @@ private fun SpecialEventRow(
 @Preview(showBackground = true)
 @Composable
 private fun SpecialEventPreview() {
-    val restaurant = tower12
     val event = sundaySilentDiscoSunset
-    val weeklyHours = getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Special)
     HermosaHappyHourTheme {
         SpecialEvent(
-            weeklyHours = weeklyHours,
+            weeklyHoursDescription = event.weeklyHoursDescription,
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
             eventTitle = event.title,

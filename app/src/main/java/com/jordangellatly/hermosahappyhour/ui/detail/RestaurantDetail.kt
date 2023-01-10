@@ -46,9 +46,7 @@ fun RestaurantDetail(
     val formattedDateTimestamp = defaultFormat.format(date)
     val restaurant = remember(restaurantId) { RestaurantRepo.getRestaurant(restaurantId) }
     HermosaHappyHourSurface {
-        Column(
-            modifier = Modifier.verticalScroll(rememberScrollState())
-        ) {
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             Header(
                 restaurantName = restaurant.name,
                 imageResource = restaurant.image,
@@ -86,10 +84,8 @@ fun RestaurantDetail(
                 )
             }
             restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Special]?.let { event ->
-                val weeklyHours =
-                    getWeeklyEventScheduleFromRestaurant(restaurant, EventType.Special)
                 SpecialEvent(
-                    weeklyHours = weeklyHours,
+                    weeklyHoursDescription = event.weeklyHoursDescription,
                     eventStart = event.startTimestamp,
                     eventEnd = event.endTimestamp,
                     eventTitle = event.title,

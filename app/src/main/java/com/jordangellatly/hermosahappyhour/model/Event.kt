@@ -10,6 +10,7 @@ data class Event(
     val description: String,
     val startTimestamp: String,
     val endTimestamp: String,
+    val weeklyHoursDescription: String,
     val restaurantId: Long,
     val specials: List<Deal>,
     val image: URI
@@ -30,6 +31,7 @@ val mondayHappyHour = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-09T15:00",
     endTimestamp = "2023-01-09T19:00",
+    weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -59,6 +61,7 @@ val tuesdayHappyHour = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-10T15:00",
     endTimestamp = "2023-01-10T19:00",
+    weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -83,11 +86,12 @@ val tuesdayHappyHour = Event(
 val wednesdayHappyHour = Event(
     id = 3,
     eventType = EventType.HappyHour,
-    title = "Happy Hour",
-    description = "Serving sunsets, ice cold drinks, & good vibes daily",
+    title = "Jungle Hour",
+    description = "Bringing you wild drink specials",
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-11T15:00",
     endTimestamp = "2023-01-11T19:00",
+    weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -112,11 +116,12 @@ val wednesdayHappyHour = Event(
 val thursdayHappyHour = Event(
     id = 4,
     eventType = EventType.HappyHour,
-    title = "Happy Hour",
-    description = "Serving sunsets, ice cold drinks, & good vibes daily",
+    title = "Jungle Hour",
+    description = "Bringing you wild drink specials",
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-12T15:00",
     endTimestamp = "2023-01-12T19:00",
+    weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -141,11 +146,12 @@ val thursdayHappyHour = Event(
 val fridayHappyHour = Event(
     id = 5,
     eventType = EventType.HappyHour,
-    title = "Happy Hour",
-    description = "Serving sunsets, ice cold drinks, & good vibes daily",
+    title = "Jungle Hour",
+    description = "Bringing you wild drink specials",
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-13T15:00",
     endTimestamp = "2023-01-13T19:00",
+    weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -175,6 +181,7 @@ val saturdayBrunch = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-07T09:00",
     endTimestamp = "2023-01-07T14:00",
+    weeklyHoursDescription = "Sat & Sun \u2022 9AM - 2PM",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -204,6 +211,7 @@ val saturdaySportEvent = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-07T15:00",
     endTimestamp = "2023-01-07T19:00",
+    weeklyHoursDescription = "Today only \u2022 3PM - 7PM",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -233,6 +241,7 @@ val sundayBrunch = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-08T09:00",
     endTimestamp = "2023-01-08T14:00",
+    weeklyHoursDescription = "Sat & Sun \u2022 9AM - 2PM",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -260,8 +269,9 @@ val sundaySportEvent = Event(
     title = "Sunday Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-08T09:00",
-    endTimestamp = "2023-01-08T21:00",
+    startTimestamp = "2023-01-08T15:00",
+    endTimestamp = "2023-01-08T19:00",
+    weeklyHoursDescription = "Today only \u2022 3PM - 7PM",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -291,6 +301,7 @@ val mondayNightFootball = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-09T17:00",
     endTimestamp = "2023-01-09T20:00",
+    weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -320,6 +331,7 @@ val tacoTuesday = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-10T17:00",
     endTimestamp = "2023-01-10T20:00",
+    weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -349,6 +361,7 @@ val wineWednesday = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-11T17:00",
     endTimestamp = "2023-01-11T20:00",
+    weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     specials = listOf(
         Deal(
             description = "Wine (ask server for selections)",
@@ -366,6 +379,7 @@ val thursdayNightFootball = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-12T15:00",
     endTimestamp = "2023-01-12T19:00",
+    weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -395,6 +409,7 @@ val fridayNightTrivia = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-13T15:00",
     endTimestamp = "2023-01-13T19:00",
+    weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
@@ -424,6 +439,7 @@ val saturdayHappyHour = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-07T15:00",
     endTimestamp = "2023-01-07T19:00",
+    weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -453,6 +469,7 @@ val sundayHappyHour = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-08T15:00",
     endTimestamp = "2023-01-08T19:00",
+    weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -482,6 +499,7 @@ val sundaySilentDiscoSunset = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-08T15:00",
     endTimestamp = "2023-01-08T19:00",
+    weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     specials = listOf(
         Deal(
             description = "Shots, bottled & can beers",
@@ -511,6 +529,7 @@ val mondayBrunch = Event(
     restaurantId = tower12RestaurantId,
     startTimestamp = "2023-01-09T09:00",
     endTimestamp = "2023-01-09T14:00",
+    weeklyHoursDescription = "Sat & Sun \u2022 9AM - 2PM",
     specials = listOf(
         Deal(
             description = "Bloody Mary's Well",
