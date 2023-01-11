@@ -18,6 +18,8 @@ object MainDestinations {
     const val HOME_ROUTE = "home"
     const val RESTAURANT_DETAIL_ROUTE = "restaurant"
     const val RESTAURANT_ID_KEY = "restaurantId"
+    const val EVENT_DETAIL_ROUTE = "event"
+    const val EVENT_ID_KEY = "eventId"
 }
 
 @Composable
@@ -69,10 +71,10 @@ class HappyHourAppState(
         }
     }
 
-    fun navigateToRestaurantDetail(restaurantId: Long, from: NavBackStackEntry) {
+    fun navigateToEventDetail(eventId: Long, from: NavBackStackEntry) {
         // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
-            navController.navigate("${MainDestinations.RESTAURANT_DETAIL_ROUTE}/$restaurantId")
+            navController.navigate("${MainDestinations.EVENT_DETAIL_ROUTE}/$eventId")
         }
     }
 }

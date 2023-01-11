@@ -89,15 +89,15 @@ fun NavGraphBuilder.addHomeGraph(
 ) {
     composable(HomeSections.HOME.route) { from ->
         EventFeed(
-            onEventClick = { id -> onRestaurantSelected(id, from) },
+            onEventClick = { restaurantId, eventId -> onRestaurantSelected(restaurantId, from) },
             modifier = modifier
         )
     }
     composable(HomeSections.SEARCH.route) { from ->
-        SearchFeed(
-            onRestaurantClick = { id -> onRestaurantSelected(id, from) },
-            modifier = modifier
-        )
+//        SearchFeed(
+//            onRestaurantClick = { id -> onRestaurantSelected(id, from) },
+//            modifier = modifier
+//        )
     }
     composable(HomeSections.PROFILE.route) { from ->
         Profile()

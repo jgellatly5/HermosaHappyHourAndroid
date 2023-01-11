@@ -34,7 +34,7 @@ fun EventItem(
     ) {
         Column(
             modifier = Modifier
-                .clickable(onClick = { onEventClick(event.restaurantId) })
+                .clickable(onClick = { onEventClick(event.id) })
                 .fillMaxSize()
         ) {
             Box(
