@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.EventType
+import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
@@ -38,9 +39,6 @@ fun RestaurantDetail(
     restaurantId: Long,
     upPress: () -> Unit
 ) {
-    val date = getCurrentDateTime()
-    val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    val formattedDateTimestamp = defaultFormat.format(date)
     val restaurant = remember(restaurantId) { RestaurantRepo.getRestaurant(restaurantId) }
     HermosaHappyHourSurface {
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
@@ -49,44 +47,52 @@ fun RestaurantDetail(
                 imageResource = restaurant.image,
                 upPress = upPress
             )
-            restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Brunch]?.let { event ->
-                Brunch(
-                    weeklyHoursDescription = event.weeklyHoursDescription,
-                    eventStart = event.startTimestamp,
-                    eventEnd = event.endTimestamp,
-                    eventTitle = event.title,
-                    specials = event.specials
-                )
-            }
-            restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let { event ->
-                HappyHour(
-                    weeklyHoursDescription = event.weeklyHoursDescription,
-                    eventStart = event.startTimestamp,
-                    eventEnd = event.endTimestamp,
-                    eventTitle = event.title,
-                    specials = event.specials
-                )
-            }
-            restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Sports]?.let { event ->
-                Sports(
-                    weeklyHoursDescription = event.weeklyHoursDescription,
-                    eventStart = event.startTimestamp,
-                    eventEnd = event.endTimestamp,
-                    eventTitle = event.title,
-                    specials = event.specials
-                )
-            }
-            restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Special]?.let { event ->
-                SpecialEvent(
-                    weeklyHoursDescription = event.weeklyHoursDescription,
-                    eventStart = event.startTimestamp,
-                    eventEnd = event.endTimestamp,
-                    eventTitle = event.title,
-                    specials = event.specials
-                )
-            }
+            EventInfo(restaurant = restaurant)
             GeneralInfo(restaurant = restaurant)
         }
+    }
+}
+
+@Composable
+private fun EventInfo(restaurant: Restaurant) {
+    val date = getCurrentDateTime()
+    val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val formattedDateTimestamp = defaultFormat.format(date)
+    restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Brunch]?.let { event ->
+        Brunch(
+            weeklyHoursDescription = event.weeklyHoursDescription,
+            eventStart = event.startTimestamp,
+            eventEnd = event.endTimestamp,
+            eventTitle = event.title,
+            specials = event.specials
+        )
+    }
+    restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let { event ->
+        HappyHour(
+            weeklyHoursDescription = event.weeklyHoursDescription,
+            eventStart = event.startTimestamp,
+            eventEnd = event.endTimestamp,
+            eventTitle = event.title,
+            specials = event.specials
+        )
+    }
+    restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Sports]?.let { event ->
+        Sports(
+            weeklyHoursDescription = event.weeklyHoursDescription,
+            eventStart = event.startTimestamp,
+            eventEnd = event.endTimestamp,
+            eventTitle = event.title,
+            specials = event.specials
+        )
+    }
+    restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Special]?.let { event ->
+        SpecialEvent(
+            weeklyHoursDescription = event.weeklyHoursDescription,
+            eventStart = event.startTimestamp,
+            eventEnd = event.endTimestamp,
+            eventTitle = event.title,
+            specials = event.specials
+        )
     }
 }
 
