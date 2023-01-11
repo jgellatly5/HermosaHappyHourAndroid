@@ -26,7 +26,7 @@ import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun EventFeed(
-    onEventClick: (Long, Long) -> Unit,
+    onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val filters: SnapshotStateList<Filter> = remember { EventRepo.getFilters() }
@@ -40,7 +40,7 @@ fun EventFeed(
 @Composable
 private fun EventFeed(
     filters: SnapshotStateList<Filter>,
-    onEventClick: (Long, Long) -> Unit,
+    onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     HermosaHappyHourSurface(modifier = modifier.fillMaxSize()) {
@@ -57,7 +57,7 @@ private fun EventFeed(
 @Composable
 private fun EventList(
     filters: SnapshotStateList<Filter>,
-    onEventClick: (Long, Long) -> Unit,
+    onEventClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val date = getCurrentDateTime()
@@ -140,8 +140,6 @@ fun EmptyStateMessage(
 @Composable
 private fun EventFeedPreview() {
     HermosaHappyHourTheme {
-        EventFeed(
-            onEventClick = { _, _ ->  }
-        )
+        EventFeed(onEventClick = {})
     }
 }

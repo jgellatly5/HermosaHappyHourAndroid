@@ -58,13 +58,7 @@ fun EventDetail(
             val formattedDateTimestamp = defaultFormat.format(date)
             val pagerState = rememberPagerState()
             val coroutineScope = rememberCoroutineScope()
-//            val selectedEvent = remember {
-//                mutableStateOf(
-//                    restaurant.eventsByDate.getValue(formattedDateTimestamp).values.first()
-//                )
-//            }
-//            var selectedEvent =
-//                restaurant.eventsByDate.getValue(formattedDateTimestamp).values.first()
+            val eventList = restaurant.eventsByDate.getValue(formattedDateTimestamp).map { it.value }
             if (restaurant.eventsByDate.getValue(formattedDateTimestamp).size > 1) {
                 TabRow(
                     selectedTabIndex = pagerState.currentPage,
@@ -72,13 +66,9 @@ fun EventDetail(
                     backgroundColor = HermosaHappyHourTheme.colors.uiBackground
                 ) {
                     restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let { event ->
-//                        selectedEvent.value = event
                         Tab(
                             selected = pagerState.currentPage == 0,
-                            onClick = {
-                                selectedEvent.value = event
-                                coroutineScope.launch { pagerState.animateScrollToPage(0) }
-                            },
+                            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(0) } },
                             text = {
                                 Text(
                                     text = "Happy Hour",
@@ -89,13 +79,9 @@ fun EventDetail(
                         )
                     }
                     restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Brunch]?.let { event ->
-//                        selectedEvent.value = event
                         Tab(
                             selected = pagerState.currentPage == 1,
-                            onClick = {
-                                selectedEvent.value = event
-                                coroutineScope.launch { pagerState.animateScrollToPage(1) }
-                            },
+                            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(1) } },
                             text = {
                                 Text(
                                     text = "Brunch",
@@ -106,13 +92,9 @@ fun EventDetail(
                         )
                     }
                     restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Sports]?.let { event ->
-//                        selectedEvent.value = event
                         Tab(
                             selected = pagerState.currentPage == 2,
-                            onClick = {
-                                selectedEvent.value = event
-                                coroutineScope.launch { pagerState.animateScrollToPage(2) }
-                            },
+                            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(2) } },
                             text = {
                                 Text(
                                     text = "Sports",
@@ -123,13 +105,9 @@ fun EventDetail(
                         )
                     }
                     restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Special]?.let { event ->
-//                        selectedEvent.value = event
                         Tab(
                             selected = pagerState.currentPage == 3,
-                            onClick = {
-                                selectedEvent.value = event
-                                coroutineScope.launch { pagerState.animateScrollToPage(3) }
-                            },
+                            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(3) } },
                             text = {
                                 Text(
                                     text = "Special",
@@ -141,10 +119,10 @@ fun EventDetail(
                     }
                 }
                 HorizontalPager(
-                    count = restaurant.eventsByDate.getValue(formattedDateTimestamp).size,
+                    count = eventList.size,
                     state = pagerState,
-                ) {
-                    EventInfo(event = selectedEvent.value)
+                ) { page ->
+                    EventInfo(event = eventList[page])
                 }
             }
             GeneralInfo(restaurant = restaurant)
