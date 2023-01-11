@@ -58,59 +58,21 @@ fun EventDetail(
             val formattedDateTimestamp = defaultFormat.format(date)
             val pagerState = rememberPagerState()
             val coroutineScope = rememberCoroutineScope()
-            val eventList = restaurant.eventsByDate.getValue(formattedDateTimestamp).map { it.value }
+            val eventList =
+                restaurant.eventsByDate.getValue(formattedDateTimestamp).map { it.value }
             if (eventList.size > 1) {
                 TabRow(
                     selectedTabIndex = pagerState.currentPage,
                     contentColor = HermosaHappyHourTheme.colors.textPrimary,
                     backgroundColor = HermosaHappyHourTheme.colors.uiBackground
                 ) {
-                    restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.HappyHour]?.let { event ->
+                    eventList.forEachIndexed { index, event ->
                         Tab(
-                            selected = pagerState.currentPage == 0,
-                            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(0) } },
+                            selected = pagerState.currentPage == index,
+                            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
                             text = {
                                 Text(
-                                    text = "Happy Hour",
-                                    maxLines = 2,
-                                    overflow = TextOverflow.Ellipsis,
-                                )
-                            }
-                        )
-                    }
-                    restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Brunch]?.let { event ->
-                        Tab(
-                            selected = pagerState.currentPage == 1,
-                            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(1) } },
-                            text = {
-                                Text(
-                                    text = "Brunch",
-                                    maxLines = 2,
-                                    overflow = TextOverflow.Ellipsis,
-                                )
-                            }
-                        )
-                    }
-                    restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Sports]?.let { event ->
-                        Tab(
-                            selected = pagerState.currentPage == 2,
-                            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(2) } },
-                            text = {
-                                Text(
-                                    text = "Sports",
-                                    maxLines = 2,
-                                    overflow = TextOverflow.Ellipsis,
-                                )
-                            }
-                        )
-                    }
-                    restaurant.eventsByDate.getValue(formattedDateTimestamp)[EventType.Special]?.let { event ->
-                        Tab(
-                            selected = pagerState.currentPage == 3,
-                            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(3) } },
-                            text = {
-                                Text(
-                                    text = "Special",
+                                    text = event.eventType.name,
                                     maxLines = 2,
                                     overflow = TextOverflow.Ellipsis,
                                 )
@@ -191,9 +153,7 @@ private fun Header(
 ) {
     Box {
         Image(
-            painter = painterResource(
-                id = imageResource
-            ),
+            painter = painterResource(id = imageResource),
             contentDescription = "Restaurant Image",
             modifier = Modifier.fillMaxWidth(),
             contentScale = ContentScale.Crop,
