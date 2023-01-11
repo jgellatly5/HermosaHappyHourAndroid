@@ -58,8 +58,10 @@ fun EventDetail(
             val formattedDateTimestamp = defaultFormat.format(date)
             val pagerState = rememberPagerState()
             val coroutineScope = rememberCoroutineScope()
-            val eventList =
-                restaurant.eventsByDate.getValue(formattedDateTimestamp).map { it.value }
+            val eventList = restaurant.eventsByDate
+                    .getValue(formattedDateTimestamp)
+                    .map { it.value }
+                    .sortedBy { if (it == selectedEvent) 0 else 1 }
             if (eventList.size > 1) {
                 TabRow(
                     selectedTabIndex = pagerState.currentPage,
