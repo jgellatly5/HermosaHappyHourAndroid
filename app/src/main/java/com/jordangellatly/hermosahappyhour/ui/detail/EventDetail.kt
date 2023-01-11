@@ -27,7 +27,7 @@ import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
 import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
-import com.jordangellatly.hermosahappyhour.ui.detail.shared.GeneralInfo
+import com.jordangellatly.hermosahappyhour.ui.detail.shared.RestaurantInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.special.SpecialEvent
 import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
@@ -45,7 +45,7 @@ fun EventDetail(
     upPress: () -> Unit
 ) {
     val selectedEvent = remember(eventId) { EventRepo.getEvent(eventId) }
-    val restaurant = RestaurantRepo.getRestaurant(selectedEvent.value.restaurantId)
+    val restaurant = RestaurantRepo.getRestaurant(selectedEvent.restaurantId)
     HermosaHappyHourSurface {
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             Header(
@@ -59,7 +59,7 @@ fun EventDetail(
             val pagerState = rememberPagerState()
             val coroutineScope = rememberCoroutineScope()
             val eventList = restaurant.eventsByDate.getValue(formattedDateTimestamp).map { it.value }
-            if (restaurant.eventsByDate.getValue(formattedDateTimestamp).size > 1) {
+            if (eventList.size > 1) {
                 TabRow(
                     selectedTabIndex = pagerState.currentPage,
                     contentColor = HermosaHappyHourTheme.colors.textPrimary,
@@ -124,8 +124,10 @@ fun EventDetail(
                 ) { page ->
                     EventInfo(event = eventList[page])
                 }
+            } else {
+                EventInfo(event = selectedEvent)
             }
-            GeneralInfo(restaurant = restaurant)
+            RestaurantInfo(restaurant = restaurant)
         }
     }
 }

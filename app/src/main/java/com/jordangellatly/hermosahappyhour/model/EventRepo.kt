@@ -32,7 +32,7 @@ object EventRepo {
         }
     }
 
-    fun getEvent(eventId: Long) = mutableStateOf(sampleEventData.find { it.id == eventId }!!)
+    fun getEvent(eventId: Long) = sampleEventData.find { it.id == eventId }!!
 
     fun getFilters() = filters
 }

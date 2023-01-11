@@ -33,12 +33,8 @@ import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
-fun GeneralInfo(
-    restaurant: Restaurant
-) {
-    Column(
-        modifier = Modifier.padding(8.dp)
-    ) {
+fun RestaurantInfo(restaurant: Restaurant) {
+    Column(modifier = Modifier.padding(8.dp)) {
         val date = getCurrentDateTime()
         var popupControl by remember { mutableStateOf(false) }
         Text(
@@ -188,10 +184,8 @@ private fun BottomMap(restaurant: Restaurant?) {
 
 @Preview(showBackground = true)
 @Composable
-private fun GeneralInfoPreview() {
+private fun RestaurantInfoPreview() {
     HermosaHappyHourTheme {
-        GeneralInfo(
-            restaurant = tower12
-        )
+        RestaurantInfo(restaurant = tower12)
     }
 }
