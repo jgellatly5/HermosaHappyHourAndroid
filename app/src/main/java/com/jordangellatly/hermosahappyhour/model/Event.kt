@@ -13,7 +13,7 @@ data class Event(
     val weeklyHoursDescription: String,
     val restaurantId: Long,
     val specials: List<Deal>,
-    val image: URI
+    val eventUrl: String
 )
 
 enum class EventType { HappyHour, Brunch, Sports, Special, All }
@@ -28,7 +28,7 @@ val mondayHappyHour = Event(
     endTimestamp = "2023-01-09T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = tower12HappyHourSpecials,
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val tuesdayHappyHour = Event(
@@ -41,7 +41,7 @@ val tuesdayHappyHour = Event(
     endTimestamp = "2023-01-10T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = tower12HappyHourSpecials,
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val wednesdayHappyHour = Event(
@@ -54,7 +54,7 @@ val wednesdayHappyHour = Event(
     endTimestamp = "2023-01-11T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = tower12HappyHourSpecials,
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val thursdayHappyHour = Event(
@@ -67,7 +67,7 @@ val thursdayHappyHour = Event(
     endTimestamp = "2023-01-12T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = tower12HappyHourSpecials,
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val fridayHappyHour = Event(
@@ -80,7 +80,7 @@ val fridayHappyHour = Event(
     endTimestamp = "2023-01-13T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     specials = tower12HappyHourSpecials,
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val saturdayBrunch = Event(
@@ -110,7 +110,7 @@ val saturdayBrunch = Event(
             price = "$10"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
 )
 
 val saturdaySportEvent = Event(
@@ -140,7 +140,7 @@ val saturdaySportEvent = Event(
             price = "$10"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
 )
 
 val sundayBrunch = Event(
@@ -170,7 +170,7 @@ val sundayBrunch = Event(
             price = "$10"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
 )
 
 val sundaySportEvent = Event(
@@ -200,7 +200,7 @@ val sundaySportEvent = Event(
             price = "$10"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
 )
 
 val mondayNightFootball = Event(
@@ -230,7 +230,7 @@ val mondayNightFootball = Event(
             price = "$10"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
 )
 
 val tacoTuesday = Event(
@@ -260,7 +260,7 @@ val tacoTuesday = Event(
             price = "$10"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
 )
 
 val wineWednesday = Event(
@@ -278,7 +278,7 @@ val wineWednesday = Event(
             price = "$7"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
 )
 
 val thursdayNightFootball = Event(
@@ -308,7 +308,7 @@ val thursdayNightFootball = Event(
             price = "$10"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
 )
 
 val fridayNightTrivia = Event(
@@ -338,7 +338,7 @@ val fridayNightTrivia = Event(
             price = "$10"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
 )
 
 val saturdayHappyHour = Event(
@@ -368,7 +368,7 @@ val saturdayHappyHour = Event(
             price = "Add 1$"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val sundayHappyHour = Event(
@@ -398,7 +398,7 @@ val sundayHappyHour = Event(
             price = "Add 1$"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val sundaySilentDiscoSunset = Event(
@@ -428,7 +428,7 @@ val sundaySilentDiscoSunset = Event(
             price = "Add 1$"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val mondayBrunch = Event(
@@ -458,7 +458,7 @@ val mondayBrunch = Event(
             price = "$10"
         )
     ),
-    image = URI("https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg")
+    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
 )
 
 val sampleEventData = mutableStateListOf(

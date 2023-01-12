@@ -11,10 +11,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jordangellatly.hermosahappyhour.model.Deal
-import com.jordangellatly.hermosahappyhour.model.wednesdayHappyHour
+import com.jordangellatly.hermosahappyhour.model.thursdayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.RestaurantImage
-import com.jordangellatly.hermosahappyhour.ui.detail.shared.EventHeader
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -23,14 +22,16 @@ fun HappyHour(
     eventStart: String,
     eventEnd: String,
     eventTitle: String,
+    eventUrl: String,
     specials: List<Deal>
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
-        EventHeader(
+        EventHeaderHappyHour(
             weeklyHoursDescription = weeklyHoursDescription,
             eventStart = eventStart,
             eventEnd = eventEnd,
-            eventTitle = eventTitle
+            eventTitle = eventTitle,
+            eventUrl = eventUrl
         )
         Text(
             text = "Drink Specials",
@@ -65,7 +66,7 @@ private fun DealItem(deal: Deal) {
             )
         }
         RestaurantImage(
-            imageUrl = "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+            imageUrl = deal.imageUrl,
             contentDescription = null,
             modifier = Modifier
                 .weight(1f)
@@ -79,13 +80,14 @@ private fun DealItem(deal: Deal) {
 @Preview(showBackground = true)
 @Composable
 private fun HappyHourPreview() {
-    val event = wednesdayHappyHour
+    val event = thursdayHappyHour
     HermosaHappyHourTheme {
         HappyHour(
             weeklyHoursDescription = event.weeklyHoursDescription,
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
             eventTitle = event.title,
+            eventUrl = event.eventUrl,
             specials = event.specials
         )
     }

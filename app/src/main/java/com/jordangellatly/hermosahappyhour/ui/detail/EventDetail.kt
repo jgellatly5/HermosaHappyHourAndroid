@@ -105,6 +105,7 @@ private fun EventInfo(event: Event) {
                 eventStart = event.startTimestamp,
                 eventEnd = event.endTimestamp,
                 eventTitle = event.title,
+                eventUrl = event.eventUrl,
                 specials = event.specials
             )
         }
@@ -141,6 +142,7 @@ private fun EventInfo(event: Event) {
                 eventStart = event.startTimestamp,
                 eventEnd = event.endTimestamp,
                 eventTitle = event.title,
+                eventUrl = event.eventUrl,
                 specials = event.specials
             )
         }
