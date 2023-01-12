@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.deals
+package com.jordangellatly.hermosahappyhour.ui.deals
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
