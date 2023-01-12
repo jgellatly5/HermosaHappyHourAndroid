@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Deal
 import com.jordangellatly.hermosahappyhour.model.mondayNightFootball
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
-import com.jordangellatly.hermosahappyhour.ui.detail.shared.EventTimer
+import com.jordangellatly.hermosahappyhour.ui.detail.shared.EventHeader
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -27,7 +27,7 @@ fun Sports(
     specials: List<Deal>
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
-        EventTimer(
+        EventHeader(
             weeklyHoursDescription = weeklyHoursDescription,
             eventStart = eventStart,
             eventEnd = eventEnd,

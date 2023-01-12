@@ -16,11 +16,6 @@ data class Event(
     val image: URI
 )
 
-data class Deal(
-    val description: String,
-    val price: String
-)
-
 enum class EventType { HappyHour, Brunch, Sports, Special, All }
 
 val mondayHappyHour = Event(
@@ -32,24 +27,7 @@ val mondayHappyHour = Event(
     startTimestamp = "2023-01-09T15:00",
     endTimestamp = "2023-01-09T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
-    specials = listOf(
-        Deal(
-            description = "Shots, bottled & can beers",
-            price = "50% off"
-        ),
-        Deal(
-            description = "Wines (ask server for selections)",
-            price = "$5.50 - 7.50"
-        ),
-        Deal(
-            description = "To any cocktail to make it 22oz double shot",
-            price = "Add 1$"
-        ),
-        Deal(
-            description = "To any draft beer to make it 32oz double size",
-            price = "Add 1$"
-        )
-    ),
+    specials = tower12HappyHourSpecials,
     image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
 )
 
@@ -62,24 +40,7 @@ val tuesdayHappyHour = Event(
     startTimestamp = "2023-01-10T15:00",
     endTimestamp = "2023-01-10T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
-    specials = listOf(
-        Deal(
-            description = "Shots, bottled & can beers",
-            price = "50% off"
-        ),
-        Deal(
-            description = "Wines (ask server for selections)",
-            price = "$5.50 - 7.50"
-        ),
-        Deal(
-            description = "To any cocktail to make it 22oz double shot",
-            price = "Add 1$"
-        ),
-        Deal(
-            description = "To any draft beer to make it 32oz double size",
-            price = "Add 1$"
-        )
-    ),
+    specials = tower12HappyHourSpecials,
     image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
 )
 
@@ -92,24 +53,7 @@ val wednesdayHappyHour = Event(
     startTimestamp = "2023-01-11T15:00",
     endTimestamp = "2023-01-11T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
-    specials = listOf(
-        Deal(
-            description = "Shots, bottled & can beers",
-            price = "50% off"
-        ),
-        Deal(
-            description = "Add Red Bull",
-            price = "$3"
-        ),
-        Deal(
-            description = "To any well, call, or premium to make it a 22oz double shot double size cocktail",
-            price = "Add 1$"
-        ),
-        Deal(
-            description = "To any draft beer to make it a 22oz giant schooner",
-            price = "Add 1$"
-        )
-    ),
+    specials = tower12HappyHourSpecials,
     image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
 )
 
@@ -122,24 +66,7 @@ val thursdayHappyHour = Event(
     startTimestamp = "2023-01-12T15:00",
     endTimestamp = "2023-01-12T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
-    specials = listOf(
-        Deal(
-            description = "Shots, bottled & can beers",
-            price = "50% off"
-        ),
-        Deal(
-            description = "Add Red Bull",
-            price = "$3"
-        ),
-        Deal(
-            description = "To any well, call, or premium to make it a 22oz double shot double size cocktail",
-            price = "Add 1$"
-        ),
-        Deal(
-            description = "To any draft beer to make it a 22oz giant schooner",
-            price = "Add 1$"
-        )
-    ),
+    specials = tower12HappyHourSpecials,
     image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
 )
 
@@ -152,24 +79,7 @@ val fridayHappyHour = Event(
     startTimestamp = "2023-01-13T15:00",
     endTimestamp = "2023-01-13T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
-    specials = listOf(
-        Deal(
-            description = "Shots, bottled & can beers",
-            price = "50% off"
-        ),
-        Deal(
-            description = "Add Red Bull",
-            price = "$3"
-        ),
-        Deal(
-            description = "To any well, call, or premium to make it a 22oz double shot double size cocktail",
-            price = "Add 1$"
-        ),
-        Deal(
-            description = "To any draft beer to make it a 22oz giant schooner",
-            price = "Add 1$"
-        )
-    ),
+    specials = tower12HappyHourSpecials,
     image = URI("https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg")
 )
 

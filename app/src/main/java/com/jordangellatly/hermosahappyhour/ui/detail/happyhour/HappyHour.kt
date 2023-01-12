@@ -1,6 +1,7 @@
 package com.jordangellatly.hermosahappyhour.ui.detail.happyhour
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,7 +14,7 @@ import com.jordangellatly.hermosahappyhour.model.Deal
 import com.jordangellatly.hermosahappyhour.model.wednesdayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.RestaurantImage
-import com.jordangellatly.hermosahappyhour.ui.detail.shared.EventTimer
+import com.jordangellatly.hermosahappyhour.ui.detail.shared.EventHeader
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -25,11 +26,16 @@ fun HappyHour(
     specials: List<Deal>
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
-        EventTimer(
+        EventHeader(
             weeklyHoursDescription = weeklyHoursDescription,
             eventStart = eventStart,
             eventEnd = eventEnd,
             eventTitle = eventTitle
+        )
+        Text(
+            text = "Drink Specials",
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
         )
         specials.forEach { deal ->
             DealItem(deal = deal)
