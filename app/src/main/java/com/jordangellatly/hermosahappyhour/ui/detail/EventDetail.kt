@@ -30,6 +30,7 @@ import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
 import com.jordangellatly.hermosahappyhour.ui.detail.shared.RestaurantInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.special.SpecialEvent
 import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
+import com.jordangellatly.hermosahappyhour.ui.home.DateBar
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
@@ -167,6 +168,7 @@ private fun Header(
             title = { Text(text = "") },
             backgroundColor = Color.Transparent
         )
+        DateBar()
         Up(upPress = upPress)
         Text(
             text = restaurantName,
