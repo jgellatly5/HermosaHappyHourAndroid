@@ -6,7 +6,7 @@ data class Deal(
     val imageUrl: String = "https://cdn-icons-png.flaticon.com/512/187/187448.png"
 )
 
-val tower12HappyHourSpecials = listOf(
+val tower12HappyHourDrinkSpecials = listOf(
     Deal(
         description = "Shots, bottled & can beers",
         price = "50% off",

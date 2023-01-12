@@ -23,7 +23,7 @@ fun HappyHour(
     eventEnd: String,
     eventTitle: String,
     eventUrl: String,
-    specials: List<Deal>
+    drinkSpecials: List<Deal>
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
         EventHeaderHappyHour(
@@ -38,7 +38,7 @@ fun HappyHour(
             style = MaterialTheme.typography.h5,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
         )
-        specials.forEach { deal ->
+        drinkSpecials.forEach { deal ->
             DealItem(deal = deal)
         }
     }
@@ -88,7 +88,7 @@ private fun HappyHourPreview() {
             eventEnd = event.endTimestamp,
             eventTitle = event.title,
             eventUrl = event.eventUrl,
-            specials = event.specials
+            drinkSpecials = event.drinkSpecials
         )
     }
 }

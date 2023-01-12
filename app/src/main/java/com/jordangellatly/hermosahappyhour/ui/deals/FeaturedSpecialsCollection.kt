@@ -70,7 +70,7 @@ private fun FeaturedSpecialsCollectionPreview() {
         val specialsCollection = SpecialsCollection(
             id = 1L,
             name = "Featured Specials",
-            specials = mondayHappyHour.specials
+            specials = mondayHappyHour.drinkSpecials
         )
         FeaturedSpecialsCollection(
             specialsCollection = specialsCollection,

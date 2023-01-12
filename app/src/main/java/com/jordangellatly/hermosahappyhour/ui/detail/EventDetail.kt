@@ -107,7 +107,7 @@ private fun EventInfo(event: Event) {
                 eventEnd = event.endTimestamp,
                 eventTitle = event.title,
                 eventUrl = event.eventUrl,
-                specials = event.specials
+                drinkSpecials = event.drinkSpecials
             )
         }
         EventType.Brunch -> {
@@ -116,7 +116,7 @@ private fun EventInfo(event: Event) {
                 eventStart = event.startTimestamp,
                 eventEnd = event.endTimestamp,
                 eventTitle = event.title,
-                specials = event.specials
+                specials = event.drinkSpecials
             )
         }
         EventType.Sports -> {
@@ -125,7 +125,7 @@ private fun EventInfo(event: Event) {
                 eventStart = event.startTimestamp,
                 eventEnd = event.endTimestamp,
                 eventTitle = event.title,
-                specials = event.specials
+                specials = event.drinkSpecials
             )
         }
         EventType.Special -> {
@@ -134,7 +134,7 @@ private fun EventInfo(event: Event) {
                 eventStart = event.startTimestamp,
                 eventEnd = event.endTimestamp,
                 eventTitle = event.title,
-                specials = event.specials
+                specials = event.drinkSpecials
             )
         }
         else -> {
@@ -144,7 +144,7 @@ private fun EventInfo(event: Event) {
                 eventEnd = event.endTimestamp,
                 eventTitle = event.title,
                 eventUrl = event.eventUrl,
-                specials = event.specials
+                drinkSpecials = event.drinkSpecials
             )
         }
     }

@@ -100,7 +100,7 @@ private fun BrunchPreview() {
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
             eventTitle = event.title,
-            specials = event.specials
+            specials = event.drinkSpecials
         )
     }
 }

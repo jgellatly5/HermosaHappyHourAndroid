@@ -40,7 +40,7 @@ fun HappyHourSpecialsCollection(
 @Composable
 fun HappyHourSpecialsCollectionPreview() {
     HermosaHappyHourTheme {
-        val specials = mondayHappyHour.specials
+        val specials = mondayHappyHour.drinkSpecials
         HappyHourSpecialsCollection(
             specials = specials,
             onDealClick = {}

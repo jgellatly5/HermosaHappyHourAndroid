@@ -84,7 +84,7 @@ private fun SportsPreview() {
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
             eventTitle = event.title,
-            specials = event.specials
+            specials = event.drinkSpecials
         )
     }
 }
