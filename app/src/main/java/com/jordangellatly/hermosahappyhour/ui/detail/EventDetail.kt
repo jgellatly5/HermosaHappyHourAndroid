@@ -107,7 +107,8 @@ private fun EventInfo(event: Event) {
                 eventEnd = event.endTimestamp,
                 eventTitle = event.title,
                 eventUrl = event.eventUrl,
-                drinkSpecials = event.drinkSpecials
+                drinkSpecials = event.drinkSpecials,
+                foodSpecials = event.foodSpecials
             )
         }
         EventType.Brunch -> {
@@ -144,7 +145,8 @@ private fun EventInfo(event: Event) {
                 eventEnd = event.endTimestamp,
                 eventTitle = event.title,
                 eventUrl = event.eventUrl,
-                drinkSpecials = event.drinkSpecials
+                drinkSpecials = event.drinkSpecials,
+                foodSpecials = event.foodSpecials
             )
         }
     }
