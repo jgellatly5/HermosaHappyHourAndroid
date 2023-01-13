@@ -22,7 +22,7 @@ import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
 fun HappyHourSpecialsCollection(
-    specials: List<Deal>,
+    specials: List<Deal>?,
     onDealClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -30,8 +30,10 @@ fun HappyHourSpecialsCollection(
         modifier = modifier,
         contentPadding = PaddingValues(start = 4.dp, end = 4.dp)
     ) {
-        items(specials) { deal ->
-            HappyHourSpecialsItem(deal, onDealClick)
+        specials?.let {
+            items(it) { deal ->
+                HappyHourSpecialsItem(deal, onDealClick)
+            }
         }
     }
 }

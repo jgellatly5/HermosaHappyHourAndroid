@@ -27,7 +27,7 @@ fun HappyHour(
     eventEnd: String,
     eventTitle: String,
     eventUrl: String,
-    drinkSpecials: List<Deal>,
+    drinkSpecials: List<Deal>?,
     foodSpecials: List<Deal>?
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
@@ -44,14 +44,50 @@ fun HappyHour(
 }
 
 @Composable
-private fun DrinkSpecials(drinkSpecials: List<Deal>) {
+private fun DrinkSpecials(drinkSpecials: List<Deal>?) {
     Text(
         text = "Drink Specials",
         style = MaterialTheme.typography.h5,
         modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
     )
-    drinkSpecials.forEach { deal ->
-        DealItem(deal = deal)
+    if (drinkSpecials != null) {
+        drinkSpecials.forEach { deal ->
+            DealItem(deal = deal)
+        }
+    } else {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(30.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "There are no drink specials for this event.",
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.subtitle1,
+                color = HermosaHappyHourTheme.colors.textSecondary,
+                modifier = Modifier
+                    .width(300.dp)
+                    .padding(start = 16.dp, end = 16.dp)
+            )
+            Button(
+                onClick = {},
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Cyan),
+                modifier = Modifier
+                    .width(200.dp)
+                    .padding(top = 20.dp)
+            ) {
+                Text(
+                    text = "See Drink Menu",
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.subtitle1,
+                    color = HermosaHappyHourTheme.colors.textSecondary,
+                )
+            }
+        }
     }
 }
 

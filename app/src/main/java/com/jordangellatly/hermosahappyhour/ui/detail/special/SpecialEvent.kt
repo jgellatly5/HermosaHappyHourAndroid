@@ -24,7 +24,7 @@ fun SpecialEvent(
     eventStart: String,
     eventEnd: String,
     eventTitle: String,
-    specials: List<Deal>
+    specials: List<Deal>?
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
         EventHeader(

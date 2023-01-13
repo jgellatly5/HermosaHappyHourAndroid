@@ -6,5 +6,5 @@ import androidx.compose.runtime.Immutable
 data class SpecialsCollection(
     val id: Long,
     val name: String,
-    val specials: List<Deal>
+    val specials: List<Deal>?
 )
