@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Deal
-import com.jordangellatly.hermosahappyhour.model.sundayBrunch
+import com.jordangellatly.hermosahappyhour.model.tower12.sundayBrunch
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.detail.shared.EventHeader
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme

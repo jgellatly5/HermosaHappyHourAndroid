@@ -1,12 +1,8 @@
-package com.jordangellatly.hermosahappyhour.model
+package com.jordangellatly.hermosahappyhour.model.tower12
 
-data class Deal(
-    val description: String,
-    val price: String,
-    val imageUrl: String = "https://cdn-icons-png.flaticon.com/512/187/187448.png"
-)
+import com.jordangellatly.hermosahappyhour.model.Deal
 
-val tower12HappyHourDrinkSpecials = listOf(
+val tower12JungleHourDrinkSpecials = listOf(
     Deal(
         description = "Shots, bottled & can beers",
         price = "50% off",

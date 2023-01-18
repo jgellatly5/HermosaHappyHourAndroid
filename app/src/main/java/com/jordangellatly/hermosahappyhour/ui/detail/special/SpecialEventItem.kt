@@ -13,7 +13,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Event
-import com.jordangellatly.hermosahappyhour.model.sundaySilentDiscoSunset
+import com.jordangellatly.hermosahappyhour.model.tower12.sundaySilentDiscoSunset
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.components.RestaurantImage
 import com.jordangellatly.hermosahappyhour.ui.components.offsetGradientBackground

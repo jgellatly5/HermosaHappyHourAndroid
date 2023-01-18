@@ -13,7 +13,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.thursdayHappyHour
+import com.jordangellatly.hermosahappyhour.model.tower12.tower12ThursdayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
@@ -58,7 +58,7 @@ fun EventHeaderHappyHour(
 @Preview(showBackground = true)
 @Composable
 private fun EventHeaderHappyHourPreview() {
-    val event = thursdayHappyHour
+    val event = tower12ThursdayHappyHour
     HermosaHappyHourTheme {
         EventHeaderHappyHour(
             weeklyHoursDescription = event.weeklyHoursDescription,

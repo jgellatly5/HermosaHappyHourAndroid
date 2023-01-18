@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jordangellatly.hermosahappyhour.model.Deal
-import com.jordangellatly.hermosahappyhour.model.fridayHappyHour
+import com.jordangellatly.hermosahappyhour.model.tower12.tower12FridayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
 import com.jordangellatly.hermosahappyhour.ui.components.RestaurantImage
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -175,7 +175,7 @@ fun DealItem(deal: Deal) {
 @Preview(showBackground = true)
 @Composable
 private fun HappyHourPreview() {
-    val event = fridayHappyHour
+    val event = tower12FridayHappyHour
     HermosaHappyHourTheme {
         HappyHour(
             weeklyHoursDescription = event.weeklyHoursDescription,

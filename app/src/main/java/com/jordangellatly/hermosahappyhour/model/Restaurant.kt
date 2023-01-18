@@ -1,6 +1,8 @@
 package com.jordangellatly.hermosahappyhour.model
 
 import com.jordangellatly.hermosahappyhour.R
+import com.jordangellatly.hermosahappyhour.model.junkie.junkieFridayHappyHour
+import com.jordangellatly.hermosahappyhour.model.tower12.*
 
 data class Restaurant(
     val id: Long,
@@ -36,67 +38,64 @@ val generalWeeklyHours = mapOf(
     "SATURDAY" to "9AM - 2AM"
 )
 
-val eventsByDateForTesting = mapOf(
-    "2023-01-08" to mapOf(
+val tower12EventsByDate = mapOf(
+    "2023-01-15" to mapOf(
         EventType.Brunch to sundayBrunch,
-//        EventType.HappyHour to sundayHappyHour,
         EventType.Sports to sundaySportEvent,
         EventType.Special to sundaySilentDiscoSunset
     ),
-    "2023-01-09" to mapOf(
-        EventType.Brunch to mondayBrunch,
-        EventType.HappyHour to mondayHappyHour,
+    "2023-01-16" to mapOf(
+        EventType.HappyHour to tower12MondayHappyHour,
         EventType.Sports to mondayNightFootball
     ),
-    "2023-01-10" to mapOf(
-        EventType.HappyHour to tuesdayHappyHour,
+    "2023-01-17" to mapOf(
+        EventType.HappyHour to tower12TuesdayHappyHour,
         EventType.Special to tacoTuesday
     ),
-    "2023-01-11" to mapOf(
-        EventType.HappyHour to wednesdayHappyHour,
+    "2023-01-18" to mapOf(
+        EventType.HappyHour to tower12WednesdayHappyHour,
         EventType.Special to wineWednesday
     ),
-    "2023-01-12" to mapOf(
-        EventType.HappyHour to thursdayHappyHour,
+    "2023-01-19" to mapOf(
+        EventType.HappyHour to tower12ThursdayHappyHour,
         EventType.Sports to thursdayNightFootball
     ),
     "2023-01-13" to mapOf(
-        EventType.HappyHour to fridayHappyHour,
+        EventType.HappyHour to tower12FridayHappyHour,
         EventType.Special to fridayNightTrivia
     ),
-    "2023-01-07" to mapOf(
+    "2023-01-14" to mapOf(
         EventType.Brunch to saturdayBrunch,
-        EventType.HappyHour to saturdayHappyHour,
         EventType.Sports to saturdaySportEvent
     )
 )
 
-val tower12EventsByDate = mapOf(
-    "2023-01-08" to mapOf(
-        EventType.Sports to sundaySportEvent
+val junkieEventsByDate = mapOf(
+    "2023-01-15" to mapOf(
+        EventType.Brunch to sundayBrunch,
+        EventType.Sports to sundaySportEvent,
+        EventType.Special to sundaySilentDiscoSunset
     ),
-    "2023-01-09" to mapOf(
-        EventType.HappyHour to mondayHappyHour,
+    "2023-01-16" to mapOf(
+        EventType.Brunch to mondayBrunch,
+        EventType.HappyHour to tower12MondayHappyHour,
         EventType.Sports to mondayNightFootball
     ),
-    "2023-01-10" to mapOf(
-        EventType.HappyHour to mondayHappyHour,
-        EventType.Special to tacoTuesday
+    "2023-01-17" to mapOf(
+        EventType.HappyHour to tower12TuesdayHappyHour
     ),
-    "2023-01-11" to mapOf(
-        EventType.HappyHour to mondayHappyHour,
-        EventType.Special to wineWednesday
+    "2023-01-18" to mapOf(
+        EventType.HappyHour to tower12WednesdayHappyHour
     ),
-    "2023-01-12" to mapOf(
-        EventType.HappyHour to mondayHappyHour,
-        EventType.Sports to thursdayNightFootball
+    "2023-01-19" to mapOf(
+        EventType.HappyHour to tower12ThursdayHappyHour
     ),
     "2023-01-13" to mapOf(
-        EventType.HappyHour to mondayHappyHour,
-        EventType.Special to fridayNightTrivia
+        EventType.HappyHour to junkieFridayHappyHour
     ),
-    "2023-01-07" to mapOf(
-        EventType.Sports to sundaySportEvent
+    "2023-01-14" to mapOf(
+        EventType.Brunch to saturdayBrunch,
+        EventType.Sports to saturdaySportEvent
     )
 )
 
@@ -116,7 +115,7 @@ val tower12 = Restaurant(
         longitude = -118.40085
     ),
     weeklyHours = generalWeeklyHours,
-    eventsByDate = eventsByDateForTesting,
+    eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "53 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"
@@ -136,7 +135,7 @@ val bajaSharkeez = Restaurant(
         longitude = -118.40071
     ),
     weeklyHours = generalWeeklyHours,
-    eventsByDate = eventsByDateForTesting,
+    eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "52 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"
@@ -156,7 +155,7 @@ val americanJunkie = Restaurant(
         longitude = -118.40047
     ),
     weeklyHours = generalWeeklyHours,
-    eventsByDate = eventsByDateForTesting,
+    eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "68 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"
@@ -176,7 +175,7 @@ val hennesseys = Restaurant(
         longitude = -118.40152
     ),
     weeklyHours = generalWeeklyHours,
-    eventsByDate = eventsByDateForTesting,
+    eventsByDate = tower12EventsByDate,
     address = Address(
         line1 = "8 Pier Ave",
         line2 = "Hermosa Beach, CA 90254"

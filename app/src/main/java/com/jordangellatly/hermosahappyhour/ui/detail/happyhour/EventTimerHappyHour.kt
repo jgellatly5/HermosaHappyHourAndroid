@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.thursdayHappyHour
+import com.jordangellatly.hermosahappyhour.model.tower12.tower12ThursdayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
@@ -122,7 +122,7 @@ fun EventTimerHappyHour(eventStart: String, eventEnd: String, eventTitle: String
 @Preview(showBackground = true)
 @Composable
 private fun EventTimerHappyHourPreview() {
-    val event = thursdayHappyHour
+    val event = tower12ThursdayHappyHour
     HermosaHappyHourTheme {
         EventTimerHappyHour(
             eventStart = event.startTimestamp,
@@ -134,7 +134,7 @@ private fun EventTimerHappyHourPreview() {
 @Preview(showBackground = true)
 @Composable
 private fun EventTimerHappyHourWithTitlePreview() {
-    val event = thursdayHappyHour
+    val event = tower12ThursdayHappyHour
     HermosaHappyHourTheme {
         EventTimerHappyHour(
             eventStart = event.startTimestamp,
