@@ -1,6 +1,8 @@
 package com.jordangellatly.hermosahappyhour.model
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
+import com.google.gson.Gson
 import com.jordangellatly.hermosahappyhour.model.tower12.*
 
 data class Event(
@@ -45,3 +47,12 @@ val sampleEventData = mutableStateListOf(
     sundaySilentDiscoSunset,
     mondayBrunch
 )
+
+fun printEventsJson() {
+    val events = sampleEventData
+    for (event in events) {
+        val gson = Gson()
+        val json = gson.toJson(event)
+        Log.d("Events JSON", json)
+    }
+}

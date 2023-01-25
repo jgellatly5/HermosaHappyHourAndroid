@@ -1,6 +1,5 @@
 package com.jordangellatly.hermosahappyhour.model
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
@@ -26,7 +25,7 @@ object EventRepo {
             formattedCurrentDateString == formattedEventStartString && it.eventType == eventType
         }.toMutableStateList()
 
-    fun getAllEvents(): List<Event> = sampleSearchRestaurantData.flatMap { restaurant ->
+    fun getAllEventIds(): List<Long> = sampleSearchRestaurantData.flatMap { restaurant ->
         restaurant.eventsByDate.values.flatMap { eventMap ->
             eventMap.values
         }

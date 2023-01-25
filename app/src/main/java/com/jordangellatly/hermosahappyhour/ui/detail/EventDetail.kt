@@ -62,18 +62,19 @@ fun EventDetail(
             val eventList = restaurant.eventsByDate
                     .getValue(formattedDateTimestamp)
                     .map { it.value }
-                    .sortedBy { if (it == selectedEvent) 0 else 1 }
+                    .sortedBy { if (EventRepo.getEvent(it) == selectedEvent) 0 else 1 }
             if (eventList.size > 1) {
                 TabRow(
                     selectedTabIndex = pagerState.currentPage,
                     contentColor = HermosaHappyHourTheme.colors.textPrimary,
                     backgroundColor = HermosaHappyHourTheme.colors.uiBackground
                 ) {
-                    eventList.forEachIndexed { index, event ->
+                    eventList.forEachIndexed { index, eventId ->
                         Tab(
                             selected = pagerState.currentPage == index,
                             onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
                             text = {
+                                val event = EventRepo.getEvent(eventId)
                                 Text(
                                     text = event.eventType.name,
                                     maxLines = 2,
@@ -87,7 +88,7 @@ fun EventDetail(
                     count = eventList.size,
                     state = pagerState,
                 ) { page ->
-                    EventInfo(event = eventList[page])
+                    EventInfo(event = EventRepo.getEvent(eventList[page]))
                 }
             } else {
                 EventInfo(event = selectedEvent)

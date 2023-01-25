@@ -17,10 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.Event
-import com.jordangellatly.hermosahappyhour.model.EventRepo
-import com.jordangellatly.hermosahappyhour.model.EventType
-import com.jordangellatly.hermosahappyhour.model.Filter
+import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
@@ -62,6 +59,8 @@ private fun EventList(
 ) {
     val date = getCurrentDateTime()
     var filterPageVisible by rememberSaveable { mutableStateOf(false) }
+    printEventsJson()
+    printRestaurantsJson()
     val events = remember { EventRepo.getEventsByDateAndType(date, EventType.HappyHour) }
     Box(modifier) {
         Column {
