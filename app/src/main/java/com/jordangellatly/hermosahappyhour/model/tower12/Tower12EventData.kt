@@ -4,80 +4,81 @@ import com.jordangellatly.hermosahappyhour.model.Deal
 import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.tower12RestaurantId
+import java.util.*
 
 val tower12MondayHappyHour = Event(
-    id = 1,
+    id = UUID.randomUUID(),
     eventType = EventType.HappyHour,
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-09T15:00",
-    endTimestamp = "2023-01-09T19:00",
+    startTimestamp = "2023-01-23T15:00",
+    endTimestamp = "2023-01-23T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = tower12JungleHourDrinkSpecials,
     eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val tower12TuesdayHappyHour = Event(
-    id = 2,
+    id = UUID.randomUUID(),
     eventType = EventType.HappyHour,
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-10T15:00",
-    endTimestamp = "2023-01-10T19:00",
+    startTimestamp = "2023-01-24T15:00",
+    endTimestamp = "2023-01-24T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = tower12JungleHourDrinkSpecials,
     eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val tower12WednesdayHappyHour = Event(
-    id = 3,
+    id = UUID.randomUUID(),
     eventType = EventType.HappyHour,
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-11T15:00",
-    endTimestamp = "2023-01-11T19:00",
+    startTimestamp = "2023-01-25T15:00",
+    endTimestamp = "2023-01-25T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = tower12JungleHourDrinkSpecials,
     eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val tower12ThursdayHappyHour = Event(
-    id = 4,
+    id = UUID.randomUUID(),
     eventType = EventType.HappyHour,
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-12T15:00",
-    endTimestamp = "2023-01-12T19:00",
+    startTimestamp = "2023-01-26T15:00",
+    endTimestamp = "2023-01-26T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = tower12JungleHourDrinkSpecials,
     eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val tower12FridayHappyHour = Event(
-    id = 5,
+    id = UUID.randomUUID(),
     eventType = EventType.HappyHour,
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-13T15:00",
-    endTimestamp = "2023-01-13T19:00",
+    startTimestamp = "2023-01-27T15:00",
+    endTimestamp = "2023-01-27T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = tower12JungleHourDrinkSpecials,
     eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
 )
 
 val saturdayBrunch = Event(
-    id = 6,
+    id = UUID.randomUUID(),
     eventType = EventType.Brunch,
     title = "Saturday Brunch",
     description = "Brunch is fun",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-07T09:00",
-    endTimestamp = "2023-01-07T14:00",
+    startTimestamp = "2023-01-28T09:00",
+    endTimestamp = "2023-01-28T14:00",
     weeklyHoursDescription = "Sat & Sun \u2022 9AM - 2PM",
     drinkSpecials = listOf(
         Deal(
@@ -101,13 +102,13 @@ val saturdayBrunch = Event(
 )
 
 val saturdaySportEvent = Event(
-    id = 7,
+    id = UUID.randomUUID(),
     eventType = EventType.Sports,
     title = "Saturday Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-07T15:00",
-    endTimestamp = "2023-01-07T19:00",
+    startTimestamp = "2023-01-28T15:00",
+    endTimestamp = "2023-01-28T19:00",
     weeklyHoursDescription = "Today only \u2022 3PM - 7PM",
     drinkSpecials = listOf(
         Deal(
@@ -131,13 +132,13 @@ val saturdaySportEvent = Event(
 )
 
 val sundayBrunch = Event(
-    id = 8,
+    id = UUID.randomUUID(),
     eventType = EventType.Brunch,
     title = "Sunday Brunch",
     description = "Brunch is fun",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-08T09:00",
-    endTimestamp = "2023-01-08T14:00",
+    startTimestamp = "2023-01-29T09:00",
+    endTimestamp = "2023-01-29T14:00",
     weeklyHoursDescription = "Sat & Sun \u2022 9AM - 2PM",
     drinkSpecials = listOf(
         Deal(
@@ -161,13 +162,13 @@ val sundayBrunch = Event(
 )
 
 val sundaySportEvent = Event(
-    id = 9,
+    id = UUID.randomUUID(),
     eventType = EventType.Sports,
     title = "Sunday Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-08T15:00",
-    endTimestamp = "2023-01-08T19:00",
+    startTimestamp = "2023-01-29T15:00",
+    endTimestamp = "2023-01-29T19:00",
     weeklyHoursDescription = "Today only \u2022 3PM - 7PM",
     drinkSpecials = listOf(
         Deal(
@@ -191,13 +192,13 @@ val sundaySportEvent = Event(
 )
 
 val mondayNightFootball = Event(
-    id = 10,
+    id = UUID.randomUUID(),
     eventType = EventType.Sports,
     title = "Monday Night Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-09T17:00",
-    endTimestamp = "2023-01-09T20:00",
+    startTimestamp = "2023-01-23T17:00",
+    endTimestamp = "2023-01-23T20:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     drinkSpecials = listOf(
         Deal(
@@ -221,13 +222,13 @@ val mondayNightFootball = Event(
 )
 
 val tacoTuesday = Event(
-    id = 11,
+    id = UUID.randomUUID(),
     eventType = EventType.Special,
     title = "Taco Tuesday",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-10T17:00",
-    endTimestamp = "2023-01-10T20:00",
+    startTimestamp = "2023-01-24T17:00",
+    endTimestamp = "2023-01-24T20:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     drinkSpecials = listOf(
         Deal(
@@ -251,13 +252,13 @@ val tacoTuesday = Event(
 )
 
 val wineWednesday = Event(
-    id = 12,
+    id = UUID.randomUUID(),
     eventType = EventType.Special,
     title = "Wine Wednesday",
     description = "Wine Wednesday is fun",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-11T17:00",
-    endTimestamp = "2023-01-11T20:00",
+    startTimestamp = "2023-01-25T17:00",
+    endTimestamp = "2023-01-25T20:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     drinkSpecials = listOf(
         Deal(
@@ -269,13 +270,13 @@ val wineWednesday = Event(
 )
 
 val thursdayNightFootball = Event(
-    id = 13,
+    id = UUID.randomUUID(),
     eventType = EventType.Sports,
     title = "Thursday Night Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-12T15:00",
-    endTimestamp = "2023-01-12T19:00",
+    startTimestamp = "2023-01-26T15:00",
+    endTimestamp = "2023-01-26T19:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     drinkSpecials = listOf(
         Deal(
@@ -299,13 +300,13 @@ val thursdayNightFootball = Event(
 )
 
 val fridayNightTrivia = Event(
-    id = 14,
+    id = UUID.randomUUID(),
     eventType = EventType.Special,
     title = "Friday Night Trivia",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-13T15:00",
-    endTimestamp = "2023-01-13T19:00",
+    startTimestamp = "2023-01-27T15:00",
+    endTimestamp = "2023-01-27T19:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     drinkSpecials = listOf(
         Deal(
@@ -329,13 +330,13 @@ val fridayNightTrivia = Event(
 )
 
 val saturdayHappyHour = Event(
-    id = 15,
+    id = UUID.randomUUID(),
     eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-07T15:00",
-    endTimestamp = "2023-01-07T19:00",
+    startTimestamp = "2023-01-28T15:00",
+    endTimestamp = "2023-01-28T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = listOf(
         Deal(
@@ -359,13 +360,13 @@ val saturdayHappyHour = Event(
 )
 
 val sundayHappyHour = Event(
-    id = 16,
+    id = UUID.randomUUID(),
     eventType = EventType.HappyHour,
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-08T15:00",
-    endTimestamp = "2023-01-08T19:00",
+    startTimestamp = "2023-01-29T15:00",
+    endTimestamp = "2023-01-29T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = listOf(
         Deal(
@@ -389,13 +390,13 @@ val sundayHappyHour = Event(
 )
 
 val sundaySilentDiscoSunset = Event(
-    id = 17,
+    id = UUID.randomUUID(),
     eventType = EventType.Special,
     title = "Silent Disco Sunet",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-08T15:00",
-    endTimestamp = "2023-01-08T19:00",
+    startTimestamp = "2023-01-29T15:00",
+    endTimestamp = "2023-01-29T19:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     drinkSpecials = listOf(
         Deal(
@@ -419,13 +420,13 @@ val sundaySilentDiscoSunset = Event(
 )
 
 val mondayBrunch = Event(
-    id = 18,
+    id = UUID.randomUUID(),
     eventType = EventType.Brunch,
     title = "Monday Brunch",
     description = "Brunch is fun",
     restaurantId = tower12RestaurantId,
-    startTimestamp = "2023-01-09T09:00",
-    endTimestamp = "2023-01-09T14:00",
+    startTimestamp = "2023-01-23T09:00",
+    endTimestamp = "2023-01-23T14:00",
     weeklyHoursDescription = "Sat & Sun \u2022 9AM - 2PM",
     drinkSpecials = listOf(
         Deal(

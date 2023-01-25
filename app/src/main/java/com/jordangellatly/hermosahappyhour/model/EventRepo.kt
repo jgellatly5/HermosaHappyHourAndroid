@@ -25,13 +25,7 @@ object EventRepo {
             formattedCurrentDateString == formattedEventStartString && it.eventType == eventType
         }.toMutableStateList()
 
-    fun getAllEventIds(): List<Long> = sampleSearchRestaurantData.flatMap { restaurant ->
-        restaurant.eventsByDate.values.flatMap { eventMap ->
-            eventMap.values
-        }
-    }
-
-    fun getEvent(eventId: Long) = sampleEventData.find { it.id == eventId }!!
+    fun getEvent(eventId: UUID) = sampleEventData.find { it.id == eventId }!!
 
     fun getFilters() = filters
 }

@@ -3,9 +3,10 @@ package com.jordangellatly.hermosahappyhour.model.junkie
 import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.americanJunkieRestaurantId
+import java.util.*
 
 val junkieFridayHappyHour = Event(
-    id = 19,
+    id = UUID.randomUUID(),
     eventType = EventType.HappyHour,
     title = "Happy Hour",
     restaurantId = americanJunkieRestaurantId,

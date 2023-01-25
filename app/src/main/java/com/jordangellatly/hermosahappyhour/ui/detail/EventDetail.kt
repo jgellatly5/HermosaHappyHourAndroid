@@ -24,6 +24,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.*
+import com.jordangellatly.hermosahappyhour.model.tower12.tower12MondayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
 import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
@@ -42,7 +43,7 @@ import java.util.*
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun EventDetail(
-    eventId: Long,
+    eventId: UUID,
     upPress: () -> Unit
 ) {
     val selectedEvent = remember(eventId) { EventRepo.getEvent(eventId) }
@@ -210,7 +211,7 @@ private fun Up(upPress: () -> Unit) {
 private fun EventDetailPreview() {
     HermosaHappyHourTheme {
         EventDetail(
-            eventId = 1,
+            eventId = tower12MondayHappyHour.id,
             upPress = {}
         )
     }

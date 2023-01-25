@@ -19,11 +19,12 @@ import com.jordangellatly.hermosahappyhour.model.tower12.saturdayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.detail.shared.EventTimer
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.util.*
 
 @Composable
 fun EventItem(
     event: Event,
-    onEventClick: (Long) -> Unit,
+    onEventClick: (UUID) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val restaurant = remember { RestaurantRepo.getRestaurant(event.restaurantId) }

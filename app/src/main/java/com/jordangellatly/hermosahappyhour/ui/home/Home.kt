@@ -83,7 +83,7 @@ fun String.getDayOfWeekFromTimestamp(): String {
 }
 
 fun NavGraphBuilder.addHomeGraph(
-    onEventSelected: (Long, NavBackStackEntry) -> Unit,
+    onEventSelected: (UUID, NavBackStackEntry) -> Unit,
     modifier: Modifier = Modifier
 ) {
     composable(HomeSections.HOME.route) { from ->

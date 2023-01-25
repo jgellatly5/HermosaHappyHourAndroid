@@ -4,9 +4,10 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import com.google.gson.Gson
 import com.jordangellatly.hermosahappyhour.model.tower12.*
+import java.util.*
 
 data class Event(
-    val id: Long,
+    val id: UUID,
     val eventType: EventType,
     val title: String,
     val description: String = "",

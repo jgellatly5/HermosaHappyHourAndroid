@@ -13,6 +13,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.jordangellatly.hermosahappyhour.ui.home.HomeSections
+import java.util.*
 
 object MainDestinations {
     const val HOME_ROUTE = "home"
@@ -71,7 +72,7 @@ class HappyHourAppState(
         }
     }
 
-    fun navigateToEventDetail(eventId: Long, from: NavBackStackEntry) {
+    fun navigateToEventDetail(eventId: UUID, from: NavBackStackEntry) {
         // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
             navController.navigate("${MainDestinations.EVENT_DETAIL_ROUTE}/$eventId")

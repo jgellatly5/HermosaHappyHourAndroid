@@ -19,6 +19,7 @@ import com.jordangellatly.hermosahappyhour.ui.components.RestaurantImage
 import com.jordangellatly.hermosahappyhour.ui.components.offsetGradientBackground
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.util.*
 
 val HighlightCardWidth = 170.dp
 val HighlightCardPadding = 16.dp
@@ -33,7 +34,7 @@ val gradientWidth
 @Composable
 fun SpecialEventItem(
     event: Event,
-    onEventClick: (Long) -> Unit,
+    onEventClick: (UUID) -> Unit,
     index: Int,
     gradient: List<Color>,
     gradientWidth: Float,
@@ -66,7 +67,7 @@ fun SpecialEventItem(
                         .offsetGradientBackground(gradient, gradientWidth, gradientOffset)
                 )
                 RestaurantImage(
-                    imageUrl = event.eventUrl.toString(),
+                    imageUrl = event.eventUrl,
                     contentDescription = null,
                     modifier = Modifier
                         .size(120.dp)

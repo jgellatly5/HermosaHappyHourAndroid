@@ -12,6 +12,7 @@ import com.jordangellatly.hermosahappyhour.ui.home.HappyHourBottomBar
 import com.jordangellatly.hermosahappyhour.ui.home.HomeSections
 import com.jordangellatly.hermosahappyhour.ui.home.addHomeGraph
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.util.*
 
 @Composable
 fun HermosaHappyHourApp() {
@@ -49,7 +50,7 @@ fun HermosaHappyHourApp() {
 }
 
 private fun NavGraphBuilder.happyHourNavGraph(
-    onEventSelected: (Long, NavBackStackEntry) -> Unit,
+    onEventSelected: (UUID, NavBackStackEntry) -> Unit,
 //    onRestaurantSelected: (Long, NavBackStackEntry) -> Unit,
     upPress: () -> Unit
 ) {
@@ -63,12 +64,12 @@ private fun NavGraphBuilder.happyHourNavGraph(
         route = "${MainDestinations.EVENT_DETAIL_ROUTE}/{${MainDestinations.EVENT_ID_KEY}}",
         arguments = listOf(
             navArgument(MainDestinations.EVENT_ID_KEY) {
-                type = NavType.LongType
+                type = NavType.StringType
             }
         )
     ) { backStackEntry ->
         val arguments = requireNotNull(backStackEntry.arguments)
-        val eventId = arguments.getLong(MainDestinations.EVENT_ID_KEY)
+        val eventId = UUID.fromString(arguments.getString(MainDestinations.EVENT_ID_KEY))
         EventDetail(
             eventId = eventId,
             upPress = upPress
