@@ -1,11 +1,10 @@
 package com.jordangellatly.hermosahappyhour
 
-import android.content.res.Resources
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.*
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.remember
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
@@ -14,52 +13,27 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.jordangellatly.hermosahappyhour.ui.home.HomeSections
-import kotlinx.coroutines.CoroutineScope
+import java.util.*
 
 object MainDestinations {
     const val HOME_ROUTE = "home"
     const val RESTAURANT_DETAIL_ROUTE = "restaurant"
     const val RESTAURANT_ID_KEY = "restaurantId"
+    const val EVENT_DETAIL_ROUTE = "event"
+    const val EVENT_ID_KEY = "eventId"
 }
 
 @Composable
 fun rememberHappyHourAppState(
     scaffoldState: ScaffoldState = rememberScaffoldState(),
-    navController: NavHostController = rememberNavController(),
-//    snackbarManager: SnackbarManager = SnackbarManager,
-    resources: Resources = resources(),
-    coroutineScope: CoroutineScope = rememberCoroutineScope()
-) =
-    remember(scaffoldState, navController, resources, coroutineScope) {
-        HappyHourAppState(scaffoldState, navController, resources, coroutineScope)
-    }
+    navController: NavHostController = rememberNavController()
+) = remember(scaffoldState, navController) { HappyHourAppState(scaffoldState, navController) }
 
 @Stable
 class HappyHourAppState(
     val scaffoldState: ScaffoldState,
-    val navController: NavHostController,
-//    private val snackbarManager: SnackbarManager,
-    private val resources: Resources,
-    coroutineScope: CoroutineScope
+    val navController: NavHostController
 ) {
-    // Process snackbars coming from SnackbarManager
-//    init {
-//        coroutineScope.launch {
-//            snackbarManager.messages.collect { currentMessages ->
-//                if (currentMessages.isNotEmpty()) {
-//                    val message = currentMessages[0]
-//                    val text = resources.getText(message.messageId)
-//
-//                    // Display the snackbar on the screen. `showSnackbar` is a function
-//                    // that suspends until the snackbar disappears from the screen
-//                    scaffoldState.snackbarHostState.showSnackbar(text.toString())
-//                    // Once the snackbar is gone or dismissed, notify the SnackbarManager
-//                    snackbarManager.setMessageShown(message.id)
-//                }
-//            }
-//        }
-//    }
-
     // ----------------------------------------------------------
     // BottomBar state source of truth
     // ----------------------------------------------------------
@@ -98,10 +72,10 @@ class HappyHourAppState(
         }
     }
 
-    fun navigateToRestaurantDetail(restaurantId: Long, from: NavBackStackEntry) {
+    fun navigateToEventDetail(eventId: UUID, from: NavBackStackEntry) {
         // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
-            navController.navigate("${MainDestinations.RESTAURANT_DETAIL_ROUTE}/$restaurantId")
+            navController.navigate("${MainDestinations.EVENT_DETAIL_ROUTE}/$eventId")
         }
     }
 }
@@ -114,11 +88,4 @@ private val NavGraph.startDestination: NavDestination?
 
 private tailrec fun findStartDestination(graph: NavDestination): NavDestination {
     return if (graph is NavGraph) findStartDestination(graph.startDestination!!) else graph
-}
-
-@Composable
-@ReadOnlyComposable
-private fun resources(): Resources {
-    LocalConfiguration.current
-    return LocalContext.current.resources
 }

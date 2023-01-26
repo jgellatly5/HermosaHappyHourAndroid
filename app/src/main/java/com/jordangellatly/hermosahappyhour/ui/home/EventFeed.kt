@@ -17,16 +17,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.Event
-import com.jordangellatly.hermosahappyhour.model.EventRepo
-import com.jordangellatly.hermosahappyhour.model.EventType
-import com.jordangellatly.hermosahappyhour.model.Filter
+import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.util.*
 
 @Composable
 fun EventFeed(
-    onEventClick: (Long) -> Unit,
+    onEventClick: (UUID) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val filters: SnapshotStateList<Filter> = remember { EventRepo.getFilters() }
@@ -40,7 +38,7 @@ fun EventFeed(
 @Composable
 private fun EventFeed(
     filters: SnapshotStateList<Filter>,
-    onEventClick: (Long) -> Unit,
+    onEventClick: (UUID) -> Unit,
     modifier: Modifier = Modifier
 ) {
     HermosaHappyHourSurface(modifier = modifier.fillMaxSize()) {
@@ -57,11 +55,13 @@ private fun EventFeed(
 @Composable
 private fun EventList(
     filters: SnapshotStateList<Filter>,
-    onEventClick: (Long) -> Unit,
+    onEventClick: (UUID) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val date = getCurrentDateTime()
     var filterPageVisible by rememberSaveable { mutableStateOf(false) }
+    printEventsJson()
+    printRestaurantsJson()
     val events = remember { EventRepo.getEventsByDateAndType(date, EventType.HappyHour) }
     Box(modifier) {
         Column {
@@ -140,6 +140,6 @@ fun EmptyStateMessage(
 @Composable
 private fun EventFeedPreview() {
     HermosaHappyHourTheme {
-        EventFeed(onEventClick = { })
+        EventFeed(onEventClick = {})
     }
 }

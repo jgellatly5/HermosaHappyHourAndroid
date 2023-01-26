@@ -1,0 +1,581 @@
+[
+  {
+    "description": "Bringing you wild drink specials",
+    "drinkSpecials": [
+      {
+        "description": "Shots, bottled \u0026 can beers",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "50% off"
+      },
+      {
+        "description": "Wines (ask server for selections)",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$5.50 - 7.50"
+      },
+      {
+        "description": "To any cocktail to make it a double sized double shot 22oz cocktail",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      },
+      {
+        "description": "To any draft beer to make it a double size 32oz draft beer",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      }
+    ],
+    "endTimestamp": "2023-01-23T19:00",
+    "eventType": "HappyHour",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    "_id": "d43209df-f45c-42c5-b10a-307b20ba7dd3",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-23T15:00",
+    "title": "Jungle Hour",
+    "weeklyHoursDescription": "M - F • 3PM - 7PM"
+  },
+  {
+    "description": "Bringing you wild drink specials",
+    "drinkSpecials": [
+      {
+        "description": "Shots, bottled \u0026 can beers",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "50% off"
+      },
+      {
+        "description": "Wines (ask server for selections)",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$5.50 - 7.50"
+      },
+      {
+        "description": "To any cocktail to make it a double sized double shot 22oz cocktail",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      },
+      {
+        "description": "To any draft beer to make it a double size 32oz draft beer",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      }
+    ],
+    "endTimestamp": "2023-01-24T19:00",
+    "eventType": "HappyHour",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    "_id": "b817a811-aa0f-4953-8bfe-2c29ca3655a5",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-24T15:00",
+    "title": "Jungle Hour",
+    "weeklyHoursDescription": "M - F • 3PM - 7PM"
+  },
+  {
+    "description": "Bringing you wild drink specials",
+    "drinkSpecials": [
+      {
+        "description": "Shots, bottled \u0026 can beers",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "50% off"
+      },
+      {
+        "description": "Wines (ask server for selections)",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$5.50 - 7.50"
+      },
+      {
+        "description": "To any cocktail to make it a double sized double shot 22oz cocktail",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      },
+      {
+        "description": "To any draft beer to make it a double size 32oz draft beer",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      }
+    ],
+    "endTimestamp": "2023-01-25T19:00",
+    "eventType": "HappyHour",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    "_id": "bfde16f7-573d-4ece-a15f-477e35b6a927",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-25T15:00",
+    "title": "Jungle Hour",
+    "weeklyHoursDescription": "M - F • 3PM - 7PM"
+  },
+  {
+    "description": "Bringing you wild drink specials",
+    "drinkSpecials": [
+      {
+        "description": "Shots, bottled \u0026 can beers",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "50% off"
+      },
+      {
+        "description": "Wines (ask server for selections)",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$5.50 - 7.50"
+      },
+      {
+        "description": "To any cocktail to make it a double sized double shot 22oz cocktail",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      },
+      {
+        "description": "To any draft beer to make it a double size 32oz draft beer",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      }
+    ],
+    "endTimestamp": "2023-01-26T19:00",
+    "eventType": "HappyHour",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    "_id": "10e0c714-3b8e-414a-9f82-eca34868d16a",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-26T15:00",
+    "title": "Jungle Hour",
+    "weeklyHoursDescription": "M - F • 3PM - 7PM"
+  },
+  {
+    "description": "Bringing you wild drink specials",
+    "drinkSpecials": [
+      {
+        "description": "Shots, bottled \u0026 can beers",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "50% off"
+      },
+      {
+        "description": "Wines (ask server for selections)",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$5.50 - 7.50"
+      },
+      {
+        "description": "To any cocktail to make it a double sized double shot 22oz cocktail",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      },
+      {
+        "description": "To any draft beer to make it a double size 32oz draft beer",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      }
+    ],
+    "endTimestamp": "2023-01-27T19:00",
+    "eventType": "HappyHour",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    "_id": "caf853ad-b1e6-4caa-bfdb-ae4f7989af9b",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-27T15:00",
+    "title": "Jungle Hour",
+    "weeklyHoursDescription": "M - F • 3PM - 7PM"
+  },
+  {
+    "description": "Premiere sports viewing, we get all the games",
+    "drinkSpecials": [
+      {
+        "description": "Bloody Mary\u0027s Well",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$7"
+      },
+      {
+        "description": "Bloody Mary\u0027s Titos",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$9"
+      },
+      {
+        "description": "22 oz double shot Skyy or Epsolon cocktails",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$16 (add Red Bull for $3.50)"
+      },
+      {
+        "description": "22 oz Mavericks Mimosas schooners",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$10"
+      }
+    ],
+    "endTimestamp": "2023-01-23T20:00",
+    "eventType": "Sports",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    "_id": "c6bbc54c-e4d4-41c6-8cd3-75eeb416dfa0",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-23T17:00",
+    "title": "Monday Night Football",
+    "weeklyHoursDescription": "Today only • 5PM - 8PM"
+  },
+  {
+    "description": "Premiere sports viewing, we get all the games",
+    "drinkSpecials": [
+      {
+        "description": "Bloody Mary\u0027s Well",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$7"
+      },
+      {
+        "description": "Bloody Mary\u0027s Titos",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$9"
+      },
+      {
+        "description": "22 oz double shot Skyy or Epsolon cocktails",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$16 (add Red Bull for $3.50)"
+      },
+      {
+        "description": "22 oz Mavericks Mimosas schooners",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$10"
+      }
+    ],
+    "endTimestamp": "2023-01-24T20:00",
+    "eventType": "Special",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    "_id": "78941e0d-69e8-446d-ac35-bd6916ef8071",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-24T17:00",
+    "title": "Taco Tuesday",
+    "weeklyHoursDescription": "Today only • 5PM - 8PM"
+  },
+  {
+    "description": "Wine Wednesday is fun",
+    "drinkSpecials": [
+      {
+        "description": "Wine (ask server for selections)",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$7"
+      }
+    ],
+    "endTimestamp": "2023-01-25T20:00",
+    "eventType": "Special",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    "_id": "a9640f1e-499f-4c65-8c9d-4804c9b38c6d",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-25T17:00",
+    "title": "Wine Wednesday",
+    "weeklyHoursDescription": "Today only • 5PM - 8PM"
+  },
+  {
+    "description": "Premiere sports viewing, we get all the games",
+    "drinkSpecials": [
+      {
+        "description": "Bloody Mary\u0027s Well",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$7"
+      },
+      {
+        "description": "Bloody Mary\u0027s Titos",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$9"
+      },
+      {
+        "description": "22 oz double shot Skyy or Epsolon cocktails",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$16 (add Red Bull for $3.50)"
+      },
+      {
+        "description": "22 oz Mavericks Mimosas schooners",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$10"
+      }
+    ],
+    "endTimestamp": "2023-01-26T19:00",
+    "eventType": "Sports",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    "_id": "7962ab26-40a3-41b3-8802-7e4622c957a8",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-26T15:00",
+    "title": "Thursday Night Football",
+    "weeklyHoursDescription": "Today only • 5PM - 8PM"
+  },
+  {
+    "description": "Premiere sports viewing, we get all the games",
+    "drinkSpecials": [
+      {
+        "description": "Bloody Mary\u0027s Well",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$7"
+      },
+      {
+        "description": "Bloody Mary\u0027s Titos",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$9"
+      },
+      {
+        "description": "22 oz double shot Skyy or Epsolon cocktails",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$16 (add Red Bull for $3.50)"
+      },
+      {
+        "description": "22 oz Mavericks Mimosas schooners",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$10"
+      }
+    ],
+    "endTimestamp": "2023-01-27T19:00",
+    "eventType": "Special",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    "_id": "fb1a53ad-e798-4ec0-a74d-1f439aa79bb5",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-27T15:00",
+    "title": "Friday Night Trivia",
+    "weeklyHoursDescription": "Today only • 5PM - 8PM"
+  },
+  {
+    "description": "Brunch is fun",
+    "drinkSpecials": [
+      {
+        "description": "Bloody Mary\u0027s Well",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$7"
+      },
+      {
+        "description": "Bloody Mary\u0027s Titos",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$9"
+      },
+      {
+        "description": "22 oz double shot Skyy or Epsolon cocktails",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$16 (add Red Bull for $3.50)"
+      },
+      {
+        "description": "22 oz Mavericks Mimosas schooners",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$10"
+      }
+    ],
+    "endTimestamp": "2023-01-28T14:00",
+    "eventType": "Brunch",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    "_id": "5e156c2f-6b5a-4ed9-b796-5338bd01a02d",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-28T09:00",
+    "title": "Saturday Brunch",
+    "weeklyHoursDescription": "Sat \u0026 Sun • 9AM - 2PM"
+  },
+  {
+    "description": "Premiere sports viewing, we get all the games",
+    "drinkSpecials": [
+      {
+        "description": "Bloody Mary\u0027s Well",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$7"
+      },
+      {
+        "description": "Bloody Mary\u0027s Titos",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$9"
+      },
+      {
+        "description": "22 oz double shot Skyy or Epsolon cocktails",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$16 (add Red Bull for $3.50)"
+      },
+      {
+        "description": "22 oz Mavericks Mimosas schooners",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$10"
+      }
+    ],
+    "endTimestamp": "2023-01-28T19:00",
+    "eventType": "Sports",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    "_id": "af49c576-4a62-4e52-9a22-fc2ec08f4346",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-28T15:00",
+    "title": "Saturday Football",
+    "weeklyHoursDescription": "Today only • 3PM - 7PM"
+  },
+  {
+    "description": "Brunch is fun",
+    "drinkSpecials": [
+      {
+        "description": "Bloody Mary\u0027s Well",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$7"
+      },
+      {
+        "description": "Bloody Mary\u0027s Titos",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$9"
+      },
+      {
+        "description": "22 oz double shot Skyy or Epsolon cocktails",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$16 (add Red Bull for $3.50)"
+      },
+      {
+        "description": "22 oz Mavericks Mimosas schooners",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$10"
+      }
+    ],
+    "endTimestamp": "2023-01-29T14:00",
+    "eventType": "Brunch",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    "_id": "a35ff78f-7ee0-4244-97cf-f06af03e7769",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-29T09:00",
+    "title": "Sunday Brunch",
+    "weeklyHoursDescription": "Sat \u0026 Sun • 9AM - 2PM"
+  },
+  {
+    "description": "Premiere sports viewing, we get all the games",
+    "drinkSpecials": [
+      {
+        "description": "Bloody Mary\u0027s Well",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$7"
+      },
+      {
+        "description": "Bloody Mary\u0027s Titos",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$9"
+      },
+      {
+        "description": "22 oz double shot Skyy or Epsolon cocktails",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$16 (add Red Bull for $3.50)"
+      },
+      {
+        "description": "22 oz Mavericks Mimosas schooners",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$10"
+      }
+    ],
+    "endTimestamp": "2023-01-29T19:00",
+    "eventType": "Sports",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    "_id": "5a7ecd8e-7e76-4ecf-a6c5-cb497e76be29",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-29T15:00",
+    "title": "Sunday Football",
+    "weeklyHoursDescription": "Today only • 3PM - 7PM"
+  },
+  {
+    "description": "Serving sunsets, ice cold drinks, \u0026 good vibes daily",
+    "drinkSpecials": [
+      {
+        "description": "Shots, bottled \u0026 can beers",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "50% off"
+      },
+      {
+        "description": "Add Red Bull",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$3"
+      },
+      {
+        "description": "To any well, call, or premium to make it a 22oz double shot double size cocktail",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      },
+      {
+        "description": "To any draft beer to make it a 22oz giant schooner",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      }
+    ],
+    "endTimestamp": "2023-01-28T19:00",
+    "eventType": "HappyHour",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    "_id": "6a7a3a41-493c-4c05-8df2-ca2340092843",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-28T15:00",
+    "title": "Happy Hour",
+    "weeklyHoursDescription": "M - F • 3PM - 7PM"
+  },
+  {
+    "description": "Serving sunsets, ice cold drinks, \u0026 good vibes daily",
+    "drinkSpecials": [
+      {
+        "description": "Shots, bottled \u0026 can beers",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "50% off"
+      },
+      {
+        "description": "Add Red Bull",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$3"
+      },
+      {
+        "description": "To any well, call, or premium to make it a 22oz double shot double size cocktail",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      },
+      {
+        "description": "To any draft beer to make it a 22oz giant schooner",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      }
+    ],
+    "endTimestamp": "2023-01-29T19:00",
+    "eventType": "HappyHour",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    "_id": "36cab772-e320-40c5-b3d4-8f1483fd050a",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-29T15:00",
+    "title": "Happy Hour",
+    "weeklyHoursDescription": "M - F • 3PM - 7PM"
+  },
+  {
+    "description": "Serving sunsets, ice cold drinks, \u0026 good vibes daily",
+    "drinkSpecials": [
+      {
+        "description": "Shots, bottled \u0026 can beers",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "50% off"
+      },
+      {
+        "description": "Add Red Bull",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$3"
+      },
+      {
+        "description": "To any well, call, or premium to make it a 22oz double shot double size cocktail",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      },
+      {
+        "description": "To any draft beer to make it a 22oz giant schooner",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "Add 1$"
+      }
+    ],
+    "endTimestamp": "2023-01-29T19:00",
+    "eventType": "Special",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    "_id": "6ad01575-8f8f-4116-ba15-566d0ab4618d",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-29T15:00",
+    "title": "Silent Disco Sunet",
+    "weeklyHoursDescription": "Today only • 5PM - 8PM"
+  },
+  {
+    "description": "Brunch is fun",
+    "drinkSpecials": [
+      {
+        "description": "Bloody Mary\u0027s Well",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$7"
+      },
+      {
+        "description": "Bloody Mary\u0027s Titos",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$9"
+      },
+      {
+        "description": "22 oz double shot Skyy or Epsolon cocktails",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$16 (add Red Bull for $3.50)"
+      },
+      {
+        "description": "22 oz Mavericks Mimosas schooners",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+        "price": "$10"
+      }
+    ],
+    "endTimestamp": "2023-01-23T14:00",
+    "eventType": "Brunch",
+    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    "_id": "6c162135-fcf1-4cbf-8476-b316a6534a70",
+    "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+    "startTimestamp": "2023-01-23T09:00",
+    "title": "Monday Brunch",
+    "weeklyHoursDescription": "Sat \u0026 Sun • 9AM - 2PM"
+  }
+]

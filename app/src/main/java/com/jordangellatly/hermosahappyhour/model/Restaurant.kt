@@ -1,6 +1,11 @@
 package com.jordangellatly.hermosahappyhour.model
 
+import android.util.Log
+import com.google.gson.Gson
 import com.jordangellatly.hermosahappyhour.R
+import com.jordangellatly.hermosahappyhour.model.junkie.junkieFridayHappyHour
+import com.jordangellatly.hermosahappyhour.model.tower12.*
+import java.util.*
 
 data class Restaurant(
     val id: Long,
@@ -10,7 +15,7 @@ data class Restaurant(
     val image: Int,
     val location: Location,
     val weeklyHours: Map<String, String>,
-    val eventsByDate: Map<String, Map<EventType, Event>>,
+    val eventsByDate: Map<String, Map<EventType, UUID>>,
     val address: Address,
     val phoneNumber: String,
     val website: String
@@ -37,31 +42,63 @@ val generalWeeklyHours = mapOf(
 )
 
 val tower12EventsByDate = mapOf(
-    "2023-01-08" to mapOf(
-        EventType.Sports to tower12SundaySportEvent
+    "2023-01-29" to mapOf(
+        EventType.Brunch to sundayBrunch.id,
+        EventType.Sports to sundaySportEvent.id,
+        EventType.Special to sundaySilentDiscoSunset.id
     ),
-    "2023-01-09" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour,
-        EventType.Sports to mondayNightFootball
+    "2023-01-30" to mapOf(
+        EventType.HappyHour to tower12MondayHappyHour.id,
+        EventType.Sports to mondayNightFootball.id
     ),
-    "2023-01-10" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour,
-        EventType.Special to tacoTuesday
+    "2023-01-24" to mapOf(
+        EventType.HappyHour to tower12TuesdayHappyHour.id,
+        EventType.Special to tacoTuesday.id
     ),
-    "2023-01-11" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour,
-        EventType.Special to wineWednesday
+    "2023-01-25" to mapOf(
+        EventType.HappyHour to tower12WednesdayHappyHour.id,
+        EventType.Special to wineWednesday.id
     ),
-    "2023-01-12" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour,
-        EventType.Sports to thursdayNightFootball
+    "2023-01-26" to mapOf(
+        EventType.HappyHour to tower12ThursdayHappyHour.id,
+        EventType.Sports to thursdayNightFootball.id
+    ),
+    "2023-01-27" to mapOf(
+        EventType.HappyHour to tower12FridayHappyHour.id,
+        EventType.Special to fridayNightTrivia.id
+    ),
+    "2023-01-28" to mapOf(
+        EventType.Brunch to saturdayBrunch.id,
+        EventType.Sports to saturdaySportEvent.id
+    )
+)
+
+val junkieEventsByDate = mapOf(
+    "2023-01-15" to mapOf(
+        EventType.Brunch to sundayBrunch.id,
+        EventType.Sports to sundaySportEvent.id,
+        EventType.Special to sundaySilentDiscoSunset.id
+    ),
+    "2023-01-16" to mapOf(
+        EventType.Brunch to mondayBrunch.id,
+        EventType.HappyHour to tower12MondayHappyHour.id,
+        EventType.Sports to mondayNightFootball.id
+    ),
+    "2023-01-17" to mapOf(
+        EventType.HappyHour to tower12TuesdayHappyHour.id
+    ),
+    "2023-01-18" to mapOf(
+        EventType.HappyHour to tower12WednesdayHappyHour.id
+    ),
+    "2023-01-19" to mapOf(
+        EventType.HappyHour to tower12ThursdayHappyHour.id
     ),
     "2023-01-13" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour,
-        EventType.Special to fridayNightTrivia
+        EventType.HappyHour to junkieFridayHappyHour.id
     ),
-    "2023-01-07" to mapOf(
-        EventType.Sports to tower12SundaySportEvent
+    "2023-01-14" to mapOf(
+        EventType.Brunch to saturdayBrunch.id,
+        EventType.Sports to saturdaySportEvent.id
     )
 )
 
@@ -156,3 +193,12 @@ val sampleSearchRestaurantData = listOf(
     americanJunkie,
     hennesseys
 )
+
+fun printRestaurantsJson() {
+    val restaurants = sampleSearchRestaurantData
+    for (restaurant in restaurants) {
+        val gson = Gson()
+        val json = gson.toJson(restaurant)
+        Log.d("Restaurants JSON", json)
+    }
+}

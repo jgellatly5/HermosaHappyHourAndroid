@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.info
+package com.jordangellatly.hermosahappyhour.ui.detail.shared
 
 import android.content.Intent
 import android.net.Uri
@@ -19,35 +19,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Popup
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.maps.android.compose.*
 import com.jordangellatly.hermosahappyhour.R
-import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.Location
 import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourDivider
-import com.jordangellatly.hermosahappyhour.ui.detail.popup.HoursPopup
-import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.home.toString
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
-import java.text.SimpleDateFormat
-import java.util.*
 
 @Composable
-fun GeneralInfo(
-    restaurant: Restaurant
-) {
-    Column(
-        modifier = Modifier.padding(8.dp)
-    ) {
+fun RestaurantInfo(restaurant: Restaurant) {
+    Column(modifier = Modifier.padding(8.dp)) {
         val date = getCurrentDateTime()
         var popupControl by remember { mutableStateOf(false) }
-        var isHappyHour by remember { mutableStateOf(false) }
         Text(
             text = "Info",
             style = MaterialTheme.typography.h4,
@@ -58,33 +47,7 @@ fun GeneralInfo(
         InfoRow(
             title = "Hours",
             description = restaurant.weeklyHours.getValue(getDayFromDate),
-            onClick = {
-                popupControl = true
-                isHappyHour = false
-            }
-        )
-
-        var happyHourStart = ""
-        var happyHourEnd = ""
-
-        val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val formattedDateTimestamp = defaultFormat.format(date)
-        restaurant.eventsByDate[formattedDateTimestamp]?.get(EventType.HappyHour)?.let {
-            happyHourStart = formatTimestamp(it.startTimestamp, "ha") ?: ""
-            happyHourEnd = formatTimestamp(it.endTimestamp, "ha") ?: ""
-        }
-        val happyHourTime = if (happyHourStart.isNotEmpty() && happyHourEnd.isNotEmpty()) {
-            "$happyHourStart - $happyHourEnd"
-        } else {
-            "Not Available Today"
-        }
-        InfoRow(
-            title = "Happy Hour",
-            description = happyHourTime,
-            onClick = {
-                popupControl = true
-                isHappyHour = true
-            }
+            onClick = { popupControl = true }
         )
 
         val context = LocalContext.current
@@ -127,38 +90,14 @@ fun GeneralInfo(
         BottomMap(restaurant = restaurant)
 
         if (popupControl) {
-            Popup(
+            val title = "Hours"
+            val hours = restaurant.weeklyHours
+            HoursPopup(
+                title = title,
+                weeklyHours = hours,
+                onClick = { popupControl = false },
                 onDismissRequest = { popupControl = false }
-            ) {
-                val title = if (isHappyHour) "Happy Hour" else "Hours"
-                val hours = if (isHappyHour) {
-                    restaurant.eventsByDate
-                        .mapValues { it.value[EventType.HappyHour] }
-                        .mapValues {
-                            val happyHourDayStart =
-                                it.value?.startTimestamp?.let { startTimestamp ->
-                                    formatTimestamp(startTimestamp, "ha")
-                                } ?: ""
-                            val happyHourDayEnd = it.value?.endTimestamp?.let { endTimestamp ->
-                                formatTimestamp(endTimestamp, "ha")
-                            } ?: ""
-                            if (happyHourDayStart.isEmpty() || happyHourDayEnd.isEmpty()) {
-                                "Not Available"
-                            } else {
-                                "$happyHourDayStart - $happyHourDayEnd"
-                            }
-                        }
-                } else {
-                    restaurant.weeklyHours
-                }
-                HoursPopup(
-                    title = title,
-                    weeklyHours = hours,
-                    onClick = {
-                        popupControl = false
-                    }
-                )
-            }
+            )
         }
     }
 }
@@ -190,12 +129,6 @@ private fun InfoRow(
                 "Hours" -> {
                     Icon(
                         imageVector = Icons.Filled.ArrowForward,
-                        contentDescription = title
-                    )
-                }
-                "Happy Hour" -> {
-                    Icon(
-                        painter = painterResource(id = R.drawable.beer),
                         contentDescription = title
                     )
                 }
@@ -251,10 +184,8 @@ private fun BottomMap(restaurant: Restaurant?) {
 
 @Preview(showBackground = true)
 @Composable
-private fun GeneralInfoPreview() {
+private fun RestaurantInfoPreview() {
     HermosaHappyHourTheme {
-        GeneralInfo(
-            restaurant = tower12
-        )
+        RestaurantInfo(restaurant = tower12)
     }
 }
