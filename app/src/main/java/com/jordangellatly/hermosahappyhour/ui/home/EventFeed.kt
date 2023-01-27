@@ -17,6 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
@@ -25,9 +26,10 @@ import java.util.*
 @Composable
 fun EventFeed(
     onEventClick: (UUID) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: EventViewModel = viewModel()
 ) {
-    val filters: SnapshotStateList<Filter> = remember { EventRepo.getFilters() }
+    val filters: SnapshotStateList<Filter> = remember { viewModel.getFilters() }
     EventFeed(
         filters = filters,
         onEventClick = onEventClick,
@@ -56,13 +58,14 @@ private fun EventFeed(
 private fun EventList(
     filters: SnapshotStateList<Filter>,
     onEventClick: (UUID) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: EventViewModel = viewModel()
 ) {
     val date = getCurrentDateTime()
     var filterPageVisible by rememberSaveable { mutableStateOf(false) }
     printEventsJson()
     printRestaurantsJson()
-    val events = remember { EventRepo.getEventsByDateAndType(date, EventType.HappyHour) }
+    val events = remember { viewModel.getEventsByDateAndType(date, EventType.HappyHour) }
     Box(modifier) {
         Column {
             Spacer(
@@ -75,7 +78,7 @@ private fun EventList(
                 filters = filters,
                 selectedType = selectedType,
                 onFilterClick = { filter ->
-                    val filteredEvents = EventRepo.getEventsByDateAndType(date, filter.eventType)
+                    val filteredEvents = viewModel.getEventsByDateAndType(date, filter.eventType)
                     events.clear()
                     events.addAll(filteredEvents)
                 },

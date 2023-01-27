@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -32,6 +33,7 @@ import com.jordangellatly.hermosahappyhour.ui.detail.shared.RestaurantInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.special.SpecialEvent
 import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
 import com.jordangellatly.hermosahappyhour.ui.home.DateBar
+import com.jordangellatly.hermosahappyhour.ui.home.EventViewModel
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
@@ -44,9 +46,10 @@ import java.util.*
 @Composable
 fun EventDetail(
     eventId: UUID,
-    upPress: () -> Unit
+    upPress: () -> Unit,
+    viewModel: EventViewModel = viewModel()
 ) {
-    val selectedEvent = remember(eventId) { EventRepo.getEvent(eventId) }
+    val selectedEvent = remember(eventId) { viewModel.getEventById(eventId) }
     val restaurant = RestaurantRepo.getRestaurant(selectedEvent.restaurantId)
     HermosaHappyHourSurface {
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
@@ -63,7 +66,7 @@ fun EventDetail(
             val eventList = restaurant.eventsByDate
                     .getValue(formattedDateTimestamp)
                     .map { it.value }
-                    .sortedBy { if (EventRepo.getEvent(it) == selectedEvent) 0 else 1 }
+                    .sortedBy { if (viewModel.getEventById(it) == selectedEvent) 0 else 1 }
             if (eventList.size > 1) {
                 TabRow(
                     selectedTabIndex = pagerState.currentPage,
@@ -75,7 +78,7 @@ fun EventDetail(
                             selected = pagerState.currentPage == index,
                             onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
                             text = {
-                                val event = EventRepo.getEvent(eventId)
+                                val event = viewModel.getEventById(eventId)
                                 Text(
                                     text = event.eventType.name,
                                     maxLines = 2,
@@ -89,7 +92,7 @@ fun EventDetail(
                     count = eventList.size,
                     state = pagerState,
                 ) { page ->
-                    EventInfo(event = EventRepo.getEvent(eventList[page]))
+                    EventInfo(event = viewModel.getEventById(eventList[page]))
                 }
             } else {
                 EventInfo(event = selectedEvent)

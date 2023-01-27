@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".HappyHourApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -29,7 +30,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD6Gj8td7UYj-RibzwwCpy-Lvzwn37PNuY"/>
+            android:value="AIzaSyD6Gj8td7UYj-RibzwwCpy-Lvzwn37PNuY" />
 
     </application>
 

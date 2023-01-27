@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import androidx.core.os.ConfigurationCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -87,9 +88,11 @@ fun NavGraphBuilder.addHomeGraph(
     modifier: Modifier = Modifier
 ) {
     composable(HomeSections.HOME.route) { from ->
+        val viewModel = hiltViewModel<EventViewModel>()
         EventFeed(
             onEventClick = { eventId -> onEventSelected(eventId, from) },
-            modifier = modifier
+            modifier = modifier,
+            viewModel = viewModel
         )
     }
     composable(HomeSections.SEARCH.route) { from ->
