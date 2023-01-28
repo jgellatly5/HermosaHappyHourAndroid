@@ -33,7 +33,7 @@ import com.jordangellatly.hermosahappyhour.ui.detail.shared.RestaurantInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.special.SpecialEvent
 import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
 import com.jordangellatly.hermosahappyhour.ui.home.DateBar
-import com.jordangellatly.hermosahappyhour.ui.home.EventViewModel
+import com.jordangellatly.hermosahappyhour.viewmodel.EventViewModel
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8

@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
@@ -21,6 +22,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import com.jordangellatly.hermosahappyhour.viewmodel.EventViewModel
 import java.util.*
 
 @Composable
@@ -62,10 +64,12 @@ private fun EventList(
     viewModel: EventViewModel = viewModel()
 ) {
     val date = getCurrentDateTime()
+    viewModel.getEventsByDateAndType(date, EventType.HappyHour)
     var filterPageVisible by rememberSaveable { mutableStateOf(false) }
     printEventsJson()
     printRestaurantsJson()
-    val events = remember { viewModel.getEventsByDateAndType(date, EventType.HappyHour) }
+//    val events = remember { viewModel.getEventsByDateAndType(date, EventType.HappyHour) }
+    val events = viewModel.events.observeAsState().value ?: remember { mutableStateListOf() }
     Box(modifier) {
         Column {
             Spacer(
@@ -78,9 +82,10 @@ private fun EventList(
                 filters = filters,
                 selectedType = selectedType,
                 onFilterClick = { filter ->
-                    val filteredEvents = viewModel.getEventsByDateAndType(date, filter.eventType)
+//                    val filteredEvents = viewModel.getEventsByDateAndType(date, filter.eventType)
+                    viewModel.getEventsByDateAndType(date, filter.eventType)
                     events.clear()
-                    events.addAll(filteredEvents)
+                    events.addAll(events)
                 },
                 onShowFilterPopup = { filterPageVisible = true }
             )

@@ -46,6 +46,7 @@ import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.profile.Profile
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import com.jordangellatly.hermosahappyhour.viewmodel.EventViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 

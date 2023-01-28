@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourScaffold
 import com.jordangellatly.hermosahappyhour.ui.detail.EventDetail
-import com.jordangellatly.hermosahappyhour.ui.home.EventViewModel
+import com.jordangellatly.hermosahappyhour.viewmodel.EventViewModel
 import com.jordangellatly.hermosahappyhour.ui.home.HappyHourBottomBar
 import com.jordangellatly.hermosahappyhour.ui.home.HomeSections
 import com.jordangellatly.hermosahappyhour.ui.home.addHomeGraph
