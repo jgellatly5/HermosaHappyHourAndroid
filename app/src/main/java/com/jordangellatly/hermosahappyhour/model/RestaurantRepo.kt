@@ -16,7 +16,7 @@ object RestaurantRepo {
             restaurant.eventsByDate.getValue(formattedDateTimestamp).containsKey(eventType)
         }
 
-    fun getRestaurant(restaurantId: Long) =
+    fun getRestaurant(restaurantId: UUID) =
         sampleSearchRestaurantData.find { it.id == restaurantId }!!
 
     fun getFilters() = filters

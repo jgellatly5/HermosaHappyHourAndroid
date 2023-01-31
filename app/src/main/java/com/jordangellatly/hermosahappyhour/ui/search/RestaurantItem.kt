@@ -1,7 +1,6 @@
 package com.jordangellatly.hermosahappyhour.ui.search
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -31,7 +30,7 @@ fun RestaurantItem(
     ) {
         Column(
             modifier = Modifier
-                .clickable(onClick = { onRestaurantClick(restaurant.id) })
+//                .clickable(onClick = { onRestaurantClick(restaurant.id) })
                 .fillMaxSize()
         ) {
             Box(

@@ -19,7 +19,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.jordangellatly.hermosahappyhour.model.*
+import com.jordangellatly.hermosahappyhour.model.Event
+import com.jordangellatly.hermosahappyhour.model.EventType
+import com.jordangellatly.hermosahappyhour.model.Filter
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.viewmodel.EventViewModel
@@ -63,12 +65,7 @@ private fun EventList(
     modifier: Modifier = Modifier,
     viewModel: EventViewModel = viewModel()
 ) {
-    val date = getCurrentDateTime()
-    viewModel.getEventsByDateAndType(date, EventType.HappyHour)
     var filterPageVisible by rememberSaveable { mutableStateOf(false) }
-    printEventsJson()
-    printRestaurantsJson()
-//    val events = remember { viewModel.getEventsByDateAndType(date, EventType.HappyHour) }
     val events = viewModel.events.observeAsState().value ?: remember { mutableStateListOf() }
     Box(modifier) {
         Column {
@@ -82,7 +79,7 @@ private fun EventList(
                 filters = filters,
                 selectedType = selectedType,
                 onFilterClick = { filter ->
-//                    val filteredEvents = viewModel.getEventsByDateAndType(date, filter.eventType)
+                    val date = getCurrentDateTime()
                     viewModel.getEventsByDateAndType(date, filter.eventType)
                     events.clear()
                     events.addAll(events)

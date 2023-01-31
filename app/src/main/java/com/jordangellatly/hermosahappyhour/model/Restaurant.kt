@@ -8,7 +8,7 @@ import com.jordangellatly.hermosahappyhour.model.tower12.*
 import java.util.*
 
 data class Restaurant(
-    val id: Long,
+    val id: UUID,
     val name: String,
     val description: String,
     val companyLogoUrl: String,
@@ -102,13 +102,8 @@ val junkieEventsByDate = mapOf(
     )
 )
 
-const val tower12RestaurantId = 1L
-const val bajaSharkeezRestaurantId = 2L
-const val americanJunkieRestaurantId = 3L
-const val hennesseysRestaurantId = 4L
-
 val tower12 = Restaurant(
-    id = tower12RestaurantId,
+    id = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
     name = "Tower 12",
     description = "New American classics & fancy snacks in a beachy, relaxed bar with romantic patio seating.",
     companyLogoUrl = "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/292336365_435159251951538_4078078271979326231_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=C_tAC12x4o0AX9uN-Yg&_nc_ht=scontent-lax3-2.xx&oh=00_AfAAxhYzzBx-bK8gDhRHmOeMrzUxDDsDMZeCaTyFHRr3Ug&oe=638F052F",
@@ -128,7 +123,7 @@ val tower12 = Restaurant(
 )
 
 val bajaSharkeez = Restaurant(
-    id = bajaSharkeezRestaurantId,
+    id = UUID.fromString("0a5092b9-9e8a-4ac1-bf52-5d268aa3b70d"),
     name = "Baja Sharkeez",
     description = "Lively bar & restaurant with simple Mexican fare plus lots of margaritas & a popular happy hour.",
     companyLogoUrl = "https://sharkeez.net/wp-content/uploads/2020/11/sharkeez-light.png",
@@ -148,7 +143,7 @@ val bajaSharkeez = Restaurant(
 )
 
 val americanJunkie = Restaurant(
-    id = americanJunkieRestaurantId,
+    id = UUID.fromString("083970d5-e602-43b2-b50c-d11756cfafcb"),
     name = "American Junkie",
     description = "Lively gastropub with American chow, craft brews & California wines plus multiple TVs for sports.",
     companyLogoUrl = "https://images.squarespace-cdn.com/content/v1/5a340b32f09ca4f1abede53f/1513369024515-81MNDBH8WH7EFSWJ6BKE/AJ+Gargoyle+White+Logo.png?format=1500w",
@@ -168,7 +163,7 @@ val americanJunkie = Restaurant(
 )
 
 val hennesseys = Restaurant(
-    id = hennesseysRestaurantId,
+    id = UUID.fromString("7239cc56-0628-45f7-98dc-ab897ef62d6e"),
     name = "Henneseys",
     description = "Irish-style pub chain serving breakfast, bar bites, burgers & more in a casual, traditional space.",
     companyLogoUrl = "https://images.squarespace-cdn.com/content/v1/5c5db1e83560c36d822b0633/1554189473268-4OGP4B9IXAUV2K2EBKU6/hennesseys_tavern_logo.png?format=1500w",

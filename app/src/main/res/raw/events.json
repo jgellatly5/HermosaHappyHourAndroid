@@ -23,12 +23,12 @@
         "price": "Add 1$"
       }
     ],
-    "endTimestamp": "2023-01-23T19:00",
+    "endTimestamp": "2023-01-30T19:00",
     "eventType": "HappyHour",
     "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
     "_id": "d43209df-f45c-42c5-b10a-307b20ba7dd3",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-23T15:00",
+    "startTimestamp": "2023-01-30T15:00",
     "title": "Jungle Hour",
     "weeklyHoursDescription": "M - F • 3PM - 7PM"
   },
@@ -188,12 +188,12 @@
         "price": "$10"
       }
     ],
-    "endTimestamp": "2023-01-23T20:00",
+    "endTimestamp": "2023-01-30T20:00",
     "eventType": "Sports",
     "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "_id": "c6bbc54c-e4d4-41c6-8cd3-75eeb416dfa0",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-23T17:00",
+    "startTimestamp": "2023-01-30T17:00",
     "title": "Monday Night Football",
     "weeklyHoursDescription": "Today only • 5PM - 8PM"
   },
@@ -569,12 +569,12 @@
         "price": "$10"
       }
     ],
-    "endTimestamp": "2023-01-23T14:00",
+    "endTimestamp": "2023-01-30T14:00",
     "eventType": "Brunch",
     "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "_id": "6c162135-fcf1-4cbf-8476-b316a6534a70",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-23T09:00",
+    "startTimestamp": "2023-01-30T09:00",
     "title": "Monday Brunch",
     "weeklyHoursDescription": "Sat \u0026 Sun • 9AM - 2PM"
   }

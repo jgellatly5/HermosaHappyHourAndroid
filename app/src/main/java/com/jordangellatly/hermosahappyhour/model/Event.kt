@@ -14,7 +14,7 @@ data class Event(
     val startTimestamp: String,
     val endTimestamp: String,
     val weeklyHoursDescription: String,
-    val restaurantId: Long,
+    val restaurantId: UUID,
     val drinkSpecials: List<Deal>? = null,
     val foodSpecials: List<Deal>? = null,
     val eventUrl: String
