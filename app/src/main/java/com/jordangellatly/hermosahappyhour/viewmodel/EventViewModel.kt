@@ -22,6 +22,10 @@ class EventViewModel @Inject constructor(
     val events: LiveData<SnapshotStateList<Event>>
         get() = _events
 
+    private var _event = MutableLiveData<Event>()
+    val event: LiveData<Event>
+        get() = _event
+
     init {
         printEventsJson()
         printRestaurantsJson()
@@ -38,9 +42,7 @@ class EventViewModel @Inject constructor(
         }
     }
 
-    fun getEventById(eventId: UUID): Event {
-        return eventRepository.getEventById(eventId)
-    }
+    fun getEventById(eventId: UUID) = eventRepository.getEventById(eventId)
 
     fun getFilters(): SnapshotStateList<Filter> {
         return eventRepository.getFilters()
