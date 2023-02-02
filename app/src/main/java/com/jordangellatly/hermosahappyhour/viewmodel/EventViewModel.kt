@@ -43,7 +43,11 @@ class EventViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = eventRepository.getEventsByDateAndType(date, eventType)
-                _uiState.value = EventsUiState.Loaded(response)
+                if (response.isEmpty()) {
+                    _uiState.value = EventsUiState.Empty
+                } else {
+                    _uiState.value = EventsUiState.Loaded(response)
+                }
             } catch (e: Exception) {
                 onErrorOccurred()
             }
