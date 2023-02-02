@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import java.util.*
 
-interface EventsApi {
+interface EventsService {
 
     @GET("/api/v1/events")
     suspend fun getAllEvents() : List<Event>
