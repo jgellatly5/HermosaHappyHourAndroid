@@ -9,6 +9,9 @@ import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.repository.EventRepository
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -18,9 +21,8 @@ class EventViewModel @Inject constructor(
     private val eventRepository: EventRepository
 ) : ViewModel() {
 
-    private var _events = MutableLiveData<SnapshotStateList<Event>>()
-    val events: LiveData<SnapshotStateList<Event>>
-        get() = _events
+    private val _uiState = MutableStateFlow<EventsUiState>(EventsUiState.Empty)
+    val uiState: StateFlow<EventsUiState> = _uiState
 
     private var _event = MutableLiveData<Event>()
     val event: LiveData<Event>
@@ -37,8 +39,14 @@ class EventViewModel @Inject constructor(
     }
 
     fun getEventsByDateAndType(date: Date, eventType: EventType) {
-        viewModelScope.launch {
-            _events.postValue(eventRepository.getEventsByDateAndType(date, eventType))
+        _uiState.value = EventsUiState.Loading
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = eventRepository.getEventsByDateAndType(date, eventType)
+                _uiState.value = EventsUiState.Loaded(response)
+            } catch (e: Exception) {
+                onErrorOccurred()
+            }
         }
     }
 
@@ -46,5 +54,16 @@ class EventViewModel @Inject constructor(
 
     fun getFilters(): SnapshotStateList<Filter> {
         return eventRepository.getFilters()
+    }
+
+    private fun onErrorOccurred() {
+        _uiState.value = EventsUiState.Error("An error has occurred.")
+    }
+
+    sealed class EventsUiState {
+        object Empty : EventsUiState()
+        object Loading : EventsUiState()
+        class Loaded(val events: List<Event>) : EventsUiState()
+        class Error(val message: String) : EventsUiState()
     }
 }
