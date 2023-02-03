@@ -11,11 +11,13 @@ val tower12MondayHappyHour = Event(
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-23T15:00",
     endTimestamp = "2023-01-23T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = tower12JungleHourDrinkSpecials,
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val tower12TuesdayHappyHour = Event(
@@ -24,11 +26,13 @@ val tower12TuesdayHappyHour = Event(
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-24T15:00",
     endTimestamp = "2023-01-24T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = tower12JungleHourDrinkSpecials,
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val tower12WednesdayHappyHour = Event(
@@ -37,11 +41,13 @@ val tower12WednesdayHappyHour = Event(
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-25T15:00",
     endTimestamp = "2023-01-25T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = tower12JungleHourDrinkSpecials,
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val tower12ThursdayHappyHour = Event(
@@ -50,11 +56,13 @@ val tower12ThursdayHappyHour = Event(
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-26T15:00",
     endTimestamp = "2023-01-26T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = tower12JungleHourDrinkSpecials,
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val tower12FridayHappyHour = Event(
@@ -63,11 +71,13 @@ val tower12FridayHappyHour = Event(
     title = "Jungle Hour",
     description = "Bringing you wild drink specials",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-27T15:00",
     endTimestamp = "2023-01-27T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = tower12JungleHourDrinkSpecials,
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val saturdayBrunch = Event(
@@ -76,6 +86,7 @@ val saturdayBrunch = Event(
     title = "Saturday Brunch",
     description = "Brunch is fun",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-28T09:00",
     endTimestamp = "2023-01-28T14:00",
     weeklyHoursDescription = "Sat & Sun \u2022 9AM - 2PM",
@@ -97,7 +108,8 @@ val saturdayBrunch = Event(
             price = "$10"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val saturdaySportEvent = Event(
@@ -106,6 +118,7 @@ val saturdaySportEvent = Event(
     title = "Saturday Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-28T15:00",
     endTimestamp = "2023-01-28T19:00",
     weeklyHoursDescription = "Today only \u2022 3PM - 7PM",
@@ -127,7 +140,8 @@ val saturdaySportEvent = Event(
             price = "$10"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val sundayBrunch = Event(
@@ -136,6 +150,7 @@ val sundayBrunch = Event(
     title = "Sunday Brunch",
     description = "Brunch is fun",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-29T09:00",
     endTimestamp = "2023-01-29T14:00",
     weeklyHoursDescription = "Sat & Sun \u2022 9AM - 2PM",
@@ -157,7 +172,8 @@ val sundayBrunch = Event(
             price = "$10"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val sundaySportEvent = Event(
@@ -166,6 +182,7 @@ val sundaySportEvent = Event(
     title = "Sunday Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-29T15:00",
     endTimestamp = "2023-01-29T19:00",
     weeklyHoursDescription = "Today only \u2022 3PM - 7PM",
@@ -187,7 +204,8 @@ val sundaySportEvent = Event(
             price = "$10"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val mondayNightFootball = Event(
@@ -196,6 +214,7 @@ val mondayNightFootball = Event(
     title = "Monday Night Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-23T17:00",
     endTimestamp = "2023-01-23T20:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
@@ -217,7 +236,8 @@ val mondayNightFootball = Event(
             price = "$10"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val tacoTuesday = Event(
@@ -226,6 +246,7 @@ val tacoTuesday = Event(
     title = "Taco Tuesday",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-24T17:00",
     endTimestamp = "2023-01-24T20:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
@@ -247,7 +268,8 @@ val tacoTuesday = Event(
             price = "$10"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val wineWednesday = Event(
@@ -256,6 +278,7 @@ val wineWednesday = Event(
     title = "Wine Wednesday",
     description = "Wine Wednesday is fun",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-25T17:00",
     endTimestamp = "2023-01-25T20:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
@@ -265,7 +288,8 @@ val wineWednesday = Event(
             price = "$7"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val thursdayNightFootball = Event(
@@ -274,6 +298,7 @@ val thursdayNightFootball = Event(
     title = "Thursday Night Football",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-26T15:00",
     endTimestamp = "2023-01-26T19:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
@@ -295,7 +320,8 @@ val thursdayNightFootball = Event(
             price = "$10"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val fridayNightTrivia = Event(
@@ -304,6 +330,7 @@ val fridayNightTrivia = Event(
     title = "Friday Night Trivia",
     description = "Premiere sports viewing, we get all the games",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-27T15:00",
     endTimestamp = "2023-01-27T19:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
@@ -325,7 +352,8 @@ val fridayNightTrivia = Event(
             price = "$10"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val saturdayHappyHour = Event(
@@ -334,6 +362,7 @@ val saturdayHappyHour = Event(
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-28T15:00",
     endTimestamp = "2023-01-28T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
@@ -355,7 +384,8 @@ val saturdayHappyHour = Event(
             price = "Add 1$"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val sundayHappyHour = Event(
@@ -364,6 +394,7 @@ val sundayHappyHour = Event(
     title = "Happy Hour",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-29T15:00",
     endTimestamp = "2023-01-29T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
@@ -385,7 +416,8 @@ val sundayHappyHour = Event(
             price = "Add 1$"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val sundaySilentDiscoSunset = Event(
@@ -394,6 +426,7 @@ val sundaySilentDiscoSunset = Event(
     title = "Silent Disco Sunet",
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-29T15:00",
     endTimestamp = "2023-01-29T19:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
@@ -415,7 +448,8 @@ val sundaySilentDiscoSunset = Event(
             price = "Add 1$"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )
 
 val mondayBrunch = Event(
@@ -424,6 +458,7 @@ val mondayBrunch = Event(
     title = "Monday Brunch",
     description = "Brunch is fun",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
+    restaurantName = "Tower 12",
     startTimestamp = "2023-01-23T09:00",
     endTimestamp = "2023-01-23T14:00",
     weeklyHoursDescription = "Sat & Sun \u2022 9AM - 2PM",
@@ -445,5 +480,6 @@ val mondayBrunch = Event(
             price = "$10"
         )
     ),
-    eventUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg"
+    eventInfoUrl = "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
+    eventImageUrl = "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90=/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg"
 )

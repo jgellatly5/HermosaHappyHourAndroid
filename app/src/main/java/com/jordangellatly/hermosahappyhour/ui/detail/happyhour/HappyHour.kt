@@ -182,7 +182,7 @@ private fun HappyHourPreview() {
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
             eventTitle = event.title,
-            eventUrl = event.eventUrl,
+            eventUrl = event.eventInfoUrl,
             drinkSpecials = event.drinkSpecials,
             foodSpecials = event.foodSpecials
         )

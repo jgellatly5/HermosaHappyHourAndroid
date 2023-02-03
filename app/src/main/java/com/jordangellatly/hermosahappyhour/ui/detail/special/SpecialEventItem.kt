@@ -67,7 +67,7 @@ fun SpecialEventItem(
                         .offsetGradientBackground(gradient, gradientWidth, gradientOffset)
                 )
                 RestaurantImage(
-                    imageUrl = event.eventUrl,
+                    imageUrl = event.eventInfoUrl,
                     contentDescription = null,
                     modifier = Modifier
                         .size(120.dp)
