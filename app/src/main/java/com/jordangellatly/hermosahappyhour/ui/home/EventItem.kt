@@ -1,20 +1,21 @@
 package com.jordangellatly.hermosahappyhour.ui.home
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.Event
-import com.jordangellatly.hermosahappyhour.model.RestaurantRepo
 import com.jordangellatly.hermosahappyhour.model.tower12.saturdayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.detail.shared.EventTimer
@@ -24,10 +25,9 @@ import java.util.*
 @Composable
 fun EventItem(
     event: Event,
-    onEventClick: (UUID) -> Unit,
+    onItemClick: (UUID, UUID) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val restaurant = remember { RestaurantRepo.getRestaurant(event.restaurantId) }
     HappyHourCard(
         modifier = modifier
             .fillMaxWidth()
@@ -35,7 +35,7 @@ fun EventItem(
     ) {
         Column(
             modifier = Modifier
-                .clickable(onClick = { onEventClick(event.id) })
+                .clickable(onClick = { onItemClick(event.restaurantId, event.id) })
                 .fillMaxSize()
         ) {
             Box(
@@ -44,16 +44,20 @@ fun EventItem(
                     .fillMaxWidth()
             ) {
                 Box {
-                    Image(
-                        painter = painterResource(id = restaurant.image),
+                    AsyncImage(
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data(event.eventImageUrl)
+                            .crossfade(true)
+                            .build(),
                         contentDescription = "Restaurant Image",
+                        placeholder = painterResource(R.drawable.tower12),
                         modifier = Modifier.fillMaxWidth(),
                         contentScale = ContentScale.Crop,
                     )
                 }
             }
             Text(
-                text = restaurant.name,
+                text = event.restaurantName,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.subtitle1,
                 color = HermosaHappyHourTheme.colors.textSecondary,
@@ -75,7 +79,7 @@ private fun EventItemPreview() {
         val event = saturdayHappyHour
         EventItem(
             event = event,
-            onEventClick = {}
+            onItemClick = { _, _ -> }
         )
     }
 }

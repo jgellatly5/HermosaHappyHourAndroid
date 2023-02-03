@@ -1,7 +1,6 @@
 package com.jordangellatly.hermosahappyhour.ui.search
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -17,11 +16,12 @@ import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.util.*
 
 @Composable
 fun RestaurantItem(
     restaurant: Restaurant,
-    onRestaurantClick: (Long) -> Unit,
+    onRestaurantClick: (UUID) -> Unit,
     modifier: Modifier = Modifier
 ) {
     HappyHourCard(
@@ -31,7 +31,7 @@ fun RestaurantItem(
     ) {
         Column(
             modifier = Modifier
-                .clickable(onClick = { onRestaurantClick(restaurant.id) })
+//                .clickable(onClick = { onRestaurantClick(restaurant.id) })
                 .fillMaxSize()
         ) {
             Box(

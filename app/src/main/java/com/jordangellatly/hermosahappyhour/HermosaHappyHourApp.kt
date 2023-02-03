@@ -1,8 +1,10 @@
 package com.jordangellatly.hermosahappyhour
 
+import android.app.Application
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -12,7 +14,12 @@ import com.jordangellatly.hermosahappyhour.ui.home.HappyHourBottomBar
 import com.jordangellatly.hermosahappyhour.ui.home.HomeSections
 import com.jordangellatly.hermosahappyhour.ui.home.addHomeGraph
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import com.jordangellatly.hermosahappyhour.viewmodel.EventDetailViewModel
+import dagger.hilt.android.HiltAndroidApp
 import java.util.*
+
+@HiltAndroidApp
+class HappyHourApp : Application()
 
 @Composable
 fun HermosaHappyHourApp() {
@@ -36,9 +43,16 @@ fun HermosaHappyHourApp() {
                 modifier = Modifier.padding(innerPaddingModifier)
             ) {
                 happyHourNavGraph(
-                    onEventSelected = { eventId, from ->
+                    onItemSelected = { restaurantId, eventId, from ->
                         appState.navigateToEventDetail(
+                            restaurantId,
                             eventId,
+                            from
+                        )
+                    },
+                    onSearchItemSelected = { restaurantId, from ->
+                        appState.navigateToRestaurantDetail(
+                            restaurantId,
                             from
                         )
                     },
@@ -50,29 +64,31 @@ fun HermosaHappyHourApp() {
 }
 
 private fun NavGraphBuilder.happyHourNavGraph(
-    onEventSelected: (UUID, NavBackStackEntry) -> Unit,
-//    onRestaurantSelected: (Long, NavBackStackEntry) -> Unit,
+    onItemSelected: (UUID, UUID, NavBackStackEntry) -> Unit,
+    onSearchItemSelected: (UUID, NavBackStackEntry) -> Unit,
     upPress: () -> Unit
 ) {
     navigation(
         route = MainDestinations.HOME_ROUTE,
         startDestination = HomeSections.HOME.route
     ) {
-        addHomeGraph(onEventSelected)
+        addHomeGraph(onItemSelected, onSearchItemSelected)
     }
     composable(
-        route = "${MainDestinations.EVENT_DETAIL_ROUTE}/{${MainDestinations.EVENT_ID_KEY}}",
+        route = "${MainDestinations.RESTAURANT_DETAIL_ROUTE}/{${MainDestinations.RESTAURANT_ID_KEY}}/{${MainDestinations.EVENT_ID_KEY}}",
         arguments = listOf(
+            navArgument(MainDestinations.RESTAURANT_ID_KEY) {
+                type = NavType.StringType
+            },
             navArgument(MainDestinations.EVENT_ID_KEY) {
                 type = NavType.StringType
             }
         )
-    ) { backStackEntry ->
-        val arguments = requireNotNull(backStackEntry.arguments)
-        val eventId = UUID.fromString(arguments.getString(MainDestinations.EVENT_ID_KEY))
+    ) {
+        val viewModel = hiltViewModel<EventDetailViewModel>()
         EventDetail(
-            eventId = eventId,
-            upPress = upPress
+            upPress = upPress,
+            viewModel = viewModel
         )
     }
 //    composable(

@@ -8,14 +8,14 @@ import com.jordangellatly.hermosahappyhour.model.tower12.*
 import java.util.*
 
 data class Restaurant(
-    val id: Long,
+    val id: UUID,
     val name: String,
     val description: String,
     val companyLogoUrl: String,
     val image: Int,
     val location: Location,
     val weeklyHours: Map<String, String>,
-    val eventsByDate: Map<String, Map<EventType, UUID>>,
+    val eventsByDate: Map<String, Map<EventType, Event>>,
     val address: Address,
     val phoneNumber: String,
     val website: String
@@ -42,73 +42,43 @@ val generalWeeklyHours = mapOf(
 )
 
 val tower12EventsByDate = mapOf(
-    "2023-01-29" to mapOf(
-        EventType.Brunch to sundayBrunch.id,
-        EventType.Sports to sundaySportEvent.id,
-        EventType.Special to sundaySilentDiscoSunset.id
-    ),
-    "2023-01-30" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour.id,
-        EventType.Sports to mondayNightFootball.id
-    ),
-    "2023-01-24" to mapOf(
-        EventType.HappyHour to tower12TuesdayHappyHour.id,
-        EventType.Special to tacoTuesday.id
-    ),
-    "2023-01-25" to mapOf(
-        EventType.HappyHour to tower12WednesdayHappyHour.id,
-        EventType.Special to wineWednesday.id
-    ),
-    "2023-01-26" to mapOf(
-        EventType.HappyHour to tower12ThursdayHappyHour.id,
-        EventType.Sports to thursdayNightFootball.id
-    ),
-    "2023-01-27" to mapOf(
-        EventType.HappyHour to tower12FridayHappyHour.id,
-        EventType.Special to fridayNightTrivia.id
-    ),
-    "2023-01-28" to mapOf(
-        EventType.Brunch to saturdayBrunch.id,
-        EventType.Sports to saturdaySportEvent.id
+    "2023-02-03" to mapOf(
+        EventType.HappyHour to tower12FridayHappyHour,
+        EventType.Special to fridayNightTrivia
     )
 )
 
 val junkieEventsByDate = mapOf(
-    "2023-01-15" to mapOf(
-        EventType.Brunch to sundayBrunch.id,
-        EventType.Sports to sundaySportEvent.id,
-        EventType.Special to sundaySilentDiscoSunset.id
+    "2023-02-05" to mapOf(
+        EventType.Brunch to sundayBrunch,
+        EventType.Sports to sundaySportEvent,
+        EventType.Special to sundaySilentDiscoSunset
     ),
-    "2023-01-16" to mapOf(
-        EventType.Brunch to mondayBrunch.id,
-        EventType.HappyHour to tower12MondayHappyHour.id,
-        EventType.Sports to mondayNightFootball.id
+    "2023-02-06" to mapOf(
+        EventType.Brunch to mondayBrunch,
+        EventType.HappyHour to tower12MondayHappyHour,
+        EventType.Sports to mondayNightFootball
     ),
-    "2023-01-17" to mapOf(
-        EventType.HappyHour to tower12TuesdayHappyHour.id
+    "2023-02-07" to mapOf(
+        EventType.HappyHour to tower12TuesdayHappyHour
     ),
-    "2023-01-18" to mapOf(
-        EventType.HappyHour to tower12WednesdayHappyHour.id
+    "2023-02-08" to mapOf(
+        EventType.HappyHour to tower12WednesdayHappyHour
     ),
-    "2023-01-19" to mapOf(
-        EventType.HappyHour to tower12ThursdayHappyHour.id
+    "2023-02-09" to mapOf(
+        EventType.HappyHour to tower12ThursdayHappyHour
     ),
-    "2023-01-13" to mapOf(
-        EventType.HappyHour to junkieFridayHappyHour.id
+    "2023-02-03" to mapOf(
+        EventType.HappyHour to junkieFridayHappyHour
     ),
-    "2023-01-14" to mapOf(
-        EventType.Brunch to saturdayBrunch.id,
-        EventType.Sports to saturdaySportEvent.id
+    "2023-02-04" to mapOf(
+        EventType.Brunch to saturdayBrunch,
+        EventType.Sports to saturdaySportEvent
     )
 )
 
-const val tower12RestaurantId = 1L
-const val bajaSharkeezRestaurantId = 2L
-const val americanJunkieRestaurantId = 3L
-const val hennesseysRestaurantId = 4L
-
 val tower12 = Restaurant(
-    id = tower12RestaurantId,
+    id = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
     name = "Tower 12",
     description = "New American classics & fancy snacks in a beachy, relaxed bar with romantic patio seating.",
     companyLogoUrl = "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/292336365_435159251951538_4078078271979326231_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=C_tAC12x4o0AX9uN-Yg&_nc_ht=scontent-lax3-2.xx&oh=00_AfAAxhYzzBx-bK8gDhRHmOeMrzUxDDsDMZeCaTyFHRr3Ug&oe=638F052F",
@@ -128,7 +98,7 @@ val tower12 = Restaurant(
 )
 
 val bajaSharkeez = Restaurant(
-    id = bajaSharkeezRestaurantId,
+    id = UUID.fromString("0a5092b9-9e8a-4ac1-bf52-5d268aa3b70d"),
     name = "Baja Sharkeez",
     description = "Lively bar & restaurant with simple Mexican fare plus lots of margaritas & a popular happy hour.",
     companyLogoUrl = "https://sharkeez.net/wp-content/uploads/2020/11/sharkeez-light.png",
@@ -148,7 +118,7 @@ val bajaSharkeez = Restaurant(
 )
 
 val americanJunkie = Restaurant(
-    id = americanJunkieRestaurantId,
+    id = UUID.fromString("083970d5-e602-43b2-b50c-d11756cfafcb"),
     name = "American Junkie",
     description = "Lively gastropub with American chow, craft brews & California wines plus multiple TVs for sports.",
     companyLogoUrl = "https://images.squarespace-cdn.com/content/v1/5a340b32f09ca4f1abede53f/1513369024515-81MNDBH8WH7EFSWJ6BKE/AJ+Gargoyle+White+Logo.png?format=1500w",
@@ -168,7 +138,7 @@ val americanJunkie = Restaurant(
 )
 
 val hennesseys = Restaurant(
-    id = hennesseysRestaurantId,
+    id = UUID.fromString("7239cc56-0628-45f7-98dc-ab897ef62d6e"),
     name = "Henneseys",
     description = "Irish-style pub chain serving breakfast, bar bites, burgers & more in a casual, traditional space.",
     companyLogoUrl = "https://images.squarespace-cdn.com/content/v1/5c5db1e83560c36d822b0633/1554189473268-4OGP4B9IXAUV2K2EBKU6/hennesseys_tavern_logo.png?format=1500w",

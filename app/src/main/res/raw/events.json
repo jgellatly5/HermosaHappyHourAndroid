@@ -23,12 +23,14 @@
         "price": "Add 1$"
       }
     ],
-    "endTimestamp": "2023-01-23T19:00",
+    "endTimestamp": "2023-02-06T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
     "eventType": "HappyHour",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-    "_id": "d43209df-f45c-42c5-b10a-307b20ba7dd3",
+    "_id": "9d2eb983-b01f-4b53-9163-7b0cf48f4a26",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-23T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-06T15:00",
     "title": "Jungle Hour",
     "weeklyHoursDescription": "M - F • 3PM - 7PM"
   },
@@ -56,12 +58,14 @@
         "price": "Add 1$"
       }
     ],
-    "endTimestamp": "2023-01-24T19:00",
+    "endTimestamp": "2023-02-07T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
     "eventType": "HappyHour",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-    "_id": "b817a811-aa0f-4953-8bfe-2c29ca3655a5",
+    "_id": "4701baa6-26dc-4641-9cd1-9a75d5246ed5",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-24T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-07T15:00",
     "title": "Jungle Hour",
     "weeklyHoursDescription": "M - F • 3PM - 7PM"
   },
@@ -89,12 +93,14 @@
         "price": "Add 1$"
       }
     ],
-    "endTimestamp": "2023-01-25T19:00",
+    "endTimestamp": "2023-02-08T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
     "eventType": "HappyHour",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-    "_id": "bfde16f7-573d-4ece-a15f-477e35b6a927",
+    "_id": "55f972f3-2adf-4705-86f0-f9de39a2f6c9",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-25T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-08T15:00",
     "title": "Jungle Hour",
     "weeklyHoursDescription": "M - F • 3PM - 7PM"
   },
@@ -122,12 +128,14 @@
         "price": "Add 1$"
       }
     ],
-    "endTimestamp": "2023-01-26T19:00",
+    "endTimestamp": "2023-02-09T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
     "eventType": "HappyHour",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-    "_id": "10e0c714-3b8e-414a-9f82-eca34868d16a",
+    "_id": "dc80ca49-d955-4707-94a8-e80ddcd09185",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-26T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-09T15:00",
     "title": "Jungle Hour",
     "weeklyHoursDescription": "M - F • 3PM - 7PM"
   },
@@ -155,12 +163,14 @@
         "price": "Add 1$"
       }
     ],
-    "endTimestamp": "2023-01-27T19:00",
+    "endTimestamp": "2023-02-03T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
     "eventType": "HappyHour",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-    "_id": "caf853ad-b1e6-4caa-bfdb-ae4f7989af9b",
+    "_id": "2bdb47f7-bca3-4d61-b5ff-3c5d9f9cb520",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-27T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-03T15:00",
     "title": "Jungle Hour",
     "weeklyHoursDescription": "M - F • 3PM - 7PM"
   },
@@ -188,12 +198,14 @@
         "price": "$10"
       }
     ],
-    "endTimestamp": "2023-01-23T20:00",
+    "endTimestamp": "2023-02-06T20:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "eventType": "Sports",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-    "_id": "c6bbc54c-e4d4-41c6-8cd3-75eeb416dfa0",
+    "_id": "3ddd8156-8b22-4668-9526-c1d4af554f37",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-23T17:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-06T17:00",
     "title": "Monday Night Football",
     "weeklyHoursDescription": "Today only • 5PM - 8PM"
   },
@@ -221,12 +233,14 @@
         "price": "$10"
       }
     ],
-    "endTimestamp": "2023-01-24T20:00",
+    "endTimestamp": "2023-02-07T20:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "eventType": "Special",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-    "_id": "78941e0d-69e8-446d-ac35-bd6916ef8071",
+    "_id": "0fc434b1-2d70-4351-80e7-9ee1657ac339",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-24T17:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-07T17:00",
     "title": "Taco Tuesday",
     "weeklyHoursDescription": "Today only • 5PM - 8PM"
   },
@@ -239,12 +253,14 @@
         "price": "$7"
       }
     ],
-    "endTimestamp": "2023-01-25T20:00",
+    "endTimestamp": "2023-02-08T20:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "eventType": "Special",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-    "_id": "a9640f1e-499f-4c65-8c9d-4804c9b38c6d",
+    "_id": "6ccac817-bcf5-43c7-ac4f-17124c4ba247",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-25T17:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-08T17:00",
     "title": "Wine Wednesday",
     "weeklyHoursDescription": "Today only • 5PM - 8PM"
   },
@@ -272,12 +288,14 @@
         "price": "$10"
       }
     ],
-    "endTimestamp": "2023-01-26T19:00",
+    "endTimestamp": "2023-02-09T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "eventType": "Sports",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-    "_id": "7962ab26-40a3-41b3-8802-7e4622c957a8",
+    "_id": "d12431fa-1839-41d4-bbea-f756251d87d8",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-26T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-09T15:00",
     "title": "Thursday Night Football",
     "weeklyHoursDescription": "Today only • 5PM - 8PM"
   },
@@ -305,12 +323,14 @@
         "price": "$10"
       }
     ],
-    "endTimestamp": "2023-01-27T19:00",
+    "endTimestamp": "2023-02-03T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "eventType": "Special",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-    "_id": "fb1a53ad-e798-4ec0-a74d-1f439aa79bb5",
+    "_id": "becb5eb3-0d61-4369-ab7e-e5b218e8ade7",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-27T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-03T15:00",
     "title": "Friday Night Trivia",
     "weeklyHoursDescription": "Today only • 5PM - 8PM"
   },
@@ -338,12 +358,14 @@
         "price": "$10"
       }
     ],
-    "endTimestamp": "2023-01-28T14:00",
+    "endTimestamp": "2023-02-04T14:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "eventType": "Brunch",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-    "_id": "5e156c2f-6b5a-4ed9-b796-5338bd01a02d",
+    "_id": "b0830798-51c5-4449-bd9d-cdf52facc3a7",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-28T09:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-04T09:00",
     "title": "Saturday Brunch",
     "weeklyHoursDescription": "Sat \u0026 Sun • 9AM - 2PM"
   },
@@ -371,12 +393,14 @@
         "price": "$10"
       }
     ],
-    "endTimestamp": "2023-01-28T19:00",
+    "endTimestamp": "2023-02-04T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "eventType": "Sports",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-    "_id": "af49c576-4a62-4e52-9a22-fc2ec08f4346",
+    "_id": "2981bca9-4303-4de9-8bca-75cb2b819761",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-28T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-04T15:00",
     "title": "Saturday Football",
     "weeklyHoursDescription": "Today only • 3PM - 7PM"
   },
@@ -404,12 +428,14 @@
         "price": "$10"
       }
     ],
-    "endTimestamp": "2023-01-29T14:00",
+    "endTimestamp": "2023-02-05T14:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "eventType": "Brunch",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-    "_id": "a35ff78f-7ee0-4244-97cf-f06af03e7769",
+    "_id": "4ce84303-c3c8-47f5-a5f4-d428d81c44ef",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-29T09:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-05T09:00",
     "title": "Sunday Brunch",
     "weeklyHoursDescription": "Sat \u0026 Sun • 9AM - 2PM"
   },
@@ -437,12 +463,14 @@
         "price": "$10"
       }
     ],
-    "endTimestamp": "2023-01-29T19:00",
+    "endTimestamp": "2023-02-05T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "eventType": "Sports",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-    "_id": "5a7ecd8e-7e76-4ecf-a6c5-cb497e76be29",
+    "_id": "feb9857d-5d10-4ddb-abf4-aad5b04a44a5",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-29T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-05T15:00",
     "title": "Sunday Football",
     "weeklyHoursDescription": "Today only • 3PM - 7PM"
   },
@@ -470,12 +498,14 @@
         "price": "Add 1$"
       }
     ],
-    "endTimestamp": "2023-01-28T19:00",
+    "endTimestamp": "2023-02-04T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
     "eventType": "HappyHour",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-    "_id": "6a7a3a41-493c-4c05-8df2-ca2340092843",
+    "_id": "b890adf4-1fd0-4de9-a2ad-0f84054874f3",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-28T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-04T15:00",
     "title": "Happy Hour",
     "weeklyHoursDescription": "M - F • 3PM - 7PM"
   },
@@ -503,12 +533,14 @@
         "price": "Add 1$"
       }
     ],
-    "endTimestamp": "2023-01-29T19:00",
+    "endTimestamp": "2023-02-05T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
     "eventType": "HappyHour",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-    "_id": "36cab772-e320-40c5-b3d4-8f1483fd050a",
+    "_id": "8d072a80-224d-4eab-90ca-8a6e33c36cd8",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-29T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-05T15:00",
     "title": "Happy Hour",
     "weeklyHoursDescription": "M - F • 3PM - 7PM"
   },
@@ -536,12 +568,14 @@
         "price": "Add 1$"
       }
     ],
-    "endTimestamp": "2023-01-29T19:00",
+    "endTimestamp": "2023-02-05T19:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
     "eventType": "Special",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-    "_id": "6ad01575-8f8f-4116-ba15-566d0ab4618d",
+    "_id": "171e96e3-ad96-4fbd-86f4-4611441a5316",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-29T15:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-05T15:00",
     "title": "Silent Disco Sunet",
     "weeklyHoursDescription": "Today only • 5PM - 8PM"
   },
@@ -569,12 +603,14 @@
         "price": "$10"
       }
     ],
-    "endTimestamp": "2023-01-23T14:00",
+    "endTimestamp": "2023-02-06T14:00",
+    "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+    "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
     "eventType": "Brunch",
-    "eventUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-    "_id": "6c162135-fcf1-4cbf-8476-b316a6534a70",
+    "_id": "05033cf8-52f0-469e-aef7-02a01b45bd5b",
     "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-    "startTimestamp": "2023-01-23T09:00",
+    "restaurantName": "Tower 12",
+    "startTimestamp": "2023-02-06T09:00",
     "title": "Monday Brunch",
     "weeklyHoursDescription": "Sat \u0026 Sun • 9AM - 2PM"
   }

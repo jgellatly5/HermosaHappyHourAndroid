@@ -65,7 +65,7 @@ private fun EventHeaderHappyHourPreview() {
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
             eventTitle = event.title,
-            eventUrl = event.eventUrl
+            eventUrl = event.eventInfoUrl
         )
     }
 }
