@@ -1,6 +1,6 @@
 package com.jordangellatly.hermosahappyhour.di
 
-import com.jordangellatly.hermosahappyhour.api.EventsService
+import com.jordangellatly.hermosahappyhour.api.HappyHourApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,13 +15,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 class AppModule {
 
     @Provides
-    fun provideRetrofit(): EventsService =
+    fun provideRetrofit(): HappyHourApiService =
         Retrofit.Builder()
             .client(getOkHttpClient())
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(EventsService::class.java)
+            .create(HappyHourApiService::class.java)
 
     private fun getOkHttpClient() =
         OkHttpClient.Builder()

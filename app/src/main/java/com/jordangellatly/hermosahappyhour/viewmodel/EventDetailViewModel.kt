@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jordangellatly.hermosahappyhour.MainDestinations.EVENT_ID_KEY
 import com.jordangellatly.hermosahappyhour.model.Event
-import com.jordangellatly.hermosahappyhour.repository.EventRepository
+import com.jordangellatly.hermosahappyhour.repository.HappyHourRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,9 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class EventDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val eventRepository: EventRepository,
-//    @Assisted private val eventId: UUID,
-//    private val savedStateHandle: SavedStateHandle
+    private val happyHourRepository: HappyHourRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<EventDetailUiState>(EventDetailUiState.Empty)
@@ -35,7 +33,7 @@ class EventDetailViewModel @Inject constructor(
         _uiState.value = EventDetailUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = eventRepository.getEventById(eventId)
+                val response = happyHourRepository.getEventById(eventId)
                 if (response == null) {
                     _uiState.value = EventDetailUiState.Empty
                 } else {

@@ -4,7 +4,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jordangellatly.hermosahappyhour.model.*
-import com.jordangellatly.hermosahappyhour.repository.EventRepository
+import com.jordangellatly.hermosahappyhour.repository.HappyHourRepository
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EventFeedViewModel @Inject constructor(
-    private val eventRepository: EventRepository
+    private val happyHourRepository: HappyHourRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<EventFeedUiState>(EventFeedUiState.Empty)
@@ -34,7 +34,7 @@ class EventFeedViewModel @Inject constructor(
         _uiState.value = EventFeedUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = eventRepository.getAllEvents().filter {
+                val response = happyHourRepository.getAllEvents().filter {
                     val defaultFormat =
                         SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
                     val currentDateTimestamp = defaultFormat.format(date)
@@ -59,7 +59,7 @@ class EventFeedViewModel @Inject constructor(
         _uiState.value = EventFeedUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = eventRepository.getAllEvents().filter {
+                val response = happyHourRepository.getAllEvents().filter {
                     val defaultFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
                     val currentDateTimestamp = defaultFormat.format(date)
                     val formattedCurrentDateString =
@@ -79,7 +79,7 @@ class EventFeedViewModel @Inject constructor(
     }
 
     fun getFilters(): SnapshotStateList<Filter> {
-        return eventRepository.getFilters()
+        return happyHourRepository.getFilters()
     }
 
     private fun onErrorOccurred() {

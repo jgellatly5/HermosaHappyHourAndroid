@@ -43,7 +43,6 @@ fun EventDetail(
     upPress: () -> Unit,
     viewModel: EventDetailViewModel = viewModel()
 ) {
-//    val selectedEvent = remember(eventId) { viewModel.getEventById(eventId) }
 //    val restaurant = RestaurantRepo.getRestaurant(selectedEvent.restaurantId)
     HermosaHappyHourSurface {
         when (val state = viewModel.uiState.collectAsState().value) {
@@ -77,7 +76,7 @@ fun EventDetail(
 //                    val eventList = restaurant.eventsByDate
 //                        .getValue(formattedDateTimestamp)
 //                        .map { it.value }
-//                        .sortedBy { if (viewModel.getEventById(it) == selectedEvent) 0 else 1 }
+//                        .sortedBy { if (viewModel.getEventById(it) == state.event) 0 else 1 }
 //                    if (eventList.size > 1) {
 //                        TabRow(
 //                            selectedTabIndex = pagerState.currentPage,
@@ -106,7 +105,7 @@ fun EventDetail(
 //                            EventInfo(event = viewModel.getEventById(eventList[page]))
 //                        }
 //                    } else {
-//                        EventInfo(event = selectedEvent)
+//                        EventInfo(event = state.event)
 //                    }
 //                    RestaurantInfo(restaurant = restaurant)
                 }
