@@ -12,31 +12,14 @@ import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
-fun ErrorDialog(message: String) {
-//    val openDialog = remember { mutableStateOf(true) }
-//    if (openDialog.value) {
-//        AlertDialog(
-//            onDismissRequest = {
-//                openDialog.value = false
-//            },
-//            title = {
-//                Text(text = stringResource(R.string.problem_occurred))
-//            },
-//            text = {
-//                Text(message)
-//            },
-//            confirmButton = {
-//                openDialog.value = false
-//            }
-//        )
-//    }
+fun ErrorMessage(message: String) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Sorry, there was an error.",
+            text = message,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.subtitle1,

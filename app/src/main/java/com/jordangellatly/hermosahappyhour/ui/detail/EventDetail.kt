@@ -25,8 +25,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.*
-import com.jordangellatly.hermosahappyhour.model.tower12.tower12MondayHappyHour
-import com.jordangellatly.hermosahappyhour.ui.components.ErrorDialog
+import com.jordangellatly.hermosahappyhour.ui.components.ErrorMessage
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
 import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
@@ -34,19 +33,16 @@ import com.jordangellatly.hermosahappyhour.ui.detail.shared.RestaurantInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.special.SpecialEvent
 import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
 import com.jordangellatly.hermosahappyhour.ui.home.DateBar
-import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 import com.jordangellatly.hermosahappyhour.ui.utils.mirroringBackIcon
 import com.jordangellatly.hermosahappyhour.viewmodel.EventDetailViewModel
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun EventDetail(
-    eventId: UUID,
     upPress: () -> Unit,
     viewModel: EventDetailViewModel = viewModel()
 ) {
@@ -65,7 +61,7 @@ fun EventDetail(
                 }
             }
             is EventDetailViewModel.EventDetailUiState.Error -> {
-                ErrorDialog(state.message)
+                ErrorMessage(state.message)
             }
             is EventDetailViewModel.EventDetailUiState.Loaded -> {
                 Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
@@ -74,9 +70,6 @@ fun EventDetail(
                         imageResource = state.restaurant.image,
                         upPress = upPress
                     )
-                    val date = getCurrentDateTime()
-                    val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                    val formattedDateTimestamp = defaultFormat.format(date)
                     val pagerState = rememberPagerState()
                     val coroutineScope = rememberCoroutineScope()
                     if (state.eventList.size > 1) {
@@ -85,12 +78,11 @@ fun EventDetail(
                             contentColor = HermosaHappyHourTheme.colors.textPrimary,
                             backgroundColor = HermosaHappyHourTheme.colors.uiBackground
                         ) {
-                            state.eventList.forEachIndexed { index, eventId ->
+                            state.eventList.forEachIndexed { index, _ ->
                                 Tab(
                                     selected = pagerState.currentPage == index,
                                     onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
                                     text = {
-//                                        val event = viewModel.getEventById(eventId)
                                         val event = state.eventList[index]
                                         Text(
                                             text = event.eventType.name,
@@ -249,7 +241,6 @@ private fun EmptyStateMessage() {
 private fun EventDetailPreview() {
     HermosaHappyHourTheme {
         EventDetail(
-            eventId = tower12MondayHappyHour.id,
             upPress = {}
         )
     }

@@ -45,8 +45,10 @@ import androidx.navigation.compose.composable
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.profile.Profile
+import com.jordangellatly.hermosahappyhour.ui.search.SearchFeed
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.viewmodel.EventFeedViewModel
+import com.jordangellatly.hermosahappyhour.viewmodel.SearchFeedViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -86,6 +88,7 @@ fun String.getDayOfWeekFromTimestamp(): String {
 
 fun NavGraphBuilder.addHomeGraph(
     onItemSelected: (UUID, UUID, NavBackStackEntry) -> Unit,
+    onSearchItemSelected: (UUID, NavBackStackEntry) -> Unit,
     modifier: Modifier = Modifier
 ) {
     composable(HomeSections.HOME.route) { from ->
@@ -97,10 +100,12 @@ fun NavGraphBuilder.addHomeGraph(
         )
     }
     composable(HomeSections.SEARCH.route) { from ->
-//        SearchFeed(
-//            onRestaurantClick = { id -> onRestaurantSelected(id, from) },
-//            modifier = modifier
-//        )
+        val viewModel = hiltViewModel<SearchFeedViewModel>()
+        SearchFeed(
+            onRestaurantClick = { restaurantId -> onSearchItemSelected(restaurantId, from) },
+            modifier = modifier,
+            viewModel = viewModel
+        )
     }
     composable(HomeSections.PROFILE.route) { from ->
         Profile()

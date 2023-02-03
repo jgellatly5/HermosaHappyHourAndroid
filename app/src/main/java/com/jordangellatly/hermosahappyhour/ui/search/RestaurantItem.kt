@@ -16,11 +16,12 @@ import com.jordangellatly.hermosahappyhour.model.Restaurant
 import com.jordangellatly.hermosahappyhour.model.tower12
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
+import java.util.*
 
 @Composable
 fun RestaurantItem(
     restaurant: Restaurant,
-    onRestaurantClick: (Long) -> Unit,
+    onRestaurantClick: (UUID) -> Unit,
     modifier: Modifier = Modifier
 ) {
     HappyHourCard(

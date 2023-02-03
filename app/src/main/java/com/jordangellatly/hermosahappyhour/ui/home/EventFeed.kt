@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jordangellatly.hermosahappyhour.model.EventType
 import com.jordangellatly.hermosahappyhour.model.Filter
-import com.jordangellatly.hermosahappyhour.ui.components.ErrorDialog
+import com.jordangellatly.hermosahappyhour.ui.components.ErrorMessage
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.viewmodel.EventFeedViewModel
@@ -97,7 +97,7 @@ private fun EventList(
                     }
                 }
                 is EventFeedViewModel.EventFeedUiState.Error -> {
-                    ErrorDialog(state.message)
+                    ErrorMessage(state.message)
                 }
                 is EventFeedViewModel.EventFeedUiState.Loaded -> {
                     LazyColumn(
