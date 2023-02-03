@@ -15,7 +15,7 @@ data class Restaurant(
     val image: Int,
     val location: Location,
     val weeklyHours: Map<String, String>,
-    val eventsByDate: Map<String, Map<EventType, UUID>>,
+    val eventsByDate: Map<String, Map<EventType, Event>>,
     val address: Address,
     val phoneNumber: String,
     val website: String
@@ -42,63 +42,38 @@ val generalWeeklyHours = mapOf(
 )
 
 val tower12EventsByDate = mapOf(
-    "2023-02-05" to mapOf(
-        EventType.Brunch to sundayBrunch.id,
-        EventType.Sports to sundaySportEvent.id,
-        EventType.Special to sundaySilentDiscoSunset.id
-    ),
-    "2023-02-06" to mapOf(
-        EventType.HappyHour to tower12MondayHappyHour.id,
-        EventType.Sports to mondayNightFootball.id
-    ),
-    "2023-02-07" to mapOf(
-        EventType.HappyHour to tower12TuesdayHappyHour.id,
-        EventType.Special to tacoTuesday.id
-    ),
-    "2023-02-08" to mapOf(
-        EventType.HappyHour to tower12WednesdayHappyHour.id,
-        EventType.Special to wineWednesday.id
-    ),
-    "2023-02-09" to mapOf(
-        EventType.HappyHour to tower12ThursdayHappyHour.id,
-        EventType.Sports to thursdayNightFootball.id
-    ),
     "2023-02-03" to mapOf(
-        EventType.HappyHour to tower12FridayHappyHour.id,
-        EventType.Special to fridayNightTrivia.id
-    ),
-    "2023-02-04" to mapOf(
-        EventType.Brunch to saturdayBrunch.id,
-        EventType.Sports to saturdaySportEvent.id
+        EventType.HappyHour to tower12FridayHappyHour,
+        EventType.Special to fridayNightTrivia
     )
 )
 
 val junkieEventsByDate = mapOf(
-    "2023-01-15" to mapOf(
-        EventType.Brunch to sundayBrunch.id,
-        EventType.Sports to sundaySportEvent.id,
-        EventType.Special to sundaySilentDiscoSunset.id
+    "2023-02-05" to mapOf(
+        EventType.Brunch to sundayBrunch,
+        EventType.Sports to sundaySportEvent,
+        EventType.Special to sundaySilentDiscoSunset
     ),
-    "2023-01-16" to mapOf(
-        EventType.Brunch to mondayBrunch.id,
-        EventType.HappyHour to tower12MondayHappyHour.id,
-        EventType.Sports to mondayNightFootball.id
+    "2023-02-06" to mapOf(
+        EventType.Brunch to mondayBrunch,
+        EventType.HappyHour to tower12MondayHappyHour,
+        EventType.Sports to mondayNightFootball
     ),
-    "2023-01-17" to mapOf(
-        EventType.HappyHour to tower12TuesdayHappyHour.id
+    "2023-02-07" to mapOf(
+        EventType.HappyHour to tower12TuesdayHappyHour
     ),
-    "2023-01-18" to mapOf(
-        EventType.HappyHour to tower12WednesdayHappyHour.id
+    "2023-02-08" to mapOf(
+        EventType.HappyHour to tower12WednesdayHappyHour
     ),
-    "2023-01-19" to mapOf(
-        EventType.HappyHour to tower12ThursdayHappyHour.id
+    "2023-02-09" to mapOf(
+        EventType.HappyHour to tower12ThursdayHappyHour
     ),
-    "2023-01-13" to mapOf(
-        EventType.HappyHour to junkieFridayHappyHour.id
+    "2023-02-03" to mapOf(
+        EventType.HappyHour to junkieFridayHappyHour
     ),
-    "2023-01-14" to mapOf(
-        EventType.Brunch to saturdayBrunch.id,
-        EventType.Sports to saturdaySportEvent.id
+    "2023-02-04" to mapOf(
+        EventType.Brunch to saturdayBrunch,
+        EventType.Sports to saturdaySportEvent
     )
 )
 

@@ -7,7 +7,6 @@ import com.jordangellatly.hermosahappyhour.MainDestinations.EVENT_ID_KEY
 import com.jordangellatly.hermosahappyhour.MainDestinations.RESTAURANT_ID_KEY
 import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.Restaurant
-import com.jordangellatly.hermosahappyhour.model.tower12.tower12FridayHappyHour
 import com.jordangellatly.hermosahappyhour.repository.HappyHourRepository
 import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -35,7 +34,7 @@ class EventDetailViewModel @Inject constructor(
         getEventDetails(eventId, restaurantId)
     }
 
-    fun getEventDetails(eventId: UUID, restaurantId: UUID) {
+    private fun getEventDetails(eventId: UUID, restaurantId: UUID) {
         _uiState.value = EventDetailUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -47,9 +46,6 @@ class EventDetailViewModel @Inject constructor(
                 val eventList = restaurant?.eventsByDate
                     ?.getValue(formattedDateTimestamp)
                     ?.map { it.value }
-                    ?.map {
-                        happyHourRepository.getEventById(it) ?: tower12FridayHappyHour
-                    }
                     ?.sortedBy { if (it == mainEvent) 0 else 1 }
                 if (mainEvent == null || restaurant == null || eventList == null) {
                     onErrorOccurred()
@@ -72,28 +68,4 @@ class EventDetailViewModel @Inject constructor(
         class Loaded(val event: Event, val restaurant: Restaurant, val eventList: List<Event>) : EventDetailUiState()
         class Error(val message: String) : EventDetailUiState()
     }
-
-//    @AssistedFactory
-//    interface EventDetailViewModelFactory {
-//        fun create(eventId: UUID): EventDetailViewModel
-//    }
-//
-//    companion object {
-//        fun providesFactory(
-//            assistedFactory: EventDetailViewModelFactory,
-//            eventId: UUID
-//        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-//            @Suppress("UNCHECKED_CAST")
-//            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//                return assistedFactory.create(eventId) as T
-//            }
-//        }
-//    }
 }
-
-//class EventDetailViewModelFactory(private val eventId: UUID) : ViewModelProvider.Factory {
-//    @Suppress("UNCHECKED_CAST")
-//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//        return EventDetailViewModel(eventId) as T
-//    }
-//}
