@@ -6,12 +6,16 @@ import androidx.lifecycle.viewModelScope
 import com.jordangellatly.hermosahappyhour.MainDestinations.EVENT_ID_KEY
 import com.jordangellatly.hermosahappyhour.MainDestinations.RESTAURANT_ID_KEY
 import com.jordangellatly.hermosahappyhour.model.Event
+import com.jordangellatly.hermosahappyhour.model.Restaurant
+import com.jordangellatly.hermosahappyhour.model.tower12.tower12FridayHappyHour
 import com.jordangellatly.hermosahappyhour.repository.HappyHourRepository
+import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
@@ -28,19 +32,29 @@ class EventDetailViewModel @Inject constructor(
     private val restaurantId: UUID = UUID.fromString(checkNotNull(savedStateHandle[RESTAURANT_ID_KEY]))
 
     init {
-        getEventById(eventId, restaurantId)
+        getEventDetails(eventId, restaurantId)
     }
 
-    fun getEventById(eventId: UUID, restaurantId: UUID) {
+    fun getEventDetails(eventId: UUID, restaurantId: UUID) {
         _uiState.value = EventDetailUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val mainEvent = happyHourRepository.getEventById(eventId)
-                val mainRestaurant = happyHourRepository.getRestaurantById(restaurantId)
-                if (mainEvent == null) {
-                    _uiState.value = EventDetailUiState.Empty
+                val restaurant = happyHourRepository.getRestaurantById(restaurantId)
+                val date = getCurrentDateTime()
+                val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val formattedDateTimestamp = defaultFormat.format(date)
+                val eventList = restaurant?.eventsByDate
+                    ?.getValue(formattedDateTimestamp)
+                    ?.map { it.value }
+                    ?.map {
+                        happyHourRepository.getEventById(it) ?: tower12FridayHappyHour
+                    }
+                    ?.sortedBy { if (it == mainEvent) 0 else 1 }
+                if (mainEvent == null || restaurant == null || eventList == null) {
+                    onErrorOccurred()
                 } else {
-                    _uiState.value = EventDetailUiState.Loaded(mainEvent)
+                    _uiState.value = EventDetailUiState.Loaded(mainEvent, restaurant, eventList)
                 }
             } catch (e: Exception) {
                 onErrorOccurred()
@@ -55,7 +69,7 @@ class EventDetailViewModel @Inject constructor(
     sealed class EventDetailUiState {
         object Empty : EventDetailUiState()
         object Loading : EventDetailUiState()
-        class Loaded(val event: Event) : EventDetailUiState()
+        class Loaded(val event: Event, val restaurant: Restaurant, val eventList: List<Event>) : EventDetailUiState()
         class Error(val message: String) : EventDetailUiState()
     }
 

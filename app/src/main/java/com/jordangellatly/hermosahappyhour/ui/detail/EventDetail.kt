@@ -16,10 +16,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.rememberPagerState
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.model.tower12.tower12MondayHappyHour
@@ -27,13 +30,17 @@ import com.jordangellatly.hermosahappyhour.ui.components.ErrorDialog
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
 import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
+import com.jordangellatly.hermosahappyhour.ui.detail.shared.RestaurantInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.special.SpecialEvent
 import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
 import com.jordangellatly.hermosahappyhour.ui.home.DateBar
+import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 import com.jordangellatly.hermosahappyhour.ui.utils.mirroringBackIcon
 import com.jordangellatly.hermosahappyhour.viewmodel.EventDetailViewModel
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.*
 
 @OptIn(ExperimentalPagerApi::class)
@@ -43,7 +50,6 @@ fun EventDetail(
     upPress: () -> Unit,
     viewModel: EventDetailViewModel = viewModel()
 ) {
-//    val restaurant = RestaurantRepo.getRestaurant(selectedEvent.restaurantId)
     HermosaHappyHourSurface {
         when (val state = viewModel.uiState.collectAsState().value) {
             is EventDetailViewModel.EventDetailUiState.Empty -> {
@@ -63,51 +69,48 @@ fun EventDetail(
             }
             is EventDetailViewModel.EventDetailUiState.Loaded -> {
                 Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-//                    Header(
-//                        restaurantName = restaurant.name,
-//                        imageResource = restaurant.image,
-//                        upPress = upPress
-//                    )
-//                    val date = getCurrentDateTime()
-//                    val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-//                    val formattedDateTimestamp = defaultFormat.format(date)
-//                    val pagerState = rememberPagerState()
-//                    val coroutineScope = rememberCoroutineScope()
-//                    val eventList = restaurant.eventsByDate
-//                        .getValue(formattedDateTimestamp)
-//                        .map { it.value }
-//                        .sortedBy { if (viewModel.getEventById(it) == state.event) 0 else 1 }
-//                    if (eventList.size > 1) {
-//                        TabRow(
-//                            selectedTabIndex = pagerState.currentPage,
-//                            contentColor = HermosaHappyHourTheme.colors.textPrimary,
-//                            backgroundColor = HermosaHappyHourTheme.colors.uiBackground
-//                        ) {
-//                            eventList.forEachIndexed { index, eventId ->
-//                                Tab(
-//                                    selected = pagerState.currentPage == index,
-//                                    onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
-//                                    text = {
+                    Header(
+                        restaurantName = state.restaurant.name,
+                        imageResource = state.restaurant.image,
+                        upPress = upPress
+                    )
+                    val date = getCurrentDateTime()
+                    val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    val formattedDateTimestamp = defaultFormat.format(date)
+                    val pagerState = rememberPagerState()
+                    val coroutineScope = rememberCoroutineScope()
+                    if (state.eventList.size > 1) {
+                        TabRow(
+                            selectedTabIndex = pagerState.currentPage,
+                            contentColor = HermosaHappyHourTheme.colors.textPrimary,
+                            backgroundColor = HermosaHappyHourTheme.colors.uiBackground
+                        ) {
+                            state.eventList.forEachIndexed { index, eventId ->
+                                Tab(
+                                    selected = pagerState.currentPage == index,
+                                    onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
+                                    text = {
 //                                        val event = viewModel.getEventById(eventId)
-//                                        Text(
-//                                            text = event.eventType.name,
-//                                            maxLines = 2,
-//                                            overflow = TextOverflow.Ellipsis,
-//                                        )
-//                                    }
-//                                )
-//                            }
-//                        }
-//                        HorizontalPager(
-//                            count = eventList.size,
-//                            state = pagerState,
-//                        ) { page ->
-//                            EventInfo(event = viewModel.getEventById(eventList[page]))
-//                        }
-//                    } else {
-//                        EventInfo(event = state.event)
-//                    }
-//                    RestaurantInfo(restaurant = restaurant)
+                                        val event = state.eventList[index]
+                                        Text(
+                                            text = event.eventType.name,
+                                            maxLines = 2,
+                                            overflow = TextOverflow.Ellipsis,
+                                        )
+                                    }
+                                )
+                            }
+                        }
+                        HorizontalPager(
+                            count = state.eventList.size,
+                            state = pagerState,
+                        ) { page ->
+                            EventInfo(event = state.eventList[page])
+                        }
+                    } else {
+                        EventInfo(event = state.event)
+                    }
+                    RestaurantInfo(restaurant = state.restaurant)
                 }
             }
         }
