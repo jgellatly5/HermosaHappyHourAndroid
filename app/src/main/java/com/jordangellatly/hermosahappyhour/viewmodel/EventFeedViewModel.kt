@@ -1,8 +1,6 @@
 package com.jordangellatly.hermosahappyhour.viewmodel
 
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jordangellatly.hermosahappyhour.model.*
@@ -19,16 +17,12 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class EventViewModel @Inject constructor(
+class EventFeedViewModel @Inject constructor(
     private val eventRepository: EventRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<EventsUiState>(EventsUiState.Empty)
-    val uiState: StateFlow<EventsUiState> = _uiState
-
-    private var _event = MutableLiveData<Event>()
-    val event: LiveData<Event>
-        get() = _event
+    private val _uiState = MutableStateFlow<EventFeedUiState>(EventFeedUiState.Empty)
+    val uiState: StateFlow<EventFeedUiState> = _uiState
 
     init {
         printEventsJson()
@@ -37,7 +31,7 @@ class EventViewModel @Inject constructor(
     }
 
     fun getEventsByDate(date: Date) {
-        _uiState.value = EventsUiState.Loading
+        _uiState.value = EventFeedUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = eventRepository.getAllEvents().filter {
@@ -51,9 +45,9 @@ class EventViewModel @Inject constructor(
                     formattedCurrentDateString == formattedEventStartString
                 }
                 if (response.isEmpty()) {
-                    _uiState.value = EventsUiState.Empty
+                    _uiState.value = EventFeedUiState.Empty
                 } else {
-                    _uiState.value = EventsUiState.Loaded(response)
+                    _uiState.value = EventFeedUiState.Loaded(response)
                 }
             } catch (e: Exception) {
                 onErrorOccurred()
@@ -62,7 +56,7 @@ class EventViewModel @Inject constructor(
     }
 
     fun getEventsByDateAndType(date: Date, eventType: EventType) {
-        _uiState.value = EventsUiState.Loading
+        _uiState.value = EventFeedUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = eventRepository.getAllEvents().filter {
@@ -74,9 +68,9 @@ class EventViewModel @Inject constructor(
                     formattedCurrentDateString == formattedEventStartString && it.eventType == eventType
                 }
                 if (response.isEmpty()) {
-                    _uiState.value = EventsUiState.Empty
+                    _uiState.value = EventFeedUiState.Empty
                 } else {
-                    _uiState.value = EventsUiState.Loaded(response)
+                    _uiState.value = EventFeedUiState.Loaded(response)
                 }
             } catch (e: Exception) {
                 onErrorOccurred()
@@ -84,20 +78,18 @@ class EventViewModel @Inject constructor(
         }
     }
 
-    fun getEventById(eventId: UUID) = eventRepository.getEventById(eventId)
-
     fun getFilters(): SnapshotStateList<Filter> {
         return eventRepository.getFilters()
     }
 
     private fun onErrorOccurred() {
-        _uiState.value = EventsUiState.Error("An error has occurred.")
+        _uiState.value = EventFeedUiState.Error("An error has occurred.")
     }
 
-    sealed class EventsUiState {
-        object Empty : EventsUiState()
-        object Loading : EventsUiState()
-        class Loaded(val events: List<Event>) : EventsUiState()
-        class Error(val message: String) : EventsUiState()
+    sealed class EventFeedUiState {
+        object Empty : EventFeedUiState()
+        object Loading : EventFeedUiState()
+        class Loaded(val events: List<Event>) : EventFeedUiState()
+        class Error(val message: String) : EventFeedUiState()
     }
 }

@@ -46,7 +46,7 @@ import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.profile.Profile
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
-import com.jordangellatly.hermosahappyhour.viewmodel.EventViewModel
+import com.jordangellatly.hermosahappyhour.viewmodel.EventFeedViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -89,7 +89,7 @@ fun NavGraphBuilder.addHomeGraph(
     modifier: Modifier = Modifier
 ) {
     composable(HomeSections.HOME.route) { from ->
-        val viewModel = hiltViewModel<EventViewModel>()
+        val viewModel = hiltViewModel<EventFeedViewModel>()
         EventFeed(
             onEventClick = { eventId -> onEventSelected(eventId, from) },
             modifier = modifier,

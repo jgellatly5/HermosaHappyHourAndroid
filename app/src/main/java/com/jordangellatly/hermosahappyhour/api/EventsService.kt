@@ -11,5 +11,5 @@ interface EventsService {
     suspend fun getAllEvents() : List<Event>
 
     @GET("/api/v1/events/{id}")
-    suspend fun getEventById(@Path("id") eventId: UUID) : Event
+    suspend fun getEventById(@Path("id") eventId: UUID) : Event?
 }

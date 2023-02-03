@@ -7,39 +7,33 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.rememberPagerState
 import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.model.tower12.tower12MondayHappyHour
+import com.jordangellatly.hermosahappyhour.ui.components.ErrorDialog
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
 import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
 import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
-import com.jordangellatly.hermosahappyhour.ui.detail.shared.RestaurantInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.special.SpecialEvent
 import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
 import com.jordangellatly.hermosahappyhour.ui.home.DateBar
-import com.jordangellatly.hermosahappyhour.viewmodel.EventViewModel
-import com.jordangellatly.hermosahappyhour.ui.home.getCurrentDateTime
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
 import com.jordangellatly.hermosahappyhour.ui.utils.mirroringBackIcon
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
+import com.jordangellatly.hermosahappyhour.viewmodel.EventDetailViewModel
 import java.util.*
 
 @OptIn(ExperimentalPagerApi::class)
@@ -47,57 +41,76 @@ import java.util.*
 fun EventDetail(
     eventId: UUID,
     upPress: () -> Unit,
-    viewModel: EventViewModel = viewModel()
+    viewModel: EventDetailViewModel = viewModel()
 ) {
-    val selectedEvent = remember(eventId) { viewModel.getEventById(eventId) }
-    val restaurant = RestaurantRepo.getRestaurant(selectedEvent.restaurantId)
+//    val selectedEvent = remember(eventId) { viewModel.getEventById(eventId) }
+//    val restaurant = RestaurantRepo.getRestaurant(selectedEvent.restaurantId)
     HermosaHappyHourSurface {
-        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-            Header(
-                restaurantName = restaurant.name,
-                imageResource = restaurant.image,
-                upPress = upPress
-            )
-            val date = getCurrentDateTime()
-            val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val formattedDateTimestamp = defaultFormat.format(date)
-            val pagerState = rememberPagerState()
-            val coroutineScope = rememberCoroutineScope()
-            val eventList = restaurant.eventsByDate
-                    .getValue(formattedDateTimestamp)
-                    .map { it.value }
-                    .sortedBy { if (viewModel.getEventById(it) == selectedEvent) 0 else 1 }
-            if (eventList.size > 1) {
-                TabRow(
-                    selectedTabIndex = pagerState.currentPage,
-                    contentColor = HermosaHappyHourTheme.colors.textPrimary,
-                    backgroundColor = HermosaHappyHourTheme.colors.uiBackground
-                ) {
-                    eventList.forEachIndexed { index, eventId ->
-                        Tab(
-                            selected = pagerState.currentPage == index,
-                            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
-                            text = {
-                                val event = viewModel.getEventById(eventId)
-                                Text(
-                                    text = event.eventType.name,
-                                    maxLines = 2,
-                                    overflow = TextOverflow.Ellipsis,
-                                )
-                            }
-                        )
-                    }
-                }
-                HorizontalPager(
-                    count = eventList.size,
-                    state = pagerState,
-                ) { page ->
-                    EventInfo(event = viewModel.getEventById(eventList[page]))
-                }
-            } else {
-                EventInfo(event = selectedEvent)
+        when (val state = viewModel.uiState.collectAsState().value) {
+            is EventDetailViewModel.EventDetailUiState.Empty -> {
+                EmptyStateMessage()
             }
-            RestaurantInfo(restaurant = restaurant)
+            is EventDetailViewModel.EventDetailUiState.Loading -> {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    CircularProgressIndicator()
+                }
+            }
+            is EventDetailViewModel.EventDetailUiState.Error -> {
+                ErrorDialog(state.message)
+            }
+            is EventDetailViewModel.EventDetailUiState.Loaded -> {
+                Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+//                    Header(
+//                        restaurantName = restaurant.name,
+//                        imageResource = restaurant.image,
+//                        upPress = upPress
+//                    )
+//                    val date = getCurrentDateTime()
+//                    val defaultFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+//                    val formattedDateTimestamp = defaultFormat.format(date)
+//                    val pagerState = rememberPagerState()
+//                    val coroutineScope = rememberCoroutineScope()
+//                    val eventList = restaurant.eventsByDate
+//                        .getValue(formattedDateTimestamp)
+//                        .map { it.value }
+//                        .sortedBy { if (viewModel.getEventById(it) == selectedEvent) 0 else 1 }
+//                    if (eventList.size > 1) {
+//                        TabRow(
+//                            selectedTabIndex = pagerState.currentPage,
+//                            contentColor = HermosaHappyHourTheme.colors.textPrimary,
+//                            backgroundColor = HermosaHappyHourTheme.colors.uiBackground
+//                        ) {
+//                            eventList.forEachIndexed { index, eventId ->
+//                                Tab(
+//                                    selected = pagerState.currentPage == index,
+//                                    onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
+//                                    text = {
+//                                        val event = viewModel.getEventById(eventId)
+//                                        Text(
+//                                            text = event.eventType.name,
+//                                            maxLines = 2,
+//                                            overflow = TextOverflow.Ellipsis,
+//                                        )
+//                                    }
+//                                )
+//                            }
+//                        }
+//                        HorizontalPager(
+//                            count = eventList.size,
+//                            state = pagerState,
+//                        ) { page ->
+//                            EventInfo(event = viewModel.getEventById(eventList[page]))
+//                        }
+//                    } else {
+//                        EventInfo(event = selectedEvent)
+//                    }
+//                    RestaurantInfo(restaurant = restaurant)
+                }
+            }
         }
     }
 }
@@ -205,6 +218,26 @@ private fun Up(upPress: () -> Unit) {
             imageVector = mirroringBackIcon(),
             tint = HermosaHappyHourTheme.colors.iconInteractive,
             contentDescription = stringResource(R.string.label_back)
+        )
+    }
+}
+
+@Composable
+private fun EmptyStateMessage() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Sorry, we could not find that event.",
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.subtitle1,
+            color = HermosaHappyHourTheme.colors.textSecondary,
+            modifier = Modifier
+                .width(300.dp)
+                .padding(start = 16.dp, end = 16.dp)
         )
     }
 }
