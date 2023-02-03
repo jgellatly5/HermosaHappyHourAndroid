@@ -24,7 +24,7 @@ import java.util.*
 @Composable
 fun EventItem(
     event: Event,
-    onEventClick: (UUID) -> Unit,
+    onItemClick: (UUID, UUID) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val restaurant = remember { RestaurantRepo.getRestaurant(event.restaurantId) }
@@ -35,7 +35,7 @@ fun EventItem(
     ) {
         Column(
             modifier = Modifier
-                .clickable(onClick = { onEventClick(event.id) })
+                .clickable(onClick = { onItemClick(event.restaurantId, event.id) })
                 .fillMaxSize()
         ) {
             Box(
@@ -75,7 +75,7 @@ private fun EventItemPreview() {
         val event = saturdayHappyHour
         EventItem(
             event = event,
-            onEventClick = {}
+            onItemClick = { _, _ -> }
         )
     }
 }

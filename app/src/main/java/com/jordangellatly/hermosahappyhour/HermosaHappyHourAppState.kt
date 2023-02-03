@@ -72,10 +72,10 @@ class HappyHourAppState(
         }
     }
 
-    fun navigateToEventDetail(eventId: UUID, from: NavBackStackEntry) {
+    fun navigateToEventDetail(restaurantId: UUID, eventId: UUID, from: NavBackStackEntry) {
         // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
-            navController.navigate("${MainDestinations.EVENT_DETAIL_ROUTE}/$eventId")
+            navController.navigate("${MainDestinations.RESTAURANT_DETAIL_ROUTE}/$restaurantId/$eventId")
         }
     }
 }

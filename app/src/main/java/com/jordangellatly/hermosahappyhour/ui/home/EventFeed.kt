@@ -29,14 +29,14 @@ import java.util.*
 
 @Composable
 fun EventFeed(
-    onEventClick: (UUID) -> Unit,
+    onItemClick: (UUID, UUID) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: EventFeedViewModel = viewModel()
 ) {
     val filters: SnapshotStateList<Filter> = remember { viewModel.getFilters() }
     EventFeed(
         filters = filters,
-        onEventClick = onEventClick,
+        onItemClick = onItemClick,
         modifier = modifier
     )
 }
@@ -44,14 +44,14 @@ fun EventFeed(
 @Composable
 private fun EventFeed(
     filters: SnapshotStateList<Filter>,
-    onEventClick: (UUID) -> Unit,
+    onItemClick: (UUID, UUID) -> Unit,
     modifier: Modifier = Modifier
 ) {
     HermosaHappyHourSurface(modifier = modifier.fillMaxSize()) {
         Box {
             EventList(
                 filters = filters,
-                onEventClick = onEventClick
+                onItemClick = onItemClick
             )
             DateBar()
         }
@@ -61,7 +61,7 @@ private fun EventFeed(
 @Composable
 private fun EventList(
     filters: SnapshotStateList<Filter>,
-    onEventClick: (UUID) -> Unit,
+    onItemClick: (UUID, UUID) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: EventFeedViewModel = viewModel()
 ) {
@@ -105,7 +105,7 @@ private fun EventList(
                         contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
                     ) {
                         items(state.events) { event ->
-                            EventItem(event, onEventClick)
+                            EventItem(event, onItemClick)
                         }
                     }
                 }
@@ -152,6 +152,6 @@ private fun EmptyStateMessage(selectedType: MutableState<EventType>) {
 @Composable
 private fun EventFeedPreview() {
     HermosaHappyHourTheme {
-        EventFeed(onEventClick = {})
+        EventFeed(onItemClick = { _, _ ->})
     }
 }

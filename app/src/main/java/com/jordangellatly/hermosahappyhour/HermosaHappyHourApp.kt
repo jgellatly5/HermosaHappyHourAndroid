@@ -43,8 +43,9 @@ fun HermosaHappyHourApp() {
                 modifier = Modifier.padding(innerPaddingModifier)
             ) {
                 happyHourNavGraph(
-                    onEventSelected = { eventId, from ->
+                    onItemSelected = { restaurantId, eventId, from ->
                         appState.navigateToEventDetail(
+                            restaurantId,
                             eventId,
                             from
                         )
@@ -57,7 +58,7 @@ fun HermosaHappyHourApp() {
 }
 
 private fun NavGraphBuilder.happyHourNavGraph(
-    onEventSelected: (UUID, NavBackStackEntry) -> Unit,
+    onItemSelected: (UUID, UUID, NavBackStackEntry) -> Unit,
 //    onRestaurantSelected: (Long, NavBackStackEntry) -> Unit,
     upPress: () -> Unit
 ) {
@@ -65,17 +66,21 @@ private fun NavGraphBuilder.happyHourNavGraph(
         route = MainDestinations.HOME_ROUTE,
         startDestination = HomeSections.HOME.route
     ) {
-        addHomeGraph(onEventSelected)
+        addHomeGraph(onItemSelected)
     }
     composable(
-        route = "${MainDestinations.EVENT_DETAIL_ROUTE}/{${MainDestinations.EVENT_ID_KEY}}",
+        route = "${MainDestinations.RESTAURANT_DETAIL_ROUTE}/{${MainDestinations.RESTAURANT_ID_KEY}}/{${MainDestinations.EVENT_ID_KEY}}",
         arguments = listOf(
+            navArgument(MainDestinations.RESTAURANT_ID_KEY) {
+                type = NavType.StringType
+            },
             navArgument(MainDestinations.EVENT_ID_KEY) {
                 type = NavType.StringType
             }
         )
     ) { backStackEntry ->
         val arguments = requireNotNull(backStackEntry.arguments)
+        val restaurantId = UUID.fromString(arguments.getString(MainDestinations.RESTAURANT_ID_KEY))
         val eventId = UUID.fromString(arguments.getString(MainDestinations.EVENT_ID_KEY))
         val viewModel = hiltViewModel<EventDetailViewModel>()
         EventDetail(

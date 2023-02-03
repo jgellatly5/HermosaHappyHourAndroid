@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jordangellatly.hermosahappyhour.MainDestinations.EVENT_ID_KEY
+import com.jordangellatly.hermosahappyhour.MainDestinations.RESTAURANT_ID_KEY
 import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.repository.HappyHourRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,20 +25,22 @@ class EventDetailViewModel @Inject constructor(
     val uiState: StateFlow<EventDetailUiState> = _uiState
 
     private val eventId: UUID = UUID.fromString(checkNotNull(savedStateHandle[EVENT_ID_KEY]))
+    private val restaurantId: UUID = UUID.fromString(checkNotNull(savedStateHandle[RESTAURANT_ID_KEY]))
 
     init {
-        getEventById(eventId)
+        getEventById(eventId, restaurantId)
     }
 
-    fun getEventById(eventId: UUID) {
+    fun getEventById(eventId: UUID, restaurantId: UUID) {
         _uiState.value = EventDetailUiState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = happyHourRepository.getEventById(eventId)
-                if (response == null) {
+                val mainEvent = happyHourRepository.getEventById(eventId)
+                val mainRestaurant = happyHourRepository.getRestaurantById(restaurantId)
+                if (mainEvent == null) {
                     _uiState.value = EventDetailUiState.Empty
                 } else {
-                    _uiState.value = EventDetailUiState.Loaded(response)
+                    _uiState.value = EventDetailUiState.Loaded(mainEvent)
                 }
             } catch (e: Exception) {
                 onErrorOccurred()

@@ -85,13 +85,13 @@ fun String.getDayOfWeekFromTimestamp(): String {
 }
 
 fun NavGraphBuilder.addHomeGraph(
-    onEventSelected: (UUID, NavBackStackEntry) -> Unit,
+    onItemSelected: (UUID, UUID, NavBackStackEntry) -> Unit,
     modifier: Modifier = Modifier
 ) {
     composable(HomeSections.HOME.route) { from ->
         val viewModel = hiltViewModel<EventFeedViewModel>()
         EventFeed(
-            onEventClick = { eventId -> onEventSelected(eventId, from) },
+            onItemClick = { restaurantId, eventId -> onItemSelected(restaurantId, eventId, from) },
             modifier = modifier,
             viewModel = viewModel
         )
