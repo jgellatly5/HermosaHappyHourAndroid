@@ -42,13 +42,14 @@ val generalWeeklyHours = mapOf(
 )
 
 val tower12EventsByDate = mapOf(
-    "2023-02-03" to mapOf(
-        EventType.HappyHour to tower12FridayHappyHour,
-        EventType.Special to fridayNightTrivia
+    "2023-02-05" to mapOf(
+        EventType.Brunch to sundayBrunch,
+        EventType.Sports to sundaySportEvent,
+        EventType.Special to sundaySilentDiscoSunset
     )
 )
 
-val junkieEventsByDate = mapOf(
+val eventsMapByDate = mapOf(
     "2023-02-05" to mapOf(
         EventType.Brunch to sundayBrunch,
         EventType.Sports to sundaySportEvent,

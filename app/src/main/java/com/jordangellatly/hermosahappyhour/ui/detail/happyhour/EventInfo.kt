@@ -21,7 +21,7 @@ import com.jordangellatly.hermosahappyhour.ui.components.RestaurantImage
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
-fun HappyHour(
+fun EventInfo(
     weeklyHoursDescription: String,
     eventStart: String,
     eventEnd: String,
@@ -174,10 +174,10 @@ fun DealItem(deal: Deal) {
 
 @Preview(showBackground = true)
 @Composable
-private fun HappyHourPreview() {
+private fun EventInfoPreview() {
     val event = tower12FridayHappyHour
     HermosaHappyHourTheme {
-        HappyHour(
+        EventInfo(
             weeklyHoursDescription = event.weeklyHoursDescription,
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,

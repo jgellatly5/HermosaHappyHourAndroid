@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.special
+package com.jordangellatly.hermosahappyhour.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -14,9 +14,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.tower12.sundaySilentDiscoSunset
-import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
-import com.jordangellatly.hermosahappyhour.ui.components.RestaurantImage
-import com.jordangellatly.hermosahappyhour.ui.components.offsetGradientBackground
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.util.*

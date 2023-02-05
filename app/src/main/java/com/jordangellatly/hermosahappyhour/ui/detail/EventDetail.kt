@@ -27,11 +27,8 @@ import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.components.ErrorMessage
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
-import com.jordangellatly.hermosahappyhour.ui.detail.brunch.Brunch
-import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.HappyHour
+import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.EventInfo
 import com.jordangellatly.hermosahappyhour.ui.detail.shared.RestaurantInfo
-import com.jordangellatly.hermosahappyhour.ui.detail.special.SpecialEvent
-import com.jordangellatly.hermosahappyhour.ui.detail.sports.Sports
 import com.jordangellatly.hermosahappyhour.ui.home.DateBar
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
@@ -97,69 +94,32 @@ fun EventDetail(
                             count = state.eventList.size,
                             state = pagerState,
                         ) { page ->
-                            EventInfo(event = state.eventList[page])
+                            val event = state.eventList[page]
+                            EventInfo(
+                                weeklyHoursDescription = event.weeklyHoursDescription,
+                                eventStart = event.startTimestamp,
+                                eventEnd = event.endTimestamp,
+                                eventTitle = event.title,
+                                eventUrl = event.eventInfoUrl,
+                                drinkSpecials = event.drinkSpecials,
+                                foodSpecials = event.foodSpecials
+                            )
                         }
                     } else {
-                        EventInfo(event = state.event)
+                        val event = state.event
+                        EventInfo(
+                            weeklyHoursDescription = event.weeklyHoursDescription,
+                            eventStart = event.startTimestamp,
+                            eventEnd = event.endTimestamp,
+                            eventTitle = event.title,
+                            eventUrl = event.eventInfoUrl,
+                            drinkSpecials = event.drinkSpecials,
+                            foodSpecials = event.foodSpecials
+                        )
                     }
                     RestaurantInfo(restaurant = state.restaurant)
                 }
             }
-        }
-    }
-}
-
-@Composable
-private fun EventInfo(event: Event) {
-    when (event.eventType) {
-        EventType.HappyHour -> {
-            HappyHour(
-                weeklyHoursDescription = event.weeklyHoursDescription,
-                eventStart = event.startTimestamp,
-                eventEnd = event.endTimestamp,
-                eventTitle = event.title,
-                eventUrl = event.eventInfoUrl,
-                drinkSpecials = event.drinkSpecials,
-                foodSpecials = event.foodSpecials
-            )
-        }
-        EventType.Brunch -> {
-            Brunch(
-                weeklyHoursDescription = event.weeklyHoursDescription,
-                eventStart = event.startTimestamp,
-                eventEnd = event.endTimestamp,
-                eventTitle = event.title,
-                specials = event.drinkSpecials
-            )
-        }
-        EventType.Sports -> {
-            Sports(
-                weeklyHoursDescription = event.weeklyHoursDescription,
-                eventStart = event.startTimestamp,
-                eventEnd = event.endTimestamp,
-                eventTitle = event.title,
-                specials = event.drinkSpecials
-            )
-        }
-        EventType.Special -> {
-            SpecialEvent(
-                weeklyHoursDescription = event.weeklyHoursDescription,
-                eventStart = event.startTimestamp,
-                eventEnd = event.endTimestamp,
-                eventTitle = event.title,
-                specials = event.drinkSpecials
-            )
-        }
-        else -> {
-            HappyHour(
-                weeklyHoursDescription = event.weeklyHoursDescription,
-                eventStart = event.startTimestamp,
-                eventEnd = event.endTimestamp,
-                eventTitle = event.title,
-                eventUrl = event.eventInfoUrl,
-                drinkSpecials = event.drinkSpecials,
-                foodSpecials = event.foodSpecials
-            )
         }
     }
 }

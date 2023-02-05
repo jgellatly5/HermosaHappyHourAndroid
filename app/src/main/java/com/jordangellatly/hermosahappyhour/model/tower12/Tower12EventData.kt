@@ -151,8 +151,8 @@ val sundayBrunch = Event(
     description = "Brunch is fun",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
     restaurantName = "Tower 12",
-    startTimestamp = "2023-01-29T09:00",
-    endTimestamp = "2023-01-29T14:00",
+    startTimestamp = "2023-02-05T09:00",
+    endTimestamp = "2023-02-05T14:00",
     weeklyHoursDescription = "Sat & Sun \u2022 9AM - 2PM",
     drinkSpecials = listOf(
         Deal(
@@ -183,8 +183,8 @@ val sundaySportEvent = Event(
     description = "Premiere sports viewing, we get all the games",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
     restaurantName = "Tower 12",
-    startTimestamp = "2023-01-29T15:00",
-    endTimestamp = "2023-01-29T19:00",
+    startTimestamp = "2023-02-05T15:00",
+    endTimestamp = "2023-02-05T19:00",
     weeklyHoursDescription = "Today only \u2022 3PM - 7PM",
     drinkSpecials = listOf(
         Deal(
@@ -395,8 +395,8 @@ val sundayHappyHour = Event(
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
     restaurantName = "Tower 12",
-    startTimestamp = "2023-01-29T15:00",
-    endTimestamp = "2023-01-29T19:00",
+    startTimestamp = "2023-02-05T15:00",
+    endTimestamp = "2023-02-05T19:00",
     weeklyHoursDescription = "M - F \u2022 3PM - 7PM",
     drinkSpecials = listOf(
         Deal(
@@ -427,8 +427,8 @@ val sundaySilentDiscoSunset = Event(
     description = "Serving sunsets, ice cold drinks, & good vibes daily",
     restaurantId = UUID.fromString("1833bcfa-a7bf-456d-b0fe-5030cbe962e4"),
     restaurantName = "Tower 12",
-    startTimestamp = "2023-01-29T15:00",
-    endTimestamp = "2023-01-29T19:00",
+    startTimestamp = "2023-02-05T15:00",
+    endTimestamp = "2023-02-05T19:00",
     weeklyHoursDescription = "Today only \u2022 5PM - 8PM",
     drinkSpecials = listOf(
         Deal(
