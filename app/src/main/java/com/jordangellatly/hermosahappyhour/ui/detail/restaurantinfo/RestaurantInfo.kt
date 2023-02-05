@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.shared
+package com.jordangellatly.hermosahappyhour.ui.detail.restaurantinfo
 
 import android.content.Intent
 import android.net.Uri

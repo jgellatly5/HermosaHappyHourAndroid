@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.happyhour
+package com.jordangellatly.hermosahappyhour.ui.detail.eventinfo
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -31,7 +31,7 @@ fun EventInfo(
     foodSpecials: List<Deal>?
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
-        EventHeaderHappyHour(
+        EventHeader(
             weeklyHoursDescription = weeklyHoursDescription,
             eventStart = eventStart,
             eventEnd = eventEnd,

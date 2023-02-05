@@ -18,7 +18,7 @@ import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.Event
 import com.jordangellatly.hermosahappyhour.model.tower12.saturdayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.components.HappyHourCard
-import com.jordangellatly.hermosahappyhour.ui.detail.shared.EventTimer
+import com.jordangellatly.hermosahappyhour.ui.components.EventTimer
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.util.*
 

@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.happyhour
+package com.jordangellatly.hermosahappyhour.ui.detail.eventinfo
 
 import android.content.Intent
 import android.net.Uri
@@ -14,10 +14,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jordangellatly.hermosahappyhour.model.tower12.tower12ThursdayHappyHour
+import com.jordangellatly.hermosahappyhour.ui.components.EventTimer
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 
 @Composable
-fun EventHeaderHappyHour(
+fun EventHeader(
     weeklyHoursDescription: String,
     eventStart: String,
     eventEnd: String,
@@ -37,7 +38,7 @@ fun EventHeaderHappyHour(
             style = MaterialTheme.typography.body1,
             modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 8.dp)
         )
-        EventTimerHappyHour(
+        EventTimer(
             eventStart = eventStart,
             eventEnd = eventEnd,
         )
@@ -57,10 +58,10 @@ fun EventHeaderHappyHour(
 
 @Preview(showBackground = true)
 @Composable
-private fun EventHeaderHappyHourPreview() {
+private fun EventHeaderPreview() {
     val event = tower12ThursdayHappyHour
     HermosaHappyHourTheme {
-        EventHeaderHappyHour(
+        EventHeader(
             weeklyHoursDescription = event.weeklyHoursDescription,
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,

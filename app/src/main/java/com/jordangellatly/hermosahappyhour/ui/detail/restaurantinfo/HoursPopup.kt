@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.shared
+package com.jordangellatly.hermosahappyhour.ui.detail.restaurantinfo
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

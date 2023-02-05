@@ -1,4 +1,4 @@
-package com.jordangellatly.hermosahappyhour.ui.detail.happyhour
+package com.jordangellatly.hermosahappyhour.ui.components
 
 import android.os.CountDownTimer
 import androidx.compose.foundation.layout.padding
@@ -16,14 +16,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.jordangellatly.hermosahappyhour.model.tower12.tower12ThursdayHappyHour
+import com.jordangellatly.hermosahappyhour.model.tower12.tower12MondayHappyHour
 import com.jordangellatly.hermosahappyhour.ui.home.formatTimestamp
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun EventTimerHappyHour(eventStart: String, eventEnd: String, eventTitle: String = "") {
+fun EventTimer(
+    eventStart: String,
+    eventEnd: String,
+    eventTitle: String = ""
+) {
     var fontWeight = FontWeight.Bold
     var color = HermosaHappyHourTheme.colors.textSecondary
     var textModifier = Modifier.padding(start = 8.dp, end = 8.dp)
@@ -121,10 +125,10 @@ fun EventTimerHappyHour(eventStart: String, eventEnd: String, eventTitle: String
 
 @Preview(showBackground = true)
 @Composable
-private fun EventTimerHappyHourPreview() {
-    val event = tower12ThursdayHappyHour
+private fun EventTimerPreview() {
+    val event = tower12MondayHappyHour
     HermosaHappyHourTheme {
-        EventTimerHappyHour(
+        EventTimer(
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp
         )
@@ -133,10 +137,10 @@ private fun EventTimerHappyHourPreview() {
 
 @Preview(showBackground = true)
 @Composable
-private fun EventTimerHappyHourWithTitlePreview() {
-    val event = tower12ThursdayHappyHour
+private fun EventTimerWithTitlePreview() {
+    val event = tower12MondayHappyHour
     HermosaHappyHourTheme {
-        EventTimerHappyHour(
+        EventTimer(
             eventStart = event.startTimestamp,
             eventEnd = event.endTimestamp,
             eventTitle = "Jungle Hour"

@@ -27,8 +27,8 @@ import com.jordangellatly.hermosahappyhour.R
 import com.jordangellatly.hermosahappyhour.model.*
 import com.jordangellatly.hermosahappyhour.ui.components.ErrorMessage
 import com.jordangellatly.hermosahappyhour.ui.components.HermosaHappyHourSurface
-import com.jordangellatly.hermosahappyhour.ui.detail.happyhour.EventInfo
-import com.jordangellatly.hermosahappyhour.ui.detail.shared.RestaurantInfo
+import com.jordangellatly.hermosahappyhour.ui.detail.eventinfo.EventInfo
+import com.jordangellatly.hermosahappyhour.ui.detail.restaurantinfo.RestaurantInfo
 import com.jordangellatly.hermosahappyhour.ui.home.DateBar
 import com.jordangellatly.hermosahappyhour.ui.theme.HermosaHappyHourTheme
 import com.jordangellatly.hermosahappyhour.ui.theme.Neutral8
