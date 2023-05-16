@@ -7,44 +7,9 @@
     "companyLogoUrl": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/292336365_435159251951538_4078078271979326231_n.jpg?_nc_cat\u003d107\u0026ccb\u003d1-7\u0026_nc_sid\u003d09cbfe\u0026_nc_ohc\u003dC_tAC12x4o0AX9uN-Yg\u0026_nc_ht\u003dscontent-lax3-2.xx\u0026oh\u003d00_AfAAxhYzzBx-bK8gDhRHmOeMrzUxDDsDMZeCaTyFHRr3Ug\u0026oe\u003d638F052F",
     "description": "New American classics \u0026 fancy snacks in a beachy, relaxed bar with romantic patio seating.",
     "eventsByDate": {
-      "2023-02-03": {
-        "HappyHour": {
-          "description": "Bringing you wild drink specials",
-          "drinkSpecials": [
-            {
-              "description": "Shots, bottled \u0026 can beers",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "50% off"
-            },
-            {
-              "description": "Wines (ask server for selections)",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "$5.50 - 7.50"
-            },
-            {
-              "description": "To any cocktail to make it a double sized double shot 22oz cocktail",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "Add 1$"
-            },
-            {
-              "description": "To any draft beer to make it a double size 32oz draft beer",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "Add 1$"
-            }
-          ],
-          "endTimestamp": "2023-01-27T19:00",
-          "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
-          "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-          "eventType": "HappyHour",
-          "_id": "2bdb47f7-bca3-4d61-b5ff-3c5d9f9cb520",
-          "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-          "restaurantName": "Tower 12",
-          "startTimestamp": "2023-01-27T15:00",
-          "title": "Jungle Hour",
-          "weeklyHoursDescription": "M - F • 3PM - 7PM"
-        },
-        "Special": {
-          "description": "Premiere sports viewing, we get all the games",
+      "2023-02-05": {
+        "Brunch": {
+          "description": "Brunch is fun",
           "drinkSpecials": [
             {
               "description": "Bloody Mary\u0027s Well",
@@ -67,15 +32,50 @@
               "price": "$10"
             }
           ],
-          "endTimestamp": "2023-01-27T19:00",
+          "endTimestamp": "2023-02-05T14:00",
           "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
           "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-          "eventType": "Special",
-          "_id": "becb5eb3-0d61-4369-ab7e-e5b218e8ade7",
+          "eventType": "Brunch",
+          "_id": "e932c217-4853-475e-be9c-c8391b23a8b6",
           "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
           "restaurantName": "Tower 12",
-          "startTimestamp": "2023-01-27T15:00",
-          "title": "Friday Night Trivia",
+          "startTimestamp": "2023-02-05T09:00",
+          "title": "Sunday Brunch",
+          "weeklyHoursDescription": "Sat \u0026 Sun • 9AM - 2PM"
+        },
+        "Special": {
+          "description": "Serving sunsets, ice cold drinks, \u0026 good vibes daily",
+          "drinkSpecials": [
+            {
+              "description": "Shots, bottled \u0026 can beers",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "50% off"
+            },
+            {
+              "description": "Add Red Bull",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "$3"
+            },
+            {
+              "description": "To any well, call, or premium to make it a 22oz double shot double size cocktail",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "Add 1$"
+            },
+            {
+              "description": "To any draft beer to make it a 22oz giant schooner",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "Add 1$"
+            }
+          ],
+          "endTimestamp": "2023-02-05T19:00",
+          "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+          "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+          "eventType": "Special",
+          "_id": "59b95a45-be40-4fd6-b818-d106fa54977b",
+          "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+          "restaurantName": "Tower 12",
+          "startTimestamp": "2023-02-05T15:00",
+          "title": "Silent Disco Sunet",
           "weeklyHoursDescription": "Today only • 5PM - 8PM"
         }
       }
@@ -107,44 +107,9 @@
     "companyLogoUrl": "https://sharkeez.net/wp-content/uploads/2020/11/sharkeez-light.png",
     "description": "Lively bar \u0026 restaurant with simple Mexican fare plus lots of margaritas \u0026 a popular happy hour.",
     "eventsByDate": {
-      "2023-02-03": {
-        "HappyHour": {
-          "description": "Bringing you wild drink specials",
-          "drinkSpecials": [
-            {
-              "description": "Shots, bottled \u0026 can beers",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "50% off"
-            },
-            {
-              "description": "Wines (ask server for selections)",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "$5.50 - 7.50"
-            },
-            {
-              "description": "To any cocktail to make it a double sized double shot 22oz cocktail",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "Add 1$"
-            },
-            {
-              "description": "To any draft beer to make it a double size 32oz draft beer",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "Add 1$"
-            }
-          ],
-          "endTimestamp": "2023-01-27T19:00",
-          "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
-          "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-          "eventType": "HappyHour",
-          "_id": "2bdb47f7-bca3-4d61-b5ff-3c5d9f9cb520",
-          "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-          "restaurantName": "Tower 12",
-          "startTimestamp": "2023-01-27T15:00",
-          "title": "Jungle Hour",
-          "weeklyHoursDescription": "M - F • 3PM - 7PM"
-        },
-        "Special": {
-          "description": "Premiere sports viewing, we get all the games",
+      "2023-02-05": {
+        "Brunch": {
+          "description": "Brunch is fun",
           "drinkSpecials": [
             {
               "description": "Bloody Mary\u0027s Well",
@@ -167,15 +132,50 @@
               "price": "$10"
             }
           ],
-          "endTimestamp": "2023-01-27T19:00",
+          "endTimestamp": "2023-02-05T14:00",
           "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
           "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-          "eventType": "Special",
-          "_id": "becb5eb3-0d61-4369-ab7e-e5b218e8ade7",
+          "eventType": "Brunch",
+          "_id": "e932c217-4853-475e-be9c-c8391b23a8b6",
           "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
           "restaurantName": "Tower 12",
-          "startTimestamp": "2023-01-27T15:00",
-          "title": "Friday Night Trivia",
+          "startTimestamp": "2023-02-05T09:00",
+          "title": "Sunday Brunch",
+          "weeklyHoursDescription": "Sat \u0026 Sun • 9AM - 2PM"
+        },
+        "Special": {
+          "description": "Serving sunsets, ice cold drinks, \u0026 good vibes daily",
+          "drinkSpecials": [
+            {
+              "description": "Shots, bottled \u0026 can beers",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "50% off"
+            },
+            {
+              "description": "Add Red Bull",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "$3"
+            },
+            {
+              "description": "To any well, call, or premium to make it a 22oz double shot double size cocktail",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "Add 1$"
+            },
+            {
+              "description": "To any draft beer to make it a 22oz giant schooner",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "Add 1$"
+            }
+          ],
+          "endTimestamp": "2023-02-05T19:00",
+          "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+          "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+          "eventType": "Special",
+          "_id": "59b95a45-be40-4fd6-b818-d106fa54977b",
+          "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+          "restaurantName": "Tower 12",
+          "startTimestamp": "2023-02-05T15:00",
+          "title": "Silent Disco Sunet",
           "weeklyHoursDescription": "Today only • 5PM - 8PM"
         }
       }
@@ -207,44 +207,9 @@
     "companyLogoUrl": "https://images.squarespace-cdn.com/content/v1/5a340b32f09ca4f1abede53f/1513369024515-81MNDBH8WH7EFSWJ6BKE/AJ+Gargoyle+White+Logo.png?format\u003d1500w",
     "description": "Lively gastropub with American chow, craft brews \u0026 California wines plus multiple TVs for sports.",
     "eventsByDate": {
-      "2023-02-03": {
-        "HappyHour": {
-          "description": "Bringing you wild drink specials",
-          "drinkSpecials": [
-            {
-              "description": "Shots, bottled \u0026 can beers",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "50% off"
-            },
-            {
-              "description": "Wines (ask server for selections)",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "$5.50 - 7.50"
-            },
-            {
-              "description": "To any cocktail to make it a double sized double shot 22oz cocktail",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "Add 1$"
-            },
-            {
-              "description": "To any draft beer to make it a double size 32oz draft beer",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "Add 1$"
-            }
-          ],
-          "endTimestamp": "2023-01-27T19:00",
-          "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
-          "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-          "eventType": "HappyHour",
-          "_id": "2bdb47f7-bca3-4d61-b5ff-3c5d9f9cb520",
-          "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-          "restaurantName": "Tower 12",
-          "startTimestamp": "2023-01-27T15:00",
-          "title": "Jungle Hour",
-          "weeklyHoursDescription": "M - F • 3PM - 7PM"
-        },
-        "Special": {
-          "description": "Premiere sports viewing, we get all the games",
+      "2023-02-05": {
+        "Brunch": {
+          "description": "Brunch is fun",
           "drinkSpecials": [
             {
               "description": "Bloody Mary\u0027s Well",
@@ -267,15 +232,50 @@
               "price": "$10"
             }
           ],
-          "endTimestamp": "2023-01-27T19:00",
+          "endTimestamp": "2023-02-05T14:00",
           "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
           "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-          "eventType": "Special",
-          "_id": "becb5eb3-0d61-4369-ab7e-e5b218e8ade7",
+          "eventType": "Brunch",
+          "_id": "e932c217-4853-475e-be9c-c8391b23a8b6",
           "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
           "restaurantName": "Tower 12",
-          "startTimestamp": "2023-01-27T15:00",
-          "title": "Friday Night Trivia",
+          "startTimestamp": "2023-02-05T09:00",
+          "title": "Sunday Brunch",
+          "weeklyHoursDescription": "Sat \u0026 Sun • 9AM - 2PM"
+        },
+        "Special": {
+          "description": "Serving sunsets, ice cold drinks, \u0026 good vibes daily",
+          "drinkSpecials": [
+            {
+              "description": "Shots, bottled \u0026 can beers",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "50% off"
+            },
+            {
+              "description": "Add Red Bull",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "$3"
+            },
+            {
+              "description": "To any well, call, or premium to make it a 22oz double shot double size cocktail",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "Add 1$"
+            },
+            {
+              "description": "To any draft beer to make it a 22oz giant schooner",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "Add 1$"
+            }
+          ],
+          "endTimestamp": "2023-02-05T19:00",
+          "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+          "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+          "eventType": "Special",
+          "_id": "59b95a45-be40-4fd6-b818-d106fa54977b",
+          "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+          "restaurantName": "Tower 12",
+          "startTimestamp": "2023-02-05T15:00",
+          "title": "Silent Disco Sunet",
           "weeklyHoursDescription": "Today only • 5PM - 8PM"
         }
       }
@@ -307,44 +307,9 @@
     "companyLogoUrl": "https://images.squarespace-cdn.com/content/v1/5c5db1e83560c36d822b0633/1554189473268-4OGP4B9IXAUV2K2EBKU6/hennesseys_tavern_logo.png?format\u003d1500w",
     "description": "Irish-style pub chain serving breakfast, bar bites, burgers \u0026 more in a casual, traditional space.",
     "eventsByDate": {
-      "2023-02-03": {
-        "HappyHour": {
-          "description": "Bringing you wild drink specials",
-          "drinkSpecials": [
-            {
-              "description": "Shots, bottled \u0026 can beers",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "50% off"
-            },
-            {
-              "description": "Wines (ask server for selections)",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "$5.50 - 7.50"
-            },
-            {
-              "description": "To any cocktail to make it a double sized double shot 22oz cocktail",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "Add 1$"
-            },
-            {
-              "description": "To any draft beer to make it a double size 32oz draft beer",
-              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
-              "price": "Add 1$"
-            }
-          ],
-          "endTimestamp": "2023-01-27T19:00",
-          "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
-          "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
-          "eventType": "HappyHour",
-          "_id": "2bdb47f7-bca3-4d61-b5ff-3c5d9f9cb520",
-          "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
-          "restaurantName": "Tower 12",
-          "startTimestamp": "2023-01-27T15:00",
-          "title": "Jungle Hour",
-          "weeklyHoursDescription": "M - F • 3PM - 7PM"
-        },
-        "Special": {
-          "description": "Premiere sports viewing, we get all the games",
+      "2023-02-05": {
+        "Brunch": {
+          "description": "Brunch is fun",
           "drinkSpecials": [
             {
               "description": "Bloody Mary\u0027s Well",
@@ -367,15 +332,50 @@
               "price": "$10"
             }
           ],
-          "endTimestamp": "2023-01-27T19:00",
+          "endTimestamp": "2023-02-05T14:00",
           "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
           "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/08/TR-Sat-Sun-4x6-1-696x1024.jpg",
-          "eventType": "Special",
-          "_id": "becb5eb3-0d61-4369-ab7e-e5b218e8ade7",
+          "eventType": "Brunch",
+          "_id": "e932c217-4853-475e-be9c-c8391b23a8b6",
           "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
           "restaurantName": "Tower 12",
-          "startTimestamp": "2023-01-27T15:00",
-          "title": "Friday Night Trivia",
+          "startTimestamp": "2023-02-05T09:00",
+          "title": "Sunday Brunch",
+          "weeklyHoursDescription": "Sat \u0026 Sun • 9AM - 2PM"
+        },
+        "Special": {
+          "description": "Serving sunsets, ice cold drinks, \u0026 good vibes daily",
+          "drinkSpecials": [
+            {
+              "description": "Shots, bottled \u0026 can beers",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "50% off"
+            },
+            {
+              "description": "Add Red Bull",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "$3"
+            },
+            {
+              "description": "To any well, call, or premium to make it a 22oz double shot double size cocktail",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "Add 1$"
+            },
+            {
+              "description": "To any draft beer to make it a 22oz giant schooner",
+              "imageUrl": "https://cdn-icons-png.flaticon.com/512/187/187448.png",
+              "price": "Add 1$"
+            }
+          ],
+          "endTimestamp": "2023-02-05T19:00",
+          "eventImageUrl": "https://cdn.vox-cdn.com/thumbor/DTEjhFGI77hFOd964vCTSiqsQ90\u003d/0x0:2000x1333/1820x728/filters:focal(840x507:1160x827):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/53515463/tower_12_hermosa.0.jpg",
+          "eventInfoUrl": "https://tower12hb.com/wp-content/uploads/2022/01/TR-Jungle-Hour-4x6-1.jpg",
+          "eventType": "Special",
+          "_id": "59b95a45-be40-4fd6-b818-d106fa54977b",
+          "restaurantId": "1833bcfa-a7bf-456d-b0fe-5030cbe962e4",
+          "restaurantName": "Tower 12",
+          "startTimestamp": "2023-02-05T15:00",
+          "title": "Silent Disco Sunset",
           "weeklyHoursDescription": "Today only • 5PM - 8PM"
         }
       }
